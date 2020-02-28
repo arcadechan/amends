@@ -9,11 +9,6 @@
 
             {{ $style := resources.Get "scss/main.scss" }}
 
-            <div>
-                <h1>AYY LMAO RESOURCES</h1>
-                <p>{{ $style }}</p>
-            </div>
-
             {{- with .Site.Params.social }}
                 <div>
                     {{ partial "social-icons.html" . }}
