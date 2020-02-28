@@ -1,17 +1,22 @@
-<!doctype html>
-<html lang="{{ $.Site.Language.Lang }}">
-  {{ partial "head" . }}
-  <body class="sans-serif">
+<!DOCTYPE html>
+<html lang="{{ .Site.Language }}">
+    <head>
+        {{ partial "head.html" . }}
+    </head>
 
-    {{ block "header" . }}{{ partial "nav" . }}{{end}}
+    <body class="{{ if ne $.Site.Params.defaultTheme "light" -}} dark-theme {{- end -}}">
+        <div class="container">
+            {{ partial "header.html" . }}
 
-    {{ block "main" . }}{{ end }}
+            <div class="content">
+                {{ block "main" . }}{{ end }}
+            </div>
 
-    {{ block "footer" . }}{{ partial "footer" . }}{{end}}
+            {{ block "footer" . }}
+                {{ partial "footer.html" . }}
+            {{ end }}
+        </div>
 
-    {{ $script := .Site.Data.webpack.main }}
-    {{ with $script.js }}
-      <script src="{{ relURL . }}"></script>
-    {{ end }}
-  </body>
+        {{ partial "javascript.html" . }}
+    </body>
 </html>

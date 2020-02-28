@@ -1,0 +1,12 @@
+<nav class="menu">
+    <ul class="menu__inner">
+        {{- $currentPage := . -}}
+        <!-- {{ range .Site.Menus.main -}}
+            <li><a href="{{ .URL | absLangURL }}">{{ .Name }}</a></li>
+        {{- end }} -->
+
+        <li><a href="/">Home</a></li>       
+        <li><a href="/posts">Posts</a></li>
+        <li><a href="/about">About</a></li>
+    </ul>
+</nav>

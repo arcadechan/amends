@@ -1,16 +1,26 @@
 {{ define "main" }}
+    <main class="posts">
+        <h1>{{ .Title }}</h1>
 
-{{ partial "jumbotron" (dict "imageUrl" "/img/blog-index.jpg" "title" "Latest stories") }}
+        {{- if .Content }}
+            <div class="content">{{ .Content }}</div>
+        {{- end }}
 
-<div class="mw7 center">
-  <ul class="flex-ns flex-wrap mhn1-ns pa3">
-      {{ range (.Paginator 4).Pages.ByPublishDate.Reverse }}
-          <div class="w-50-ns ph1-ns flex">
-            {{ .Render "li"}}
-          </div>
-      {{ end }}
-  </ul>
-  {{ partial "pagination" . }}
-</div>
+        {{- range .Data.Pages.GroupByDate "2006" }}
+            <div class="posts-group">
+                <div class="post-year">{{ .Key }}</div>
 
-{{end}}
+                <ul class="posts-list">
+                    {{- range .Pages }}
+                        <li class="post-item">
+                            <a href="{{.Permalink}}">
+                                <span class="post-title">{{.Title}}</span>
+                                <span class="post-day">{{ if .Site.Params.dateformShort }}{{ .Date.Format .Site.Params.dateformShort }}{{ else }}{{ .Date.Format "Jan 2"}}{{ end }}</span>
+                            </a>
+                        </li>
+                    {{- end }}
+                </ul>
+            </div>
+        {{- end }}
+    </main>
+{{ end }}
