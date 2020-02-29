@@ -1,19 +1,9 @@
-+++
-title = "About"
-date = "2014-04-09"
-aliases = ["about-us","about-hugo","contact"]
-[ author ]
-  name = "Hugo Authors"
-+++
+---
+title: About
+---
+Hello friend,
 
-Hugo is the **world’s fastest framework for building websites**. It is written in Go.
+**Amends** is a site dedicated to the discovery and analysis of all kinds of music. My goal is to hopefully introduce you to amazing stuff by talking about what I feel makes certain songs and artists great. I hope you enjoy the journey!
 
-It makes use of a variety of open source projects including:
-
-* https://github.com/russross/blackfriday
-* https://github.com/alecthomas/chroma
-* https://github.com/muesli/smartcrop
-* https://github.com/spf13/cobra
-* https://github.com/spf13/viper
-
-Learn more and contribute on [GitHub](https://github.com/gohugoio).
+Eternally yours,\
+_Arcade_
