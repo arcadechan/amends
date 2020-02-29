@@ -41,6 +41,7 @@ collections: # A list of collections the CMS should be able to edit
         fields:
           - { label: Site Name, name: site_name, widget: string }
           - { label: Slogan, name: slogan, widget: string }
+          - { label: Favicon, name: favicon, widget: image }
           - label: Branding
             name: branding
             widget: object

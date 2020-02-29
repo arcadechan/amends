@@ -1,5 +1,13 @@
 <a href="/" style="text-decoration: none;">
     <div class="logo">
-        <span class="logo__mark">AMENDS</span>
+        <span class="logo__mark">
+            {{ with .Site.GetPage "/globals/_index.md"}}
+                {{ if .Params.branding.whites.logo }}
+                    <img src="{{ .Params.branding.whites.logo | relURL }}"/>
+                {{ else }}
+                    AMENDS
+                {{ end }}
+            {{ end }}
+        </span>
     </div>
 </a>
