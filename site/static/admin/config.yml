@@ -23,15 +23,15 @@ collections: # A list of collections the CMS should be able to edit
         label: "Home Page"
         name: "home"
         fields:
-          - {label: Title, name: title, widget: string}
-          - {label: Subtitle, name: subtitle, widget: string}
-          - {label: Message, name: message, widget: markdown}
+          - {label: Title, name: title, widget: string, required: false}
+          - {label: Subtitle, name: subtitle, widget: string, required: false}
+          - {label: Message, name: message, widget: markdown, required: false}
       - file: "site/content/about/_index.md"
         label: "About Page"
         name: "about"
         fields:
-          - {label: Title, name: title, widget: string}
-          - {label: Body, name: body, widget: markdown}
+          - {label: Title, name: title, widget: string, required: false}
+          - {label: Body, name: body, widget: markdown, required: false}
   - name: "globals"
     label: "Globals"
     files: 
