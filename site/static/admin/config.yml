@@ -32,3 +32,31 @@ collections: # A list of collections the CMS should be able to edit
         fields:
           - {label: Title, name: title, widget: string}
           - {label: Body, name: body, widget: markdown}
+  - name: "globals"
+    label: "Globals"
+    files: 
+      - file: "site/content/globals/_index.md"
+        name: "globals"
+        label: "Globals"
+        fields:
+          - { label: Site Name, name: site_name, widget: string }
+          - { label: Slogan, name: slogan, widget: string }
+          - label: Branding
+            name: branding
+            widget: object
+            fields:
+              - label: Whites
+                name: whites
+                widget: object
+                hint: "For dark backgrounds."
+                fields: 
+                  - { label: Icon, name: icon, widget: image }
+                  - { label: Logo, name: logo, widget: image }
+              - label: Blacks
+                name: blacks
+                widget: object
+                hint: "For light backgrounds."
+                fields: 
+                  - { label: Icon, name: icon, widget: image }
+                  - { label: Logo, name: logo, widget: image }
+                
