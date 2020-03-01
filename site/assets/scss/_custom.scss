@@ -1,0 +1,36 @@
+#scrollToTop {
+    position: fixed;
+    display: none;
+    bottom: 30px;
+    right: 30px;
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: #212020;
+    cursor: pointer;
+
+    span {
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        width: 60%;
+        transform:translate(-50%, -45%);
+    }
+}
+
+#about.posts {
+    .content {
+        align-items: start;
+    }
+
+    #credits {
+        img {
+            height: 20px;
+            padding-right: 5px;
+        }
+
+        ul li > * {
+            display: inline-block
+        }
+    }
+}

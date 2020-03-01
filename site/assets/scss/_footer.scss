@@ -24,13 +24,13 @@
     color: $light-color-secondary;
 
     @media #{$media-size-tablet} {
-      flex-direction: column;
+      //flex-direction: column;
       margin-top: 10px;
     }
 
     & > *:not(:last-child) {
       border-right: 1px solid;
-      padding: 0 15px;
+      padding: 0 10px;
 
       @media #{$media-size-tablet} {
         border: none;
@@ -38,7 +38,7 @@
     }
 
     & > *:last-child {
-      padding: 0 15px;
+      padding: 0 10px;
     }
   }
 }

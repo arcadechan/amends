@@ -39,7 +39,7 @@ disableHugoGeneratorInject = false
   posts = "/posts/:year/:month/:title/"
 
 [author]
-  name = "Daniel Palacios"
+  name = "Arcade"
 
 [blackfriday]
   hrefTargetBlank = true
@@ -55,6 +55,7 @@ disableHugoGeneratorInject = false
   dateformNumTime = "2006-01-02 15:04 -0700"
 
   # Metadata mostly used in document's head
+  siteName ="Amends"
   description = "A personal blog."
   keywords = ""
   images = [""]
@@ -117,7 +118,7 @@ disableHugoGeneratorInject = false
 
 [languages]
   [languages.en]
-    subtitle  = "Hello Friend NG Theme"
+    subtitle  = "A Music Blog"
     weight    = 1
     copyright = '<a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a>'
 

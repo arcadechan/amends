@@ -7,13 +7,18 @@
 <meta name="robots" content="noodp" />
 <meta name="theme-color" content="{{ .Site.Params.themeColor }}" />
 <link rel="canonical" href="{{ .Permalink }}" />
+{{ with .Site.GetPage "/globals/_index.md"}}
+    {{ with .Params }}
+        <link rel="icon" type="image/png" href="{{ .favicon | relURL }}">
+    {{ end }}
+{{ end }}
 
 {{ block "title" . }}
     <title>
         {{ if .IsHome }}
-            {{ $.Site.Title }} {{ with $.Site.Params.Subtitle }} — {{ . }} {{ end }}
+            {{ $.Site.Title }}
         {{ else }}
-            {{ .Title }} :: {{ $.Site.Title }} {{ with $.Site.Params.Subtitle }} — {{ . }}{{ end }}
+            {{ .Title }} | {{ $.Site.Title }}
         {{ end }}
     </title>
 {{ end }}

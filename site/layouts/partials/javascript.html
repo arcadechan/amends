@@ -21,3 +21,27 @@
 		<script src="{{ $val }}"></script>
 	{{ end }}
 {{ end }}
+
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+
+<script>
+    $(window).scroll(function() {
+        var height = $(window).scrollTop();
+        if (height > 100) {
+            $('#scrollToTop').fadeIn();
+        } else {
+            $('#scrollToTop').fadeOut();
+        }
+    });
+    $(document).ready(function() {
+        $("#scrollToTop").click(function(event) {
+            event.preventDefault();
+            $("html, body").animate({ scrollTop: 0 }, "fast");
+            return false;
+        });
+    
+    });
+</script>
