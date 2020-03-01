@@ -1,7 +1,7 @@
 {{ define "main" }}
-    <main aria-role="main">
-        <div>
-            <h1>{{ .Site.Title }}</h1>
+    <main id="home" aria-role="main">
+            <img id="logo" src="/img/AMENDS-white.png" alt="Amends Logo">
+            {{/*  <h1>{{ .Site.Title }}</h1>  */}}
 
             {{- with .Site.Params.homeSubtitle }}
                 <p>{{.}}</p>
@@ -12,6 +12,5 @@
                     {{ partial "social-icons.html" . }}
                 </div>
             {{- end }}
-        </div>
     </main>
 {{ end }}
