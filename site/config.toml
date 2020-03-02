@@ -63,7 +63,7 @@ unsafe = true
   keywords = ""
   images = [""]
 
-  homeSubtitle = "Repairing the world's cultural palatte, one post at a time."
+  homeSubtitle = "Repairing the world's cultural palate, one post at a time."
 
   # Prefix of link to the git commit detail page. GitInfo must be enabled.
   # gitUrl = ""
