@@ -1,6 +1,6 @@
 ---
 title: Amends
-latest-finds:
+latest_finds:
   - entry:
       album: Conduit
       artist: machinegum

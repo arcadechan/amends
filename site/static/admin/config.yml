@@ -17,6 +17,14 @@ collections: # A list of collections the CMS should be able to edit
       preview: false
     fields: # The fields each document in this collection have
       - {label: "Title", name: "title", widget: "string"}
+      - label: "Weekly / Monthly Summary Post?"
+        name: "category"
+        widget: "select"
+        hint: "Select a category to categorize this post as a weekly or monthly summary"
+        required: false
+        options: 
+          - { label: "Weekly Summary", value: "weekly_summary" }
+          - { label: "Monthly Summary", value: "monthly_summary" }
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Banner Image", name: "banner_image", widget: "image", required: false}
       - {label: "Body", name: "body", widget: "markdown"}
@@ -31,7 +39,33 @@ collections: # A list of collections the CMS should be able to edit
         fields:
           - {label: Title, name: title, widget: string, required: false}
           - {label: Subtitle, name: subtitle, widget: string, required: false}
-          - {label: Message, name: message, widget: markdown, required: false}
+          - label: "Latest Finds"
+            name: "latest_finds"
+            required: false
+            widget: list
+            fields: 
+              - label: "Entry"
+                name: "entry"
+                widget: object
+                fields:
+                  - { label: "Title", name: "title", widget: string }
+                  - { label: "Artist", name: "artist", widget: string }
+                  - { label: "Album", name: "album", widget: string }
+                  - { label: "Year", name: "year", widget: string }
+                  - label: links
+                    name: links
+                    widget: list
+                    fields: 
+                      - label: Type
+                        name: type
+                        widget: select
+                        options: 
+                          - { label: Spotify, value: spotify }
+                          - { label: Youtube, value: youtube }
+                          - { label: Soundcloud, value: soundcloud }
+                          - { label: Bandcamp, value: bandcamp }
+                      - { label: Link, name: link, widget: string }
+          # - {label: Message, name: message, widget: markdown, required: false}
       - file: "site/content/about/_index.md"
         label: "About Page"
         name: "about"

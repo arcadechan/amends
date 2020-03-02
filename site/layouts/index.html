@@ -1,7 +1,6 @@
 {{ define "main" }}
     <main id="home" aria-role="main">
             <img id="logo" src="/img/AMENDS-white.png" alt="Amends Logo">
-            {{/*  <h1>{{ .Site.Title }}</h1>  */}}
 
             {{- with .Site.Params.homeSubtitle }}
                 <p>{{.}}</p>
@@ -12,5 +11,55 @@
                     {{ partial "social-icons.html" . }}
                 </div>
             {{- end }}
+
+            <hr/>
+            <div id="home-feed">
+
+                <div id="monthly-summary">
+                    <h3>Monthly Summary</h3>
+                    <div id="monthy-summary-container">
+                        <h5>February</h5>
+                        <img src="">
+                        <small>Post Date: March 1, 2020 10:11 AM</small>
+                    </div>
+                </div>
+                
+                <div id="weekly-finds">
+                    <h3>Weekly Finds</h3>
+                    <div id="weekly-finds-table">
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Artist</th>
+                                    <th>Album [Year]</th>
+                                    <th>Links</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{ with .Params }}
+                                    {{/*  {{ range .latest_finds }}
+                                        <tr>
+                                            <td>Carry the Zero</td>
+                                            <td>Built To Spill</td>
+                                            <td>Keep It Like A Secret [1999]</td>
+                                            <td>
+                                                <a href="https://open.spotify.com/track/3HMOMdRPywfouYx5B4PvaH?si=Y1TRM6V_QwWZG6itrxsn4Q" target="_blank"><img src="https://www.freepnglogos.com/uploads/spotify-logo-png/spotify-logo-spotify-symbol-3.png"></a>
+                                                <a href="https://youtu.be/eZ7MFTBjJS8?autoplay=0" target="_blank"><img src="https://www.freepnglogos.com/uploads/youtube-icon-logo-7.png"></a>
+                                            </td>
+                                            <td>test</td>
+                                        </tr>
+                                    {{ end }}  */}}
+                                {{ end }}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                {{/*  {{ .Params.latest-finds }}  */}}
+
+            </div>
+            
     </main>
 {{ end }}
