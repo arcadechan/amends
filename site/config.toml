@@ -44,6 +44,9 @@ disableHugoGeneratorInject = false
 [blackfriday]
   hrefTargetBlank = true
 
+[markup.goldmark.renderer]
+unsafe = true
+
 [taxonomies]
   tag      = "tags"
   category = "categories"
@@ -51,8 +54,8 @@ disableHugoGeneratorInject = false
 [params]
   dateform        = "Jan 2, 2006"
   dateformShort   = "Jan 2"
-  dateformNum     = "2006-01-02"
-  dateformNumTime = "2006-01-02 15:04 -0700"
+  dateformNum     = "January 02, 2006"
+  dateformNumTime = "January 02, 2006 3:04 PM"
 
   # Metadata mostly used in document's head
   siteName ="Amends"

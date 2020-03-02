@@ -42,70 +42,126 @@ hr {
 #home {
     padding: 2rem;
 
+    h1, h2, h3, h4, h5, h6 {
+        display: block !important;
+    }
+
     #logo {
         width: 15rem !important;
         margin: 0 auto;
     }
 
-    #weekly-finds-table {
-        width: 100%;
-        // height: 200px;
-        margin: 0 auto;
-        // overflow-y: auto;
+    #home-feed {
+        display: flex;
 
+        hr {
+            display: none;
+        }
+
+        #monthly-summary {
+            border-right: 2px solid #46484d;
+        }
+
+        #monthly-summary, #latest-finds {
+            padding: 0 2rem;
+            width: 50%;
+
+            h1, h2, h3, h4, h5, h6 {
+                margin: 1rem;
+            }
+        }
+
+        @media #{$media-size-phone} {
+            display: block;
+
+            hr {
+                display: block;
+            }
+
+            #monthly-summary {
+                border-right: 0;
+            }
+
+            #monthly-summary, #latest-finds {
+                padding: 0;
+                width: 100%;
+            }
+        }
+    }
+
+    #monthly-summary {
+
+        a {
+            text-decoration: none;
+        }
+
+        #monthly-summary-container {
+            &:hover {
+                background-color: #46484d;
+            }
+
+            img {
+                margin: 0 1rem;
+                width: calc(100% - 2rem);
+            }
+        }
+    }
+
+    #latest-finds-table {
+        width: 100%;
+        margin: 0 auto;
 
         table {
-            font-size: 11px;
             width: 100%;
             border-collapse: collapse;
+            font-size: 12px;
 
             td, th {
                 border: 1px solid #46484d;
-                padding: .5rem .5rem;
-                text-align: left;
+                padding: .5rem;
             }
 
             thead {
-                z-index: 999;
                 background-color: #212020;
-
-                th {
-                    // position: sticky;
-                    // top: 0px;
-                    background-color: #212020;
-
-                    &:not(:last-child){
-                        border-right: 1px solid #46484d;
-                    }
-                }
             }
             
             tbody {
-                z-index: 998;
 
-                img {
-                    height: 20px;
-                    display: inline;
+                td {
+                    a {
+                        margin: 0 .5rem;
 
-                    @media #{$media-size-phone} {
-                        display: block;
-                        margin: 1rem auto;
+                        img {
+                            height: 20px;
+                            display: inline-block;
+        
+                            @media #{$media-size-phone} {
+                                display: block;
+                                margin: 1rem auto;
+                            }
+                        }
                     }
                 }
-
-                tr {
-                    //background-color: #46484d;
-                }
-    
-                // tr:nth-child(even) {
-                //     background-color: #212020;
-    
-                //     td:not(:last-child) {
-                //         border-right: 1px solid #292a2d;
-                //     }
-                // }
             }
         }
     }
 }
 
+.post {
+    article {
+        .monthly-summary-banner {
+            max-width: 300px;
+        }
+
+        .banner-image {
+            width: 100%;
+        }
+    }
+
+    .post-content {
+        iframe {
+            width: 100%;
+            height: 80px;
+        }
+    }
+}

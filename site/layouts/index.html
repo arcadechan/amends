@@ -1,65 +1,80 @@
 {{ define "main" }}
     <main id="home" aria-role="main">
-            <img id="logo" src="/img/AMENDS-white.png" alt="Amends Logo">
+        <img id="logo" src="/img/AMENDS-white.png" alt="Amends Logo">
 
-            {{- with .Site.Params.homeSubtitle }}
-                <p>{{.}}</p>
-            {{- end }}
+        {{- with .Site.Params.homeSubtitle }}
+            <p>{{.}}</p>
+        {{- end }}
 
-            {{- with .Site.Params.social }}
-                <div>
-                    {{ partial "social-icons.html" . }}
-                </div>
-            {{- end }}
-
-            <hr/>
-            <div id="home-feed">
-
-                <div id="monthly-summary">
-                    <h3>Monthly Summary</h3>
-                    <div id="monthy-summary-container">
-                        <h5>February</h5>
-                        <img src="">
-                        <small>Post Date: March 1, 2020 10:11 AM</small>
-                    </div>
-                </div>
-                
-                <div id="weekly-finds">
-                    <h3>Weekly Finds</h3>
-                    <div id="weekly-finds-table">
-
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Title</th>
-                                    <th>Artist</th>
-                                    <th>Album [Year]</th>
-                                    <th>Links</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {{ with .Params }}
-                                    {{/*  {{ range .latest_finds }}
-                                        <tr>
-                                            <td>Carry the Zero</td>
-                                            <td>Built To Spill</td>
-                                            <td>Keep It Like A Secret [1999]</td>
-                                            <td>
-                                                <a href="https://open.spotify.com/track/3HMOMdRPywfouYx5B4PvaH?si=Y1TRM6V_QwWZG6itrxsn4Q" target="_blank"><img src="https://www.freepnglogos.com/uploads/spotify-logo-png/spotify-logo-spotify-symbol-3.png"></a>
-                                                <a href="https://youtu.be/eZ7MFTBjJS8?autoplay=0" target="_blank"><img src="https://www.freepnglogos.com/uploads/youtube-icon-logo-7.png"></a>
-                                            </td>
-                                            <td>test</td>
-                                        </tr>
-                                    {{ end }}  */}}
-                                {{ end }}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                {{/*  {{ .Params.latest-finds }}  */}}
-
+        {{- with .Site.Params.social }}
+            <div>
+                {{ partial "social-icons.html" . }}
             </div>
+        {{- end }}
+
+        <hr/>
+        <div id="home-feed">
+
+            {{ range sort .Site.Pages }}
+                {{ if in .Params.category "monthly_summary"}}
+                    <div id="monthly-summary">
+                        <h3>Monthly Summary</h3>
+                        <a href="{{ .Permalink }}">
+                            <div id="monthly-summary-container">
+                                <h1><i>{{ .Params.title }}</i></h1>    
+                                    {{ if .Params.banner_image }}
+                                        <small>Click to go to post.</small>
+                                        <img src="{{ .Params.banner_image }}">
+                                    {{ else }}
+                                        Go To Post
+                                    {{ end }}
+                                <small>
+                                    Post Date: 
+                                    {{ if .Site.Params.dateformNumTime }}
+                                        {{ dateFormat .Site.Params.dateformNumTime .Date.Local }}
+                                    {{ else }}
+                                        {{ dateFormat "2006-01-02 10:04 -0700" .Date.Local }}
+                                    {{ end }}
+                                </small>
+                            </div>
+                        </a>
+                    </div>
+                    <hr/>
+                {{ end }}
+            {{ end }}
             
+            
+            <div id="latest-finds">
+                <h3>Latest Finds</h3>
+                <div id="latest-finds-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Artist</th>
+                                <th>Album [Year]</th>
+                                <th>Links</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{ with .Params }}
+                                {{ range .latest_finds }}
+                                    <tr>
+                                        <td>{{ .entry.title }}</td>
+                                        <td>{{ .entry.artist }}</td>
+                                        <td>{{ .entry.album }} [{{ .entry.year }}]</td>
+                                        <td>
+                                            {{ range .entry.links }}
+                                                <a href="{{ .link }}" target="_blank"><img src="/img/{{ .type }}-icon.png"></a>
+                                            {{ end }}
+                                        </td> 
+                                    </tr>
+                                {{ end }}
+                            {{ end }}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </main>
 {{ end }}
