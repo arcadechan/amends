@@ -1,33 +1,23 @@
 ---
 title: Amends
-latest-finds:
+latest_finds:
   - entry:
-      album: Conduit
-      artist: machinegum
+      album: My Star
+      artist: The Hecks
       links:
         - link: >-
-            https://open.spotify.com/album/5jkGq5lwa40asXsTXqnCTS?si=Zqe_WK14RlWH8A6OBbCH_A
+            https://open.spotify.com/album/4lAdwQiIxw2CZeie4Scw09?si=57XpcSDbSZaaZLBAmBJ5tg
           type: spotify
-        - link: 'https://www.youtube.com/watch?v=JnQTIdrJHSg'
-          type: youtube
-        - link: 'https://soundcloud.com/machinegum-music/kubes'
-          type: soundcloud
-      title: Kubes
+      title: Flash
       year: '2019'
   - entry:
-      album: Foam
-      artist: Divino Niño
+      album: Cañón
+      artist: Camp Howard
       links:
         - link: >-
-            https://open.spotify.com/track/5BIofnTtBtR90YC0Oj6iUR?si=qQ_hz5NJT_u0H-rOZqdpqw
+            https://open.spotify.com/album/4JMocIOCevvMSzCjmZw2ry?si=JvMW18rwQgOOhF26tcP1NQ
           type: spotify
-        - link: 'https://www.youtube.com/watch?v=CWFz2t12CuI'
-          type: youtube
-        - link: 'https://soundcloud.com/divinoninoofficial/flamingo'
-          type: soundcloud
-        - link: 'https://divinonino.bandcamp.com/track/flamingo'
-          type: bandcamp
-      title: Flamingo
+      title: Placid
       year: '2019'
 ---
 
