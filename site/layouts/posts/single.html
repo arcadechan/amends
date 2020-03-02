@@ -15,7 +15,7 @@
         </div>
 
         <article>
-            <img src="{{ .Params.banner_image | relURL }}" class='{{ if eq .Params.category "monthly_summary"}}monthly-summary-banner{{ else }}banner-image{{ end }}'>
+            <img src="{{ .Params.banner_image | relURL }}" class='{{ if in .Params.category "monthly_summary"}}monthly-summary-banner{{ else }}banner-image{{ end }}'>
             <h1 class="post-title">
                 <a href="{{ .Permalink }}">{{ .Title | markdownify }}</a>
             </h1>

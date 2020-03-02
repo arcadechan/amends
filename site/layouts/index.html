@@ -43,38 +43,41 @@
                 {{ end }}
             {{ end }}
             
-            
-            <div id="latest-finds">
-                <h3>Latest Finds</h3>
-                <div id="latest-finds-table">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Title</th>
-                                <th>Artist</th>
-                                <th>Album [Year]</th>
-                                <th>Links</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {{ with .Params }}
-                                {{ range .latest_finds }}
-                                    <tr>
-                                        <td>{{ .entry.title }}</td>
-                                        <td>{{ .entry.artist }}</td>
-                                        <td>{{ .entry.album }} [{{ .entry.year }}]</td>
-                                        <td>
-                                            {{ range .entry.links }}
-                                                <a href="{{ .link }}" target="_blank"><img src="/img/{{ .type }}-icon.png"></a>
-                                            {{ end }}
-                                        </td> 
-                                    </tr>
+            {{ if .Params.latest_finds }}
+                <div id="latest-finds">
+                    <h3>Latest Finds</h3>
+                    <div id="latest-finds-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Artist</th>
+                                    <th>Album [Year]</th>
+                                    <th>Links</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{ with .Params }}
+                                    {{ range .latest_finds }}
+                                        <tr>
+                                            <td>{{ .entry.title }}</td>
+                                            <td>{{ .entry.artist }}</td>
+                                            <td>{{ .entry.album }} [{{ .entry.year }}]</td>
+                                            <td>
+                                                {{ range .entry.links }}
+                                                    <a href="{{ .link }}" target="_blank" title="{{ .type | humanize }}">
+                                                        <img src="/img/{{ .type }}-icon.png">
+                                                    </a>
+                                                {{ end }}
+                                            </td> 
+                                        </tr>
+                                    {{ end }}
                                 {{ end }}
-                            {{ end }}
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
+            {{ end }}
         </div>
     </main>
 {{ end }}

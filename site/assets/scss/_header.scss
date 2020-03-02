@@ -24,9 +24,13 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 0 auto;
-    width: 760px;
+    margin: 0 2rem;
+    width: 100%;
     max-width: 100%;
+
+    @media #{$media-size-phone} {
+      margin: 0 auto !important;
+    }
   }
 }
 
