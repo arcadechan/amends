@@ -1,0 +1,50 @@
+/*
+    Flaticon icon font: Flaticon
+    Creation date: 02/03/2020 06:18
+    */
+
+@font-face {
+  font-family: "Flaticon";
+  font-style: normal;
+  font-display: auto;
+  font-weight: normal;
+  src: url("../fonts/Flaticon.woff2") format("woff2"),
+      url("../fonts/Flaticon.woff") format("woff");
+}
+
+.fi:before {
+  display: inline-block;
+  font-family: "Flaticon";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+
+.flaticon-youtube:before {
+  content: "\f100";
+}
+.flaticon-soundcloud:before {
+  content: "\f101";
+}
+.flaticon-bandcamp:before {
+  content: "\f102";
+}
+.flaticon-spotify:before {
+  content: "\f103";
+}
+.flaticon-up:before {
+  content: "\f104";
+}
+
+$font-Flaticon-youtube: "\f100";
+$font-Flaticon-soundcloud: "\f101";
+$font-Flaticon-bandcamp: "\f102";
+$font-Flaticon-spotify-sketch: "\f103";
+$font-Flaticon-up-arrow: "\f104";

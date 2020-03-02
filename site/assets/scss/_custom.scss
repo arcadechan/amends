@@ -9,12 +9,12 @@
     background-color: #212020;
     cursor: pointer;
 
-    span {
+    .fi.flaticon-up {
+        font-size: 1.25rem;
         position: absolute;
-        top: 45%;
+        top: 50%;
         left: 50%;
-        width: 60%;
-        transform:translate(-50%, -45%);
+        transform:translate(-50%, -50%);
     }
 }
 
@@ -25,16 +25,29 @@ hr {
 #about.posts {
     .content {
         align-items: start;
+
+        img {
+            height: 3rem;
+
+            @media #{$media-size-phone} {
+                height: 2rem;
+            }
+        }
     }
 
     #credits {
         img {
             height: 20px;
-            padding-right: 5px;
+            // padding-right: 5px;
         }
 
         ul li > * {
             display: inline-block
+        }
+
+        ul li i.fi,
+        ul li img {
+            margin: .25rem;
         }
     }
 }
@@ -131,14 +144,8 @@ hr {
                     a {
                         margin: 0 .5rem;
 
-                        img {
-                            height: 20px;
-                            display: inline-block;
-        
-                            @media #{$media-size-phone} {
-                                display: block;
-                                margin: 1rem auto;
-                            }
+                        i.fi {
+                            font-size: 1.25rem;
                         }
                     }
                 }
@@ -162,6 +169,19 @@ hr {
         iframe {
             width: 100%;
             height: 80px;
+        }
+
+        .signature {
+            padding-bottom: 2rem;
+
+            img {
+                height: 3rem;
+                margin: 0 auto;
+
+                @media #{$media-size-phone} {
+                    height: 2rem;
+                }
+            }
         }
     }
 }
