@@ -1,7 +1,7 @@
 ---
 title: 'Test Post 1: WoW'
 date: 2020-03-05T05:17:50.034Z
-banner_image: img/202002-February-Monthly-Summary.jpg
+banner_image: ''
 ---
 This is a body of text.\
 \
