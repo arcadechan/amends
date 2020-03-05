@@ -16,7 +16,7 @@ collections: # A list of collections the CMS should be able to edit
     editor:
       preview: false
     fields: # The fields each document in this collection have
-      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Title", name: "title", widget: "string", hint: 'Caution! Ending a title with a period will break permalinks. Try not to use any periods at all for clean URLs.'}
       - label: "Weekly / Monthly Summary Post?"
         name: "category"
         widget: "select"
@@ -26,8 +26,8 @@ collections: # A list of collections the CMS should be able to edit
           - { label: "Weekly Summary", value: "weekly_summary" }
           - { label: "Monthly Summary", value: "monthly_summary" }
       - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Banner Image", name: "banner_image", widget: "image", required: false}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Banner Image", name: "banner_image", widget: "image", required: false, hint: "Recommended dimensions: 750 x 250 pixels"}
+      - {label: "Body", name: "body", widget: "markdown", hint: 'Markdown widget is configured to accept raw HTML.'}
   - name: "pages"
     label: "Pages"
     editor:

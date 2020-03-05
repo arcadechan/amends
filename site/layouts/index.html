@@ -18,16 +18,15 @@
             {{ range sort .Site.Pages }}
                 {{ if in .Params.category "monthly_summary"}}
                     <div id="monthly-summary">
-                        <h3>Monthly Summary</h3>
+                        <small>Monthly Summary</small>
                         <a href="{{ .Permalink }}">
                             <div id="monthly-summary-container">
                                 <h1><i>{{ .Params.title }}</i></h1>    
-                                    {{ if .Params.banner_image }}
-                                        <small>Click to go to post.</small>
-                                        <img src="{{ .Params.banner_image }}">
-                                    {{ else }}
-                                        Go To Post
-                                    {{ end }}
+                                {{ if .Params.banner_image }}
+                                    <img src="{{ .Params.banner_image }}">
+                                {{ end }}
+                                <small>Read post</small>
+                                <br>
                                 <small>
                                     Post Date: 
                                     {{ if .Site.Params.dateformNumTime }}

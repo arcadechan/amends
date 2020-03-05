@@ -1,3 +1,7 @@
+a:hover {
+    color: #ffffff;
+}
+
 #scrollToTop {
     position: fixed;
     display: none;
@@ -109,6 +113,13 @@ hr {
         }
 
         #monthly-summary-container {
+            border: 1px solid #46484d;
+            padding: 1rem;
+
+            h1 {
+                margin: 0;
+            }
+            
             &:hover {
                 background-color: #46484d;
             }
@@ -154,14 +165,45 @@ hr {
     }
 }
 
-.post {
-    article {
-        .monthly-summary-banner {
-            max-width: 300px;
+main.posts {
+    .post-title {
+        margin: 0;
+    }
+
+    .post-item {
+        // border: 1px solid red;
+        margin-bottom: 1rem;
+
+        a {
+            display: block;
+            padding: 0 0 1rem;
+
+            img {
+                display: block;
+                width: 100%;
+                // padding: 0 0 1rem;
+                margin: 0 0 1rem;
+            }
+
+            .post-stats {
+                display: flex;
+                justify-content: space-between;
+            }
+
         }
 
+        &:hover {
+            transform: scale(1.01);
+            z-index: 999;
+        }
+    }
+}
+
+.post {
+    article {
+        .monthly-summary-banner,
         .banner-image {
-            width: 100%;
+            width: 100%
         }
     }
 

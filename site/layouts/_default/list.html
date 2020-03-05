@@ -14,14 +14,28 @@
                     {{- range .Pages }}
                         <li class="post-item">
                             <a href="{{.Permalink}}">
-                                <span class="post-title">{{.Title}}</span>
-                                <span class="post-day">
-                                    {{ if .Site.Params.dateformShort }}
-                                        {{ dateFormat .Site.Params.dateformShort .Date.Local }}
-                                    {{ else }}
-                                        {{ dateFormat "Jan 2" .Date.Local}}
+                                {{ if .Params.banner_image }}
+                                    <img class="post-banner" src="{{ .Params.banner_image | relURL }}">
+                                {{ end }}
+                                <div class="post-stats">
+                                    <span class="post-title">{{.Title}}</span>
+                                    <span class="post-day">
+                                        {{ if .Site.Params.dateformShort }}
+                                            {{ dateFormat .Site.Params.dateformShort .Date.Local }}
+                                        {{ else }}
+                                            {{ dateFormat "Jan 2" .Date.Local}}
+                                        {{ end }}
+                                    </span>
+                                </div>
+                                {{ with .Params.category }}
+                                    {{ if eq . "monthly_summary"}}
+                                        <small>&gt; <i>Monthly Summary</i></small>
                                     {{ end }}
-                                </span>
+
+                                    {{ if eq . "weekly_summary" }}
+                                        <small><i>&rarr; Weekly Sumamry</i></small>
+                                    {{ end }}
+                                {{ end }}
                             </a>
                         </li>
                     {{- end }}
