@@ -88,7 +88,7 @@ hr {
             }
         }
 
-        @media #{$media-size-phone} {
+        @media #{$media-size-tablet} {
             display: block;
 
             hr {
@@ -148,6 +148,17 @@ hr {
             thead {
                 background-color: #212020;
             }
+
+            thead tr,
+            tbody tr {
+                .link-column {
+                    width: 100px;
+
+                    a {
+                        text-decoration: none;
+                    }
+                }
+            }
             
             tbody {
 
@@ -201,7 +212,6 @@ main.posts {
 
 .post {
     article {
-        .monthly-summary-banner,
         .banner-image {
             width: 100%
         }

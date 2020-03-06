@@ -52,7 +52,7 @@
                                     <th>Title</th>
                                     <th>Artist</th>
                                     <th>Album [Year]</th>
-                                    <th>Links</th>
+                                    <th class="link-column">Links</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -62,7 +62,7 @@
                                             <td>{{ .entry.title }}</td>
                                             <td>{{ .entry.artist }}</td>
                                             <td>{{ .entry.album }} [{{ .entry.year }}]</td>
-                                            <td>
+                                            <td class="link-column">
                                                 {{ range .entry.links }}
                                                     <a href="{{ .link }}" target="_blank" title="{{ .type | humanize }}">
                                                         <i class="fi flaticon-{{ .type }}"></i>
