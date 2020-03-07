@@ -18,7 +18,7 @@
             {{ range sort .Site.Pages }}
                 {{ if in .Params.category "monthly_summary"}}
                     <div id="monthly-summary">
-                        <small>Monthly Summary</small>
+                        <h3>Monthly Summary</h3>
                         <a href="{{ .Permalink }}">
                             <div id="monthly-summary-container">
                                 <h1><i>{{ .Params.title }}</i></h1>    
