@@ -2,78 +2,86 @@
 title: Amends
 latest_finds:
   - entry:
-      album: Presumably Dead Arm (617 Sessions)
-      artist: Sidney Gish
-      links:
-        - link: >-
-            https://open.spotify.com/track/7iFmqWr2KDvNJt9ZCm7V21?si=MLoot3yOT_eONc3QCFWSFg
-          type: spotify
-        - link: 'https://www.youtube.com/watch?v=JW_lWtAkO-o'
-          type: youtube
-        - link: 'https://soundcloud.com/bostonmusicawards/sidney-gish-presumably-dead'
-          type: soundcloud
-        - link: >-
-            https://sidneygish.bandcamp.com/track/presumably-dead-arm-617-sessions
-          type: bandcamp
-      title: Presumably Dead Arm (617 Sessions)
-      year: '2017'
-  - entry:
       album: Saâda Bonaire
+      alt_Links:
+        soundcloud: 'https://soundcloud.com/capturedtracks/you-could-be-more-as-you-a'
+        youtube: 'https://www.youtube.com/watch?v=ULlI8C5c-qY'
       artist: Saâda Bonaire
-      links:
-        - link: >-
-            https://open.spotify.com/track/4SbUpy4BzSFKnH0eD1AyZI?si=ZdAZBAOhTdi18WvuHrzmrg
-          type: spotify
-        - link: 'https://www.youtube.com/watch?v=ULlI8C5c-qY'
-          type: youtube
-        - link: 'https://soundcloud.com/capturedtracks/you-could-be-more-as-you-a'
-          type: soundcloud
+      spotify_embed: >-
+        <iframe
+        src="https://open.spotify.com/embed/track/4SbUpy4BzSFKnH0eD1AyZI"
+        width="300" height="380" frameborder="0" allowtransparency="true"
+        allow="encrypted-media"></iframe>
       title: Little Sister
       year: '1984'
   - entry:
       album: Swimmer
+      alt_Links:
+        bandcamp: 'https://tennisinc.bandcamp.com/track/need-your-love'
+        soundcloud: 'https://soundcloud.com/tennis-official/need-your-love'
+        youtube: 'https://www.youtube.com/watch?v=rGZVZcMYdmA'
       artist: Tennis
-      links:
-        - link: >-
-            https://open.spotify.com/track/7sMn5JJ7rzgl9MmgucEXsZ?si=iyjFkZRDR920c4VKBZGi2g
-          type: spotify
-        - link: 'https://www.youtube.com/watch?v=rGZVZcMYdmA'
-          type: youtube
-        - link: 'https://soundcloud.com/tennis-official/need-your-love'
-          type: soundcloud
-        - link: 'https://tennisinc.bandcamp.com/track/need-your-love'
-          type: bandcamp
+      spotify_embed: >-
+        <iframe
+        src="https://open.spotify.com/embed/track/7sMn5JJ7rzgl9MmgucEXsZ"
+        width="300" height="380" frameborder="0" allowtransparency="true"
+        allow="encrypted-media"></iframe>
       title: Need Your Love
       year: '2020'
   - entry:
-      album: 'Un, Deux, Trois'
-      artist: Juniore
-      links:
-        - link: >-
-            https://open.spotify.com/track/1T92F3S4uUwS0emTi3RdA5?si=k_os5Dg9SSeFXMxyBOw4LA
-          type: spotify
-        - link: 'https://www.youtube.com/watch?v=fMg4g54n4pg'
-          type: youtube
-        - link: 'https://soundcloud.com/junioreofficial/adolescent'
-          type: soundcloud
-        - link: 'https://heyjuniore.bandcamp.com/track/adolescent'
-          type: bandcamp
-      title: Adolescent
-      year: '2020'
-  - entry:
       album: Contact Sports
+      alt_Links:
+        bandcamp: 'https://squirrelflower.bandcamp.com/album/contact-sports'
+        soundcloud: 'https://soundcloud.com/kaymhmd1/squirrel-flower-conditions'
+        youtube: 'https://www.youtube.com/watch?v=Fg7UPNf6MTU'
       artist: Squirrel Flower
-      links:
-        - link: >-
-            https://open.spotify.com/track/0yHKgkzTJc0OR6aoG96IeH?si=SFBeqm0lT1m3QXl-T1-90Q
-          type: spotify
-        - link: 'https://www.youtube.com/watch?v=Fg7UPNf6MTU'
-          type: youtube
-        - link: 'https://soundcloud.com/kaymhmd1/squirrel-flower-conditions'
-          type: soundcloud
-        - link: 'https://squirrelflower.bandcamp.com/album/contact-sports'
-          type: bandcamp
+      spotify_embed: >-
+        <iframe
+        src="https://open.spotify.com/embed/track/0yHKgkzTJc0OR6aoG96IeH"
+        width="300" height="380" frameborder="0" allowtransparency="true"
+        allow="encrypted-media"></iframe>
       title: Conditions
       year: '2018'
+  - entry:
+      album: To Be Kind
+      alt_Links:
+        bandcamp: 'https://swans.bandcamp.com/track/screen-shot'
+        soundcloud: >-
+          https://soundcloud.com/swansofficial/screen-shot-1?in=swansofficial/sets/to-be-kind-2
+        youtube: 'https://www.youtube.com/watch?v=6qDq9eGUmMI'
+      artist: Swans
+      spotify_embed: >-
+        <iframe
+        src="https://open.spotify.com/embed/track/23cFxNXbwYcb6gfSOzL55H"
+        width="300" height="380" frameborder="0" allowtransparency="true"
+        allow="encrypted-media"></iframe>
+      title: Screen Shot
+      year: '2014'
+  - entry:
+      album: Modern Vampires of the City
+      alt_Links:
+        soundcloud: 'https://soundcloud.com/vampire-weekend-official/hannah-hunt'
+        youtube: 'https://www.youtube.com/watch?v=uDwVMcEHG70'
+      artist: Vampire Weekend
+      spotify_embed: >-
+        <iframe
+        src="https://open.spotify.com/embed/track/3t87C08isN6yw2DnWOorLm"
+        width="300" height="380" frameborder="0" allowtransparency="true"
+        allow="encrypted-media"></iframe>
+      title: Hannah Hunt
+      year: '2013'
+  - entry:
+      album: Cape God
+      alt_Links:
+        soundcloud: 'https://soundcloud.com/superduperpartypeople/susie-save-your-love'
+        youtube: 'https://www.youtube.com/watch?v=HpkSa7j7XfI'
+      artist: Allie X
+      spotify_embed: >-
+        <iframe
+        src="https://open.spotify.com/embed/track/32tUYhAygMdx9XxFxxj3It"
+        width="300" height="380" frameborder="0" allowtransparency="true"
+        allow="encrypted-media"></iframe>
+      title: Susie Save Your Live (feat. Mitski)
+      year: '2020'
 ---
 
