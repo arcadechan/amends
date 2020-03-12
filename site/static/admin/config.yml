@@ -52,19 +52,14 @@ collections: # A list of collections the CMS should be able to edit
                   - { label: "Artist", name: "artist", widget: string }
                   - { label: "Album", name: "album", widget: string }
                   - { label: "Year", name: "year", widget: string }
-                  - label: links
-                    name: links
-                    widget: list
+                  - { label: "Spotify Link (Embed)", name: "spotify_embed", widget: string, required: false}
+                  - label: Alt. Links
+                    name: alt_Links
+                    widget: object
                     fields: 
-                      - label: Type
-                        name: type
-                        widget: select
-                        options: 
-                          - { label: Spotify, value: spotify }
-                          - { label: Youtube, value: youtube }
-                          - { label: Soundcloud, value: soundcloud }
-                          - { label: Bandcamp, value: bandcamp }
-                      - { label: Link, name: link, widget: string }
+                      - { label: "Youtube", name: youtube, widget: string, required: false}
+                      - { label: "Soundcloud", name: soundcloud, widget: string, required: false}
+                      - { label: "Bandcamp", name: bandcamp, widget: string, required: false}
           # - {label: Message, name: message, widget: markdown, required: false}
       - file: "site/content/about/_index.md"
         label: "About Page"
