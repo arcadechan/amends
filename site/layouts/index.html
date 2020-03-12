@@ -46,34 +46,28 @@
                 <div id="latest-finds">
                     <h3>Latest Finds</h3>
                     <div id="latest-finds-table">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Title</th>
-                                    <th>Artist</th>
-                                    <th>Album [Year]</th>
-                                    <th class="link-column">Links</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {{ with .Params }}
-                                    {{ range .latest_finds }}
-                                        <tr>
-                                            <td>{{ .entry.title }}</td>
-                                            <td>{{ .entry.artist }}</td>
-                                            <td>{{ .entry.album }} [{{ .entry.year }}]</td>
-                                            <td class="link-column">
-                                                {{ range .entry.links }}
-                                                    <a href="{{ .link }}" target="_blank" title="{{ .type | humanize }}">
-                                                        <i class="fi flaticon-{{ .type }}"></i>
-                                                    </a>
-                                                {{ end }}
-                                            </td> 
-                                        </tr>
+                        {{ with .Params }}
+                            {{ range .latest_finds}}
+                                <div id="entry-container">
+                                    {{ if .entry.spotify_embed }}
+                                        {{ .entry.spotify_embed | markdownify }}
+                                    {{ else }}
+                                        <p>
+                                            <b>Song: </b> {{ .entry.song }}<br>
+                                            <b>Artist: </b> {{ .entry.artist }}<br>
+                                            <b>Album: </b> {{ .entry.album }}<br>
+                                        </p>
                                     {{ end }}
-                                {{ end }}
-                            </tbody>
-                        </table>
+                                    <div id="alt-links">
+                                        {{ range $key, $value := .entry.alt_Links}}
+                                            <a href="{{ $value }}" target="_blank" title="{{ $key | humanize }}">
+                                                <i class="fi flaticon-{{ $key }}"></i>
+                                            </a>
+                                        {{ end }}
+                                    </div>
+                                </div>
+                            {{ end }}
+                        {{ end }}
                     </div>
                 </div>
             {{ end }}

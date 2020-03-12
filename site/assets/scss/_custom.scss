@@ -23,7 +23,7 @@ a:hover {
 }
 
 hr {
-    height: 2px !important;
+    height: 1px !important;
 }
 
 #about.posts {
@@ -76,7 +76,7 @@ hr {
         }
 
         #monthly-summary {
-            border-right: 2px solid #46484d;
+            border-right: 1px solid #46484d;
         }
 
         #monthly-summary, #latest-finds {
@@ -97,6 +97,7 @@ hr {
 
             #monthly-summary {
                 border-right: 0;
+                margin-bottom: 1.5rem;
             }
 
             #monthly-summary, #latest-finds {
@@ -135,42 +136,23 @@ hr {
         width: 100%;
         margin: 0 auto;
 
-        table {
+        #entry-container {
+            border: 1px solid #46484d;
+            padding: .5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        iframe {
+            height: 80px;
             width: 100%;
-            border-collapse: collapse;
-            font-size: 12px;
+        }
 
-            td, th {
-                border: 1px solid #46484d;
-                padding: .5rem;
-            }
-
-            thead {
-                background-color: #212020;
-            }
-
-            thead tr,
-            tbody tr {
-                .link-column {
-                    width: 100px;
-
-                    a {
-                        text-decoration: none;
-                    }
-                }
-            }
-            
-            tbody {
-
-                td {
-                    a {
-                        margin: 0 .5rem;
-
-                        i.fi {
-                            font-size: 1.25rem;
-                        }
-                    }
-                }
+        #alt-links {
+            a {
+                display: inline;
+                text-decoration: none;
+                font-size: 1.75rem;
+                margin: .5rem;
             }
         }
     }
