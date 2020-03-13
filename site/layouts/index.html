@@ -45,30 +45,13 @@
             {{ if .Params.latest_finds }}
                 <div id="latest-finds">
                     <h3>Latest Finds</h3>
-                    <div id="latest-finds-table">
                         {{ with .Params }}
                             {{ range .latest_finds}}
-                                <div id="entry-container">
-                                    {{ if .entry.spotify_embed }}
-                                        {{ .entry.spotify_embed | markdownify }}
-                                    {{ else }}
-                                        <p>
-                                            <b>Song: </b> {{ .entry.song }}<br>
-                                            <b>Artist: </b> {{ .entry.artist }}<br>
-                                            <b>Album: </b> {{ .entry.album }}<br>
-                                        </p>
-                                    {{ end }}
-                                    <div id="alt-links">
-                                        {{ range $key, $value := .entry.alt_Links}}
-                                            <a href="{{ $value }}" target="_blank" title="{{ $key | humanize }}">
-                                                <i class="fi flaticon-{{ $key }}"></i>
-                                            </a>
-                                        {{ end }}
-                                    </div>
+                                <div class="entry-container">
+                                    {{ .entry.spotify_embed | markdownify }}
                                 </div>
                             {{ end }}
                         {{ end }}
-                    </div>
                 </div>
             {{ end }}
         </div>

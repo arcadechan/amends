@@ -132,14 +132,13 @@ hr {
         }
     }
 
-    #latest-finds-table {
+    #latest-finds {
         width: 100%;
         margin: 0 auto;
 
-        #entry-container {
-            border: 1px solid #46484d;
-            padding: .5rem;
-            margin-bottom: 1.5rem;
+        .entry-container {
+            margin: 0 !important;
+            height: 80px;
         }
 
         iframe {
@@ -147,14 +146,6 @@ hr {
             width: 100%;
         }
 
-        #alt-links {
-            a {
-                display: inline;
-                text-decoration: none;
-                font-size: 1.75rem;
-                margin: .5rem;
-            }
-        }
     }
 }
 
