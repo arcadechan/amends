@@ -29,11 +29,11 @@
                                 </div>
                                 {{ with .Params.category }}
                                     {{ if eq . "monthly_summary"}}
-                                        <small>&gt; <i>Monthly Summary</i></small>
+                                        <small class="post-category">&gt; <i>Monthly Summary</i></small>
                                     {{ end }}
 
                                     {{ if eq . "weekly_summary" }}
-                                        <small><i>&rarr; Weekly Sumamry</i></small>
+                                        <small class="post-category"><i>&rarr; Weekly Sumamry</i></small>
                                     {{ end }}
                                 {{ end }}
                             </a>

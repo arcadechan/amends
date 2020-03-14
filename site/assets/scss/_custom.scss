@@ -1,3 +1,19 @@
+body:after {
+    // background-color: red !important;
+    content: "";
+    background-image: url('/img/forest-backdrop.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.25;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: fixed;
+    z-index: -1;
+}
+
 a:hover {
     color: #ffffff;
 }
@@ -24,6 +40,7 @@ a:hover {
 
 hr {
     height: 1px !important;
+    background-color: #707677 !important;
 }
 
 #about.posts {
@@ -42,7 +59,6 @@ hr {
     #credits {
         img {
             height: 20px;
-            // padding-right: 5px;
         }
 
         ul li > * {
@@ -75,11 +91,7 @@ hr {
             display: none;
         }
 
-        #monthly-summary {
-            border-right: 1px solid #46484d;
-        }
-
-        #monthly-summary, #latest-finds {
+        #featured-post, #latest-finds {
             padding: 0 2rem;
             width: 50%;
 
@@ -91,43 +103,60 @@ hr {
         @media #{$media-size-tablet} {
             display: block;
 
-            hr {
-                display: block;
-            }
-
-            #monthly-summary {
+            #featured-post {
                 border-right: 0;
                 margin-bottom: 1.5rem;
             }
 
-            #monthly-summary, #latest-finds {
+            #featured-post, #latest-finds {
                 padding: 0;
                 width: 100%;
             }
         }
     }
 
-    #monthly-summary {
+    #featured-post {
 
         a {
+            display: block;
             text-decoration: none;
+            background-color: darken(#292a2d, 5%);
+            border-bottom: 1px dashed #46484d;
+            padding: 0 0 1rem;
+            transform: scale(1.00);
+            transition: transform .10s ease-in-out;
+            cursor: pointer;
+
+            &:hover {
+                transform: scale(1.01);
+                z-index: 999;
+                transition: transform .10s ease-in-out;
+    
+                a {
+                    color: #fff;
+                }
+            }
         }
 
-        #monthly-summary-container {
-            border: 1px solid #46484d;
-            padding: 1rem;
+        #featured-post-container {
+            text-align: left;
 
-            h1 {
-                margin: 0;
-            }
-            
-            &:hover {
-                background-color: #46484d;
+            .post-banner {
+                margin: 0 0 1rem;
             }
 
-            img {
-                margin: 0 1rem;
-                width: calc(100% - 2rem);
+            .post-stats {
+                display: flex;
+                justify-content: space-between;
+
+                .post-title-home {
+                    margin: 0;
+                }
+            }
+
+            .post-stats,
+            .post-category {
+                padding: 0 1rem;
             }
         }
     }
@@ -155,8 +184,11 @@ main.posts {
     }
 
     .post-item {
-        // border: 1px solid red;
         margin-bottom: 1rem;
+        background-color: darken(#292a2d, 3%);
+        transform: scale(1.00);
+        transition: transform .10s ease-in-out;
+        cursor: pointer;
 
         a {
             display: block;
@@ -165,7 +197,6 @@ main.posts {
             img {
                 display: block;
                 width: 100%;
-                // padding: 0 0 1rem;
                 margin: 0 0 1rem;
             }
 
@@ -174,11 +205,21 @@ main.posts {
                 justify-content: space-between;
             }
 
+            .post-stats,
+            .post-category {
+                padding: 0 1rem;
+            }
+
         }
 
         &:hover {
             transform: scale(1.01);
             z-index: 999;
+            transition: transform .10s ease-in-out;
+
+            a {
+                color: #fff;
+            }
         }
     }
 }
