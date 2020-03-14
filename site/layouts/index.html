@@ -15,39 +15,36 @@
         <hr/>
         <div id="home-feed">
 
-            {{ range sort .Site.Pages }}
-                {{ if in .Params.category "monthly_summary"}}
-                    <div id="featured-post">
-                        <h3>Featured Post</h3>
-                        <a href="{{ .Permalink }}">
-                            <div id="featured-post-container">   
-                                {{ if .Params.banner_image }}
-                                    <img class="post-banner" src="{{ .Params.banner_image }}">
-                                {{ end }}
-                                <div class="post-stats">
-                                    <span class="post-title-home">{{.Title}}</span>
-                                    <span class="post-day">
-                                        {{ if .Site.Params.dateformShort }}
-                                            {{ dateFormat .Site.Params.dateformShort .Date.Local }}
-                                        {{ else }}
-                                            {{ dateFormat "Jan 2" .Date.Local}}
-                                        {{ end }}
-                                    </span>
-                                </div>
-                                {{ with .Params.category }}
-                                    {{ if eq . "monthly_summary"}}
-                                        <small class="post-category">&gt; <i>Monthly Summary</i></small>
+            {{ range first 1 (where .Site.Pages ".Params.category" "monthly_summary").ByDate.Reverse }}
+                <div id="featured-post">
+                    <h3>Featured Post</h3>
+                    <a href="{{ .Permalink }}">
+                        <div id="featured-post-container">   
+                            {{ if .Params.banner_image }}
+                                <img class="post-banner" src="{{ .Params.banner_image }}">
+                            {{ end }}
+                            <div class="post-stats">
+                                <span class="post-title-home">{{.Title}}</span>
+                                <span class="post-day">
+                                    {{ if .Site.Params.dateformShort }}
+                                        {{ dateFormat .Site.Params.dateformShort .Date.Local }}
+                                    {{ else }}
+                                        {{ dateFormat "Jan 2" .Date.Local}}
                                     {{ end }}
-
-                                    {{ if eq . "weekly_summary" }}
-                                        <small class="post-category"><i>&rarr; Weekly Sumamry</i></small>
-                                    {{ end }}
-                                {{ end }}
+                                </span>
                             </div>
-                        </a>
-                    </div>
-                   
-                {{ end }}
+                            {{ with .Params.category }}
+                                {{ if eq . "monthly_summary"}}
+                                    <small class="post-category">&gt; <i>Monthly Summary</i></small>
+                                {{ end }}
+
+                                {{ if eq . "weekly_summary" }}
+                                    <small class="post-category"><i>&rarr; Weekly Sumamry</i></small>
+                                {{ end }}
+                            {{ end }}
+                        </div>
+                    </a>
+                </div>
             {{ end }}
             
             {{ if .Params.latest_finds }}
