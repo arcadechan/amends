@@ -2,86 +2,54 @@
 title: Amends
 latest_finds:
   - entry:
-      album: Saâda Bonaire
-      alt_Links:
-        soundcloud: 'https://soundcloud.com/capturedtracks/you-could-be-more-as-you-a'
-        youtube: 'https://www.youtube.com/watch?v=ULlI8C5c-qY'
-      artist: Saâda Bonaire
+      album: ≷≷ERASERS≶≶
+      artist: Melt Channel
       spotify_embed: >-
         <iframe
-        src="https://open.spotify.com/embed/track/4SbUpy4BzSFKnH0eD1AyZI"
+        src="https://open.spotify.com/embed/track/7Dp2G6yaLTBddkR8NyZffe"
         width="300" height="380" frameborder="0" allowtransparency="true"
         allow="encrypted-media"></iframe>
-      title: Little Sister
-      year: '1984'
+      title: Florida Snow Day
+      year: '2017'
   - entry:
-      album: Swimmer
-      alt_Links:
-        bandcamp: 'https://tennisinc.bandcamp.com/track/need-your-love'
-        soundcloud: 'https://soundcloud.com/tennis-official/need-your-love'
-        youtube: 'https://www.youtube.com/watch?v=rGZVZcMYdmA'
-      artist: Tennis
+      album: Blade Runner (Music From The Original Soundtrack)
+      artist: Vangelis
       spotify_embed: >-
         <iframe
-        src="https://open.spotify.com/embed/track/7sMn5JJ7rzgl9MmgucEXsZ"
+        src="https://open.spotify.com/embed/track/7CKz0xDkXuPdW3xEQ4NUS9"
         width="300" height="380" frameborder="0" allowtransparency="true"
         allow="encrypted-media"></iframe>
-      title: Need Your Love
-      year: '2020'
+      title: One More Kiss Dear
+      year: '1994'
   - entry:
-      album: Contact Sports
-      alt_Links:
-        bandcamp: 'https://squirrelflower.bandcamp.com/album/contact-sports'
-        soundcloud: 'https://soundcloud.com/kaymhmd1/squirrel-flower-conditions'
-        youtube: 'https://www.youtube.com/watch?v=Fg7UPNf6MTU'
-      artist: Squirrel Flower
+      album: '834.194'
+      artist: Sakanaction
       spotify_embed: >-
         <iframe
-        src="https://open.spotify.com/embed/track/0yHKgkzTJc0OR6aoG96IeH"
+        src="https://open.spotify.com/embed/track/7a3LbQFgp7NCuNcGlTgSsN"
         width="300" height="380" frameborder="0" allowtransparency="true"
         allow="encrypted-media"></iframe>
-      title: Conditions
-      year: '2018'
+      title: 忘れられないの
+      year: '2019'
   - entry:
-      album: To Be Kind
-      alt_Links:
-        bandcamp: 'https://swans.bandcamp.com/track/screen-shot'
-        soundcloud: >-
-          https://soundcloud.com/swansofficial/screen-shot-1?in=swansofficial/sets/to-be-kind-2
-        youtube: 'https://www.youtube.com/watch?v=6qDq9eGUmMI'
-      artist: Swans
+      album: ...Because I'm Young Arrogant and Hate Everything You Stand For
+      artist: Machine Girl
       spotify_embed: >-
         <iframe
-        src="https://open.spotify.com/embed/track/23cFxNXbwYcb6gfSOzL55H"
+        src="https://open.spotify.com/embed/track/6NJoAfTBjgPyvgZYL7vGdB"
         width="300" height="380" frameborder="0" allowtransparency="true"
         allow="encrypted-media"></iframe>
-      title: Screen Shot
-      year: '2014'
+      title: Athoth a Go!! Go!!
+      year: '2017'
   - entry:
-      album: Modern Vampires of the City
-      alt_Links:
-        soundcloud: 'https://soundcloud.com/vampire-weekend-official/hannah-hunt'
-        youtube: 'https://www.youtube.com/watch?v=uDwVMcEHG70'
-      artist: Vampire Weekend
+      album: Slimy Quagmire
+      artist: (T-T)b
       spotify_embed: >-
         <iframe
-        src="https://open.spotify.com/embed/track/3t87C08isN6yw2DnWOorLm"
+        src="https://open.spotify.com/embed/album/69l2HaBnxzW0y1Hfo5bhZH"
         width="300" height="380" frameborder="0" allowtransparency="true"
         allow="encrypted-media"></iframe>
-      title: Hannah Hunt
-      year: '2013'
-  - entry:
-      album: Cape God
-      alt_Links:
-        soundcloud: 'https://soundcloud.com/superduperpartypeople/susie-save-your-love'
-        youtube: 'https://www.youtube.com/watch?v=HpkSa7j7XfI'
-      artist: Allie X
-      spotify_embed: >-
-        <iframe
-        src="https://open.spotify.com/embed/track/32tUYhAygMdx9XxFxxj3It"
-        width="300" height="380" frameborder="0" allowtransparency="true"
-        allow="encrypted-media"></iframe>
-      title: Susie Save Your Live (feat. Mitski)
-      year: '2020'
+      title: January 27
+      year: '2017'
 ---
 
