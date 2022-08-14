@@ -1,0 +1,5 @@
+@font-face {
+  font-family: 'Candy Beans';
+  src: url('/fonts/candy-beans.otf') format('opentype');
+  font-display: swap;
+}
