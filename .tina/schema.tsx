@@ -1,19 +1,15 @@
 
-import { defineSchema, defineConfig } from 'tinacms'
+import { defineSchema, defineConfig, wrapFieldsWithMeta } from '../node_modules/tinacms'
 import { client } from './__generated__/client'
 
-
-const branch =
-  process.env.NEXT_PUBLIC_TINA_BRANCH ||
-  process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF ||
-  process.env.HEAD ||
-  'main'
 const schema = defineSchema({
   // See https://tina.io/docs/tina-cloud/connecting-site/ for more information about this config
   config: {
-    token: '<Your Read Only Token>', // generated on app.tina.io,
-    clientId: '<Your Client ID>', // generated on app.tina.io
-    branch,
+    token: process.env.TINA_TOKEN,
+    clientId: process.env.TINA_CLIENT_ID,
+    branch: process.env.NEXT_PUBLIC_TINA_BRANCH ||
+      process.env.HEAD ||
+      'main'
   },
   collections: [
     {
@@ -26,6 +22,30 @@ const schema = defineSchema({
           type: 'string',
           label: 'Title',
           name: 'title',
+        },
+        {
+          type: 'string',
+          name: 'description',
+          label: 'Description',
+          description: 'Max character count: 160',
+          ui: {
+            component: wrapFieldsWithMeta(({ field, input, meta, ...props}) => {
+              return (
+                <div>
+                  <textarea
+                    name="pageDescription"
+                    id="pageDescription"
+                    rows={3}
+                    style={{width: '100%', padding: '.5rem'}}
+                    maxLength={160}
+                    {...input}
+                  />
+                  <br/>
+                  Character Count: {input.value.length } { input.value.length === 160 ? <small style={{color: 'red'}}>Max!</small>: ''}
+                </div>
+              );
+            })
+          }
         },
         {
           type: 'rich-text',

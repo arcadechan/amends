@@ -14,12 +14,13 @@
     "@fortawesome/free-regular-svg-icons": "^6.1.2",
     "@fortawesome/free-solid-svg-icons": "^6.1.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
-    "@tinacms/cli": "^0.61.1",
+    "@tinacms/auth": "^0.50.4",
+    "@tinacms/cli": "^0.61.8",
     "next": "12.2.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "styled-components": "^5.3.5",
-    "tinacms": "^0.68.15"
+    "tinacms": "^0.69.3"
   },
   "devDependencies": {
     "@tsconfig/next": "^1.0.2",
