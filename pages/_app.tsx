@@ -1,5 +1,4 @@
 import type { AppProps } from 'next/app'
-import Tina from '../.tina/components/TinaDynamicProvider.js'
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -11,11 +10,7 @@ config.autoAddCss = false
 import '../styles/main.css'
 
 const App = ({ Component, pageProps }: AppProps) => {
-  return (
-    <Tina>
-      <Component {...pageProps} />
-    </Tina>
-  )
+  return <Component {...pageProps} />
 }
 
 export default App
