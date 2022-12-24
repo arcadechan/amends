@@ -1,5 +1,6 @@
 import React from 'react'
 import { defineConfig, wrapFieldsWithMeta } from 'tinacms'
+import { theme } from "../tailwind.config";
 
 const URLWithIconContainer = ({ serviceName, input } : { serviceName: string, input: any}) : JSX.Element => (
   <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -111,6 +112,65 @@ const schema = {
               ]
             }
           ]
+        }
+      ]
+    },
+    {
+      label: 'Pages',
+      name: 'page',
+      path: 'content/pages',
+      format: 'mdx',
+      fields: [
+        {
+          label: 'Draft?',
+          name: 'draft',
+          type: 'boolean'
+        },
+        {
+          label: 'Publish Date',
+          name: 'publishDate',
+          type: 'datetime',
+          required: true
+        },
+        {
+          label: 'Hero Image',
+          name: 'heroImage',
+          type: 'image'
+        },
+        {
+          label: 'Title',
+          name: 'title',
+          type: 'string',
+          required: true,
+          isTitle: true
+        },
+        {
+          label: 'Secondary Title',
+          name: 'secondaryTitle',
+          type: 'string',
+        },
+        {
+          label: 'Description',
+          name: 'description',
+          type: 'string',
+          description: 'Max character count: 160',
+          ui: {
+            component: wrapFieldsWithMeta(({ field, input, meta, ...props}): JSX.Element => {
+              return (
+                <div>
+                  <textarea
+                    id="pageDescription"
+                    rows={3}
+                    style={{width: '100%', padding: '.5rem', border: '1px solid #e1ddec', borderRadius: '6px'}}
+                    maxLength={160}
+                    {...input}
+                  />
+                  <br/>
+                  Character Count: {input.value.length } { input.value.length === 160 ? <small style={{color: 'red'}}>Max!</small>: ''}
+                </div>
+              );
+            })
+          }
         }
       ]
     },
