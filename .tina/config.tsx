@@ -1,6 +1,7 @@
 import React from 'react'
-import { defineConfig, wrapFieldsWithMeta } from 'tinacms'
-import { theme } from "../tailwind.config";
+import { defineConfig, wrapFieldsWithMeta, Schema } from 'tinacms'
+import resolveConfig from 'tailwindcss/resolveConfig'
+import tailwindConfig from '../tailwind.config.js';
 
 const URLWithIconContainer = ({ serviceName, input } : { serviceName: string, input: any}) : JSX.Element => (
   <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -16,9 +17,69 @@ const URLWithIconContainer = ({ serviceName, input } : { serviceName: string, in
   </div>
 )
 
-const brandColors: string[] = [ '#1a1d27', '#ffdc8b', '#faf4eb', '#e06363', '#77bfe8', '#63c67e' ];
+const fullConfig = resolveConfig(tailwindConfig);
+const themeColors: any = fullConfig.theme?.colors || {};
+let brandColors: string[] = [];
 
-const schema = {
+if(Object.keys(themeColors).length > 0) {
+  brandColors = Object.keys(themeColors).map(name => themeColors[name]);
+}
+
+const commonFields: any[] = [
+  {
+    label: 'Draft?',
+    name: 'draft',
+    type: 'boolean'
+  },
+  {
+    label: 'Publish Date',
+    name: 'publishDate',
+    type: 'datetime',
+    required: true
+  },
+  {
+    label: 'Hero Image',
+    name: 'heroImage',
+    type: 'image'
+  },
+  {
+    label: 'Title',
+    name: 'title',
+    type: 'string',
+    required: true,
+    isTitle: true
+  },
+  {
+    label: 'Secondary Title',
+    name: 'secondaryTitle',
+    type: 'string',
+  },
+  {
+    label: 'Description',
+    name: 'description',
+    type: 'string',
+    description: 'Max character count: 160',
+    ui: {
+      component: wrapFieldsWithMeta(({ field, input, meta, ...props}): JSX.Element => {
+        return (
+          <div>
+            <textarea
+              id="pageDescription"
+              rows={3}
+              style={{width: '100%', padding: '.5rem', border: '1px solid #e1ddec', borderRadius: '6px'}}
+              maxLength={160}
+              {...input}
+            />
+            <br/>
+            Character Count: {input.value.length } { input.value.length === 160 ? <small style={{color: 'red'}}>Max!</small>: ''}
+          </div>
+        );
+      })
+    }
+  }
+]
+
+const schema: Schema = {
   collections: [
     {
       label: 'Home',
@@ -120,59 +181,7 @@ const schema = {
       name: 'page',
       path: 'content/pages',
       format: 'mdx',
-      fields: [
-        {
-          label: 'Draft?',
-          name: 'draft',
-          type: 'boolean'
-        },
-        {
-          label: 'Publish Date',
-          name: 'publishDate',
-          type: 'datetime',
-          required: true
-        },
-        {
-          label: 'Hero Image',
-          name: 'heroImage',
-          type: 'image'
-        },
-        {
-          label: 'Title',
-          name: 'title',
-          type: 'string',
-          required: true,
-          isTitle: true
-        },
-        {
-          label: 'Secondary Title',
-          name: 'secondaryTitle',
-          type: 'string',
-        },
-        {
-          label: 'Description',
-          name: 'description',
-          type: 'string',
-          description: 'Max character count: 160',
-          ui: {
-            component: wrapFieldsWithMeta(({ field, input, meta, ...props}): JSX.Element => {
-              return (
-                <div>
-                  <textarea
-                    id="pageDescription"
-                    rows={3}
-                    style={{width: '100%', padding: '.5rem', border: '1px solid #e1ddec', borderRadius: '6px'}}
-                    maxLength={160}
-                    {...input}
-                  />
-                  <br/>
-                  Character Count: {input.value.length } { input.value.length === 160 ? <small style={{color: 'red'}}>Max!</small>: ''}
-                </div>
-              );
-            })
-          }
-        }
-      ]
+      fields: [ ...commonFields ]
     },
     {
       label: 'Blog Posts',
@@ -202,89 +211,7 @@ const schema = {
         draft: true
       },
       fields: [
-        {
-          label: 'Draft?',
-          name: 'draft',
-          type: 'boolean'
-        },
-        {
-          label: 'Publish Date',
-          name: 'publishDate',
-          type: 'datetime',
-          required: true
-        },
-        {
-          label: 'Category',
-          name: 'category',
-          type: 'string',
-          required: true,
-          options: [
-            {
-              label: 'Music',
-              value: 'music',
-            },
-            {
-              label: 'Technology',
-              value: 'technology',
-            },
-            {
-              label: 'Art',
-              value: 'art',
-            },
-            {
-              label: 'Film',
-              value: 'film',
-            },
-            {
-              label: 'Writing',
-              value: 'writing',
-            },
-            {
-              label: 'Misc.',
-              value: 'misc',
-            }
-          ]
-        },
-        {
-          label: 'Hero Image',
-          name: 'heroImage',
-          type: 'image'
-        },
-        {
-          label: 'Title',
-          name: 'title',
-          type: 'string',
-          required: true,
-          isTitle: true
-        },
-        {
-          label: 'Secondary Title',
-          name: 'secondaryTitle',
-          type: 'string',
-        },
-        {
-          label: 'Description',
-          name: 'description',
-          type: 'string',
-          description: 'Max character count: 160',
-          ui: {
-            component: wrapFieldsWithMeta(({ field, input, meta, ...props}): JSX.Element => {
-              return (
-                <div>
-                  <textarea
-                    id="pageDescription"
-                    rows={3}
-                    style={{width: '100%', padding: '.5rem', border: '1px solid #e1ddec', borderRadius: '6px'}}
-                    maxLength={160}
-                    {...input}
-                  />
-                  <br/>
-                  Character Count: {input.value.length } { input.value.length === 160 ? <small style={{color: 'red'}}>Max!</small>: ''}
-                </div>
-              );
-            })
-          }
-        },
+        ...commonFields,
         {
           type: 'rich-text',
           label: 'Blog Post Body',
@@ -363,6 +290,38 @@ const schema = {
               ],
             },
           ],
+        },
+        {
+          label: 'Category',
+          name: 'category',
+          type: 'string',
+          required: true,
+          options: [
+            {
+              label: 'Music',
+              value: 'music',
+            },
+            {
+              label: 'Technology',
+              value: 'technology',
+            },
+            {
+              label: 'Art',
+              value: 'art',
+            },
+            {
+              label: 'Film',
+              value: 'film',
+            },
+            {
+              label: 'Writing',
+              value: 'writing',
+            },
+            {
+              label: 'Misc.',
+              value: 'misc',
+            }
+          ]
         },
         {
           label: 'Tags',
