@@ -5447,9 +5447,9 @@
     "supports-color" "^7.0.0"
 
 "jotai@^1.7.2":
-  "integrity" "sha512-hVLn1aS1QprDy+NrvyWIOcaA/LEG5AY0Z7kWtx26EJ8eH8DY8pW1wUM0PrlqQzthqd6HdEVtXLY1rB//0n8LvA=="
-  "resolved" "https://registry.npmjs.org/jotai/-/jotai-1.11.2.tgz"
-  "version" "1.11.2"
+  "integrity" "sha512-IhyBmjxU1sE2Ni/MUK7gQAb8QvCM6yd1/K5jtQzgQBmmjCjgfXZkkk1rYlQAIRp2KoQk0Y+yzhm1f5cZ7kegnw=="
+  "resolved" "https://registry.npmjs.org/jotai/-/jotai-1.12.0.tgz"
+  "version" "1.12.0"
 
 "js-tokens@^3.0.0 || ^4.0.0", "js-tokens@^4.0.0":
   "integrity" "sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ=="
@@ -8599,9 +8599,9 @@
   "version" "1.0.3"
 
 "tinycolor2@^1.4.1":
-  "integrity" "sha512-vJhccZPs965sV/L2sU4oRQVAos0pQXwsvTLkWYdqJ+a8Q5kPFzJTuOFwy7UniPli44NKQGAglksjvOcpo95aZA=="
-  "resolved" "https://registry.npmjs.org/tinycolor2/-/tinycolor2-1.4.2.tgz"
-  "version" "1.4.2"
+  "integrity" "sha512-BHlrsGeYN2OpkRpfAgkEwCMu6w8Quq8JkK/mp4c55NZP7OwceJObR1CPZt62TqiA0Y3J5pwuDX+fXDqc35REtg=="
+  "resolved" "https://registry.npmjs.org/tinycolor2/-/tinycolor2-1.5.1.tgz"
+  "version" "1.5.1"
 
 "title-case@^3.0.3":
   "integrity" "sha512-e1zGYRvbffpcHIrnuqT0Dh+gEJtDaxDSoG4JAIpq4oDFyooziLBIiYQv0GBT4FUAnUop5uZ1hiIAj7oAF6sOCA=="

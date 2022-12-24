@@ -22,13 +22,13 @@ const schema = {
     {
       label: 'Home',
       name: 'home',
-      path: 'content',
+      path: 'content/home',
       format: 'mdx',
-      // allowedActions: {
-      //   create: false,
-      //   delete: false,
-      // },
       ui: {
+        allowedActions: {
+          create: false,
+          delete: false,
+        },
         defaultItem: {
           categories: [
             {
@@ -93,7 +93,7 @@ const schema = {
                 },
                 {
                   label: 'CTA Color',
-                  name: 'color',
+                  name: 'nameColor',
                   type: 'string',
                   ui: {
                     name: 'nameColor',
@@ -122,8 +122,7 @@ const schema = {
       ui: {
         filename: {
           readonly: false,
-          slugify: values => {
-            console.log({slugifyValues: values});
+          slugify: (values: any) => {
             let category: string = ''
             let title: string = ''
 
@@ -257,7 +256,7 @@ const schema = {
                   type: 'string',
                   ui: {
                     component: wrapFieldsWithMeta(({field, input, meta, ...props}): JSX.Element => {
-                      return <URLWithIconContainer serviceName='youtube' input={input}/>
+                      return <URLWithIconContainer serviceName='youtubeMusic' input={input}/>
                     })
                   }
                 },
@@ -325,6 +324,12 @@ const config = defineConfig({
   build: {
     publicFolder: 'public',
     outputFolder: 'admin'
+  },
+  media: {
+    tina: {
+      publicFolder: 'public',
+      mediaRoot: 'uploads'
+    }
   },
   cmsCallback: (cms) => {
     //  add your CMS callback code here (if you want)
