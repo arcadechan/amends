@@ -1,7 +1,5 @@
 import React from 'react'
 import { defineConfig, wrapFieldsWithMeta, Schema } from 'tinacms'
-import resolveConfig from 'tailwindcss/resolveConfig'
-import tailwindConfig from '../tailwind.config.js';
 
 const URLWithIconContainer = ({ serviceName, input } : { serviceName: string, input: any}) : JSX.Element => (
   <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -17,13 +15,7 @@ const URLWithIconContainer = ({ serviceName, input } : { serviceName: string, in
   </div>
 )
 
-const fullConfig = resolveConfig(tailwindConfig);
-const themeColors: any = fullConfig.theme?.colors || {};
-let brandColors: string[] = [];
-
-if(Object.keys(themeColors).length > 0) {
-  brandColors = Object.keys(themeColors).map(name => themeColors[name]);
-}
+const brandColors: string[] = ['#1a1d27', '#ffdc8b', '#faf4eb', '#e06363', '#77bfe8', '#63c67e']
 
 const commonFields: any[] = [
   {
@@ -171,6 +163,66 @@ const schema: Schema = {
                   type: 'string'
                 }
               ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      label: 'Meta',
+      name: 'meta',
+      path: 'content/meta',
+      format: 'mdx',
+      ui: {
+        allowedActions: {
+          create: false,
+          delete: false
+        }
+      },
+      fields: [
+        {
+          label: 'Navigation Links',
+          name: 'navigationLinks',
+          type: 'object',
+          list: true,
+          ui: {
+            itemProps: (item) => {
+              return { label: item?.label || 'Navigation Link' }
+            }
+          },
+          fields: [
+            {
+              label: 'Label',
+              name: 'label',
+              type: 'string',
+            },
+            {
+              label: 'URL',
+              name: 'url',
+              type: 'string'
+            }
+          ]
+        },
+        {
+          label: 'Social Platforms',
+          name: 'socialPlatforms',
+          type: 'object',
+          list: true,
+          ui: {
+            itemProps: (item) => {
+              return { label: item?.name || 'Platform' }
+            }
+          },
+          fields: [
+            {
+              label: 'Platform Name',
+              name: 'name',
+              type: 'string'
+            },
+            {
+              label: 'URL',
+              name: 'url',
+              type: 'string'
             }
           ]
         }
