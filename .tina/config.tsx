@@ -147,13 +147,13 @@ const schema: Schema = {
                 },
                 {
                   label: 'CTA Color',
-                  name: 'nameColor',
+                  name: 'ctaColor',
                   type: 'string',
                   ui: {
-                    name: 'nameColor',
+                    name: 'ctaColor',
                     component: 'color',
                     colorFormat: 'hex',
-                    widget: 'block',
+                    widget: 'sketch',
                     colors: brandColors
                   }
                 },
@@ -175,7 +175,7 @@ const schema: Schema = {
       format: 'mdx',
       ui: {
         allowedActions: {
-          create: false,
+          create: true,
           delete: false
         }
       },
