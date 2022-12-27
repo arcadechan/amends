@@ -13,7 +13,7 @@ const Header = ({ navigationLinks } : headerPropsI): JSX.Element => {
                 {navigationLinks && (
                     <nav>
                         {navigationLinks.map(link => (
-                            <Link href={link.url} key={link.name} passHref>
+                            <Link href={link.url || ''} key={link.name} passHref>
                                 <a className={`${styles.link} font-inter font-bold px-2 mx-2 uppercase`}>
                                     {link.name || ''}
                                 </a>
