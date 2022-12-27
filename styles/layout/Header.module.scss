@@ -1,0 +1,23 @@
+#header {
+  height: 75px;
+
+  &InnerContainer {
+    width: 100%;
+    position: relative;
+
+    nav {
+      .link {
+        &:hover {
+          text-decoration: underline;
+          text-underline-offset: 3px;
+          text-decoration-thickness: 2px;
+        }
+      }
+    }
+  }
+
+  #logo {
+    height: 100%;
+    max-height: 30px;
+  }
+}

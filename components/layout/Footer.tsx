@@ -1,8 +1,8 @@
 interface footerPropsI {
-    siteMeta: any|undefined
+    socialPlatforms: any|null
 }
 
-const Footer = ({ siteMeta } : footerPropsI): JSX.Element => {
+const Footer = ({ socialPlatforms } : footerPropsI): JSX.Element => {
     const originYear: number = 2022
     const currentYear: number = new Date().getFullYear()
     const copyRightYear: string = originYear !== currentYear ? `${originYear} - ${currentYear}` : `${originYear}`

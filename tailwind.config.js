@@ -15,7 +15,8 @@ module.exports = {
       green: '#63c67e'
     },
     fontFamily: {
-      'candy': ['Candy Beans', 'sans-serif']
+      'candy': ['Candy Beans', 'sans-serif'],
+      'inter': ['Inter', 'sans-serif']
     }
   },
   plugins: [],

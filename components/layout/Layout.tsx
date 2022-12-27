@@ -2,17 +2,18 @@ import { Header, Main, Footer } from '.';
 
 interface layoutPropsI {
     children: React.ReactNode[],
-    navRoutes: any[],
-    siteMeta: any,
+    siteMeta: any|null,
     className: string
 }
 
-const Layout = ({ children, navRoutes, siteMeta, className = '' } : layoutPropsI): JSX.Element => {
+const Layout = ({ children, siteMeta, className = '' } : layoutPropsI): JSX.Element => {
+    const { navigationLinks, socialPlatforms } = siteMeta
+
     return (
         <>
-            <Header navRoutes={navRoutes}/>
+            <Header navigationLinks={navigationLinks}/>
             <Main className={className}>{children}</Main>
-            <Footer siteMeta={siteMeta}/>
+            <Footer socialPlatforms={socialPlatforms}/>
         </>
     )
 }

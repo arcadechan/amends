@@ -187,13 +187,13 @@ const schema: Schema = {
           list: true,
           ui: {
             itemProps: (item) => {
-              return { label: item?.label || 'Navigation Link' }
+              return { label: item?.name || 'Navigation Link' }
             }
           },
           fields: [
             {
-              label: 'Label',
-              name: 'label',
+              label: 'Link Name',
+              name: 'name',
               type: 'string',
             },
             {
