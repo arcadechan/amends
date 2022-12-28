@@ -207,21 +207,20 @@ const schema: Schema = {
           label: 'Social Platforms',
           name: 'socialPlatforms',
           type: 'object',
-          list: true,
-          ui: {
-            itemProps: (item) => {
-              return { label: item?.name || 'Platform' }
-            }
-          },
           fields: [
             {
-              label: 'Platform Name',
-              name: 'name',
+              label: 'Spotify URL',
+              name: 'spotifyUrl',
               type: 'string'
             },
             {
-              label: 'URL',
-              name: 'url',
+              label: 'GitHub URL',
+              name: 'githubUrl',
+              type: 'string'
+            },
+            {
+              label: 'Soundcloud URL',
+              name: 'soundcloudUrl',
               type: 'string'
             }
           ]

@@ -6,7 +6,11 @@ const getSiteMeta = async (): Promise<any|null> => {
       query getSiteMeta {
         meta(relativePath: "meta.mdx") {
           navigationLinks { name, url }
-          socialPlatforms { name, url }
+          socialPlatforms { 
+            spotifyUrl
+            githubUrl
+            soundcloudUrl
+          }
         }
       }
     `
