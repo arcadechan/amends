@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import styles from '../../styles/layout/Footer.module.scss'
 
@@ -5,17 +6,19 @@ interface footerPropsI {
     socialPlatforms: any|null
 }
 
-const getSocialIcon = (platformName: string|null): JSX.Element|string => {
-    switch(platformName?.toLowerCase()){
-        case 'spotify':
-            return ( <img src='/icons/spotify.png' alt=''/> )
-        case 'soundcloud':
-            return ( <img src='/icons/soundcloud.png' alt=''/> )
-        case 'github':
-            return ( <img src='/icons/github.png' alt=''/> )
-        default:
-            return platformName || ''
-    }
+const SocialIcon = (href: any = '', title: string = '', iconSrc: string = ''): JSX.Element => {
+    return (
+        <Link href={href} passHref>
+            <a className='m-2 w-7' target='_blank' title={title}>
+                <Image
+                    src={iconSrc}
+                    alt=''
+                    width={27}
+                    height={27}
+                />
+            </a>
+        </Link>
+    )
 }
 
 const Footer = ({ socialPlatforms } : footerPropsI): JSX.Element => {
@@ -30,14 +33,10 @@ const Footer = ({ socialPlatforms } : footerPropsI): JSX.Element => {
             {socialPlatforms && Object.keys(socialPlatforms).length > 0 && (
                 <div id={styles.socialBar} className='flex justify-center flex-wrap my-5 rounded-3xl drop-shadow-sm'>
                     {socialPlatforms?.spotifyUrl && (
-                        <Link href={socialPlatforms.spotifyUrl} passHref>
-                            <a className='m-2 w-7' target='_blank'><img src='/icons/spotify.png'/></a>
-                        </Link>
+                        <SocialIcon href={socialPlatforms.spotifyUrl} title="Arcade's Spotify" iconSrc='/icons/spotify.png'/>
                     )}
                     {socialPlatforms?.githubUrl && (
-                        <Link href={socialPlatforms.githubUrl} className='m-3' passHref>
-                            <a className='m-2 w-7' target='_blank'><img src='/icons/github.png'/></a>
-                        </Link>
+                        <SocialIcon href={socialPlatforms.githubUrl} title="Arcade's GitHub" iconSrc='/icons/github.png'/>
                     )}
                 </div>
             )}
