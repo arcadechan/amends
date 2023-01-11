@@ -2,8 +2,10 @@
   border-top: 3px solid #1A1D27;
 
   #logo {
-    height: 100%;
-    max-height: 30px;
+    display: inline-block;
+    height: 25px;
+    width: 100px;
+    position: relative;
   }
 
   #socialBar {

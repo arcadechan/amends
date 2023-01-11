@@ -1,15 +1,22 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import styles from '../../styles/layout/Footer.module.scss'
+import amendsLogo from '../../public/logo/logo-black.png'
 
-interface footerPropsI {
+interface footerProps {
     socialPlatforms: any|null
 }
 
-const SocialIcon = (href: any = '', title: string = '', iconSrc: string = ''): JSX.Element => {
+interface SocialIconProps {
+    href: any;
+    title: string;
+    iconSrc: string;
+}
+
+const SocialIcon = ({href = '', title = '', iconSrc = ''}: SocialIconProps): JSX.Element => {
     return (
         <Link href={href} passHref>
-            <a className='m-2 w-7' target='_blank' title={title}>
+            <a className='m-2 w-7 h-7' target='_blank' title={title}>
                 <Image
                     src={iconSrc}
                     alt=''
@@ -21,14 +28,16 @@ const SocialIcon = (href: any = '', title: string = '', iconSrc: string = ''): J
     )
 }
 
-const Footer = ({ socialPlatforms } : footerPropsI): JSX.Element => {
-    const originYear: number = 2022
+const Footer = ({ socialPlatforms } : footerProps): JSX.Element => {
     const currentYear: number = new Date().getFullYear()
-    const copyRightYear: string = originYear !== currentYear ? `${originYear} - ${currentYear}` : `${originYear}`
 
     return (
         <footer id={styles.footer} className='max-w-screen-2xl mx-2 2xl:mx-auto py-10 flex flex-col items-center'>
-            <img id={styles.logo} src='/logo/logo-black.png' className='mb-2 md:mb-0 my-5'/>
+            <Link href='/' passHref>
+                <a id={styles.logo} className='mb-2 md:mb-0 my-5'>
+                    <Image src={amendsLogo} alt='' layout='fill' objectFit='contain'/>
+                </a>
+            </Link>
             <p className='my-5'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
             {socialPlatforms && Object.keys(socialPlatforms).length > 0 && (
                 <div id={styles.socialBar} className='flex justify-center flex-wrap my-5 rounded-3xl drop-shadow-sm'>
