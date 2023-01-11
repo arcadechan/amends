@@ -1,5 +1,7 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import styles from '../../styles/layout/Header.module.scss'
+import amendsLogo from '../../public/logo/logo-black.png'
 
 interface headerPropsI {
     navigationLinks: any[]|null
@@ -9,7 +11,11 @@ const Header = ({ navigationLinks } : headerPropsI): JSX.Element => {
     return (
         <header id={styles.header} className='bg-yellow px-12 sm:px-28 py-l flex items-center'>
             <div id={styles.headerInnerContainer} className='flex flex-col md:flex-row items-center md:justify-between max-w-screen-2xl m-auto'>
-                <img id={styles.logo} src='/logo/logo-black.png' className='mb-2 md:mb-0'/>
+                <Link href='/' passHref>
+                    <a id={styles.logo} className='mb-2 md:mb-0'>
+                        <Image src={amendsLogo} alt='' layout='fill' objectFit='contain'/>
+                    </a>
+                </Link>
                 {navigationLinks && (
                     <nav>
                         {navigationLinks.map(link => (
