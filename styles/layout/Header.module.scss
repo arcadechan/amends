@@ -3,17 +3,57 @@
 
   &InnerContainer {
     width: 100%;
+    height: 100%;
     position: relative;
 
-    nav {
-      .link {
-        &:hover {
-          text-decoration: underline;
-          text-underline-offset: 3px;
-          text-decoration-thickness: 2px;
-        }
+    @screen md {
+      width: auto;
+    }
+  }
+
+  #navMenu {
+    @apply bg-yellow;
+    width: 100%;
+    position: absolute;
+    top: 75px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+
+    .link {
+      display: block;
+      padding: .5rem .5rem;
+      margin: .5rem .5rem;
+      text-align: center;
+
+      &:hover {
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        text-decoration-thickness: 2px;
+      }
+
+      @screen md {
+        display: inline-block;
       }
     }
+
+    @screen md {
+      width: auto;
+      position: relative;
+      display: flex;
+      top: 0;
+      left: 0;
+      transform: translateX(0%);
+      align-items: center;
+    }
+  }
+
+  .navMenuOpen {
+    display: block;
+  }
+
+  .navMenuClosed {
+    display: none;
   }
 
   #logo {
