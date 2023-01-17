@@ -147,13 +147,13 @@ const schema: Schema = {
                 },
                 {
                   label: 'CTA Color',
-                  name: 'nameColor',
+                  name: 'ctaColor',
                   type: 'string',
                   ui: {
-                    name: 'nameColor',
+                    name: 'ctaColor',
                     component: 'color',
                     colorFormat: 'hex',
-                    widget: 'block',
+                    widget: 'sketch',
                     colors: brandColors
                   }
                 },
@@ -175,7 +175,7 @@ const schema: Schema = {
       format: 'mdx',
       ui: {
         allowedActions: {
-          create: false,
+          create: true,
           delete: false
         }
       },
@@ -187,13 +187,13 @@ const schema: Schema = {
           list: true,
           ui: {
             itemProps: (item) => {
-              return { label: item?.label || 'Navigation Link' }
+              return { label: item?.name || 'Navigation Link' }
             }
           },
           fields: [
             {
-              label: 'Label',
-              name: 'label',
+              label: 'Link Name',
+              name: 'name',
               type: 'string',
             },
             {
@@ -207,21 +207,20 @@ const schema: Schema = {
           label: 'Social Platforms',
           name: 'socialPlatforms',
           type: 'object',
-          list: true,
-          ui: {
-            itemProps: (item) => {
-              return { label: item?.name || 'Platform' }
-            }
-          },
           fields: [
             {
-              label: 'Platform Name',
-              name: 'name',
+              label: 'Spotify URL',
+              name: 'spotifyUrl',
               type: 'string'
             },
             {
-              label: 'URL',
-              name: 'url',
+              label: 'GitHub URL',
+              name: 'githubUrl',
+              type: 'string'
+            },
+            {
+              label: 'Soundcloud URL',
+              name: 'soundcloudUrl',
               type: 'string'
             }
           ]

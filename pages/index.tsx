@@ -1,16 +1,20 @@
 import type { NextPage } from 'next'
-import { useTina } from 'tinacms/dist/react'
-import { TinaMarkdown } from 'tinacms/dist/rich-text'
-import { client } from '../.tina/__generated__/client'
-import Spotify from '../components/spotify'
+// import { useTina } from 'tinacms/dist/react'
+// import { TinaMarkdown } from 'tinacms/dist/rich-text'
+// import { client } from '../.tina/__generated__/client'
+import { Head, Layout } from '../components/layout'
+// import Spotify from '../components/spotify'
+import getSiteMeta from '../lib/getSiteMeta';
 
-const components: any = {
-  spotify: Spotify
+export const getStaticProps = async (ctx: any) => {
+  const siteMeta = await getSiteMeta();
+
+  return {
+    props: {
+      siteMeta: siteMeta
+    }
+  }
 }
-
-// export const getStaticProps = async (ctx: any) => {
-
-// }
 
 const Home: NextPage = (props: any) => {
   // const { data, isLoading } = useTina({
@@ -23,12 +27,20 @@ const Home: NextPage = (props: any) => {
   //   return <h1>Loading...</h1>
   // }
 
+  const { siteMeta } = props
+  
+
   return (
     <>
-      <div className='container my-5 m-auto'>
-        <h1>Hello</h1>
-        {/* <TinaMarkdown components={components} content={data.post.body}></TinaMarkdown> */}
-      </div>
+      <Layout siteMeta={siteMeta} className={''}>
+        <Head>
+          <title>Amends</title>
+          <meta name='description' content=''/>
+        </Head>
+        <section>
+          <h1>hello</h1>
+        </section>
+      </Layout>
     </>
   )
 }
