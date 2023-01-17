@@ -32,10 +32,16 @@ const Footer = ({ socialPlatforms } : footerProps): JSX.Element => {
     const currentYear: number = new Date().getFullYear()
 
     return (
-        <footer id={styles.footer} className='max-w-screen-2xl mx-2 2xl:mx-auto py-10 flex flex-col items-center'>
+        <footer id={styles.footer} className='max-w-screen-2xl 2xl:mx-auto py-10 px-12 flex flex-col items-center'>
+            <hr id={styles.footerLine}/>
             <Link href='/' passHref>
                 <a id={styles.logo} className='mb-2 md:mb-0 my-5'>
-                    <Image src={amendsLogo} alt='' layout='fill' objectFit='contain'/>
+                    <Image
+                        src={amendsLogo}
+                        alt='Amends home'
+                        layout='fill'
+                        objectFit='contain'
+                    />
                 </a>
             </Link>
             <p className='my-5'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>

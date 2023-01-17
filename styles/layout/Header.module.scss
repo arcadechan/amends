@@ -21,9 +21,12 @@
     z-index: 100;
 
     .link {
+      @apply font-inter;
+      @apply font-bold;
+      @apply uppercase;
       display: block;
-      padding: .5rem .5rem;
-      margin: .5rem .5rem;
+      padding: .75rem 0;
+      margin: .5rem 0;
       text-align: center;
 
       &:hover {
@@ -34,6 +37,8 @@
 
       @screen md {
         display: inline-block;
+        padding: .5rem .5rem;
+        margin-left: 1rem;
       }
     }
 
@@ -50,6 +55,11 @@
 
   .navMenuOpen {
     display: block;
+    box-shadow: 0 20px 25px -5px rgb(0, 0, 0, .1), 0 8px 10px -6px rgb(0, 0, 0, .1);
+
+    @screen md {
+      box-shadow: none;
+    }
   }
 
   .navMenuClosed {

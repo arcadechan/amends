@@ -1,5 +1,9 @@
 #footer {
-  border-top: 3px solid #1A1D27;
+  &Line {
+    @apply bg-black;
+    height: 3px;
+    width: 100%;
+  }
 
   #logo {
     height: 25px;

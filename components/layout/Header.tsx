@@ -39,10 +39,15 @@ const Header = ({ navigationLinks } : headerPropsI): JSX.Element => {
     return (
         <header id={styles.header} className='bg-yellow'>
             <div className='max-w-screen-2xl m-auto w-full h-full md:flex justify-between items-center'>
-                <div id={styles.headerInnerContainer} className='flex items-center justify-between px-12 2xl:px-6 py-l'>
+                <div id={styles.headerInnerContainer} className='flex items-center justify-between px-12 py-l'>
                     <Link href='/' passHref>
                         <a id={styles.logo} aria-label='Amends Logo. Link to home'>
-                            <Image src={amendsLogo} alt='' layout='fill' objectFit='contain'/>
+                            <Image
+                                src={amendsLogo}
+                                alt='Amends home'
+                                layout='fill'
+                                objectFit='contain'
+                            />
                         </a>
                     </Link>
                     {navigationLinks && (
@@ -57,7 +62,7 @@ const Header = ({ navigationLinks } : headerPropsI): JSX.Element => {
                             >
                                 <Image
                                     src={menuIsOpen ? accordionClose : accordionCollapsed}
-                                    alt='' 
+                                    alt=''
                                     width={25}
                                     height={25}
                                     layout='fixed'
@@ -69,13 +74,13 @@ const Header = ({ navigationLinks } : headerPropsI): JSX.Element => {
                 </div>
                 <nav
                     id={styles.navMenu}
-                    className={`hidden md:d-block pr-12 2xl:pr-0 ${ menuIsOpen ? styles.navMenuOpen : styles.navMenuClosed }`}
+                    className={`hidden md:d-block md:pr-10 ${ menuIsOpen ? styles.navMenuOpen : styles.navMenuClosed }`}
                     aria-labelledby='nav-menu-accordion'
                     hidden={!menuIsOpen}
                 >
                     {navigationLinks && navigationLinks.map(link => (
                         <Link href={link.url || ''} key={link.name} passHref>
-                            <a className={`${styles.link} font-inter font-bold uppercase`}>
+                            <a className={styles.link}>
                                 {link.name || ''}
                             </a>
                         </Link>
