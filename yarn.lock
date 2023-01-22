@@ -1665,15 +1665,22 @@
   dependencies:
     "zod" "^3.14.3"
 
+"@tinacms/schema-tools@1.2.0":
+  "integrity" "sha512-+2gwhdMazP4rX6+Cz9xVHImEET37NwRgWynG1MTdbUSHErch0DOn+kpcmv94YNNWb8c2ySm2hinNtk7HueX8NA=="
+  "resolved" "https://registry.npmjs.org/@tinacms/schema-tools/-/schema-tools-1.2.0.tgz"
+  "version" "1.2.0"
+  dependencies:
+    "zod" "^3.14.3"
+
 "@tinacms/sharedctx@1.0.0":
   "integrity" "sha512-I7lobex7bAAuh4ouFV0ZYSNzuNC39SJowqS2BU53bca5qcUH1I1b8lmVYzB4zBmZlsqRU/FKmjmdWYzWbkmvwA=="
   "resolved" "https://registry.npmjs.org/@tinacms/sharedctx/-/sharedctx-1.0.0.tgz"
   "version" "1.0.0"
 
-"@tinacms/toolkit@1.1.1":
-  "integrity" "sha512-+DyK2MTrDhwDC1RPHVL0I1TPqPWIOhGX6pWOH00O+JpgL8rIjv7KHVuw3iSh+b+ZhkjIkOleOmDlmqxU2cK88g=="
-  "resolved" "https://registry.npmjs.org/@tinacms/toolkit/-/toolkit-1.1.1.tgz"
-  "version" "1.1.1"
+"@tinacms/toolkit@1.2.1":
+  "integrity" "sha512-Y51q9Ib6AJvh59Ny5TurHaVJSBGPwx/OJxrFD+iL61mvti4uG/8fRA9lOo4I5rE8ke7EqNehDdnBTpOLIAM6tw=="
+  "resolved" "https://registry.npmjs.org/@tinacms/toolkit/-/toolkit-1.2.1.tgz"
+  "version" "1.2.1"
   dependencies:
     "@floating-ui/dom" "^0.1.7"
     "@floating-ui/react-dom" "^0.3.3"
@@ -1904,9 +1911,9 @@
     "@types/react" "*"
 
 "@types/react-redux@^7.1.20":
-  "integrity" "sha512-7FkurKcS1k0FHZEtdbbgN8Oc6b+stGSfZYjQGicofJ0j4U0qIn/jaSvnP2pLwZKiai3/17xqqxkkrxTgN8UNbQ=="
-  "resolved" "https://registry.npmjs.org/@types/react-redux/-/react-redux-7.1.24.tgz"
-  "version" "7.1.24"
+  "integrity" "sha512-bAGh4e+w5D8dajd6InASVIyCo4pZLJ66oLb80F9OBLO1gKESbZcRCJpTT6uLXX+HAB57zw1WTdwJdAsewuTweg=="
+  "resolved" "https://registry.npmjs.org/@types/react-redux/-/react-redux-7.1.25.tgz"
+  "version" "7.1.25"
   dependencies:
     "@types/hoist-non-react-statics" "^3.3.0"
     "@types/react" "*"
@@ -4321,26 +4328,26 @@
     "to-regex-range" "^5.0.1"
 
 "final-form-arrays@^3.0.1":
-  "integrity" "sha512-TfO8aZNz3RrsZCDx8GHMQcyztDNpGxSSi9w4wpSNKlmv2PfFWVVM8P7Yj5tj4n0OWax+x5YwTLhT5BnqSlCi+w=="
-  "resolved" "https://registry.npmjs.org/final-form-arrays/-/final-form-arrays-3.0.2.tgz"
-  "version" "3.0.2"
+  "integrity" "sha512-TWBvun+AopgBLw9zfTFHBllnKMVNEwCEyDawphPuBGGqNsuhGzhT7yewHys64KFFwzIs6KEteGLpKOwvTQEscQ=="
+  "resolved" "https://registry.npmjs.org/final-form-arrays/-/final-form-arrays-3.1.0.tgz"
+  "version" "3.1.0"
 
 "final-form-set-field-data@^1.0.2":
   "integrity" "sha512-gAnENimyQ5GW3OEGca5pbwm4lYshW2orzfBlPUYqzcm7ZxkQrVO8FqCAgEcCM+Rq9U1OU0q+D+UkqETvvDY6jw=="
   "resolved" "https://registry.npmjs.org/final-form-set-field-data/-/final-form-set-field-data-1.0.2.tgz"
   "version" "1.0.2"
 
-"final-form@^4.18.2", "final-form@>=1.2.0", "final-form@4.20.1":
-  "integrity" "sha512-IIsOK3JRxJrN72OBj7vFWZxtGt3xc1bYwJVPchjVWmDol9DlzMSAOPB+vwe75TUYsw1JaH0fTQnIgwSQZQ9Acg=="
-  "resolved" "https://registry.npmjs.org/final-form/-/final-form-4.20.1.tgz"
-  "version" "4.20.1"
+"final-form@^4.20.2", "final-form@^4.20.4", "final-form@^4.20.8":
+  "integrity" "sha512-knyoRbK42XvZOwfElVSZEfE9licdOmgLLUfPSuxJOl0UhjYT1HiBaHZlfYnwqmvo1H9ucNGyXDHoUP0vI0474g=="
+  "resolved" "https://registry.npmjs.org/final-form/-/final-form-4.20.8.tgz"
+  "version" "4.20.8"
   dependencies:
     "@babel/runtime" "^7.10.0"
 
-"final-form@^4.20.2", "final-form@^4.20.4":
-  "integrity" "sha512-ii3X9wNfyBYFnDPunYN5jh1/HAvtOZ9aJI/TVk0MB86hZuOeYkb+W5L3icgwW9WWNztZR6MDU3En6eoZTUoFPg=="
-  "resolved" "https://registry.npmjs.org/final-form/-/final-form-4.20.7.tgz"
-  "version" "4.20.7"
+"final-form@>=1.2.0", "final-form@4.20.1":
+  "integrity" "sha512-IIsOK3JRxJrN72OBj7vFWZxtGt3xc1bYwJVPchjVWmDol9DlzMSAOPB+vwe75TUYsw1JaH0fTQnIgwSQZQ9Acg=="
+  "resolved" "https://registry.npmjs.org/final-form/-/final-form-4.20.1.tgz"
+  "version" "4.20.1"
   dependencies:
     "@babel/runtime" "^7.10.0"
 
@@ -4883,9 +4890,9 @@
   "version" "5.2.0"
 
 "immer@^9.0.6":
-  "integrity" "sha512-qenGE7CstVm1NrHQbMh8YaSzTZTFNP3zPqr3YU0S0UY441j4bJTg4A2Hh5KAhwgaiU6ZZ1Ar6y/2f4TblnMReQ=="
-  "resolved" "https://registry.npmjs.org/immer/-/immer-9.0.16.tgz"
-  "version" "9.0.16"
+  "integrity" "sha512-eAPNpsj7Ax1q6Y/3lm2PmlwRcFzpON7HSNQ3ru5WQH1/PSpnyed/HpNOELl2CxLKoj4r+bAHgdyKqW5gc2Se1A=="
+  "resolved" "https://registry.npmjs.org/immer/-/immer-9.0.18.tgz"
+  "version" "9.0.18"
 
 "immutable@^4.0.0":
   "integrity" "sha512-7WYV7Q5BTs0nlQm7tl92rDYYoyELLKHoDMBKhrxEoiV4mrfVdRz8hzPiYOzH7yWjzoVEamxRuAqhxL2PLRwZYQ=="
@@ -5452,9 +5459,9 @@
     "supports-color" "^7.0.0"
 
 "jotai@^1.7.2":
-  "integrity" "sha512-IhyBmjxU1sE2Ni/MUK7gQAb8QvCM6yd1/K5jtQzgQBmmjCjgfXZkkk1rYlQAIRp2KoQk0Y+yzhm1f5cZ7kegnw=="
-  "resolved" "https://registry.npmjs.org/jotai/-/jotai-1.12.0.tgz"
-  "version" "1.12.0"
+  "integrity" "sha512-RUmH1S4vLsG3V6fbGlKzGJnLrDcC/HNb5gH2AeA9DzuJknoVxSGvvg8OBB7lke+gDc4oXmdVsaKn/xDUhWZ0vw=="
+  "resolved" "https://registry.npmjs.org/jotai/-/jotai-1.13.1.tgz"
+  "version" "1.13.1"
 
 "js-tokens@^3.0.0 || ^4.0.0", "js-tokens@^4.0.0":
   "integrity" "sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ=="
@@ -7275,10 +7282,10 @@
     "forwarded" "0.2.0"
     "ipaddr.js" "1.9.1"
 
-"proxy-compare@2.3.0":
-  "integrity" "sha512-c3L2CcAi7f7pvlD0D7xsF+2CQIW8C3HaYx2Pfgq8eA4HAl3GAH6/dVYsyBbYF/0XJs2ziGLrzmz5fmzPm6A0pQ=="
-  "resolved" "https://registry.npmjs.org/proxy-compare/-/proxy-compare-2.3.0.tgz"
-  "version" "2.3.0"
+"proxy-compare@2.4.0":
+  "integrity" "sha512-FD8KmQUQD6Mfpd0hywCOzcon/dbkFP8XBd9F1ycbKtvVsfv6TsFUKJ2eC0Iz2y+KzlkdT1Z8SY6ZSgm07zOyqg=="
+  "resolved" "https://registry.npmjs.org/proxy-compare/-/proxy-compare-2.4.0.tgz"
+  "version" "2.4.0"
 
 "pump@^3.0.0":
   "integrity" "sha512-LwZy+p3SFs1Pytd/jYct4wpv49HiYCqd9Rlc5ZVdk0V+8Yzv6jR5Blk3TRmPL1ft69TxP0IMZGJ+WPFU2BFhww=="
@@ -7481,11 +7488,11 @@
     "use-latest" "^1.2.1"
 
 "react-tracked@^1.7.9":
-  "integrity" "sha512-+zOm+Pr+zFrrEOwtLUtHwoxf9Kg7Ur7OMjD9kNFw5JA9lAs+mInXVEOvwpReEoR2FQMS4KUFxLv5VYoR5ADBiQ=="
-  "resolved" "https://registry.npmjs.org/react-tracked/-/react-tracked-1.7.10.tgz"
-  "version" "1.7.10"
+  "integrity" "sha512-+XXv4dJH7NnLtSD/cPVL9omra4A3KRK91L33owevXZ81r7qF/a9DdCsVZa90jMGht/V1Ym9sasbmidsJykhULQ=="
+  "resolved" "https://registry.npmjs.org/react-tracked/-/react-tracked-1.7.11.tgz"
+  "version" "1.7.11"
   dependencies:
-    "proxy-compare" "2.3.0"
+    "proxy-compare" "2.4.0"
     "use-context-selector" "1.4.1"
 
 "react@*", "react@^15.5.x || ^16.x || ^17.x || ^18.x", "react@^16 || ^17 || ^18", "react@^16.13.1 || ^17.0.0 || ^18.0.0", "react@^16.8 || ^17.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^16.8.0 || ^17.0.0-rc.1", "react@^16.8.0 || ^17.0.0-rc.1 || ^18.0.0", "react@^16.8.3 || ^17 || ^18", "react@^16.8.5 || ^17.0.0 || ^18.0.0", "react@^17.0.2 || ^18.0.0-0", "react@^18.2.0", "react@>= 16", "react@>= 16.8", "react@>= 16.8.0", "react@>= 16.8.0 || 17.x.x || ^18.0.0-0", "react@>=0.13", "react@>=0.14.9", "react@>=16.12.0", "react@>=16.14", "react@>=16.14.0", "react@>=16.3", "react@>=16.8", "react@>=16.8.0", "react@18.2.0":
@@ -8572,18 +8579,18 @@
   "resolved" "https://registry.npmjs.org/text-table/-/text-table-0.2.0.tgz"
   "version" "0.2.0"
 
-"tinacms@^1.1.1":
-  "integrity" "sha512-aW3C9Gv4XpBKr22byoxBebpm5gaYQu7E8KqnemweNfUtit7Wr1Q3lzZiMjA8RxuEcABZ42F/HOOIpQx6CC9A1w=="
-  "resolved" "https://registry.npmjs.org/tinacms/-/tinacms-1.1.1.tgz"
-  "version" "1.1.1"
+"tinacms@^1.1.3":
+  "integrity" "sha512-EEg2aMNkPdn8+WvF9zaFsIIHrpCXwlIws+gYLw6aCuDaRYf4TZSS+IpgAMOlpltiKjpFrBnGUs+47TKlzfccBQ=="
+  "resolved" "https://registry.npmjs.org/tinacms/-/tinacms-1.1.3.tgz"
+  "version" "1.1.3"
   dependencies:
     "@graphql-tools/relay-operation-optimizer" "^6.4.1"
     "@headlessui/react" "^1.5.0"
     "@heroicons/react" "^1.0.4"
     "@react-hook/window-size" "^3.0.7"
-    "@tinacms/schema-tools" "1.0.3"
+    "@tinacms/schema-tools" "1.2.0"
     "@tinacms/sharedctx" "1.0.0"
-    "@tinacms/toolkit" "1.1.1"
+    "@tinacms/toolkit" "1.2.1"
     "crypto-js" "^4.0.0"
     "encoding" "0.1.13"
     "fetch-ponyfill" "^7.1.0"
@@ -8613,9 +8620,9 @@
   "version" "1.0.3"
 
 "tinycolor2@^1.4.1":
-  "integrity" "sha512-BHlrsGeYN2OpkRpfAgkEwCMu6w8Quq8JkK/mp4c55NZP7OwceJObR1CPZt62TqiA0Y3J5pwuDX+fXDqc35REtg=="
-  "resolved" "https://registry.npmjs.org/tinycolor2/-/tinycolor2-1.5.1.tgz"
-  "version" "1.5.1"
+  "integrity" "sha512-h80m9GPFGbcLzZByXlNSEhp1gf8Dy+VX/2JCGUZsWLo7lV1mnE/XlxGYgRBoMLJh1lIDXP0EMC4RPTjlRaV+Bg=="
+  "resolved" "https://registry.npmjs.org/tinycolor2/-/tinycolor2-1.5.2.tgz"
+  "version" "1.5.2"
 
 "title-case@^3.0.3":
   "integrity" "sha512-e1zGYRvbffpcHIrnuqT0Dh+gEJtDaxDSoG4JAIpq4oDFyooziLBIiYQv0GBT4FUAnUop5uZ1hiIAj7oAF6sOCA=="
