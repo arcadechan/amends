@@ -43,8 +43,8 @@ const commonFields: any[] = [
     isTitle: true
   },
   {
-    label: 'Secondary Title',
-    name: 'secondaryTitle',
+    label: 'Subtitle',
+    name: 'subTitle',
     type: 'string',
   },
   {

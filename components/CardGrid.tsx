@@ -1,4 +1,7 @@
+import Image from 'next/image'
+import Link from 'next/link'
 import { Template } from 'tinacms'
+import styles from '../styles/components/CardGrid.module.scss'
 
 interface CardGridProps {
   columnCount: string
@@ -11,8 +14,11 @@ interface Card {
   manualCard: ManualCard | null
 }
 
-interface ReferenceCard {
+interface ReferenceCard { 
+  id?: string
   title: string
+  subtitle?: string
+  heroImage?: string
 }
 
 interface ManualCard {
@@ -24,35 +30,88 @@ interface ManualCard {
   ctaText: string
 }
 
-const ReferenceCard = ({ componentProps }: any): JSX.Element =>
+const getCardUrl = (card: Card): string =>
 {
+  if(card?.manualCard?.url) return card.manualCard.url
+  if(card?.referenceCard?.id) {
+    return card.referenceCard.id.replace('content', '').replace('.mdx', '')
+  }
 
-  const { title } = componentProps
-
-  return <div>{title}</div>
+  return ''
 }
 
-const ManualCard = ({ componentProps }: any): JSX.Element =>
+const getAriaLabel = (card: Card): string =>
 {
-  const { title } = componentProps
-  return <div>{title}</div>
+  let title = card?.referenceCard?.title || card?.manualCard?.title
+  let subtitle = card?.referenceCard?.subtitle || card?.manualCard?.subtitle
+
+  if(title && subtitle) return `${title}: ${subtitle}`
+  if(title && !subtitle) return title;
+  if(!title && subtitle) return subtitle
+  if(!title && !subtitle) return ''
+}
+
+const CardImage = ({card}: {card: Card}): JSX.Element => 
+{
+  let src: string = ''
+
+  if(card?.referenceCard?.heroImage?.length) {
+    src = card.referenceCard.heroImage;
+  }
+
+  if(card?.manualCard?.image?.length) {
+    src = card.manualCard.image;
+  }
+
+  if(src.length) {
+    return (
+      <div className={styles.cardGridImageContainer}>
+        <Image
+          src={src}
+          alt=''
+          layout='fill'
+          objectFit='cover'
+          sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+          className={styles.cardGridImage}
+        />
+      </div>
+    )
+  }else{
+    return <div className={styles.cardGridNoImage}></div>
+  }
 }
 
 const CardGrid = ({ componentProps }: { componentProps:  CardGridProps}): JSX.Element =>
 {
-  const { columnCount, sectionTitle, cards } = componentProps
+  const { columnCount = 'one', sectionTitle, cards } = componentProps
+
+  let classes = `${styles.cardGrid} px-12 py-6 max-w-screen-2xl 2xl:mx-auto`;
 
   return (
-    <section>
-      {sectionTitle && <h2>{sectionTitle}</h2>}
-      <div>
-        {cards && cards?.length > 0 && cards.map((card, i) => {
-          if(!!card?.referenceCard){
-            return <ReferenceCard componentProps={card.referenceCard} key={i}/>
-          } else {
-            return <ManualCard componentProps={card.manualCard} key={i}/>
-          }
-        })}
+    <section className={classes}>
+      {sectionTitle && <h2 className={styles.cardGridTitle}>{sectionTitle}</h2>}
+      <div className={`${styles.cardGridCardContainer} ${styles[`${columnCount}ColumnGrid`]}`}>
+        {cards && cards?.length > 0 && cards.map((card, i: number) => (
+          <article className={styles.card}>
+            <Link href={getCardUrl(card)} key={i} passHref>
+              <a aria-label={getAriaLabel(card)} className={styles.cardAnchor}>
+                <CardImage card={card}/>
+                <div className={styles.cardTextLabels}>
+                  {(card?.referenceCard?.title || card?.manualCard?.title) && (
+                    <h2 className={styles.cardTitle} aria-hidden>
+                      {card?.referenceCard?.title || card?.manualCard?.title}
+                    </h2>
+                  )}
+                  {(card?.referenceCard?.subtitle || card?.manualCard?.title) && (
+                    <h3 className={styles.cardSubtitle} aria-hidden>
+                      {card?.referenceCard?.subtitle || card?.manualCard?.subtitle}
+                    </h3>
+                  )}
+                </div>
+              </a>
+            </Link>
+          </article>
+        ))}
       </div>
     </section>
   )

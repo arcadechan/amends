@@ -21,7 +21,7 @@ export const getStaticProps = async (ctx: any) =>
   }
 }
 
-const Home: NextPage = (props: any) =>
+const Home: NextPage = (props: any): JSX.Element =>
 {
   const { data } = useTina({
     query: props.query,
@@ -39,15 +39,15 @@ const Home: NextPage = (props: any) =>
           <title>Amends</title>
           <meta name='description' content=''/>
         </Head>
-        <section>
-          {pageBlocks?.length > 0 && pageBlocks.map((block: any, i: number) => {
-            switch(block.__typename)
-            {
-              case 'HomePageBlocksCardGrid':
-                return <CardGrid componentProps={block} key={i}/> 
-            }
-          })}
-        </section>
+        {pageBlocks?.length > 0 && pageBlocks.map((block: any, i: number) => {
+          switch(block.__typename)
+          {
+            case 'HomePageBlocksCardGrid':
+              return <CardGrid componentProps={block} key={i}/> 
+            default:
+              return;
+          }
+        })}
       </Layout>
     </>
   )

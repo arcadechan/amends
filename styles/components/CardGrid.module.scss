@@ -1,0 +1,91 @@
+.cardGrid {
+  .cardGridTitle {
+    @apply font-inter;
+    @apply text-3xl;
+    @apply mb-3;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .cardGridCardContainer {
+    @apply grid;
+    @apply gap-8;
+
+    &.oneColumnGrid { @apply grid-cols-1; }
+    &.twoColumnGrid { @apply grid-cols-2; }
+    &.threeColumnGrid { @apply grid-cols-3; }
+    &.fourColumnGrid { @apply grid-cols-4; }
+
+    .card {
+      min-height: 400px;
+      position: relative;
+      border-radius: 20px;
+
+      &:hover {
+        .cardTextLabels {
+          text-decoration: underline;
+        }
+      }
+
+      .cardAnchor {
+        display: block;
+        @apply h-full;
+
+        &:focus {
+          @apply outline-black;
+          outline-width: 5px;
+          outline-style: solid;
+          border-radius: 20px
+        }
+      }
+      
+      .cardGridImageContainer {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        z-index: 0;
+
+        .cardGridImage {
+          border-radius: 20px;
+        }
+      }
+
+      .cardGridNoImage {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        background-color: gray;
+        left: 0;
+        top: 0;
+        z-index: 0;
+        border-radius: 20px;
+      }
+
+      .cardTextLabels {
+        @apply p-6;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: 0;
+        width: 100%;
+        color: white;
+        @apply bg-gradient-to-r;
+        @apply from-black;
+        @apply rounded-bl-[20px];
+        @apply rounded-br-[20px];
+
+        .cardTitle {
+          @apply font-inter;
+          @apply text-2xl;
+          font-weight: bold;
+        }
+
+        .cardSubtitle {
+          @apply font-inter;
+          @apply text-lg;
+          font-style: italic;
+        }
+      }
+    }
+  }
+}
