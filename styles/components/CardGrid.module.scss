@@ -17,7 +17,7 @@
     &.fourColumnGrid { @apply grid-cols-4; }
 
     .card {
-      min-height: 400px;
+      // min-height: 400px;
       position: relative;
       border-radius: 20px;
 
@@ -25,6 +25,15 @@
         .cardTextLabels {
           text-decoration: underline;
         }
+      }
+
+      &.cardHasImage {
+        min-height: 400px;
+        background-color: red;
+      }
+
+      &.cardHasNoImage {
+        min-height: 200px;
       }
 
       .cardAnchor {

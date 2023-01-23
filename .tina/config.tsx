@@ -1,6 +1,6 @@
 import React from 'react'
 import { defineConfig, wrapFieldsWithMeta, Schema } from 'tinacms'
-import { cardGridSchema } from '../components/CardGrid'
+import CardGridSchema from '../components/schemas/CardGridSchema'
 
 const URLWithIconContainer = ({ serviceName, input } : { serviceName: string, input: any}) : JSX.Element => (
   <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -92,7 +92,7 @@ const schema: Schema = {
           type: 'object',
           list: true,
           templates: [
-            cardGridSchema
+            CardGridSchema
           ]
         }
       ]
