@@ -1,4 +1,6 @@
 .cardGrid {
+  @apply my-10;
+
   .cardGridTitle {
     @apply font-inter;
     @apply text-3xl;
@@ -21,19 +23,24 @@
       position: relative;
       border-radius: 20px;
 
-      &:hover {
+      .cardAnchor:hover {
         .cardTextLabels {
           text-decoration: underline;
         }
       }
 
       &.cardHasImage {
-        min-height: 400px;
-        background-color: red;
+        min-height: 700px;
       }
 
       &.cardHasNoImage {
         min-height: 200px;
+
+        .cardTextLabels {
+          height: 100%;
+          border-top-left-radius: 20px;
+          border-top-right-radius: 20px;
+        }
       }
 
       .cardAnchor {
@@ -71,6 +78,9 @@
       }
 
       .cardTextLabels {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
         @apply p-6;
         position: absolute;
         bottom: 0;
@@ -83,16 +93,33 @@
         @apply rounded-bl-[20px];
         @apply rounded-br-[20px];
 
-        .cardTitle {
+        .cardTitle,
+        .cardTitleCentered {
           @apply font-inter;
           @apply text-2xl;
           font-weight: bold;
+        }
+
+        .cardTitleCentered {
+          text-align: center;
         }
 
         .cardSubtitle {
           @apply font-inter;
           @apply text-lg;
           font-style: italic;
+        }
+
+        .cardCtaButton {
+          @apply bg-yellow;
+          @apply text-black;
+          @apply font-inter;
+          text-align: center;
+          padding: 10px;
+          margin-top: 15px;
+          font-weight: bold;
+          border-radius: 10px;
+          width: auto;
         }
       }
     }

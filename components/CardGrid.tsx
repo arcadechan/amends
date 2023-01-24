@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import React from 'react'
 import { Template } from 'tinacms'
 import styles from '../styles/components/CardGrid.module.scss'
 
@@ -76,33 +77,47 @@ const CardGrid = ({ componentProps }: { componentProps:  CardGridProps}): JSX.El
 {
   const { columnCount = 'one', sectionTitle, cards } = componentProps
 
-  let classes = `${styles.cardGrid} px-12 py-6 max-w-screen-2xl 2xl:mx-auto`;
-
   return (
-    <section className={classes}>
+    <section className={`${styles.cardGrid} px-12 py-6 max-w-screen-2xl 2xl:mx-auto`}>
       {sectionTitle && <h2 className={styles.cardGridTitle}>{sectionTitle}</h2>}
       <div className={`${styles.cardGridCardContainer} ${styles[`${columnCount}ColumnGrid`]}`}>
         {cards && cards?.length > 0 && cards.map((card, i: number) => {
           const cardImage = card?.manualCard?.image || card?.referenceCard?.heroImage
+          const showCtaButton = card?.manualCard?.showCtaButton
+
+          const cardContent = (
+            <>
+              <CardImage cardImage={cardImage}/>
+              <div className={styles.cardTextLabels}>
+                {(card?.referenceCard?.title || card?.manualCard?.title) && (
+                  <h2 className={showCtaButton ? styles.cardTitleCentered : styles.cardTitle} aria-hidden>
+                    {card?.referenceCard?.title || card?.manualCard?.title}
+                  </h2>
+                )}
+                {(card?.referenceCard?.subtitle || card?.manualCard?.title) && (
+                  <h3 className={styles.cardSubtitle} aria-hidden>
+                    {card?.referenceCard?.subtitle || card?.manualCard?.subtitle}
+                  </h3>
+                )}
+                {showCtaButton && (
+                  <Link href={getCardUrl(card)} passHref>
+                    <a aria-label={getAriaLabel(card)} className={styles.cardCtaButton}>
+                      {card?.manualCard?.ctaText || ''}
+                    </a>
+                  </Link>
+                )}
+              </div>
+            </>
+          )
 
           return (
             <article className={`${styles.card} ${cardImage ? styles.cardHasImage : styles.cardHasNoImage }`} key={i}>
               <Link href={getCardUrl(card)} passHref>
-                <a aria-label={getAriaLabel(card)} className={styles.cardAnchor}>
-                  <CardImage cardImage={cardImage}/>
-                  <div className={styles.cardTextLabels}>
-                    {(card?.referenceCard?.title || card?.manualCard?.title) && (
-                      <h2 className={styles.cardTitle} aria-hidden>
-                        {card?.referenceCard?.title || card?.manualCard?.title}
-                      </h2>
-                    )}
-                    {(card?.referenceCard?.subtitle || card?.manualCard?.title) && (
-                      <h3 className={styles.cardSubtitle} aria-hidden>
-                        {card?.referenceCard?.subtitle || card?.manualCard?.subtitle}
-                      </h3>
-                    )}
-                  </div>
-                </a>
+                {card?.manualCard?.showCtaButton ? cardContent : (
+                  <a aria-label={getAriaLabel(card)} className={styles.cardAnchor}>
+                    {cardContent}
+                  </a>
+                )}
               </Link>
             </article>
           )
