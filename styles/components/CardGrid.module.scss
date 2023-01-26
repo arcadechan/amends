@@ -1,6 +1,4 @@
 .cardGrid {
-  @apply my-10;
-
   .cardGridTitle {
     @apply font-inter;
     @apply text-3xl;
@@ -13,13 +11,36 @@
     @apply grid;
     @apply gap-8;
 
-    &.oneColumnGrid { @apply grid-cols-1; }
-    &.twoColumnGrid { @apply grid-cols-2; }
-    &.threeColumnGrid { @apply grid-cols-3; }
-    &.fourColumnGrid { @apply grid-cols-4; }
+    &.oneColumnGrid,
+    &.twoColumnGrid,
+    &.threeColumnGrid,
+    &.fourColumnGrid {
+      @apply grid-cols-1;
+    }
+
+    &.twoColumnGrid {     
+      @screen md {
+        @apply grid-cols-2;
+      }
+    }
+
+    &.threeColumnGrid {
+      @screen md {
+        @apply grid-cols-3;    
+      }
+    }
+  
+    &.fourColumnGrid {
+      @screen md {
+        @apply grid-cols-2;
+      }
+
+      @screen lg {
+        @apply grid-cols-4;
+      }
+    }
 
     .card {
-      // min-height: 400px;
       position: relative;
       border-radius: 20px;
 
@@ -30,7 +51,15 @@
       }
 
       &.cardHasImage {
-        min-height: 700px;
+        min-height: 300px;
+
+        @screen md {
+          min-height: 300px;
+        }
+
+        @screen lg {
+          min-height: 400px;
+        }
       }
 
       &.cardHasNoImage {

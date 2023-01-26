@@ -78,7 +78,7 @@ const CardGrid = ({ componentProps }: { componentProps:  CardGridProps}): JSX.El
   const { columnCount = 'one', sectionTitle, cards } = componentProps
 
   return (
-    <section className={`${styles.cardGrid} px-12 py-6 max-w-screen-2xl 2xl:mx-auto`}>
+    <section className={`${styles.cardGrid} px-12 py-4 max-w-screen-2xl 2xl:mx-auto`}>
       {sectionTitle && <h2 className={styles.cardGridTitle}>{sectionTitle}</h2>}
       <div className={`${styles.cardGridCardContainer} ${styles[`${columnCount}ColumnGrid`]}`}>
         {cards && cards?.length > 0 && cards.map((card, i: number) => {
