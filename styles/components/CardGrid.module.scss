@@ -44,9 +44,19 @@
       position: relative;
       border-radius: 20px;
 
-      .cardAnchor:hover {
-        .cardTextLabels {
-          text-decoration: underline;
+      .cardAnchor {
+        &:hover {
+          &.cardAnchorWithCta {
+            .cardCtaButton {
+              text-decoration: underline;
+            }
+          }
+          
+          &:not(.cardAnchor.cardAnchorWithCta){
+            .cardTextLabels {
+              text-decoration: underline;
+            }
+          }
         }
       }
 
