@@ -36,6 +36,15 @@ const commonFields: any[] = [
     type: 'image'
   },
   {
+    name: 'imageBlurDataURL',
+    label: 'Image Blur Data URL',
+    description: 'base64',
+    type: 'string',
+    ui: {
+      component: () => false
+    }
+  },
+  {
     label: 'Title',
     name: 'title',
     type: 'string',

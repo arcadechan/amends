@@ -1,8 +1,10 @@
 import type { NextPage } from 'next'
 import { useTina } from 'tinacms/dist/react'
 import { client } from '../.tina/__generated__/client'
+import { HomePageBlocks, HomePageBlocksCardGrid, HomeQuery } from '../.tina/__generated__/types'
 import CardGrid from '../components/CardGrid'
 import { Head, Layout } from '../components/layout'
+import getPlaceholders from '../lib/getPlaceholder'  
 
 export const getStaticProps = async (ctx: any) =>
 {
@@ -10,13 +12,15 @@ export const getStaticProps = async (ctx: any) =>
   const siteMeta = siteMetaQuery?.data?.meta || null
 
   const homePageQuery = await client.queries.home({ relativePath: 'home.mdx' })
+  const homePageDataWithPlaiceholders: HomeQuery = await getPlaceholders.forHomePage(homePageQuery.data)
+
   
   return {
     props: {
       siteMeta: siteMeta,
       query: homePageQuery.query,
       variables: homePageQuery.variables,
-      data: homePageQuery.data
+      data: homePageDataWithPlaiceholders
     }
   }
 }
@@ -30,7 +34,7 @@ const Home: NextPage = (props: any): JSX.Element =>
   })
 
   const { siteMeta } = props
-  const { pageBlocks } = data?.home
+  const pageBlocks: HomeQuery['home']['pageBlocks'] = data?.home.pageBlocks
 
   return (
     <>
@@ -39,8 +43,8 @@ const Home: NextPage = (props: any): JSX.Element =>
           <title>Amends</title>
           <meta name='description' content=''/>
         </Head>
-        {pageBlocks?.length > 0 && pageBlocks.map((block: any, i: number) => {
-          switch(block.__typename)
+        {pageBlocks && pageBlocks?.length > 0 && pageBlocks.map((block , i: number) => {
+          switch(block?.__typename)
           {
             case 'HomePageBlocksCardGrid':
               return <CardGrid componentProps={block} key={i}/> 

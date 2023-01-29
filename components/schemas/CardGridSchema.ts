@@ -1,4 +1,4 @@
-import { Template } from 'tinacms'
+import { Template, wrapFieldsWithMeta } from 'tinacms'
 
 const CardGridSchema: Template =
 {
@@ -54,6 +54,15 @@ const CardGridSchema: Template =
               name: 'image',
               label: 'Image',
               type: 'image'
+            },
+            {
+              name: 'imageBlurDataURL',
+              label: 'Image Blur Data URL',
+              description: 'base64',
+              type: 'string',
+              ui: {
+                component: () => false
+              }
             },
             {
               name: 'title',
