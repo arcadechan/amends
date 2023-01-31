@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import { useTina } from 'tinacms/dist/react'
 import { client } from '../.tina/__generated__/client'
-import { HomePageBlocks, HomePageBlocksCardGrid, HomeQuery } from '../.tina/__generated__/types'
+import { HomePageBlocks, HomeQuery } from '../.tina/__generated__/types'
 import CardGrid from '../components/CardGrid'
 import { Head, Layout } from '../components/layout'
 import getPlaceholders from '../lib/getPlaceholder'  
@@ -34,7 +34,7 @@ const Home: NextPage = (props: any): JSX.Element =>
   })
 
   const { siteMeta } = props
-  const pageBlocks: HomeQuery['home']['pageBlocks'] = data?.home.pageBlocks
+  const pageBlocks: HomePageBlocks[] = data?.home.pageBlocks
 
   return (
     <>
