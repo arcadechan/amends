@@ -96,23 +96,25 @@ const CardGrid = ({ componentProps }: { componentProps: HomePageBlocksCardGrid }
 
           return (
             <article className={`${styles.card} ${cardImage ? styles.cardHasImage : styles.cardHasNoImage }`} key={i}>
-              <Link href={getCardUrl(card)} passHref>
-                <a aria-label={getAriaLabel(card)} className={`${styles.cardAnchor} ${showCtaButton ? styles.cardAnchorWithCta : ''}`}>
-                  <CardImage cardImage={cardImage} columnCount={columnCount}/>
-                  <div className={styles.cardTextLabels}>
-                    {cardTitle && (
-                      <h2 className={showCtaButton ? styles.cardTitleCentered : styles.cardTitle} aria-hidden>{cardTitle}</h2>
-                    )}
-                    {cardSubtitle && (
-                      <h3 className={styles.cardSubtitle} aria-hidden>{cardSubtitle}</h3>
-                    )}
-                    {showCtaButton && (
-                      <span className={styles.cardCtaButton}>
-                        {card?.manualCard?.ctaText || ''}
-                      </span>
-                    )}
-                  </div>
-                </a>
+              <Link
+                href={getCardUrl(card)}
+                aria-label={getAriaLabel(card)}
+                className={`${styles.cardAnchor} ${showCtaButton ? styles.cardAnchorWithCta : ''}`}
+              >
+                <CardImage cardImage={cardImage} columnCount={columnCount}/>
+                <div className={styles.cardTextLabels}>
+                  {cardTitle && (
+                    <h2 className={showCtaButton ? styles.cardTitleCentered : styles.cardTitle} aria-hidden>{cardTitle}</h2>
+                  )}
+                  {cardSubtitle && (
+                    <h3 className={styles.cardSubtitle} aria-hidden>{cardSubtitle}</h3>
+                  )}
+                  {showCtaButton && (
+                    <span className={styles.cardCtaButton}>
+                      {card?.manualCard?.ctaText || ''}
+                    </span>
+                  )}
+                </div>
               </Link>
             </article>
           )

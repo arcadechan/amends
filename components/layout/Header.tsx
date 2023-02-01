@@ -40,15 +40,17 @@ const Header = ({ navigationLinks } : headerPropsI): JSX.Element => {
         <header id={styles.header} className='bg-yellow'>
             <div className='max-w-screen-2xl m-auto w-full h-full md:flex justify-between items-center'>
                 <div id={styles.headerInnerContainer} className='flex items-center justify-between px-12 py-l'>
-                    <Link href='/' passHref>
-                        <a id={styles.logo} aria-label='Amends Logo. Link to home'>
-                            <Image
-                                src={amendsLogo}
-                                alt='Amends home'
-                                layout='fill'
-                                objectFit='contain'
-                            />
-                        </a>
+                    <Link 
+                        id={styles.logo}
+                        href='/'
+                        aria-label='Amends Logo. Link to home'
+                    >
+                        <Image
+                            src={amendsLogo}
+                            alt='Amends home'
+                            layout='fill'
+                            objectFit='contain'
+                        />
                     </Link>
                     {navigationLinks && (
                         <>
@@ -79,10 +81,12 @@ const Header = ({ navigationLinks } : headerPropsI): JSX.Element => {
                     hidden={!menuIsOpen}
                 >
                     {navigationLinks && navigationLinks.map(link => (
-                        <Link href={link.url || ''} key={link.name} passHref>
-                            <a className={styles.link}>
-                                {link.name || ''}
-                            </a>
+                        <Link
+                            href={link.url || ''}
+                            key={link.name}
+                            className={styles.link}
+                        >
+                            {link.name || ''}
                         </Link>
                     ))}
                 </nav>

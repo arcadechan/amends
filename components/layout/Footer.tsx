@@ -15,15 +15,18 @@ interface SocialIconProps {
 
 const SocialIcon = ({href = '', title = '', iconSrc = ''}: SocialIconProps): JSX.Element => {
     return (
-        <Link href={href} passHref>
-            <a className='m-2 w-7 h-7' target='_blank' title={title}>
-                <Image
-                    src={iconSrc}
-                    alt=''
-                    width={27}
-                    height={27}
-                />
-            </a>
+        <Link
+            href={href}
+            className='m-2 w-7 h-7'
+            target='_blank'
+            title={title}
+        >
+            <Image
+                src={iconSrc}
+                alt=''
+                width={27}
+                height={27}
+            />
         </Link>
     )
 }
@@ -34,15 +37,17 @@ const Footer = ({ socialPlatforms } : footerProps): JSX.Element => {
     return (
         <footer id={styles.footer} className='max-w-screen-2xl 2xl:mx-auto py-10 px-12 flex flex-col items-center'>
             <hr id={styles.footerLine}/>
-            <Link href='/' passHref>
-                <a id={styles.logo} className='mb-2 md:mb-0 my-5'>
-                    <Image
-                        src={amendsLogo}
-                        alt='Amends home'
-                        layout='fill'
-                        objectFit='contain'
-                    />
-                </a>
+            <Link
+                href='/'
+                id={styles.logo}
+                className='mb-2 md:mb-0 my-5'
+            >
+                <Image
+                    src={amendsLogo}
+                    alt='Amends home'
+                    layout='fill'
+                    objectFit='contain'
+                />
             </Link>
             <p className='my-5'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
             {socialPlatforms && Object.keys(socialPlatforms).length > 0 && (
