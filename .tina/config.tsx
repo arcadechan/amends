@@ -1,5 +1,6 @@
 import React from 'react'
 import { defineConfig, wrapFieldsWithMeta, Schema } from 'tinacms'
+import CardGridSchema from '../components/schemas/CardGridSchema'
 
 const URLWithIconContainer = ({ serviceName, input } : { serviceName: string, input: any}) : JSX.Element => (
   <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -35,6 +36,15 @@ const commonFields: any[] = [
     type: 'image'
   },
   {
+    name: 'imageBlurDataURL',
+    label: 'Image Blur Data URL',
+    description: 'base64',
+    type: 'string',
+    ui: {
+      component: () => false
+    }
+  },
+  {
     label: 'Title',
     name: 'title',
     type: 'string',
@@ -42,8 +52,8 @@ const commonFields: any[] = [
     isTitle: true
   },
   {
-    label: 'Secondary Title',
-    name: 'secondaryTitle',
+    label: 'Subtitle',
+    name: 'subTitle',
     type: 'string',
   },
   {
@@ -82,88 +92,16 @@ const schema: Schema = {
         allowedActions: {
           create: false,
           delete: false,
-        },
-        defaultItem: {
-          categories: [
-            {
-              cta: {
-                label: 'Explore'
-              }
-            }
-          ]
         }
       },
       fields: [
         {
-          label: 'Featured Article',
-          name: 'featured',
-          type: 'reference',
-          collections: [ 'post' ]
-        },
-        {
-          label: 'Featured (Other)',
-          name: 'featuredOther',
-          type: 'reference',
-          collections: [ 'post' ]
-        },
-        {
-          label: 'Categories',
-          name: 'categories',
+          name: 'pageBlocks',
+          label: 'Page Blocks',
           type: 'object',
           list: true,
-          fields: [
-            {
-              label: 'Category Image',
-              name: 'image',
-              type: 'image'
-            },
-            {
-              label: 'Category Name',
-              name: 'name',
-              type: 'string',
-              required: true
-            },
-            {
-              label: 'Category Name Color',
-              name: 'nameColor',
-              type: 'string',
-              ui: {
-                name: 'nameColor',
-                component: 'color',
-                colorFormat: 'hex',
-                widget: 'sketch',
-                colors: brandColors
-              }
-            },
-            {
-              label: 'CTA',
-              name: 'cta',
-              type: 'object',
-              fields: [
-                {
-                  label: 'CTA Label',
-                  name: 'label',
-                  type: 'string'
-                },
-                {
-                  label: 'CTA Color',
-                  name: 'ctaColor',
-                  type: 'string',
-                  ui: {
-                    name: 'ctaColor',
-                    component: 'color',
-                    colorFormat: 'hex',
-                    widget: 'sketch',
-                    colors: brandColors
-                  }
-                },
-                {
-                  label: 'CTA URL',
-                  name: 'url',
-                  type: 'string'
-                }
-              ]
-            }
+          templates: [
+            CardGridSchema
           ]
         }
       ]

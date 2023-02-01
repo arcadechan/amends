@@ -1,7 +1,7 @@
 import { Header, Main, Footer } from '.';
 
 interface layoutPropsI {
-    children: React.ReactNode[],
+    children: React.ReactNode,
     siteMeta: any|null,
     className: string
 }
