@@ -45,8 +45,8 @@ const Footer = ({ socialPlatforms } : footerProps): JSX.Element => {
                 <Image
                     src={amendsLogo}
                     alt='Amends home'
-                    layout='fill'
-                    objectFit='contain'
+                    fill
+                    style={{ objectFit: 'contain' }}
                 />
             </Link>
             <p className='my-5'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>

@@ -48,8 +48,8 @@ const Header = ({ navigationLinks } : headerPropsI): JSX.Element => {
                         <Image
                             src={amendsLogo}
                             alt='Amends home'
-                            layout='fill'
-                            objectFit='contain'
+                            fill
+                            style={{ objectFit: 'contain' }}
                         />
                     </Link>
                     {navigationLinks && (
@@ -67,7 +67,6 @@ const Header = ({ navigationLinks } : headerPropsI): JSX.Element => {
                                     alt=''
                                     width={25}
                                     height={25}
-                                    layout='fixed'
                                     aria-hidden='true'
                                 />
                             </button>

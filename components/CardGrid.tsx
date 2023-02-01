@@ -63,12 +63,12 @@ const CardImage = ({cardImage, columnCount}: CardImageProps): JSX.Element =>
         <Image
           src={cardImage.src}
           alt=''
-          layout='fill'
-          objectFit='cover'
+          fill
+          style={{ objectFit: 'cover' }}
           sizes={sizes}
           className={styles.cardGridImage}
           placeholder={ cardImage?.imageBlurDataURL ? 'blur' : 'empty' }
-          blurDataURL={cardImage?.imageBlurDataURL || undefined}
+          blurDataURL={ cardImage?.imageBlurDataURL || undefined}
         />
       </div>
     )
