@@ -1,3 +1,5 @@
+const { fontFamily } = require('tailwindcss/defaultTheme')
+
 /** @type {import('tailwindcss').Config} */ 
 module.exports = {
   content: [
@@ -15,8 +17,8 @@ module.exports = {
       green: '#63c67e'
     },
     fontFamily: {
-      'candy': ['Candy Beans', 'sans-serif'],
-      'inter': ['Inter', 'sans-serif']
+      'candy': ['var(--font-candy)', ...fontFamily.sans],
+      'inter': ['var(--font-inter)', ...fontFamily.sans]
     }
   },
   plugins: [],
