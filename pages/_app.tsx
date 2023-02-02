@@ -25,7 +25,7 @@ const candyBean = localFont({
 const App = ({ Component, pageProps }: AppProps) => {
   return (
     <>
-      <div className={`${inter.variable} ${candyBean.className}`}>
+      <div className={`${inter.variable} ${candyBean.variable}`}>
         <Component {...pageProps}/>
       </div>
     </>  
