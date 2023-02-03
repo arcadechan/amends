@@ -25,8 +25,12 @@ const Custom500 = (props: any): JSX.Element =>
         <title>500 | Amends</title>
       </Head>
       <section>
-        <h1>Oh no! Something went wrong 😓.</h1>
-        <Link href='/'>Back to the homepage.</Link>
+        <h1>
+          <span className={styles.errorCode}>500</span><br/>
+          <span className={styles.errorMessage}>Something went wrong.</span>  
+        </h1>
+        <h2 className={styles.text}>Sorry about that!</h2><br/>
+        <Link href='/' className={styles.linkToHome}>Back to the homepage.</Link>
       </section>
     </Layout>
   )

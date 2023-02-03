@@ -2,12 +2,34 @@
   section {
     margin: 0 auto;
     text-align: center;
-    @apply max-w-2xl;
+    @apply max-w-screen-2xl;
+    @apply py-20;
+    @apply px-12;
 
-    h1 {
-      @apply font-candy;
-      @apply text-4xl;
-      text-align: center;
+    .errorCode,
+    .errorMessage {
+      @apply font-candy
+    }
+
+    .errorCode {
+      @apply text-8xl;
+    }
+
+    .errorMessage {
+      @apply text-3xl;
+    }
+
+    .text {
+      @apply text-xl;
+    }
+
+    .linkToHome {
+      @apply inline-block;
+      @apply bg-black;
+      @apply text-yellow;
+      @apply py-3;
+      @apply px-4;
+      @apply rounded-full;
     }
   }
 }
