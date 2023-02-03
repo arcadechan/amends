@@ -1,3 +1,5 @@
+'use client'
+
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from '../../styles/layout/Header.module.scss'
@@ -20,9 +22,9 @@ const Header = ({ navigationLinks } : headerPropsI): JSX.Element => {
     const [ menuIsOpen, setMenuIsOpen ] = useState(false);
     useEffect(() =>
     {
-        const isDesktop = () =>  window.innerWidth >= 768
-        const onResize = () => {
-            if(isDesktop())
+        const isDesktop = window.innerWidth >= 768
+        const onResize = (): void => {
+            if(isDesktop)
             {
                 setMenuIsOpen(true)
             }
@@ -31,12 +33,13 @@ const Header = ({ navigationLinks } : headerPropsI): JSX.Element => {
                 setMenuIsOpen(false)
             }
         }
+        onResize();
         window.addEventListener('resize', onResize)
 
-        return () => window.removeEventListener('resize', onResize)
+        return (): void => window.removeEventListener('resize', onResize)
     }, [])
 
-    return (
+    return menuIsOpen ? (
         <header id={styles.header} className='bg-yellow'>
             <div className='max-w-screen-2xl m-auto w-full h-full md:flex justify-between items-center'>
                 <div id={styles.headerInnerContainer} className='flex items-center justify-between px-12 py-l'>
@@ -91,7 +94,7 @@ const Header = ({ navigationLinks } : headerPropsI): JSX.Element => {
                 </nav>
             </div>
         </header>
-    )
+    ) : <></>
 }
 
 export default Header;

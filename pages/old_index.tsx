@@ -14,7 +14,6 @@ export const getStaticProps = async (ctx: any) =>
   const homePageQuery = await client.queries.home({ relativePath: 'home.mdx' })
   const homePageDataWithPlaiceholders: HomeQuery = await getPlaceholders.forHomePage(homePageQuery.data)
 
-  
   return {
     props: {
       siteMeta: siteMeta,
