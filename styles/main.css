@@ -4,6 +4,7 @@
 html {
   height: 100%;
   @apply bg-white;
+  @apply text-black;
 }
 
 main {
