@@ -24,6 +24,13 @@ const Custom500 = (props: any): JSX.Element =>
       <Head>
         <title>500 | Amends</title>
       </Head>
+      <style jsx global>
+        {`
+          html {
+            background-color: #ffdc8b;
+          }
+        `}
+      </style>
       <section>
         <h1>
           <span className={styles.errorCode}>500</span><br/>

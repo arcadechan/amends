@@ -8,7 +8,6 @@ import { fab } from '@fortawesome/free-brands-svg-icons'
 import { Inter } from '@next/font/google'
 import localFont from '@next/font/local'
 import '../styles/main.css'
-import { useRouter } from 'next/router'
 
 library.add(far, fas, fab)
 config.autoAddCss = false
@@ -24,17 +23,8 @@ const candyBean = localFont({
 })
 
 const App = ({ Component, pageProps }: AppProps) => {
-  const router = useRouter();
-
   return (
     <>
-      {['/404', '/500'].includes(router.pathname) && (
-        <style jsx global>{`
-          html {
-            background-color: #ffdc8b;
-          }
-        `}</style>
-      )}
       <div className={`${inter.variable} ${candyBean.variable}`}>
         <Component {...pageProps}/>
       </div>

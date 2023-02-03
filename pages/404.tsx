@@ -24,6 +24,13 @@ const Custom404 = (props: any): JSX.Element =>
       <Head>
         <title>404 | Amends</title>
       </Head>
+      <style jsx global>
+        {`
+          html {
+            background-color: #ffdc8b;
+          }
+        `}
+      </style>
       <section>
         <h1>
           <span className={styles.errorCode}>404</span><br/>
