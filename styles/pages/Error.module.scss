@@ -1,0 +1,13 @@
+.error {
+  section {
+    margin: 0 auto;
+    text-align: center;
+    @apply max-w-2xl;
+
+    h1 {
+      @apply font-candy;
+      @apply text-4xl;
+      text-align: center;
+    }
+  }
+}
