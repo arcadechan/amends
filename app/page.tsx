@@ -1,42 +1,14 @@
 import HomePage from './HomePage'
 import { HomeQuery } from '../.tina/__generated__/types'
-import getPlaceholders from '../lib/getPlaceholder'  
+import getPlaceholders from '../lib/getPlaceholder'
+import { getHomePage } from '../.tina/queries/getHomePage.graphql'
 
 const getHomeData = async () =>
 {
-  let query = `query getHomePage($relativePath: String!) {
-    home(relativePath: $relativePath){
-      pageBlocks {
-        __typename
-        ...on HomePageBlocksCardGrid {
-          columnCount
-          sectionTitle
-          cards {
-            referenceCard {
-              ...on Page {
-                _values
-              }
-              ...on Post {
-                _values
-              }
-            }
-            manualCard {
-              image
-              title
-              subtitle
-              url
-              showCtaButton
-              ctaText
-            }
-          }
-        }
-      }
-    }
-  }`;
+  const query = getHomePage?.loc?.source?.body
+  const variables = { relativePath: 'home.mdx' };
 
-  let variables = { relativePath: 'home.mdx' };
-
-  const res = await fetch('http://localhost:4001/graphql', {
+  const queryResponse = await fetch('http://localhost:4001/graphql', {
     method: 'POST',
     cache: 'force-cache',
     headers: {
@@ -48,9 +20,7 @@ const getHomeData = async () =>
     })
   }).then(res => res.json())
 
-  const homePageDataWithPlaiceholders: HomeQuery = await getPlaceholders.forHomePage(res.data)
-
-  // console.log(JSON.stringify({res, homePageDataWithPlaiceholders},null,2));
+  const homePageDataWithPlaiceholders: HomeQuery = await getPlaceholders.forHomePage(queryResponse.data)
 
   return {
     query,

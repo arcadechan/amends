@@ -54,6 +54,7 @@ const Header = ({ navigationLinks } : headerPropsI): JSX.Element => {
                             src={amendsLogo}
                             alt='Amends home'
                             fill
+                            sizes='25vw'
                             style={{ objectFit: 'contain' }}
                         />
                     </Link>
