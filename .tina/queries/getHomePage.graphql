@@ -1,0 +1,29 @@
+query getHomePage($relativePath: String!) {
+  home(relativePath: $relativePath) {
+    pageBlocks {
+      __typename
+      ... on HomePageBlocksCardGrid {
+        columnCount
+        sectionTitle
+        cards {
+          referenceCard {
+            ... on Page {
+              _values
+            }
+            ... on Post {
+              _values
+            }
+          }
+          manualCard {
+            image
+            title
+            subtitle
+            url
+            showCtaButton
+            ctaText
+          }
+        }
+      }
+    }
+  }
+}

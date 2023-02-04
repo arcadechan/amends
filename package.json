@@ -33,6 +33,7 @@
     "autoprefixer": "^10.4.8",
     "eslint": "8.22.0",
     "eslint-config-next": "^13.1.6",
+    "graphql-tag": "^2.12.6",
     "postcss": "^8.4.16",
     "postcss-import": "^14.1.0",
     "sass": "^1.57.1",
