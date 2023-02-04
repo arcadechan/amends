@@ -34,7 +34,7 @@ const RootLayout = async ({ children }: LayoutProps): Promise<JSX.Element> =>
   return (
     <html lang='en'>
       <Layout siteMeta={siteMeta} className={`${inter.variable} ${candyBean.variable}`}>
-        <body>{children}</body>
+        {children}
       </Layout>
     </html>
   )

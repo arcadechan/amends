@@ -9,14 +9,12 @@ interface layoutPropsI {
 const Layout = ({ children, siteMeta, className = '' } : layoutPropsI): JSX.Element => {
     const { navigationLinks, socialPlatforms } = siteMeta
 
-    // children = <body>{children}</body>
-
     return (
-        <>
+        <body className={className}>
             <Header navigationLinks={navigationLinks}/>
-            {children}
+            <Main>{children}</Main>
             <Footer socialPlatforms={socialPlatforms}/>
-        </>
+        </body>
     )
 }
 

@@ -4,7 +4,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import styles from '../../styles/layout/Footer.module.scss'
 import amendsLogo from '../../public/logo/logo-black.png'
-import { useEffect, useState } from 'react'
 
 interface footerProps {
     socialPlatforms: any|null
@@ -37,12 +36,7 @@ const SocialIcon = ({href = '', title = '', iconSrc = ''}: SocialIconProps): JSX
 const Footer = ({ socialPlatforms } : footerProps): JSX.Element => {
     const currentYear: number = new Date().getFullYear()
 
-    const [ isMounted, setIsMounted ] = useState(false)
-    useEffect(() => {
-        setIsMounted(true)
-    }, [])
-
-    return isMounted ? (
+    return (    
         <footer id={styles.footer} className='max-w-screen-2xl 2xl:mx-auto py-10 px-12 flex flex-col items-center'>
             <hr id={styles.footerLine}/>
             <Link
@@ -71,7 +65,7 @@ const Footer = ({ socialPlatforms } : footerProps): JSX.Element => {
             )}
             <small className='my-5'>&copy; {currentYear} Amends. All Rights Reserved</small>
         </footer>
-    ) : <></>
+    )
 }
 
 export default Footer

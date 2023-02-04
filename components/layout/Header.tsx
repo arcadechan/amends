@@ -20,7 +20,7 @@ interface navigationLinksI {
 const Header = ({ navigationLinks } : headerPropsI): JSX.Element => {
 
     const [ menuIsOpen, setMenuIsOpen ] = useState(false);
-    const [ isMounted, setIsMounted ] = useState(false)
+
     useEffect(() =>
     {
         const isDesktop = window.innerWidth >= 768
@@ -36,12 +36,11 @@ const Header = ({ navigationLinks } : headerPropsI): JSX.Element => {
         }
         onResize();
         window.addEventListener('resize', onResize)
-        setIsMounted(true);
 
         return (): void => window.removeEventListener('resize', onResize)
     }, [])
 
-    return isMounted ? (
+    return (
         <header id={styles.header} className='bg-yellow'>
             <div className='max-w-screen-2xl m-auto w-full h-full md:flex justify-between items-center'>
                 <div id={styles.headerInnerContainer} className='flex items-center justify-between px-12 py-l'>
@@ -97,7 +96,7 @@ const Header = ({ navigationLinks } : headerPropsI): JSX.Element => {
                 </nav>
             </div>
         </header>
-    ) : <></>
+    )
 }
 
 export default Header;
