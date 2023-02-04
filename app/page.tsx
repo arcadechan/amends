@@ -2,11 +2,12 @@ import HomePage from './HomePage'
 import { HomeQuery } from '../.tina/__generated__/types'
 import getPlaceholders from '../lib/getPlaceholder'
 import { getHomePage } from '../.tina/queries/getHomePage.graphql'
+import { print } from 'graphql'
 
 const getHomeData = async () =>
 {
-  const query = getHomePage?.loc?.source?.body
-  const variables = { relativePath: 'home.mdx' };
+  const query = print(getHomePage)
+  const variables = { relativePath: 'home.mdx' }
 
   const queryResponse = await fetch('http://localhost:4001/graphql', {
     method: 'POST',
