@@ -61,7 +61,7 @@ const Header = ({ navigationLinks } : headerPropsI): JSX.Element => {
                         <>
                             <button
                                 id='nav-menu-accordion'
-                                className='d-block md:hidden flex items-center'
+                                className='d-block md:hidden flex items-center p-4'
                                 aria-expanded={menuIsOpen}
                                 aria-controls={styles.navMenu}
                                 aria-label={menuIsOpen ? 'Close menu' : 'Open menu'}
@@ -71,7 +71,6 @@ const Header = ({ navigationLinks } : headerPropsI): JSX.Element => {
                                     src={menuIsOpen ? accordionClose : accordionCollapsed}
                                     alt=''
                                     width={25}
-                                    height={25}
                                     aria-hidden='true'
                                 />
                             </button>
