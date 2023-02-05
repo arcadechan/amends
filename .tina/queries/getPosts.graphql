@@ -1,0 +1,27 @@
+query getPostsQuery {
+  postConnection(first: 8, filter: { draft: { eq: false } }){
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        id
+        draft
+        publishDate
+        heroImage
+        imageBlurDataURL
+        title
+        subTitle
+        description
+        body
+        category
+        tags
+      }
+    }
+  }
+}

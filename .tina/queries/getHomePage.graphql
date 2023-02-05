@@ -1,4 +1,4 @@
-query getHomePage($relativePath: String!) {
+query getHomePageQuery($relativePath: String!) {
   home(relativePath: $relativePath) {
     pageBlocks {
       __typename
