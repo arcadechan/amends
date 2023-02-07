@@ -9,7 +9,7 @@ type TemplateWithExtraFieldUIProps = {
     list?: boolean | undefined
     fields?: any[]
     ui?: {
-      name: string
+      name?: string
       component?: string
       direction?: string
       variant?: string

@@ -184,20 +184,29 @@ const schema: Schema = {
             let category: string = ''
             let title: string = ''
 
-            if(!!values?.category) {
+            if(values?.category) {
               category = `${values.category}/`
             }
 
-            if(!!values?.title && values.title.length > 0) {
+            if(values?.title && values.title.length > 0) {
               title = values.title.toLowerCase().replaceAll(/ /g, '-')
             }
-            
+
             return `${category}${title}`
           }
         }
       },
       defaultItem: {
-        draft: true
+        draft: true,
+        body: {
+          children: [
+            {
+              children: [
+                { text: '', type: 'text' }
+              ]
+            }
+          ]
+        },
       },
       fields: [
         ...commonFields,
