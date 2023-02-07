@@ -1,21 +1,5 @@
 import { Template } from 'tinacms'
-
-// Temporary workaround for failing TinaCMS types & ExtraFieldUIProps (e.g. ui.direction, ui.variant)
-type CustomTemplateField = {
-  ui?: {
-    name?: string
-    component?: string
-    direction?: string
-    variant?: string
-    options?: any[]
-  }
-}
-
-type CustomTemplate = {
-  fields: CustomTemplateField[]
-}
-
-type CustomTemplateWithExtraFieldUI = Template & CustomTemplate
+import { CustomTemplateWithExtraFieldUI } from '../../@types/tinacms-custom'
 
 const CardGridSchema: CustomTemplateWithExtraFieldUI =
 {
