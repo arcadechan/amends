@@ -1,5 +1,5 @@
 query getPostsQuery {
-  postConnection(first: 8, filter: { draft: { eq: false } }){
+  postConnection(last: 8, filter: { draft: { eq: false } }, sort: "publishDate"){
     pageInfo {
       hasPreviousPage
       hasNextPage
@@ -21,6 +21,10 @@ query getPostsQuery {
         body
         category
         tags
+        _sys {
+          filename
+          breadcrumbs
+        }
       }
     }
   }

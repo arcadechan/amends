@@ -1,4 +1,3 @@
-import { Template } from 'tinacms'
 import { CustomTemplateWithExtraFieldUI } from '../../@types/tinacms-custom'
 
 const CardGridSchema: CustomTemplateWithExtraFieldUI =

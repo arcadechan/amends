@@ -15,17 +15,14 @@ const getPosts = async() =>
         body: JSON.stringify({ query })
     }).then(res => res.json())
 
-    console.log({queryResponse: queryResponse.data})
-
     return {
-        query,
-        data: queryResponse
+        posts: queryResponse?.data?.postConnection
     }
 }
 
 const Page = async () =>
 {
-    const postsData = await getPosts()
+    const postsData: any = await getPosts()
 
     return <Posts {...postsData}/>
 }

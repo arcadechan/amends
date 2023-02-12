@@ -1,3 +1,5 @@
+'use-client'
+
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -72,7 +74,9 @@ const CardImage = ({cardImage, columnCount}: CardImageProps): JSX.Element =>
         />
       </div>
     )
-  }else{
+  }
+  else
+  {
     return <div className={styles.cardGridNoImage}></div>
   }
 }
