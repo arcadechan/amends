@@ -51,6 +51,7 @@ const CardImage = ({ cardImage }: any): JSX.Element =>
 
 const BlogPostList = ({ componentProps }: { componentProps: PostConnection }): JSX.Element =>
 {
+  const { pageInfo } = componentProps
   const posts = componentProps?.edges && componentProps.edges.map(post => post?.node) || []
 
   return (
@@ -72,6 +73,12 @@ const BlogPostList = ({ componentProps }: { componentProps: PostConnection }): J
           </article>
         )
       })}
+      {posts?.length && pageInfo && (
+        <>
+          {pageInfo?.startCursor && <Link href={`/posts?afterCursor=${pageInfo.startCursor}`}>Previous</Link>}
+          {pageInfo?.hasPreviousPage && <Link href={`/posts?endCursor=${pageInfo.endCursor}`}>Next</Link>}
+        </>
+      )}
     </section>
   )
 }
