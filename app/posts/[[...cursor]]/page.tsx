@@ -34,7 +34,7 @@ const Page = async ({searchParams}: {searchParams: { startCursor?: string, endCu
     const { startCursor, endCursor } = searchParams;
     const postsData: any = await getPosts(startCursor, endCursor)
 
-    return <Posts {...postsData}/>
+    return <Posts {...postsData} searchParams={searchParams}/>
 }
 
 export default Page

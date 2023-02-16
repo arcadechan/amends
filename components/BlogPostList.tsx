@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import styles from '../styles/components/BlogPostList.module.scss'
 import { PostConnection, Post } from '../.tina/__generated__/types'
+import { useRouter, usePathname, useSearchParams } from 'next/navigation'
 
 const getCardUrl = (card: Post ): string =>
 {
@@ -49,7 +50,7 @@ const CardImage = ({ cardImage }: any): JSX.Element =>
   }
 }
 
-const BlogPostList = ({ componentProps }: { componentProps: PostConnection }): JSX.Element =>
+const BlogPostList = ({ componentProps, searchParams }: { componentProps: PostConnection, searchParams: any }): JSX.Element =>
 {
   const { pageInfo } = componentProps
   const posts = componentProps?.edges && componentProps.edges.map(post => post?.node) || []
@@ -75,7 +76,7 @@ const BlogPostList = ({ componentProps }: { componentProps: PostConnection }): J
       })}
       {posts?.length && pageInfo && (
         <>
-          {pageInfo?.startCursor && <Link href={`/posts?afterCursor=${pageInfo.startCursor}`}>Previous</Link>}
+          {searchParams?.endCursor && pageInfo?.startCursor && <Link href={`/posts?afterCursor=${pageInfo.startCursor}`}>Previous</Link>}
           {pageInfo?.hasPreviousPage && <Link href={`/posts?endCursor=${pageInfo.endCursor}`}>Next</Link>}
         </>
       )}
