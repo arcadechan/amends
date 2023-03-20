@@ -14,6 +14,14 @@ const Home = (props: any): JSX.Element =>
 
   const pageBlocks: HomePageBlocks[] = data?.home.pageBlocks
 
+  if(!data) {
+    return (
+      <section>
+        <h2>Loading...</h2>
+      </section>
+    )
+  }
+
   return (
     <>
       {pageBlocks && pageBlocks?.length > 0 && pageBlocks.map((block , i: number) => {

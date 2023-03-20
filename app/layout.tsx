@@ -23,7 +23,7 @@ const getMeta = async (): Promise<any> =>
   const siteMetaQuery = await client.queries.meta({ relativePath: 'meta.mdx' })
   const siteMeta = siteMetaQuery?.data?.meta || null
 
-  return siteMeta
+  return siteMeta || null
 }
 
 const RootLayout = async ({ children }: LayoutProps): Promise<JSX.Element> =>

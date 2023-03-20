@@ -4,12 +4,14 @@ import getPlaceholders from '../lib/getPlaceholder'
 import { getHomePageQuery } from '../.tina/queries/getHomePage.graphql'
 import { print } from 'graphql'
 
+export const dynamic = 'force-static'
+
 const getHome = async () =>
 {
   const query = print(getHomePageQuery)
   const variables = { relativePath: 'home.mdx' }
 
-  const queryResponse = await fetch('http://localhost:4001/graphql', {
+  const queryResponse = await fetch('http://127.0.0.1:4001/graphql', {
     method: 'POST',
     cache: 'force-cache',
     headers: {
@@ -20,13 +22,16 @@ const getHome = async () =>
       variables
     })
   }).then(res => res.json())
+  .catch(e => {
+      console.error(e)
+  })
 
   const homePageDataWithPlaiceholders: HomeQuery = await getPlaceholders.forHomePage(queryResponse.data)
 
   return {
-    query,
-    variables,
-    data: homePageDataWithPlaiceholders
+    query: query || null,
+    variables: variables || null,
+    data: homePageDataWithPlaiceholders || null
   }
 }
 

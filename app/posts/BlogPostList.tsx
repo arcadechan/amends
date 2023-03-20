@@ -2,9 +2,9 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import styles from '../styles/components/BlogPostList.module.scss'
-import { PostConnection, Post } from '../.tina/__generated__/types'
-import { useRouter, usePathname, useSearchParams } from 'next/navigation'
+import styles from '../../styles/components/BlogPostList.module.scss'
+import { PostConnection, Post } from "../../.tina/__generated__/types";
+import { PageSearchParamProps } from './page'
 
 const getCardUrl = (card: Post ): string =>
 {
@@ -50,10 +50,21 @@ const CardImage = ({ cardImage }: any): JSX.Element =>
   }
 }
 
-const BlogPostList = ({ componentProps, searchParams }: { componentProps: PostConnection, searchParams: any }): JSX.Element =>
+const BlogPostList = ({ componentProps, searchParams }: { componentProps: PostConnection | null, searchParams: PageSearchParamProps['searchParams'] }): JSX.Element =>
 {
+  if(!componentProps?.pageInfo)
+  {
+    return (
+      <section>
+        <h2>Loading...</h2>
+      </section>
+    )
+  }
+
   const { pageInfo } = componentProps
   const posts = componentProps?.edges && componentProps.edges.map(post => post?.node) || []
+
+  console.log({searchParams});
 
   return (
     <section className={styles.postList}>
@@ -76,8 +87,9 @@ const BlogPostList = ({ componentProps, searchParams }: { componentProps: PostCo
       })}
       {posts?.length && pageInfo && (
         <>
-          {searchParams?.endCursor && pageInfo?.startCursor && <Link href={`/posts?afterCursor=${pageInfo.startCursor}`}>Previous</Link>}
-          {pageInfo?.hasPreviousPage && <Link href={`/posts?endCursor=${pageInfo.endCursor}`}>Next</Link>}
+          {searchParams?.prevCursor === '' && <Link href='/posts'>Newer Posts</Link>}
+          {!!searchParams?.prevCursor?.length && <Link href={`/posts?endCursor=${searchParams.prevCursor}&prevCursor=${''}`}>Newer Posts</Link>}
+          {pageInfo?.hasPreviousPage && <Link href={`/posts?endCursor=${pageInfo.endCursor}&prevCursor=${ searchParams?.endCursor || '' }`}>Older Posts</Link>}
         </>
       )}
     </section>
