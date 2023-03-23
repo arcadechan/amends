@@ -1,0 +1,166 @@
+.cardGrid {
+  .cardGridTitle {
+    @apply font-inter;
+    @apply text-3xl;
+    @apply mb-3;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .cardGridCardContainer {
+    @apply grid;
+    @apply gap-8;
+
+    &.oneColumnGrid,
+    &.twoColumnGrid,
+    &.threeColumnGrid,
+    &.fourColumnGrid {
+      @apply grid-cols-1;
+    }
+
+    &.twoColumnGrid {     
+      @screen md {
+        @apply grid-cols-2;
+      }
+    }
+
+    &.threeColumnGrid {
+      @screen md {
+        @apply grid-cols-3;    
+      }
+    }
+  
+    &.fourColumnGrid {
+      @screen md {
+        @apply grid-cols-2;
+      }
+
+      @screen lg {
+        @apply grid-cols-4;
+      }
+    }
+
+    .card {
+      position: relative;
+      border-radius: 20px;
+
+      .cardAnchor {
+        &:hover {
+          &.cardAnchorWithCta {
+            .cardCtaButton {
+              text-decoration: underline;
+            }
+          }
+          
+          &:not(.cardAnchor.cardAnchorWithCta){
+            .cardTextLabels {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+
+      &.cardHasImage {
+        min-height: 300px;
+
+        @screen md {
+          min-height: 300px;
+        }
+
+        @screen lg {
+          min-height: 400px;
+        }
+      }
+
+      &.cardHasNoImage {
+        min-height: 200px;
+
+        .cardTextLabels {
+          height: 100%;
+          border-top-left-radius: 20px;
+          border-top-right-radius: 20px;
+        }
+      }
+
+      .cardAnchor {
+        display: block;
+        @apply h-full;
+
+        &:focus {
+          @apply outline-black;
+          outline-width: 5px;
+          outline-style: solid;
+          border-radius: 20px
+        }
+      }
+      
+      .cardGridImageContainer {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        z-index: 0;
+
+        .cardGridImage {
+          border-radius: 20px;
+        }
+      }
+
+      .cardGridNoImage {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        background-color: gray;
+        left: 0;
+        top: 0;
+        z-index: 0;
+        border-radius: 20px;
+      }
+
+      .cardTextLabels {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        @apply p-6;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: 0;
+        width: 100%;
+        color: white;
+        @apply bg-gradient-to-r;
+        @apply from-black;
+        @apply rounded-bl-[20px];
+        @apply rounded-br-[20px];
+
+        .cardTitle,
+        .cardTitleCentered {
+          @apply font-inter;
+          @apply text-2xl;
+          font-weight: bold;
+        }
+
+        .cardTitleCentered {
+          text-align: center;
+        }
+
+        .cardSubtitle {
+          @apply font-inter;
+          @apply text-lg;
+          font-style: italic;
+        }
+
+        .cardCtaButton {
+          @apply bg-yellow;
+          @apply text-black;
+          @apply font-inter;
+          text-align: center;
+          padding: 10px;
+          margin-top: 15px;
+          font-weight: bold;
+          border-radius: 10px;
+          width: auto;
+        }
+      }
+    }
+  }
+}

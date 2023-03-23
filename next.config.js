@@ -2,6 +2,26 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  experimental: {
+    appDir: true
+  },
+  webpack: (config, options) => {
+    config.module.rules.push({
+      test: /\.(graphql|gql)/,
+      exclude: /node_modules/,
+      loader: 'graphql-tag/loader'
+    });
+
+    return config;
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/admin',
+        destination: '/admin/index.html'
+      }
+    ]
+  }
 }
 
 module.exports = nextConfig
