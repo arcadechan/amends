@@ -1,11 +1,12 @@
+import React from "react";
+
 interface mainPropsI {
     children: React.ReactNode,
-    className: string
 }
 
-const Main = ({ children, className } : mainPropsI): JSX.Element => {
+const Main = ({ children } : mainPropsI): JSX.Element => {
     return (
-        <main id='main' className={className}>{children}</main>
+        <main id='main'>{children}</main>
     )
 }
 

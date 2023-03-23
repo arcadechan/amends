@@ -10,11 +10,11 @@ const Layout = ({ children, siteMeta, className = '' } : layoutPropsI): JSX.Elem
     const { navigationLinks, socialPlatforms } = siteMeta
 
     return (
-        <>
+        <body className={className}>
             <Header navigationLinks={navigationLinks}/>
-            <Main className={className}>{children}</Main>
+            <Main>{children}</Main>
             <Footer socialPlatforms={socialPlatforms}/>
-        </>
+        </body>
     )
 }
 

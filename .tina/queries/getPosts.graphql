@@ -1,0 +1,31 @@
+query getPostsQuery($first: Float, $last: Float, $before: String, $after: String) {
+  postConnection(first: $first, last: $last, filter: { draft: { eq: false } }, sort: "publishDate", before: $before, after: $after){
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        id
+        draft
+        publishDate
+        heroImage
+        imageBlurDataURL
+        title
+        subTitle
+        description
+        body
+        category
+        tags
+        _sys {
+          filename
+          breadcrumbs
+        }
+      }
+    }
+  }
+}

@@ -1,3 +1,5 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
 import styles from '../../styles/layout/Footer.module.scss'
@@ -34,7 +36,7 @@ const SocialIcon = ({href = '', title = '', iconSrc = ''}: SocialIconProps): JSX
 const Footer = ({ socialPlatforms } : footerProps): JSX.Element => {
     const currentYear: number = new Date().getFullYear()
 
-    return (
+    return (    
         <footer id={styles.footer} className='max-w-screen-2xl 2xl:mx-auto py-10 px-12 flex flex-col items-center'>
             <hr id={styles.footerLine}/>
             <Link
@@ -46,6 +48,7 @@ const Footer = ({ socialPlatforms } : footerProps): JSX.Element => {
                     src={amendsLogo}
                     alt='Amends home'
                     fill
+                    sizes='25vw'
                     style={{ objectFit: 'contain' }}
                 />
             </Link>

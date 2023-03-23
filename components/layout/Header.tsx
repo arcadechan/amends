@@ -1,3 +1,5 @@
+'use client'
+
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from '../../styles/layout/Header.module.scss'
@@ -18,11 +20,12 @@ interface navigationLinksI {
 const Header = ({ navigationLinks } : headerPropsI): JSX.Element => {
 
     const [ menuIsOpen, setMenuIsOpen ] = useState(false);
+
     useEffect(() =>
     {
-        const isDesktop = () =>  window.innerWidth >= 768
-        const onResize = () => {
-            if(isDesktop())
+        const isDesktop = window.innerWidth >= 768
+        const onResize = (): void => {
+            if(isDesktop)
             {
                 setMenuIsOpen(true)
             }
@@ -31,9 +34,10 @@ const Header = ({ navigationLinks } : headerPropsI): JSX.Element => {
                 setMenuIsOpen(false)
             }
         }
+        onResize();
         window.addEventListener('resize', onResize)
 
-        return () => window.removeEventListener('resize', onResize)
+        return (): void => window.removeEventListener('resize', onResize)
     }, [])
 
     return (
@@ -49,6 +53,7 @@ const Header = ({ navigationLinks } : headerPropsI): JSX.Element => {
                             src={amendsLogo}
                             alt='Amends home'
                             fill
+                            sizes='25vw'
                             style={{ objectFit: 'contain' }}
                         />
                     </Link>
@@ -56,7 +61,7 @@ const Header = ({ navigationLinks } : headerPropsI): JSX.Element => {
                         <>
                             <button
                                 id='nav-menu-accordion'
-                                className='d-block md:hidden flex items-center'
+                                className='d-block md:hidden flex items-center p-4'
                                 aria-expanded={menuIsOpen}
                                 aria-controls={styles.navMenu}
                                 aria-label={menuIsOpen ? 'Close menu' : 'Open menu'}
@@ -66,7 +71,6 @@ const Header = ({ navigationLinks } : headerPropsI): JSX.Element => {
                                     src={menuIsOpen ? accordionClose : accordionCollapsed}
                                     alt=''
                                     width={25}
-                                    height={25}
                                     aria-hidden='true'
                                 />
                             </button>
