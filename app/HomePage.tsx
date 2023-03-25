@@ -12,9 +12,9 @@ const Home = (props: any): JSX.Element =>
     data: props.data
   })
 
-  const pageBlocks: HomePageBlocks[] = data?.home.pageBlocks
+  const pageBlocks: HomePageBlocks[] | undefined = data?.home?.pageBlocks
 
-  if(!data) {
+  if(!data || !pageBlocks) {
     return (
       <section>
         <h2>Loading...</h2>
