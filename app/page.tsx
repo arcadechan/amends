@@ -11,12 +11,21 @@ const getHome = async () =>
   const query = print(getHomePageQuery)
   const variables = { relativePath: 'home.mdx' }
 
-  const queryResponse = await fetch('http://127.0.0.1:4001/graphql', {
+  let API_URL = process.env.LOCAL_API_URL || 'http://localhost:4001/graphql'
+    
+  if(process.env.NODE_ENV === 'production')
+  {
+      API_URL = process.env.TINA_API_URL!
+  }
+
+  const queryResponse = await fetch(API_URL, {
     method: 'POST',
     cache: 'force-cache',
     headers: {
+      'X-API-KEY': process.env.TINA_TOKEN || '',
       'Content-Type': 'application/json'
     },
+    redirect: 'follow',
     body: JSON.stringify({
       query,
       variables

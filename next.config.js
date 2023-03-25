@@ -5,6 +5,9 @@ const nextConfig = {
   experimental: {
     appDir: true
   },
+  images: {
+    domains: ['assets.tina.io']
+  },
   webpack: (config, options) => {
     config.module.rules.push({
       test: /\.(graphql|gql)/,

@@ -30,13 +30,22 @@ const getPosts = async (searchParams: PageSearchParamProps['searchParams']) =>
         }
     }
 
+    let API_URL = process.env.LOCAL_API_URL || 'http://localhost:4001/graphql'
+    
+    if(process.env.NODE_ENV === 'production')
+    {
+        API_URL = process.env.TINA_API_URL!
+    }
+
     const query = print(getPostsQuery)
-    const queryResponse = await fetch('http://127.0.0.1:4001/graphql', {
+    const queryResponse = await fetch(API_URL, {
         method: 'POST',
         cache: 'force-cache',
         headers: {
+            'X-API-KEY': process.env.TINA_TOKEN || '',
             'Content-Type': 'application/json'
         },
+        redirect: 'follow',
         body: JSON.stringify({ query, variables }),
         next: {
             revalidate: 604800 // Total seconds in one week
@@ -51,8 +60,7 @@ const getPosts = async (searchParams: PageSearchParamProps['searchParams']) =>
 
 const Page = async ({ searchParams }: PageSearchParamProps) =>
 {   
-    const posts = await getPosts(searchParams);
-    // console.log(JSON.stringify({postsPageInfo: posts.pageInfo}, null,2));
+    const posts = await getPosts(searchParams)
 
     return <BlogPostList componentProps={posts} searchParams={searchParams}/>
 }
