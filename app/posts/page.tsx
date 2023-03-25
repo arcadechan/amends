@@ -1,8 +1,8 @@
-import { getPostsQuery } from '../../.tina/queries/getPosts.graphql'
-import { print } from 'graphql'
 import BlogPostList from './BlogPostList'
+import { client } from '../../.tina/__generated__/client'
 
-export const dynamic = 'force-dynamic'
+export const dynamic = 'auto'
+export const revalidate = 604800 // Total seconds in one week
 
 export type PageSearchParamProps = {
     searchParams: {
@@ -30,39 +30,20 @@ const getPosts = async (searchParams: PageSearchParamProps['searchParams']) =>
         }
     }
 
-    let API_URL = process.env.LOCAL_API_URL || 'http://localhost:4001/graphql'
-    
-    if(process.env.NODE_ENV === 'production')
-    {
-        API_URL = process.env.TINA_API_URL!
+    const queryResponse = await client.queries.getPostsQuery({...variables});
+
+    return {
+        query: queryResponse?.query || null,
+        variables: queryResponse?.variables || null,
+        data: queryResponse?.data?.postConnection || null
     }
-
-    const query = print(getPostsQuery)
-    const queryResponse = await fetch(API_URL, {
-        method: 'POST',
-        cache: 'force-cache',
-        headers: {
-            'X-API-KEY': process.env.TINA_TOKEN || '',
-            'Content-Type': 'application/json'
-        },
-        redirect: 'follow',
-        body: JSON.stringify({ query, variables }),
-        next: {
-            revalidate: 604800 // Total seconds in one week
-        }
-    }).then(res => res.json())
-    .catch(e => {
-        console.error(e)
-    })
-
-    return queryResponse?.data?.postConnection || null
 }
 
 const Page = async ({ searchParams }: PageSearchParamProps) =>
 {   
     const posts = await getPosts(searchParams)
 
-    return <BlogPostList componentProps={posts} searchParams={searchParams}/>
+    return <BlogPostList componentProps={posts.data} searchParams={searchParams}/>
 }
 
 export default Page

@@ -104,4 +104,39 @@
       }
     }
   }
+
+  .noPosts {
+    @apply text-4xl;
+    @apply font-candy;
+    text-align: center;
+  }
+
+  .noPostHomeLink {
+    @apply underline;
+    @apply font-inter;
+    @apply font-bold;
+    text-align: center;
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    @apply my-3;
+
+    .newerPostsLink,
+    .olderPostsLink {
+      @apply bg-yellow;
+      @apply text-black;
+      @apply px-3;
+      @apply py-2;
+      @apply text-lg;
+      @apply font-inter;
+      @apply rounded-lg;
+      @apply mx-5;
+
+      &:hover {
+        @apply shadow-md;
+      }
+    }
+  }
 }

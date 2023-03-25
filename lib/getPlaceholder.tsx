@@ -1,8 +1,8 @@
 import { getPlaiceholder } from "plaiceholder"
-import { HomeQuery } from "../.tina/__generated__/types"
+import { GetHomePageQueryQuery } from "../.tina/__generated__/types"
 
 const getPlaceholders = {
-  forHomePage: async (homePageQueryData: HomeQuery): Promise<HomeQuery> =>
+  forHomePage: async (homePageQueryData: GetHomePageQueryQuery): Promise<GetHomePageQueryQuery> =>
   {
     try {
       const { pageBlocks } = homePageQueryData?.home

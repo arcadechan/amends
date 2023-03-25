@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import styles from '../../styles/components/BlogPostList.module.scss'
-import { PostConnection, Post } from "../../.tina/__generated__/types";
+import { GetPostsQueryQuery, Post } from "../../.tina/__generated__/types";
 import { PageSearchParamProps } from './page'
 
 const getCardUrl = (card: Post ): string =>
@@ -50,7 +50,7 @@ const CardImage = ({ cardImage }: any): JSX.Element =>
   }
 }
 
-const BlogPostList = ({ componentProps, searchParams }: { componentProps: PostConnection | null, searchParams: PageSearchParamProps['searchParams'] }): JSX.Element =>
+const BlogPostList = ({ componentProps, searchParams }: { componentProps: GetPostsQueryQuery['postConnection'] | null, searchParams: PageSearchParamProps['searchParams'] }): JSX.Element =>
 {
   if(!componentProps?.pageInfo)
   {
@@ -62,13 +62,13 @@ const BlogPostList = ({ componentProps, searchParams }: { componentProps: PostCo
   }
 
   const { pageInfo } = componentProps
-  const posts = componentProps?.edges && componentProps.edges.map(post => post?.node) || []
+  const posts = componentProps.edges ? componentProps.edges.map(post => post?.node) : []
 
-  console.log({searchParams});
+  console.log({searchParams, posts});
 
   return (
     <section className={styles.postList}>
-      {posts?.length && posts.map((post: any, i: number) => {
+      {posts?.length > 0 && posts.map((post: any, i: number) => {
         return (
           <article className={`${styles.post} ${ post?.heroImage ? styles.postHasImage : styles.postHasNoImage }`} key={i}>
             <Link
@@ -85,11 +85,38 @@ const BlogPostList = ({ componentProps, searchParams }: { componentProps: PostCo
           </article>
         )
       })}
-      {posts?.length && pageInfo && (
+      {(posts.length > 0) && pageInfo && (
+        <div className={styles.pagination}>
+          {searchParams?.prevCursor === '' && (
+            <Link
+              className={styles.newerPostsLink}
+              href='/posts'
+            >
+              &larr; Newer Posts
+            </Link>
+          )}
+          {(searchParams?.prevCursor && searchParams.prevCursor.length > 0) && (
+            <Link
+              className={styles.newerPostsLink}
+              href={`/posts?endCursor=${searchParams.prevCursor}&prevCursor=${''}`}
+            >
+              &larr; Newer Posts
+            </Link>
+          )}
+          {pageInfo?.hasPreviousPage && (
+            <Link
+              className={styles.olderPostsLink}
+              href={`/posts?endCursor=${pageInfo.endCursor}&prevCursor=${ searchParams?.endCursor || '' }`}
+            >
+              Older Posts &rarr;
+            </Link>
+          )}
+        </div>
+      )}
+      {!(posts.length > 0) && (
         <>
-          {searchParams?.prevCursor === '' && <Link href='/posts'>Newer Posts</Link>}
-          {!!searchParams?.prevCursor?.length && <Link href={`/posts?endCursor=${searchParams.prevCursor}&prevCursor=${''}`}>Newer Posts</Link>}
-          {pageInfo?.hasPreviousPage && <Link href={`/posts?endCursor=${pageInfo.endCursor}&prevCursor=${ searchParams?.endCursor || '' }`}>Older Posts</Link>}
+          <h1 className={styles.noPosts}>No posts found!</h1>
+          <Link href='/' className={styles.noPostHomeLink}>Back to home</Link>
         </>
       )}
     </section>
