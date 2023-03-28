@@ -1,3 +1,5 @@
+'use client'
+
 import { Header, Main, Footer } from '.';
 
 interface layoutPropsI {

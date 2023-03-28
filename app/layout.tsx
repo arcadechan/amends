@@ -1,4 +1,4 @@
-import { Header, Main, Footer, Layout } from '../components/layout'
+import { Layout } from '../components/layout'
 import { client } from '../.tina/__generated__/client'
 import { Inter } from '@next/font/google'
 import localFont from '@next/font/local'

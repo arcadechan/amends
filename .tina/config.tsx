@@ -16,8 +16,6 @@ const URLWithIconContainer = ({ serviceName, input } : { serviceName: string, in
   </div>
 )
 
-const brandColors: string[] = ['#1a1d27', '#ffdc8b', '#faf4eb', '#e06363', '#77bfe8', '#63c67e']
-
 const commonFields: any[] = [
   {
     label: 'Draft?',

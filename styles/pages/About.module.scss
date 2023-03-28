@@ -1,0 +1,39 @@
+.about {
+  .aboutHero {
+    @apply bg-yellow;
+    @apply text-center;
+    @apply relative;
+
+    .aboutAvatar {
+      @apply mx-auto;
+      @apply pt-10;
+    }
+
+    .aboutName {
+      .aboutTitle,
+      .aboutSubtitle {
+        @apply font-candy;
+      }
+
+      .aboutTitle {
+        font-size: 130px;
+        line-height: 135px;
+        -webkit-text-stroke: 8px #fff;
+      }
+
+      .aboutSubtitle {
+        font-size: 40px;
+        line-height: 45px;
+        -webkit-text-stroke: 2px #fff;
+      }
+    }
+  }
+
+  .aboutContent {
+    @apply px-12;
+    @apply py-4;
+    @apply max-w-screen-2xl;
+    @apply font-inter;
+    font-size: 20px;
+  }
+}

@@ -48,6 +48,7 @@ const Header = ({ navigationLinks } : headerPropsI): JSX.Element => {
                         id={styles.logo}
                         href='/'
                         aria-label='Amends Logo. Link to home'
+                        onClick={() => setMenuIsOpen(false)}
                     >
                         <Image
                             src={amendsLogo}
@@ -88,6 +89,7 @@ const Header = ({ navigationLinks } : headerPropsI): JSX.Element => {
                             href={link.url || ''}
                             key={link.name}
                             className={styles.link}
+                            onClick={() => setMenuIsOpen(false)}
                         >
                             {link.name || ''}
                         </Link>

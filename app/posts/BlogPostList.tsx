@@ -64,8 +64,6 @@ const BlogPostList = ({ componentProps, searchParams }: { componentProps: GetPos
   const { pageInfo } = componentProps
   const posts = componentProps.edges ? componentProps.edges.map(post => post?.node) : []
 
-  console.log({searchParams, posts});
-
   return (
     <section className={styles.postList}>
       {posts?.length > 0 && posts.map((post: any, i: number) => {
