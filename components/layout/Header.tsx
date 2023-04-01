@@ -27,11 +27,17 @@ const Header = ({ navigationLinks } : headerPropsI): JSX.Element => {
         const onResize = (): void => {
             if(isDesktop)
             {
-                setMenuIsOpen(true)
+                if(!menuIsOpen)
+                {
+                    setMenuIsOpen(true)
+                }
             }
             else
             {
-                setMenuIsOpen(false)
+                if(menuIsOpen)
+                {
+                    setMenuIsOpen(false)
+                }
             }
         }
         onResize();

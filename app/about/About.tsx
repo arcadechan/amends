@@ -19,7 +19,6 @@ export default function About()
         />
         <LineBreak className={styles.aboutName}>
           <h1 className={styles.aboutTitle}>ARCADE</h1>
-          <h2 className={styles.aboutSubtitle}>(Person)</h2>
         </LineBreak>
       </section>
       <section className={styles.aboutContent}>
@@ -28,6 +27,17 @@ export default function About()
           This is a small blog I've set up to test Next.JS + TinaCMS, but is also to serve as a personal log of things I find and want to keep track of.
           I used to do tons of stream of conscious writing with doodles here and there, and feel like I need something similar again. Hopefully there&apos;s
           stuff here you find worth your time.
+        </p>
+        <p>
+          Stack details:
+          <ul>
+            <li>Next.JS + Typescript</li>
+            <li>Tina CMS</li>
+            <li>Netlify</li>
+            <li>Spotify API</li>
+          </ul>
+          <br/>
+          <Link href='https://github.com/arcadechan/amends' target='_blank'>Or checkout the repo</Link>
           <br/><br/>
           Thanks for stopping by!
         </p>

@@ -16,15 +16,14 @@
       }
 
       .aboutTitle {
-        font-size: 130px;
-        line-height: 135px;
-        -webkit-text-stroke: 8px #fff;
-      }
+        font-size: 95px;
+        line-height: 98px;
+        -webkit-text-stroke: 8px $white;
 
-      .aboutSubtitle {
-        font-size: 40px;
-        line-height: 45px;
-        -webkit-text-stroke: 2px #fff;
+        @screen lg {
+          font-size: 130px;
+          line-height: 135px;
+        }
       }
     }
   }
