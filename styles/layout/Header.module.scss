@@ -1,5 +1,8 @@
 #header {
   height: 75px;
+  @apply sticky;
+  top: 0;
+  z-index: 999;
 
   &InnerContainer {
     width: 100%;
@@ -24,6 +27,7 @@
       @apply font-inter;
       @apply font-bold;
       @apply uppercase;
+      @apply text-black;
       display: block;
       padding: .75rem 0;
       margin: .5rem 0;

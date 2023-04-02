@@ -6,8 +6,3 @@ html {
   @apply bg-white;
   @apply text-black;
 }
-
-main {
-  @apply max-w-screen-2xl;
-  @apply mx-auto;
-}

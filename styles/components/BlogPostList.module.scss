@@ -2,13 +2,10 @@
   @apply px-12;
   @apply py-4;
   @apply max-w-screen-2xl;
+  @apply mx-auto;
 
   @apply grid;
   @apply gap-8;
-
-  @screen 2xl {
-    @apply mx-auto;
-  }
 
   .post {
     position: relative;

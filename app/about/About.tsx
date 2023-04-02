@@ -24,37 +24,37 @@ export default function About()
       <section className={styles.aboutContent}>
         <p>
           Hello there! Name's Arcade and I like wasting my time. I program, do photography, and listen to lots of music. Did I mention I waste my time?
-          This is a small blog I've set up to test Next.JS + TinaCMS, but is also to serve as a personal log of things I find and want to keep track of.
-          I used to do tons of stream of conscious writing with doodles here and there, and feel like I need something similar again. Hopefully there&apos;s
-          stuff here you find worth your time.
+          This is a small blog I've set up to test Next.JS + TinaCMS, but will also serve as a personal log of things I find. I used to write a lot and
+          do doodles here and there, and feel like I need something similar again. Hopefully there&apos;s stuff here you find worth your time.
         </p>
         <p>
           Stack details:
-          <ul>
-            <li>Next.JS + Typescript</li>
-            <li>Tina CMS</li>
-            <li>Netlify</li>
-            <li>Spotify API</li>
-          </ul>
-          <br/>
-          <Link href='https://github.com/arcadechan/amends' target='_blank'>Or checkout the repo</Link>
+        </p>
+        <ul>
+          <li>Next.JS (13 App Beta) + Typescript</li>
+          <li>Tina CMS</li>
+          <li>Tailwind CSS + Sass</li>
+          <li>Plaiceholder</li>
+          <li>Netlify</li>
+          <li>Spotify API</li>
+        </ul>
+        <p>
+          <Link href='https://github.com/arcadechan/amends' target='_blank'>Or check out the repo at https://github.com/arcadechan/amends</Link>
           <br/><br/>
           Thanks for stopping by!
         </p>
-        <br/>
-        <br/>
         <p>
           Yours,<br/>
           Arcade
         </p>
-        <p style={{textAlign: 'center'}}>
-          <small>
-            Questions, comments, or concerns?<br/>
-            <Link href='/contact' style={{textDecoration: 'underline'}}>
-              Drop me a line by filling out the contact form'
-            </Link>
-          </small>
-        </p>
+        <br />
+        <Image
+          src='/logo/promise-black.png'
+          width={150}
+          height={75}
+          alt='An line art drawing of two hands making a pinky promise.'
+          style={{ margin: '0 auto' }}
+        />
       </section>
     </div>
   )

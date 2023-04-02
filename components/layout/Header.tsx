@@ -23,8 +23,9 @@ const Header = ({ navigationLinks } : headerPropsI): JSX.Element => {
 
     useEffect(() =>
     {
-        const isDesktop = window.innerWidth >= 768
         const onResize = (): void => {
+            const isDesktop = window.innerWidth >= 768
+            // console.log({'innerWidth': window.innerWidth, isDesktop, menuIsOpen});
             if(isDesktop)
             {
                 if(!menuIsOpen)
@@ -34,10 +35,7 @@ const Header = ({ navigationLinks } : headerPropsI): JSX.Element => {
             }
             else
             {
-                if(menuIsOpen)
-                {
-                    setMenuIsOpen(false)
-                }
+                setMenuIsOpen(false)
             }
         }
         onResize();
