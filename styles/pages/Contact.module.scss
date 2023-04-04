@@ -1,0 +1,38 @@
+.headerSection {
+  @apply text-center;
+
+  .header {
+    @apply font-candy;
+    font-size: 95px;
+  }
+}
+
+.formSection {
+  @apply px-5;
+
+  .form {
+    @apply max-w-screen-xl;
+    @apply rounded-xl;
+    @apply bg-yellow;
+    @apply mx-auto;
+    @apply p-5;
+
+    label {
+      @apply font-inter;
+      @apply font-bold;
+      @apply text-base;
+      @apply block;
+    }
+
+    input,
+    textarea {
+      @apply bg-white;
+      @apply block;
+      @apply w-full;
+      @apply mb-3;
+      @apply rounded-lg;
+      @apply py-1;
+      @apply px-2;
+    }
+  }
+}
