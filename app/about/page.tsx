@@ -1,8 +1,8 @@
 import About from './About'
 
 export const metadata = {
-  title: 'About',
-  description: 'An About page\'s SEO'
+  title: 'About | Amends',
+  description: 'What is Amends all about?'
 }
 
 export default function Page()

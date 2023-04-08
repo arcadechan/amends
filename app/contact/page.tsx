@@ -1,8 +1,8 @@
 import Contact from './Contact'
 
 export const metadata = {
-  title: 'Contact',
-  description: 'A contact page\'s SEO'
+  title: 'Contact | Amends',
+  description: 'Questions, comments, or concerns? Drop me a line!'
 }
 
 export default function Page() 

@@ -4,6 +4,10 @@ import getPlaceholders from '../lib/getPlaceholder'
 import { client } from '../.tina/__generated__/client'
 
 export const dynamic = 'force-static'
+export const metadata = {
+  title: 'Amends',
+  description: 'Writing nonsense one word at a time.'
+}
 
 const getHome = async () =>
 {

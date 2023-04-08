@@ -3,6 +3,10 @@ import { client } from '../../.tina/__generated__/client'
 
 export const dynamic = 'auto'
 export const revalidate = 604800 // Total seconds in one week
+export const metadata = {
+    title: 'Posts | Amends',
+    description: 'Just some stuff to read and stuffs.'
+}
 
 export type PageSearchParamProps = {
     searchParams: {
