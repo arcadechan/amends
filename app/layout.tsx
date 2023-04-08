@@ -1,7 +1,7 @@
 import { Layout } from '../components/layout'
 import { client } from '../.tina/__generated__/client'
-import { Inter } from '@next/font/google'
-import localFont from '@next/font/local'
+import { Inter } from 'next/font/google'
+import localFont from 'next/font/local'
 import '../styles/main.css'
 
 interface LayoutProps {
