@@ -9,6 +9,9 @@ export default function Contact() {
     <>
       <section className={styles.headerSection}>
         <h1 className={styles.header}>Contact</h1>
+        <p className={styles.text}>
+          Uh, surely something's on your mind if you're here? 😮<br/>
+        </p>
       </section>
       <section className={styles.formSection}>
         <form className={styles.form} name='contact-us' method='POST' action='/success' data-netlify='true' netlify-honeypot='bot-field'>
@@ -20,8 +23,8 @@ export default function Contact() {
           <input type="email" id='email' name='email' required={true}/>
           <label htmlFor="message">Message {req}</label>
           <textarea name="message" id="message" rows={7} required={true}></textarea>
-          <div id='contact-form-submit--container'>
-            <button id='contact-form-submit--button' type='submit'>Submit</button>
+          <div className={styles.submitContainer}>
+            <button className={styles.submitButton} type='submit'>Submit</button>
           </div>
         </form>
       </section>

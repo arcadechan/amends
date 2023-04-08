@@ -5,6 +5,11 @@
     @apply font-candy;
     font-size: 95px;
   }
+
+  p {
+    @apply font-inter;
+    @apply text-xl;
+  }
 }
 
 .formSection {
@@ -26,13 +31,33 @@
 
     input,
     textarea {
-      @apply bg-white;
+      @apply bg-[#fff];
       @apply block;
       @apply w-full;
       @apply mb-3;
       @apply rounded-lg;
       @apply py-1;
       @apply px-2;
+    }
+
+    .submitContainer {
+      @apply text-center;
+
+      .submitButton {
+        @apply bg-black;
+        @apply text-yellow;
+        @apply px-3;
+        @apply py-2;
+        @apply text-lg;
+        @apply font-inter;
+        @apply rounded-lg;
+        @apply mx-5;
+
+        &:hover {
+          @apply bg-white;
+          @apply text-black;
+        }
+      }
     }
   }
 }
