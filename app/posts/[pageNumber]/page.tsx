@@ -14,12 +14,17 @@ export const metadata = {
     description: 'Just some stuff to read and stuffs.'
 }
 
-export const generateStaticParams = async () => {
-    const allPostCursors = await client.queries.getAllPostCursorsQuery({ last: 999999 })
-    
+export const generateStaticParams = cache(async () => {
+    const allPostCursors = await client.queries.getAllPostCursorsQuery({ last: 99999 })
+
     // Split into groups of 3 for testing
-    if(allPostCursors?.data?.postConnection?.edges?.length > 0){
-        
+    if(
+        allPostCursors &&
+        allPostCursors?.data &&
+        allPostCursors.data?.postConnection &&
+        allPostCursors.data.postConnection?.edges &&
+        allPostCursors?.data?.postConnection?.edges?.length > 0
+    ){
         const { edges, totalCount } = allPostCursors.data.postConnection
 
         if(totalCount > 0) {
@@ -32,8 +37,20 @@ export const generateStaticParams = async () => {
                 all[ch] = [].concat((all[ch]||[]),one); 
                 return all
              }, [])
-
+     
             const jsonDirectory = path.join(process.cwd(), 'json')
+            
+            // let dirExists = false;
+            await fs.stat(jsonDirectory)
+            .catch(async(err) => {
+                console.error(err)
+
+                if(err.code === 'ENOENT'){
+                    await fs.mkdir(jsonDirectory)
+                    .catch(err => console.error(err))
+                }
+            })
+
             await fs.writeFile(jsonDirectory + '/pages.json', JSON.stringify(chunks), 'utf-8')
 
             return Array.apply(null, Array(pageCount)).map((x,i) => ({pageNumber: (i + 1).toString()}))
@@ -41,7 +58,7 @@ export const generateStaticParams = async () => {
     }
 
     return [{ pageNumber: '1' }]
-}
+})
 
 export type PageSearchParamProps = {
     searchParams: {
@@ -57,15 +74,28 @@ const getPosts = cache(async (pageNumber: string ) =>
     let variables: any = { last: POSTS_PER_PAGE }
 
     const jsonDirectory = path.join(process.cwd(), 'json')
-    const pageJson = await fs.readFile(jsonDirectory + '/pages.json', { encoding: 'utf-8' })
-    const parsedJson = JSON.parse(pageJson)
-    const currentPageIndex = parseInt(pageNumber) - 1
+    let fileExists: boolean = false;
     
-    if(currentPageIndex !== 0)
+    await fs.stat(`${jsonDirectory}/pages.json`)
+    .then(() =>
     {
-        const prevPage = currentPageIndex - 1
-        const lastCursor = parsedJson[prevPage].slice(-1)[0]
-        variables = { ...variables, before: lastCursor }
+        fileExists = true
+    })
+    .catch(err => console.error(err));
+
+
+    if(fileExists)
+    {
+        const pageJson = await fs.readFile(jsonDirectory + '/pages.json', { encoding: 'utf-8' })
+        const parsedJson = JSON.parse(pageJson)
+        const currentPageIndex = parseInt(pageNumber) - 1
+        
+        if(currentPageIndex !== 0)
+        {
+            const prevPage = currentPageIndex - 1
+            const lastCursor = parsedJson[prevPage].slice(-1)[0]
+            variables = { ...variables, before: lastCursor }
+        }
     }
 
     const queryResponse = await client.queries.getPostsQuery(variables)
