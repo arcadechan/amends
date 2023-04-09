@@ -2,8 +2,8 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import styles from '../../styles/components/BlogPostList.module.scss'
-import { GetPostsQueryQuery, Post } from "../../.tina/__generated__/types";
+import styles from '../../../styles/components/BlogPostList.module.scss'
+import { GetPostsQueryQuery, Post } from "../../../.tina/__generated__/types";
 import { PageSearchParamProps } from './page'
 
 const getCardUrl = (card: Post ): string =>
@@ -50,7 +50,7 @@ const CardImage = ({ cardImage }: any): JSX.Element =>
   }
 }
 
-const BlogPostList = ({ componentProps, searchParams }: { componentProps: GetPostsQueryQuery['postConnection'] | null, searchParams: PageSearchParamProps['searchParams'] }): JSX.Element =>
+const BlogPostList = ({ componentProps, params }: { componentProps: GetPostsQueryQuery['postConnection'] | null, params: PageSearchParamProps['params'] }): JSX.Element =>
 {
   if(!componentProps?.pageInfo)
   {
@@ -85,26 +85,20 @@ const BlogPostList = ({ componentProps, searchParams }: { componentProps: GetPos
       })}
       {(posts.length > 0) && pageInfo && (
         <div className={styles.pagination}>
-          {searchParams?.prevCursor === '' && (
+          {(params?.pageNumber && params.pageNumber !== '1') && (
             <Link
               className={styles.newerPostsLink}
-              href='/posts'
+              href={`/posts/${ parseInt(params?.pageNumber) - 1 }`}
+              prefetch={false}
             >
               &larr; Newer Posts
             </Link>
           )}
-          {(searchParams?.prevCursor && searchParams.prevCursor.length > 0) && (
-            <Link
-              className={styles.newerPostsLink}
-              href={`/posts?endCursor=${searchParams.prevCursor}&prevCursor=${''}`}
-            >
-              &larr; Newer Posts
-            </Link>
-          )}
-          {pageInfo?.hasPreviousPage && (
+          {params && componentProps?.pageInfo?.hasPreviousPage && (
             <Link
               className={styles.olderPostsLink}
-              href={`/posts?endCursor=${pageInfo.endCursor}&prevCursor=${ searchParams?.endCursor || '' }`}
+              href={`/posts/${ params?.pageNumber && params.pageNumber !== '1' ? (parseInt(params.pageNumber) + 1) : 2 }`}
+              prefetch={false}
             >
               Older Posts &rarr;
             </Link>
