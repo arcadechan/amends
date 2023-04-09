@@ -16,7 +16,7 @@
   @apply px-5;
 
   .form {
-    @apply max-w-screen-xl;
+    @apply max-w-screen-md;
     @apply rounded-xl;
     @apply bg-yellow;
     @apply mx-auto;
@@ -56,6 +56,7 @@
         &:hover {
           @apply bg-white;
           @apply text-black;
+          @apply underline;
         }
       }
     }
