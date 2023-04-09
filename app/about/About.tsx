@@ -23,8 +23,8 @@ export default function About()
       </section>
       <section className={styles.aboutContent}>
         <p>
-          Hello there! Name's Arcade and I like wasting my time. I program, do photography, and listen to lots of music. Did I mention I waste my time?
-          This is a small blog I've set up to test Next.JS + TinaCMS, but will also serve as a personal log of things I find. I used to write a lot and
+          Hello there! Name&apos;s Arcade and I like wasting my time. I program, do photography, and listen to lots of music. Did I mention I waste my time?
+          This is a small blog I&apos;ve set up to test Next.JS + TinaCMS, but will also serve as a personal log of things I find. I used to write a lot and
           do doodles here and there, and feel like I need something similar again. Hopefully there&apos;s stuff here you find worth your time.
         </p>
         <p>

@@ -10,7 +10,7 @@ export default function Contact() {
       <section className={styles.headerSection}>
         <h1 className={styles.header}>Contact</h1>
         <p className={styles.text}>
-          Uh, surely something's on your mind if you're here? 😮<br/>
+          Uh, surely something&apos;s on your mind if you&apos;re here? 😮<br/>
         </p>
       </section>
       <section className={styles.formSection}>
