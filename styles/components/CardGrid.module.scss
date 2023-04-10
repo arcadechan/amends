@@ -1,4 +1,9 @@
 .cardGrid {
+  @apply max-w-screen-2xl;
+  @apply mx-auto;
+  @apply py-4;
+  @apply px-12;
+
   .cardGridTitle {
     @apply font-inter;
     @apply text-3xl;

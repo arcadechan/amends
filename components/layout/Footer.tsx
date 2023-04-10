@@ -52,7 +52,11 @@ const Footer = ({ socialPlatforms } : footerProps): JSX.Element => {
                     style={{ objectFit: 'contain' }}
                 />
             </Link>
-            <p className='my-5'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <p style={{textAlign: 'center'}}>
+                <small>
+                    Questions, comments, or concerns? <Link href='/contact'>Drop me a line by filling out the contact form.</Link>
+                </small>
+            </p>
             {socialPlatforms && Object.keys(socialPlatforms).length > 0 && (
                 <div id={styles.socialBar} className='flex justify-center flex-wrap my-5 rounded-3xl drop-shadow-sm'>
                     {socialPlatforms?.spotifyUrl && (

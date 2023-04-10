@@ -13,9 +13,9 @@ module.exports = {
       black: '#1a1d27',
       yellow: '#ffdc8b',
       white: '#faf4eb',
-      red: '#e06363',
-      blue: '#77bfe8',
-      green: '#63c67e'
+      red: '#D23232',
+      blue: '#1D76AA',
+      green: '#2D7B42'
     },
     fontFamily: {
       'candy': ['var(--font-candy)', ...fontFamily.sans],

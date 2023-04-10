@@ -1,14 +1,11 @@
 .postList {
   @apply px-12;
   @apply py-4;
-  @apply max-w-screen-2xl;
+  @apply max-w-screen-lg;
+  @apply mx-auto;
 
   @apply grid;
   @apply gap-8;
-
-  @screen 2xl {
-    @apply mx-auto;
-  }
 
   .post {
     position: relative;
@@ -101,6 +98,41 @@
         @apply font-inter;
         @apply text-lg;
         font-style: italic;
+      }
+    }
+  }
+
+  .noPosts {
+    @apply text-4xl;
+    @apply font-candy;
+    text-align: center;
+  }
+
+  .noPostHomeLink {
+    @apply underline;
+    @apply font-inter;
+    @apply font-bold;
+    text-align: center;
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    @apply my-3;
+
+    .newerPostsLink,
+    .olderPostsLink {
+      @apply bg-yellow;
+      @apply text-black;
+      @apply px-3;
+      @apply py-2;
+      @apply text-lg;
+      @apply font-inter;
+      @apply rounded-lg;
+      @apply mx-5;
+
+      &:hover {
+        @apply shadow-md;
       }
     }
   }

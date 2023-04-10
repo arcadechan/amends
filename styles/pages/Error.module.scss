@@ -1,35 +1,34 @@
 .error {
-  section {
-    margin: 0 auto;
-    text-align: center;
-    @apply max-w-screen-2xl;
-    @apply py-20;
-    @apply px-12;
+  margin: 0 auto;
+  text-align: center;
+  @apply max-w-screen-2xl;
+  @apply py-20;
+  @apply px-12;
 
-    .errorCode,
-    .errorMessage {
-      @apply font-candy
-    }
+  .errorH1 {
+    @apply font-candy;
+  }
 
-    .errorCode {
-      @apply text-8xl;
-    }
+  .errorCode {
+    @apply text-8xl;
+  }
 
-    .errorMessage {
-      @apply text-3xl;
-    }
+  .errorMessage {
+    @apply text-3xl;
+  }
 
-    .text {
-      @apply text-xl;
-    }
+  .text {
+    @apply text-xl;
+  }
 
-    .linkToHome {
-      @apply inline-block;
-      @apply bg-black;
-      @apply text-yellow;
-      @apply py-3;
-      @apply px-4;
-      @apply rounded-full;
-    }
+  .linkToHome {
+    @apply inline-block;
+    @apply bg-black;
+    @apply text-yellow;
+    @apply py-3;
+    @apply px-6;
+    @apply rounded-full;
+    @apply font-inter;
+    @apply text-base;
   }
 }

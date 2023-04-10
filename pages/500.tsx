@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Head, Layout } from "../components/layout";
+import Head from "next/head";
+import { Layout } from "../components/layout";
 import { client } from '../.tina/__generated__/client'
 import styles from '../styles/pages/Error.module.scss'
 

@@ -23,11 +23,15 @@ const Header = ({ navigationLinks } : headerPropsI): JSX.Element => {
 
     useEffect(() =>
     {
-        const isDesktop = window.innerWidth >= 768
         const onResize = (): void => {
+            const isDesktop = window.innerWidth >= 768
+
             if(isDesktop)
             {
-                setMenuIsOpen(true)
+                if(!menuIsOpen)
+                {
+                    setMenuIsOpen(true)
+                }
             }
             else
             {
@@ -38,7 +42,7 @@ const Header = ({ navigationLinks } : headerPropsI): JSX.Element => {
         window.addEventListener('resize', onResize)
 
         return (): void => window.removeEventListener('resize', onResize)
-    }, [])
+    }, [ menuIsOpen ])
 
     return (
         <header id={styles.header} className='bg-yellow'>
@@ -48,6 +52,7 @@ const Header = ({ navigationLinks } : headerPropsI): JSX.Element => {
                         id={styles.logo}
                         href='/'
                         aria-label='Amends Logo. Link to home'
+                        onClick={() => setMenuIsOpen(false)}
                     >
                         <Image
                             src={amendsLogo}
@@ -88,6 +93,7 @@ const Header = ({ navigationLinks } : headerPropsI): JSX.Element => {
                             href={link.url || ''}
                             key={link.name}
                             className={styles.link}
+                            onClick={() => setMenuIsOpen(false)}
                         >
                             {link.name || ''}
                         </Link>
