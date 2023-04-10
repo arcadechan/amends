@@ -14,7 +14,7 @@ export const metadata = {
     description: 'Just some stuff to read and stuffs.'
 }
 
-export const generateStaticParams = cache(async () => {
+export const generateStaticParams = cache(async (): Promise<{ pageNumber: string }[]> => {
     const allPostCursors = await client.queries.getAllPostCursorsQuery({ last: 99999 })
 
     // Split into groups of 3 for testing
