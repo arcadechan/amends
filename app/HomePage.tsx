@@ -2,7 +2,7 @@
 
 import { useTina } from 'tinacms/dist/react'
 import { HomePageBlocks } from '../.tina/__generated__/types'
-import CardGrid from '../components/CardGrid'
+import { CardGrid } from '../components'
 
 const Home = (props: any): JSX.Element =>
 {

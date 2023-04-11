@@ -8,9 +8,9 @@ import { PageSearchParamProps } from './page'
 
 const getCardUrl = (card: Post ): string =>
 {
-  if(card?._sys?.breadcrumbs?.length)
+  if(card?._sys?.filename?.length)
   {
-    return `/posts/${card._sys.breadcrumbs.join('/')}`
+    return `/post/${card._sys.filename}`
   }
 
   return ''
