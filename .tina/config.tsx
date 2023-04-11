@@ -90,7 +90,8 @@ const schema: Schema = {
         allowedActions: {
           create: false,
           delete: false,
-        }
+        },
+        router: () => '/' // navigate to the home page
       },
       fields: [
         {
@@ -176,23 +177,27 @@ const schema: Schema = {
       path: 'content/posts',
       format: 'mdx',
       ui: {
-        filename: {
-          readonly: false,
-          slugify: (values: any) => {
-            let category: string = ''
-            let title: string = ''
+        /**
+         * Commenting this code out for this in the meantime as there
+         * are no longer plans to launch with post categories
+         */
+        // filename: {
+        //   readonly: false,
+        //   slugify: (values: any) => {
+        //     let category: string = ''
+        //     let title: string = ''
 
-            if(values?.category) {
-              category = `${values.category}/`
-            }
+        //     if(values?.category) {
+        //       category = `${values.category}/`
+        //     }
 
-            if(values?.title && values.title.length > 0) {
-              title = values.title.toLowerCase().replaceAll(/ /g, '-')
-            }
+        //     if(values?.title && values.title.length > 0) {
+        //       title = values.title.toLowerCase().replaceAll(/ /g, '-')
+        //     }
 
-            return `${category}${title}`
-          }
-        }
+        //     return `${category}${title}`
+        //   }
+        // }
       },
       defaultItem: {
         draft: true,
@@ -210,7 +215,7 @@ const schema: Schema = {
         ...commonFields,
         {
           type: 'rich-text',
-          label: 'Blog Post Body',
+          label: 'Content',
           name: 'body',
           isBody: true,
           templates: [
