@@ -38,7 +38,7 @@ const Header = ({ navigationLinks } : headerPropsI): JSX.Element => {
                 setMenuIsOpen(false)
             }
         }
-        onResize();
+   
         window.addEventListener('resize', onResize)
 
         return (): void => window.removeEventListener('resize', onResize)
