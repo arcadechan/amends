@@ -1,7 +1,7 @@
 'use client'
 
 import styles from '../../styles/pages/About.module.scss'
-import LineBreak from '../../components/LineBreak'
+import { LineBreak, PinkyPromise } from '../../components'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -48,13 +48,7 @@ export default function About()
           Arcade
         </p>
         <br />
-        <Image
-          src='/logo/promise-black.png'
-          width={150}
-          height={75}
-          alt='An line art drawing of two hands making a pinky promise.'
-          style={{ margin: '0 auto' }}
-        />
+        <PinkyPromise/>
       </section>
     </div>
   )
