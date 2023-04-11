@@ -15,6 +15,7 @@ export const metadata = {
 }
 
 export const generateStaticParams = cache(async (): Promise<{ pageNumber: string }[]> => {
+    let pages = [{ pageNumber: '1' }]
     const allPostCursors = await client.queries.getAllPostCursorsQuery({ last: 99999 })
 
     // Split into groups of 3 for testing
@@ -52,12 +53,13 @@ export const generateStaticParams = cache(async (): Promise<{ pageNumber: string
             })
 
             await fs.writeFile(jsonDirectory + '/pages.json', JSON.stringify(chunks), 'utf-8')
-
-            return Array.apply(null, Array(pageCount)).map((x,i) => ({pageNumber: (i + 1).toString()}))
+            
+            const generatedPages = Array.apply(null, Array(pageCount)).map((x,i) => ({pageNumber: (i + 1).toString()}))
+            pages = [...pages, ...generatedPages]
         }
     }
 
-    return [{ pageNumber: '1' }]
+    return pages
 })
 
 export type PageSearchParamProps = {
@@ -82,7 +84,6 @@ const getPosts = cache(async (pageNumber: string ) =>
         fileExists = true
     })
     .catch(err => console.error(err));
-
 
     if(fileExists)
     {
