@@ -28,6 +28,9 @@
 
     .trackName, .artistName {
       @apply font-inter;
+      @apply whitespace-nowrap;
+      @apply text-ellipsis;
+      @apply overflow-hidden;
     }
 
     .trackName {
@@ -75,8 +78,14 @@
     @apply h-[125px];
 
     .imageContainer {
+      @apply w-[125px];
       @apply max-w-[125px];
       @apply h-[125px];
+
+      img {
+        @apply w-[125px];
+        @apply max-w-[125px];
+      }
     }
 
     .infoContainer {

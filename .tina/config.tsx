@@ -242,6 +242,11 @@ const schema: Schema = {
                   type: 'string'
                 },
                 {
+                  label: 'Album Name',
+                  name: 'albumName',
+                  type: 'string'
+                },
+                {
                   label: 'Album Art',
                   name: 'albumArt',
                   type: 'image'

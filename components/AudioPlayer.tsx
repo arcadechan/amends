@@ -4,24 +4,32 @@ import styles from '../styles/components/AudioPlayer.module.scss'
 
 const AudioPlayer = (props: any): JSX.Element =>
 {
+  const [audio] = useState(new Audio(props.audioPreviewUrl || ''));
   const [isPlaying, setIsPlaying] = useState(false)
   const [progress, setProgress] = useState(0)
-  const audioPlayerRef = useRef(null)
+  
+  const restart = (): void => {
+    audio.pause();
+    audio.fastSeek(0);
+    audio.play();
+  }
 
   useEffect(() => {
     if(isPlaying){
-      audioPlayerRef?.current?.play();
+      audio.play()
     } else {
-      audioPlayerRef?.current?.pause();
+      audio?.pause();
     }
-  }, [isPlaying])
+  }, [isPlaying, audio, restart])
 
   useEffect(() => {
-    const updateProgress = (e) => {
-      const currentTime = audioPlayerRef?.current?.currentTime;
-      const duration = audioPlayerRef?.current?.duration;
-      const progress = Math.floor((currentTime / duration) * 100);
-      setProgress(progress);
+    const updateProgress = (e: any) => {
+      if(audio !== null) {
+        const currentTime = audio?.currentTime;
+        const duration = audio?.duration;
+        const progress = Math.floor((currentTime / duration) * 100);
+        setProgress(progress);
+      }
     }
 
     const onEnded = () => {
@@ -29,14 +37,14 @@ const AudioPlayer = (props: any): JSX.Element =>
       setProgress(0)
     }
 
-    audioPlayerRef?.current?.addEventListener('timeupdate', updateProgress)
-    audioPlayerRef?.current?.addEventListener('ended', onEnded)
+    audio?.addEventListener('timeupdate', updateProgress)
+    audio?.addEventListener('ended', onEnded)
 
     return () => {
-      audioPlayerRef?.current?.removeEventListener('timeupdate', updateProgress)
-      audioPlayerRef?.current?.removeEventListener('ended', onEnded)
+      audio?.removeEventListener('timeupdate', updateProgress)
+      audio?.removeEventListener('ended', onEnded)
     }
-  }, [isPlaying])
+  }, [isPlaying, audio, restart])
 
   return (
     <>
@@ -45,14 +53,14 @@ const AudioPlayer = (props: any): JSX.Element =>
           <div className={styles.imageContainer}>
             <Image
               src={props.albumArt}
-              alt={`${props.artistName}`}
+              alt={`Album cover for ${props.albumName} by ${props.artistName}`}
               width={125}
               height={125}
             />  
           </div>
           <div className={styles.infoContainer}>
-            <h4 className={styles.trackName}>{props.trackName}</h4>
-            <h5 className={styles.artistName}>{props.artistName}</h5>
+            <h4 className={styles.trackName} title={props.trackName}>{props.trackName}</h4>
+            <h5 className={styles.artistName} title={props.artistName}>{props.artistName}</h5>
             <div className={styles.progressBarContainer}>
               <div className={styles.progressBarBackground}>
                 <div className={styles.progressBarForeground} style={{ width: `${progress}%` }}/>
@@ -60,6 +68,13 @@ const AudioPlayer = (props: any): JSX.Element =>
             </div>
             <div className={styles.controlsContainer}>
               <button
+                type='button'
+                onClick={() => restart()}
+              >
+                Replay
+              </button>
+              <button
+                type='button'
                 onClick={() => setIsPlaying(!isPlaying)}
               >
                 <Image
@@ -70,7 +85,7 @@ const AudioPlayer = (props: any): JSX.Element =>
                 />
               </button>
             </div>
-            <audio ref={audioPlayerRef} controls src={props.audioPreviewUrl}></audio>
+            {/* <audio ref={audioPlayerRef} src={props.audioPreviewUrl}></audio> */}
           </div>
         </div>
       )}
