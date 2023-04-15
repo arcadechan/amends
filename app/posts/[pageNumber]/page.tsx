@@ -8,7 +8,7 @@ const POSTS_PER_PAGE = 3
 
 export const dynamic = 'auto'
 export const revalidate = 604800 // Total seconds in one week
-export const dynamicParams = true
+export const dynamicParams = false
 export const metadata = {
     title: 'Posts | Amends',
     description: 'Just some stuff to read and stuffs.'
@@ -19,13 +19,7 @@ export const generateStaticParams = cache(async (): Promise<{ pageNumber: string
     const allPostCursors = await client.queries.getAllPostCursorsQuery({ last: 99999 })
 
     // Split into groups of 3 for testing
-    if(
-        allPostCursors &&
-        allPostCursors?.data &&
-        allPostCursors.data?.postConnection &&
-        allPostCursors.data.postConnection?.edges &&
-        allPostCursors?.data?.postConnection?.edges?.length > 0
-    ){
+    if(allPostCursors?.data?.postConnection?.edges && allPostCursors.data.postConnection.edges.length > 0){
         const { edges, totalCount } = allPostCursors.data.postConnection
 
         if(totalCount > 0) {
