@@ -57,12 +57,16 @@
   }
 
   .blogPostContent {
-    @apply px-12;
+    @apply px-4;
     @apply py-4;
     @apply max-w-5xl;
     @apply mx-auto;
     @apply mb-8;
     @apply font-inter;
+
+    @screen md {
+      @apply px-12;
+    }
 
     .blogPostPublishDate {
       @apply italic;

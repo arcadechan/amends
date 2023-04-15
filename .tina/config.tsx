@@ -16,6 +16,10 @@ const URLWithIconContainer = ({ serviceName, input } : { serviceName: string, in
   </div>
 )
 
+const test = () => {
+  console.log('wee coooking babeeeee');
+}
+
 const commonFields: any[] = [
   {
     label: 'Draft?',
@@ -227,6 +231,21 @@ const schema: Schema = {
               name: 'songEmbed',
               label: 'Song Embed',
               fields: [
+                {
+                  label: 'Artist Name',
+                  name: 'artistName',
+                  type: 'string'
+                },
+                {
+                  label: 'Track Name',
+                  name: 'trackName',
+                  type: 'string'
+                },
+                {
+                  label: 'Album Art',
+                  name: 'albumArt',
+                  type: 'image'
+                },
                 {
                   label: 'Audio Preview URL',
                   name: 'audioPreviewUrl',

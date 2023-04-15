@@ -8,7 +8,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { useTina } from 'tinacms/dist/react'
 import { TinaQueryResponse } from '../../../@types/tinacms-custom'
 import Link from 'next/link'
-import Spotify from '../../../components/spotify'
+import AudioPlayer from '../../../components/AudioPlayer'
 
 export default function BlogPost(props: TinaQueryResponse)
 {
@@ -63,7 +63,7 @@ export default function BlogPost(props: TinaQueryResponse)
       <section className={styles.blogPostContent}>
         <h3 className={styles.blogPostPublishDate}>Published: {formattedDate}</h3>
         <div>
-          <TinaMarkdown content={body} components={{ 'songEmbed': Spotify }}/>
+          <TinaMarkdown content={body} components={{ 'songEmbed': AudioPlayer }}/>
         </div>
         {backPage ? (
           <Link

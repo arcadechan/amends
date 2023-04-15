@@ -1,0 +1,107 @@
+.audioPlayer {
+  @apply flex;
+  @apply flex-nowrap;
+  @apply bg-[#fff];
+  @apply w-full;
+  @apply max-w-[311px];
+  @apply mx-auto;
+  @apply rounded-[20px];
+  @apply h-[98px];
+  box-shadow: 0px 0px 10px 5px rgba(0,0,0,.08);
+
+  .imageContainer {
+    overflow: hidden;
+    @apply rounded-[20px];
+
+    img {
+      @apply w-full;
+      @apply max-w-[98px];
+      @apply rounded-[20px];
+      box-shadow: 0px 4px 4px rgba(0,0,0,.25);
+    }
+  }
+
+  .infoContainer {
+    @apply p-3;
+    @apply w-full;
+    @apply max-w-[213px];
+
+    .trackName, .artistName {
+      @apply font-inter;
+    }
+
+    .trackName {
+      @apply text-base;
+      @apply font-bold;
+    }
+
+    .artistName {
+      @apply text-xs;
+    }
+  }
+
+  .progressBarContainer {
+    @apply mt-3;
+
+    .progressBarBackground {
+      @apply w-[195px];
+      @apply relative;
+      height: 6px;
+      background-color: #989898;
+      border-radius: 4px;
+      z-index: 9;
+
+      .progressBarForeground {
+        @apply absolute;
+        top: 0px;
+        left: 0px;
+        height: 6px;
+        background: black;
+        border-radius: 4px;
+        z-index: 10;
+      }
+    }
+  }
+
+  .controlsContainer {
+    @apply mt-1;
+    @apply flex;
+    @apply items-center;
+    @apply justify-center;
+  }
+
+  @screen md {
+    @apply max-w-[400px];
+    @apply h-[125px];
+
+    .imageContainer {
+      @apply max-w-[125px];
+      @apply h-[125px];
+    }
+
+    .infoContainer {
+      @apply max-w-[275px];
+
+      .trackName {
+        @apply text-2xl;
+        @apply font-bold;
+      }
+  
+      .artistName {
+        @apply text-sm;
+      }
+    }
+
+    .progressBarContainer {
+      @apply mt-3;
+  
+      .progressBarBackground {
+        @apply w-[252px];
+      }
+    }
+  }
+
+  audio {
+    display: none;
+  }
+}
