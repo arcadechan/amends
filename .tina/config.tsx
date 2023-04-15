@@ -177,6 +177,10 @@ const schema: Schema = {
       path: 'content/posts',
       format: 'mdx',
       ui: {
+        router: ({ document }) => {
+          // navigate to the post that was clicked
+          return `/post/${document._sys.filename}`
+        },
         /**
          * Commenting this code out for this in the meantime as there
          * are no longer plans to launch with post categories
