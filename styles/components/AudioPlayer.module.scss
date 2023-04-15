@@ -1,21 +1,27 @@
 .audioPlayer {
   @apply flex;
+  @apply flex-col;
   @apply flex-nowrap;
   @apply bg-[#fff];
-  @apply w-full;
+  @apply rounded-[20px];
+  // @apply w-full;
   @apply max-w-[311px];
   @apply mx-auto;
-  @apply rounded-[20px];
-  @apply h-[98px];
-  box-shadow: 0px 0px 10px 5px rgba(0,0,0,.08);
+  @apply overflow-hidden;
+  // @apply h-[98px];
+  box-shadow: 0px 0px 10px 10px rgba(0,0,0,.1);
 
   .imageContainer {
-    overflow: hidden;
-    @apply rounded-[20px];
+    @apply w-full;
+    // @apply min-w-[98px];
+    // @apply w-[98px];
+    // @apply max-w-[98px];
+    // @apply rounded-[20px];
 
     img {
       @apply w-full;
-      @apply max-w-[98px];
+      // @apply w-[98px];
+      // @apply max-w-[98px];
       @apply rounded-[20px];
       box-shadow: 0px 4px 4px rgba(0,0,0,.25);
     }
@@ -24,10 +30,12 @@
   .infoContainer {
     @apply p-3;
     @apply w-full;
-    @apply max-w-[213px];
+    // @apply max-w-[275px];
 
-    .trackName, .artistName {
+    .trackName,
+    .artistName {
       @apply font-inter;
+      @apply text-black;
       @apply whitespace-nowrap;
       @apply text-ellipsis;
       @apply overflow-hidden;
@@ -44,52 +52,52 @@
   }
 
   .progressBarContainer {
-    @apply mt-3;
+    @apply my-3;
 
     .progressBarBackground {
-      @apply w-[195px];
+      @apply w-full;
       @apply relative;
       height: 6px;
       background-color: #989898;
       border-radius: 4px;
-      z-index: 9;
 
       .progressBarForeground {
         @apply absolute;
-        top: 0px;
-        left: 0px;
+        @apply bg-black;
+        @apply z-10;
+        top: 0;
+        left: 0;
         height: 6px;
-        background: black;
         border-radius: 4px;
-        z-index: 10;
       }
     }
   }
 
   .controlsContainer {
-    @apply mt-1;
     @apply flex;
     @apply items-center;
     @apply justify-center;
+    @apply gap-7;
+
+    button {
+      @apply my-2;
+    }
   }
 
   @screen md {
+    @apply flex-row;
     @apply max-w-[400px];
     @apply h-[125px];
 
     .imageContainer {
+      @apply min-w-[125px];
+      @apply min-h-[125px];
       @apply w-[125px];
-      @apply max-w-[125px];
       @apply h-[125px];
-
-      img {
-        @apply w-[125px];
-        @apply max-w-[125px];
-      }
     }
 
     .infoContainer {
-      @apply max-w-[275px];
+      @apply w-full;
 
       .trackName {
         @apply text-2xl;
@@ -102,15 +110,29 @@
     }
 
     .progressBarContainer {
-      @apply mt-3;
-  
-      .progressBarBackground {
-        @apply w-[252px];
+      @apply my-2;
+    }
+
+    .controlsContainer {
+      button {
+        @apply my-0;
       }
     }
   }
+}
 
-  audio {
-    display: none;
+.audioLinks {
+  @apply bg-[#fff];
+  @apply flex;
+  @apply max-w-[311px];
+  @apply mx-auto;
+  @apply justify-around;
+  @apply rounded-[20px];
+  @apply flex-wrap;
+  @apply mt-3;
+  box-shadow: 0px 0px 10px 5px rgba(0,0,0,.08);
+
+  .audioLinkIcon {
+    @apply m-2;
   }
 }
