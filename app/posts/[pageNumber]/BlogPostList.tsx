@@ -6,14 +6,17 @@ import styles from '../../../styles/components/BlogPostList.module.scss'
 import { GetPostsQueryQuery, Post } from "../../../.tina/__generated__/types";
 import { PageSearchParamProps } from './page'
 
-const getCardUrl = (card: Post ): string =>
+const getCardUrl = (card: Post, pageNumber: string = '1'): string =>
 {
+  const backParam = `?back=${pageNumber}`
+  let url = ''
+
   if(card?._sys?.filename?.length)
   {
-    return `/post/${card._sys.filename}`
+    url = `/post/${card._sys.filename}`
   }
 
-  return ''
+  return `${url}${backParam}`
 }
 
 const getAriaLabel = (card: Post): string =>
@@ -70,14 +73,14 @@ const BlogPostList = ({ componentProps, params }: { componentProps: GetPostsQuer
         return (
           <article className={`${styles.post} ${ post?.heroImage ? styles.postHasImage : styles.postHasNoImage }`} key={i}>
             <Link
-              href={getCardUrl(post)}
+              href={getCardUrl(post, params?.pageNumber)}
               aria-label={getAriaLabel(post)}
               className={styles.postAnchor}
             >
               <CardImage cardImage={post?.heroImage}/>
               <div className={styles.postTextLabels}>
                 {post?.title && <h2 className={styles.postTitle} aria-hidden>{post?.title}</h2>}
-                {post?.subTitle && <h3 className={styles.postSubTitle} aria-hidden>{post?.subTitle}</h3>}
+                {post?.subTitle && <h3 className={styles.postSubtitle} aria-hidden>{post?.subTitle}</h3>}
               </div>
             </Link>
           </article>

@@ -8,7 +8,7 @@ const POSTS_PER_PAGE = 3
 
 export const dynamic = 'auto'
 export const revalidate = 604800 // Total seconds in one week
-export const dynamicParams = false
+export const dynamicParams = true
 export const metadata = {
     title: 'Posts | Amends',
     description: 'Just some stuff to read and stuffs.'
