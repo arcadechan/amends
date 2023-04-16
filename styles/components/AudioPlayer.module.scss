@@ -82,6 +82,40 @@
     button {
       @apply my-2;
     }
+
+    .volume {
+      -webkit-appearance: none;
+      background-color: transparent;
+      cursor: pointer;
+
+      &::-webkit-slider-runnable-track,
+      &::-moz-range-track {
+        @apply bg-blue;
+        height: 6px;
+        border-radius: 4px;
+      }
+
+      /* Chrome, Safari, Opera, and Edge */
+      &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+      }
+
+      /* Firefox */
+      &::-moz-range-thumb {
+        border: none;
+      }
+
+      &::-webkit-slider-thumb,
+      &::-moz-range-thumb {
+        @apply bg-[#fff];
+        height: 15px;
+        width: 15px;
+        border-radius: 50%;
+        @apply border-blue;
+        border-width: 2px;
+        border-style: solid;
+      }
+    }
   }
 
   @screen md {

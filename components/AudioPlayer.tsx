@@ -31,7 +31,8 @@ const AudioPlayer = (props: any): JSX.Element =>
   const [isPlaying, setIsPlaying] = useState(false)
   const [progress, setProgress] = useState(0)
   
-  const restart = (): void => {
+  const restart = (): void =>
+  {
     audio.pause();
     audio.fastSeek(0);
     if(isPlaying) {
@@ -39,9 +40,16 @@ const AudioPlayer = (props: any): JSX.Element =>
     }
   }
 
+  const handleVolume = (e: any): void =>
+  {
+    console.log({e, 'typeof e': e})
+    const volumeValue = e.target.valueAsNumber
+    audio.volume = volumeValue
+  }
+
   useEffect(() => {
     if(isPlaying){
-      audio.play()
+      audio.play();
     } else {
       audio?.pause();
     }
@@ -117,6 +125,15 @@ const AudioPlayer = (props: any): JSX.Element =>
                     height={35}
                   />
                 </button>
+                <input
+                  className={styles.volume}
+                  type='range'
+                  min='0'
+                  max='1'
+                  step='.05'
+                  defaultValue='.5'
+                  onChange={handleVolume}
+                />
               </div>
             </div>
           </div>
