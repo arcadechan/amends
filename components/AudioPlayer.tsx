@@ -1,9 +1,10 @@
 'use client'
 
-import { useEffect, useState } from 'react';
+import { MutableRefObject, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import styles from '../styles/components/AudioPlayer.module.scss'
 import Link from 'next/link';
+import { AddIcon } from 'tinacms';
 
 const StreamIcon = ({ href, serviceName }: { href: string, serviceName: string }) =>
 {
@@ -30,6 +31,7 @@ const AudioPlayer = (props: any): JSX.Element =>
   const [audio] = useState(new Audio(props.audioPreviewUrl || ''));
   const [isPlaying, setIsPlaying] = useState(false)
   const [progress, setProgress] = useState(0)
+  const progressRef: MutableRefObject<HTMLInputElement| null> = useRef(null)
   
   const restart = (): void =>
   {
@@ -47,6 +49,15 @@ const AudioPlayer = (props: any): JSX.Element =>
     audio.volume = volumeValue
   }
 
+  const seekTrack = (e: any): void =>
+  {
+    console.log({e});
+    const seekPosition = e.target.valueAsNumber
+    const seekCalc = Math.floor(audio.duration * seekPosition)
+    console.log({seekPosition})
+    audio.fastSeek(seekCalc)
+  }
+
   useEffect(() => {
     if(isPlaying){
       audio.play();
@@ -57,11 +68,14 @@ const AudioPlayer = (props: any): JSX.Element =>
 
   useEffect(() => {
     const updateProgress = (e: any) => {
-      if(audio !== null) {
+      if(audio !== null && progressRef?.current !== null) {
         const currentTime = audio?.currentTime;
+        console.log({currentTime});
         const duration = audio?.duration;
-        const progress = Math.floor((currentTime / duration) * 100);
-        setProgress(progress);
+        const progress = Math.floor((currentTime / duration) * 10000) / 10000;
+        // setProgress(progress);
+        console.log({current: progressRef.current, progress})
+        progressRef.current.value = progress.toString()
       }
     }
 
@@ -96,12 +110,23 @@ const AudioPlayer = (props: any): JSX.Element =>
               <h4 className={styles.trackName} title={props.trackName}>{props.trackName}</h4>
               <h5 className={styles.artistName} title={props.artistName}>{props.artistName}</h5>
               <div className={styles.progressBarContainer}>
+                <input
+                  ref={progressRef}
+                  className={styles.progressTrack}
+                  type='range'
+                  min='0'
+                  max='1'
+                  step='.01'
+                  defaultValue='0'
+                  onMouseUp={seekTrack}
+                />
                 <div className={styles.progressBarBackground}>
                   <div className={styles.progressBarForeground} style={{ width: `${progress}%` }}/>
                 </div>
               </div>
               <div className={styles.controlsContainer}>
                 <button
+                  className={styles.restart}
                   type='button'
                   title='Restart playback'
                   onClick={() => restart()}
@@ -114,6 +139,7 @@ const AudioPlayer = (props: any): JSX.Element =>
                   />
                 </button>
                 <button
+                  className={styles.play}
                   type='button'
                   title='Play button'
                   onClick={() => setIsPlaying(!isPlaying)}

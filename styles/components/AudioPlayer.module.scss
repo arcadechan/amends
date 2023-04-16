@@ -2,26 +2,18 @@
   @apply flex;
   @apply flex-col;
   @apply flex-nowrap;
-  @apply bg-[#fff];
+  @apply bg-white;
   @apply rounded-[20px];
-  // @apply w-full;
   @apply max-w-[311px];
   @apply mx-auto;
   @apply overflow-hidden;
-  // @apply h-[98px];
   box-shadow: 0px 0px 10px 10px rgba(0,0,0,.1);
 
   .imageContainer {
     @apply w-full;
-    // @apply min-w-[98px];
-    // @apply w-[98px];
-    // @apply max-w-[98px];
-    // @apply rounded-[20px];
 
     img {
       @apply w-full;
-      // @apply w-[98px];
-      // @apply max-w-[98px];
       @apply rounded-[20px];
       box-shadow: 0px 4px 4px rgba(0,0,0,.25);
     }
@@ -30,7 +22,6 @@
   .infoContainer {
     @apply p-3;
     @apply w-full;
-    // @apply max-w-[275px];
 
     .trackName,
     .artistName {
@@ -53,22 +44,50 @@
 
   .progressBarContainer {
     @apply my-3;
+    height: 15px;
 
-    .progressBarBackground {
+    .progressTrack {
       @apply w-full;
-      @apply relative;
-      height: 6px;
-      background-color: #989898;
-      border-radius: 4px;
+      -webkit-appearance: none;
+      background-color: transparent;
+      cursor: pointer;
 
-      .progressBarForeground {
-        @apply absolute;
-        @apply bg-black;
-        @apply z-10;
-        top: 0;
-        left: 0;
+      &::-webkit-slider-runnable-track,
+      &::-moz-range-track {
+        background-color: #989898;
         height: 6px;
         border-radius: 4px;
+      }
+
+      /* Chrome, Safari, Opera, and Edge */
+      &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+      }
+
+      /* Firefox */
+      &::-moz-range-thumb {
+        border: none;
+      }
+
+      &::-webkit-slider-thumb,
+      &::-moz-range-thumb {
+        @apply bg-blue;
+        height: 10px;
+        width: 10px;
+        border-radius: 50%;
+        @apply border-blue;
+        border-width: 2px;
+        border-style: solid;
+      }
+
+      &:hover {
+        &::-webkit-slider-thumb,
+        &::-moz-range-thumb {
+          @apply bg-[#fff];
+          width: 13px;
+          height: 13px;
+          margin-left: -10px;
+        }
       }
     }
   }
@@ -107,13 +126,23 @@
 
       &::-webkit-slider-thumb,
       &::-moz-range-thumb {
-        @apply bg-[#fff];
-        height: 15px;
-        width: 15px;
+        @apply bg-blue;
+        height: 10px;
+        width: 10px;
         border-radius: 50%;
         @apply border-blue;
         border-width: 2px;
         border-style: solid;
+      }
+
+      &:hover {
+        &::-webkit-slider-thumb,
+        &::-moz-range-thumb {
+          @apply bg-[#fff];
+          width: 13px;
+          height: 13px;
+          margin-left: -10px;
+        }
       }
     }
   }
@@ -148,8 +177,22 @@
     }
 
     .controlsContainer {
+      @apply gap-5;
+
       button {
         @apply my-0;
+      }
+
+      .restart {
+        width: 35px;
+      }
+
+      .play {
+        width: 30px;
+      }
+
+      .volume {
+        width: 100%;
       }
     }
   }
