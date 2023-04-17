@@ -4,7 +4,6 @@ import { MutableRefObject, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import styles from '../styles/components/AudioPlayer.module.scss'
 import Link from 'next/link';
-import { AddIcon } from 'tinacms';
 
 const StreamIcon = ({ href, serviceName }: { href: string, serviceName: string }) =>
 {
@@ -13,12 +12,13 @@ const StreamIcon = ({ href, serviceName }: { href: string, serviceName: string }
       href={href}
       prefetch={false}
       target='_blank'
-      title={'Listen to the song on'}
+      title={`Listen to the song on ${serviceName}`}
     >
       <Image
         className={styles.audioLinkIcon}
-        src={`/icons/${serviceName}.png`}
-        alt={`${serviceName} link to song.`}
+        src={`/icons/${serviceName.toLowerCase().split(' ').join('-')}.png`}
+        aria-label={`${serviceName} link to song.`}
+        alt=''
         width={25}
         height={25}
       />
@@ -31,31 +31,60 @@ const AudioPlayer = (props: any): JSX.Element =>
   const [audio] = useState(new Audio(props.audioPreviewUrl || ''));
   const [isPlaying, setIsPlaying] = useState(false)
   const [progress, setProgress] = useState(0)
-  const progressRef: MutableRefObject<HTMLInputElement| null> = useRef(null)
+  const [storedVolumeLevel, setStoredVolumeLevel] = useState(50)
+  const progressRef: MutableRefObject<HTMLProgressElement| null> = useRef(null)
+  const volumeRef: MutableRefObject<HTMLInputElement | null> = useRef(null)
   
   const restart = (): void =>
   {
     audio.pause();
-    audio.fastSeek(0);
+    audio.currentTime = 0;
     if(isPlaying) {
       audio.play();
     }
   }
 
-  const handleVolume = (e: any): void =>
-  {
-    console.log({e, 'typeof e': e})
-    const volumeValue = e.target.valueAsNumber
-    audio.volume = volumeValue
-  }
+  // const toggleMute = (): void =>
+  // {
+  //   if(audio.volume > 0)
+  //   {
+  //     setStoredVolumeLevel(audio.volume)
+  //     audio.volume = 0.0
+  //   } else {
+  //     audio.volume = storedVolumeLevel
+  //   }
+  // }
 
-  const seekTrack = (e: any): void =>
+  const handleVolume = (e: any, mute: boolean = false): void =>
   {
-    console.log({e});
-    const seekPosition = e.target.valueAsNumber
-    const seekCalc = Math.floor(audio.duration * seekPosition)
-    console.log({seekPosition})
-    audio.fastSeek(seekCalc)
+    if(!mute){
+      const volumeValue = e.target.valueAsNumber
+      audio.volume = (volumeValue / 100)
+
+      if(volumeRef?.current)
+      {
+        volumeRef.current.style.setProperty('--volume-level', `${volumeValue}%`)
+      }
+    } else {
+      if(volumeRef?.current?.value)
+      {
+        const currentVolumeValue = parseInt(volumeRef.current.value)
+        console.log({currentVolumeValue});
+        if(currentVolumeValue > 0)
+        {
+          // console.log('audio.volume', audio.volume)
+          setStoredVolumeLevel(currentVolumeValue / 100)
+          audio.volume = 0
+          volumeRef.current.value = '0';
+          volumeRef.current.style.setProperty('--volume-level', `0%`)
+        } else {
+          audio.volume = storedVolumeLevel
+          console.log({storedVolumeLevel});
+          volumeRef.current.value = `${(storedVolumeLevel * 100)}%`
+          volumeRef.current.style.setProperty('--volume-level', `${storedVolumeLevel * 100}%`)
+        }
+      }
+    }
   }
 
   useEffect(() => {
@@ -70,12 +99,11 @@ const AudioPlayer = (props: any): JSX.Element =>
     const updateProgress = (e: any) => {
       if(audio !== null && progressRef?.current !== null) {
         const currentTime = audio?.currentTime;
-        console.log({currentTime});
         const duration = audio?.duration;
-        const progress = Math.floor((currentTime / duration) * 10000) / 10000;
-        // setProgress(progress);
-        console.log({current: progressRef.current, progress})
-        progressRef.current.value = progress.toString()
+
+        const progress = Math.floor((currentTime / duration) * 100);
+
+        progressRef.current.value = progress
       }
     }
 
@@ -110,15 +138,11 @@ const AudioPlayer = (props: any): JSX.Element =>
               <h4 className={styles.trackName} title={props.trackName}>{props.trackName}</h4>
               <h5 className={styles.artistName} title={props.artistName}>{props.artistName}</h5>
               <div className={styles.progressBarContainer}>
-                <input
+                <progress
                   ref={progressRef}
                   className={styles.progressTrack}
-                  type='range'
-                  min='0'
-                  max='1'
-                  step='.01'
-                  defaultValue='0'
-                  onMouseUp={seekTrack}
+                  value='0'
+                  max='100'
                 />
                 <div className={styles.progressBarBackground}>
                   <div className={styles.progressBarForeground} style={{ width: `${progress}%` }}/>
@@ -128,7 +152,7 @@ const AudioPlayer = (props: any): JSX.Element =>
                 <button
                   className={styles.restart}
                   type='button'
-                  title='Restart playback'
+                  aria-label='Restart playback'
                   onClick={() => restart()}
                 >
                   <Image
@@ -141,7 +165,7 @@ const AudioPlayer = (props: any): JSX.Element =>
                 <button
                   className={styles.play}
                   type='button'
-                  title='Play button'
+                  aria-label='Play button'
                   onClick={() => setIsPlaying(!isPlaying)}
                 >
                   <Image
@@ -151,25 +175,39 @@ const AudioPlayer = (props: any): JSX.Element =>
                     height={35}
                   />
                 </button>
+                <button
+                  className={styles.volumeIcon}
+                  type='button'
+                  aria-label='Volume control'
+                  onClick={(e) => handleVolume(e, true)}
+                >
+                  <Image
+                    src={ audio.volume === 0 ? '/icons/volume-muted.png' : '/icons/volume-on.png'}
+                    alt=''
+                    width={22}
+                    height={35}
+                  />
+                </button>
                 <input
+                  ref={volumeRef}
                   className={styles.volume}
                   type='range'
                   min='0'
-                  max='1'
-                  step='.05'
-                  defaultValue='.5'
+                  max='100'
+                  step='1'
+                  defaultValue='50'
                   onChange={handleVolume}
                 />
               </div>
             </div>
           </div>
           <div className={styles.audioLinks}>
-              {props?.spotifyUrl && <StreamIcon href={props.spotifyUrl} serviceName='spotify'/>}
-              {props?.youtubeUrl && <StreamIcon href={props.youtubeUrl} serviceName='youtubeMusic'/>}
-              {props?.appleMusicUrl && <StreamIcon href={props.appleMusicUrl} serviceName='appleMusic'/>}
-              {props?.deezerUrl && <StreamIcon href={props.deezerUrl} serviceName='deezer'/>}
-              {props?.bandcampUrl && <StreamIcon href={props.bandcampUrl} serviceName='bandcamp'/>}
-              {props?.soundcloudUrl && <StreamIcon href={props.soundcloudUrl} serviceName='soundcloud'/>}
+              {props?.spotifyUrl && <StreamIcon href={props.spotifyUrl} serviceName='Spotify'/>}
+              {props?.youtubeUrl && <StreamIcon href={props.youtubeUrl} serviceName='Youtube Music'/>}
+              {props?.appleMusicUrl && <StreamIcon href={props.appleMusicUrl} serviceName='Apple Music'/>}
+              {props?.deezerUrl && <StreamIcon href={props.deezerUrl} serviceName='Deezer'/>}
+              {props?.bandcampUrl && <StreamIcon href={props.bandcampUrl} serviceName='Bandcamp'/>}
+              {props?.soundcloudUrl && <StreamIcon href={props.soundcloudUrl} serviceName='Soundcloud'/>}
           </div>
         </>
       )}

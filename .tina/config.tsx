@@ -5,7 +5,7 @@ import CardGridSchema from '../components/schemas/CardGridSchema'
 const URLWithIconContainer = ({ serviceName, input } : { serviceName: string, input: any}) : JSX.Element => (
   <div style={{ display: 'flex', alignItems: 'center' }}>
     <div style={{ display: 'flex', height: '100%', width: '50px', padding: '0 .5rem' }}>
-      <img src={`/icons/${serviceName}.png`} style={{ maxHeight: '30px', margin: '0 auto' }}/>
+      <img src={`/icons/${serviceName.toLowerCase().split(' ').join('-')}.png`} style={{ maxHeight: '30px', margin: '0 auto' }}/>
     </div>
     <input
       id={`${serviceName}Url`}
@@ -262,7 +262,7 @@ const schema: Schema = {
                   type: 'string',
                   ui: {
                     component: wrapFieldsWithMeta(({field, input, meta, ...props}): JSX.Element => {
-                      return <URLWithIconContainer serviceName='spotify' input={input}/>
+                      return <URLWithIconContainer serviceName='Spotify' input={input}/>
                     })
                   }
                 },
@@ -272,7 +272,7 @@ const schema: Schema = {
                   type: 'string',
                   ui: {
                     component: wrapFieldsWithMeta(({field, input, meta, ...props}): JSX.Element => {
-                      return <URLWithIconContainer serviceName='youtubeMusic' input={input}/>
+                      return <URLWithIconContainer serviceName='Youtube Music' input={input}/>
                     })
                   }
                 },
@@ -282,7 +282,7 @@ const schema: Schema = {
                   type: 'string',
                   ui: {
                     component: wrapFieldsWithMeta(({field, input, meta, ...props}): JSX.Element => {
-                      return <URLWithIconContainer serviceName='appleMusic' input={input}/>
+                      return <URLWithIconContainer serviceName='Apple Music' input={input}/>
                     })
                   }
                 },
@@ -292,7 +292,7 @@ const schema: Schema = {
                   type: 'string',
                   ui: {
                     component: wrapFieldsWithMeta(({field, input, meta, ...props}): JSX.Element => {
-                      return <URLWithIconContainer serviceName='deezer' input={input}/>
+                      return <URLWithIconContainer serviceName='Deezer' input={input}/>
                     })
                   }
                 },
@@ -302,7 +302,7 @@ const schema: Schema = {
                   type: 'string',
                   ui: {
                     component: wrapFieldsWithMeta(({field, input, meta, ...props}): JSX.Element => {
-                      return <URLWithIconContainer serviceName='bandcamp' input={input}/>
+                      return <URLWithIconContainer serviceName='Bandcamp' input={input}/>
                     })
                   }
                 },

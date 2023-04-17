@@ -2,7 +2,7 @@
   @apply flex;
   @apply flex-col;
   @apply flex-nowrap;
-  @apply bg-white;
+  @apply bg-[#fff];
   @apply rounded-[20px];
   @apply max-w-[311px];
   @apply mx-auto;
@@ -44,50 +44,24 @@
 
   .progressBarContainer {
     @apply my-3;
-    height: 15px;
+    height: 6px;
 
     .progressTrack {
       @apply w-full;
       -webkit-appearance: none;
-      background-color: transparent;
-      cursor: pointer;
-
-      &::-webkit-slider-runnable-track,
-      &::-moz-range-track {
+      appearance: none;
+      background: transparent;
+      @apply rounded-xl;
+      
+      &::-webkit-progress-bar {
+        @apply rounded-xl;
         background-color: #989898;
         height: 6px;
-        border-radius: 4px;
       }
 
-      /* Chrome, Safari, Opera, and Edge */
-      &::-webkit-slider-thumb {
-        -webkit-appearance: none;
-      }
-
-      /* Firefox */
-      &::-moz-range-thumb {
-        border: none;
-      }
-
-      &::-webkit-slider-thumb,
-      &::-moz-range-thumb {
-        @apply bg-blue;
-        height: 10px;
-        width: 10px;
-        border-radius: 50%;
-        @apply border-blue;
-        border-width: 2px;
-        border-style: solid;
-      }
-
-      &:hover {
-        &::-webkit-slider-thumb,
-        &::-moz-range-thumb {
-          @apply bg-[#fff];
-          width: 13px;
-          height: 13px;
-          margin-left: -10px;
-        }
+      &::-webkit-progress-value {
+        @apply bg-black;
+        @apply rounded-xl;
       }
     }
   }
@@ -106,8 +80,14 @@
       -webkit-appearance: none;
       background-color: transparent;
       cursor: pointer;
+      --volume-level: 50%;
 
-      &::-webkit-slider-runnable-track,
+      &::-webkit-slider-runnable-track {
+        background: linear-gradient(to right, theme('colors.blue') var(--volume-level), theme('colors.blue' / 40%) var(--volume-level));
+        height: 6px;
+        border-radius: 4px;
+      }
+
       &::-moz-range-track {
         @apply bg-blue;
         height: 6px;
@@ -124,7 +104,17 @@
         border: none;
       }
 
-      &::-webkit-slider-thumb,
+      &::-webkit-slider-thumb {
+        @apply bg-blue;
+        height: 10px;
+        width: 10px;
+        border-radius: 50%;
+        @apply border-blue;
+        border-width: 2px;
+        border-style: solid;
+        margin-top: -2px;
+      }
+
       &::-moz-range-thumb {
         @apply bg-blue;
         height: 10px;
@@ -161,6 +151,9 @@
 
     .infoContainer {
       @apply w-full;
+      @apply flex;
+      @apply flex-col;
+      @apply justify-between;
 
       .trackName {
         @apply text-2xl;
