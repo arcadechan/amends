@@ -44,17 +44,6 @@ const AudioPlayer = (props: any): JSX.Element =>
     }
   }
 
-  // const toggleMute = (): void =>
-  // {
-  //   if(audio.volume > 0)
-  //   {
-  //     setStoredVolumeLevel(audio.volume)
-  //     audio.volume = 0.0
-  //   } else {
-  //     audio.volume = storedVolumeLevel
-  //   }
-  // }
-
   const handleVolume = (e: any, mute: boolean = false): void =>
   {
     if(!mute){
@@ -69,7 +58,7 @@ const AudioPlayer = (props: any): JSX.Element =>
       if(volumeRef?.current?.value)
       {
         const currentVolumeValue = parseInt(volumeRef.current.value)
-        console.log({currentVolumeValue});
+
         if(currentVolumeValue > 0)
         {
           // console.log('audio.volume', audio.volume)
@@ -79,7 +68,6 @@ const AudioPlayer = (props: any): JSX.Element =>
           volumeRef.current.style.setProperty('--volume-level', `0%`)
         } else {
           audio.volume = storedVolumeLevel
-          console.log({storedVolumeLevel});
           volumeRef.current.value = `${(storedVolumeLevel * 100)}%`
           volumeRef.current.style.setProperty('--volume-level', `${storedVolumeLevel * 100}%`)
         }
@@ -126,15 +114,17 @@ const AudioPlayer = (props: any): JSX.Element =>
       {!!props.audioPreviewUrl && (
         <>
           <div className={styles.audioPlayer}>
-            <div className={styles.imageContainer}>
-              <Image
-                src={props.albumArt}
-                alt={`Album cover for ${props.albumName} by ${props.artistName}`}
-                width={125}
-                height={125}
-              />  
-            </div>
-            <div className={styles.infoContainer}>
+            {props?.albumArt?.length && (
+              <div className={styles.imageContainer}>
+                <Image
+                  src={props.albumArt}
+                  alt={`Album cover for ${props.albumName} by ${props.artistName}`}
+                  width={125}
+                  height={125}
+                />
+              </div>
+            )}
+            <div className={props?.albumArt?.length ? styles.infoContainer : styles.infoContainerNoAlbum}>
               <h4 className={styles.trackName} title={props.trackName}>{props.trackName}</h4>
               <h5 className={styles.artistName} title={props.artistName}>{props.artistName}</h5>
               <div className={styles.progressBarContainer}>
@@ -201,13 +191,15 @@ const AudioPlayer = (props: any): JSX.Element =>
               </div>
             </div>
           </div>
-          <div className={styles.audioLinks}>
-              {props?.spotifyUrl && <StreamIcon href={props.spotifyUrl} serviceName='Spotify'/>}
-              {props?.youtubeUrl && <StreamIcon href={props.youtubeUrl} serviceName='Youtube Music'/>}
-              {props?.appleMusicUrl && <StreamIcon href={props.appleMusicUrl} serviceName='Apple Music'/>}
-              {props?.deezerUrl && <StreamIcon href={props.deezerUrl} serviceName='Deezer'/>}
-              {props?.bandcampUrl && <StreamIcon href={props.bandcampUrl} serviceName='Bandcamp'/>}
-              {props?.soundcloudUrl && <StreamIcon href={props.soundcloudUrl} serviceName='Soundcloud'/>}
+          <div className={styles.audioLinksContainer}>
+            <div className={styles.audioLinks}>
+                {props?.spotifyUrl && <StreamIcon href={props.spotifyUrl} serviceName='Spotify'/>}
+                {props?.youtubeUrl && <StreamIcon href={props.youtubeUrl} serviceName='Youtube Music'/>}
+                {props?.appleMusicUrl && <StreamIcon href={props.appleMusicUrl} serviceName='Apple Music'/>}
+                {props?.deezerUrl && <StreamIcon href={props.deezerUrl} serviceName='Deezer'/>}
+                {props?.bandcampUrl && <StreamIcon href={props.bandcampUrl} serviceName='Bandcamp'/>}
+                {props?.soundcloudUrl && <StreamIcon href={props.soundcloudUrl} serviceName='Soundcloud'/>}
+            </div>
           </div>
         </>
       )}
