@@ -125,8 +125,8 @@ const AudioPlayer = (props: any): JSX.Element =>
               </div>
             )}
             <div className={props?.albumArt?.length ? styles.infoContainer : styles.infoContainerNoAlbum}>
-              <h4 className={styles.trackName} title={props.trackName}>{props.trackName}</h4>
-              <h5 className={styles.artistName} title={props.artistName}>{props.artistName}</h5>
+              <h4 className={styles.trackName}>{props.trackName}</h4>
+              <h5 className={styles.artistName}>{props.artistName}</h5>
               <div className={styles.progressBarContainer}>
                 <progress
                   ref={progressRef}
@@ -178,7 +178,10 @@ const AudioPlayer = (props: any): JSX.Element =>
                     height={35}
                   />
                 </button>
+                <label htmlFor={`volume-control-${props.trackName.toLowerCase().split(' ').join('-')}`} className='sr-only'>Volume</label>
                 <input
+                  id={`volume-control-${props.trackName.toLowerCase().split(' ').join('-')}`}
+                  name={`volume-control-${props.trackName.toLowerCase().split(' ').join('-')}`}
                   ref={volumeRef}
                   className={styles.volume}
                   type='range'

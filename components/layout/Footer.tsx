@@ -10,12 +10,13 @@ interface footerProps {
 }
 
 interface SocialIconProps {
-    href: any;
-    title: string;
-    iconSrc: string;
+    href: any
+    alt: string
+    title: string
+    iconSrc: string
 }
 
-const SocialIcon = ({href = '', title = '', iconSrc = ''}: SocialIconProps): JSX.Element => {
+const SocialIcon = ({href = '', title = '', iconSrc = '', alt =''}: SocialIconProps): JSX.Element => {
     return (
         <Link
             href={href}
@@ -25,7 +26,7 @@ const SocialIcon = ({href = '', title = '', iconSrc = ''}: SocialIconProps): JSX
         >
             <Image
                 src={iconSrc}
-                alt=''
+                alt={alt}
                 width={27}
                 height={27}
             />
@@ -60,10 +61,10 @@ const Footer = ({ socialPlatforms } : footerProps): JSX.Element => {
             {socialPlatforms && Object.keys(socialPlatforms).length > 0 && (
                 <div id={styles.socialBar} className='flex justify-center flex-wrap my-5 rounded-3xl drop-shadow-sm'>
                     {socialPlatforms?.spotifyUrl && (
-                        <SocialIcon href={socialPlatforms.spotifyUrl} title="Arcade's Spotify" iconSrc='/icons/spotify.png'/>
+                        <SocialIcon href={socialPlatforms.spotifyUrl} title="Arcade's Spotify" iconSrc='/icons/spotify.png' alt="Go to Arcade's Spotify"/>
                     )}
                     {socialPlatforms?.githubUrl && (
-                        <SocialIcon href={socialPlatforms.githubUrl} title="Arcade's GitHub" iconSrc='/icons/github.png'/>
+                        <SocialIcon href={socialPlatforms.githubUrl} title="Arcade's GitHub" iconSrc='/icons/github.png' alt="Go to Arcade's Github"/>
                     )}
                 </div>
             )}
