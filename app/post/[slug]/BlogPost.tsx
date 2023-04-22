@@ -9,6 +9,13 @@ import { useTina } from 'tinacms/dist/react'
 import { TinaQueryResponse } from '../../../@types/tinacms-custom'
 import Link from 'next/link'
 import AudioPlayer from '../../../components/AudioPlayer'
+import { createContext, useState } from 'react'
+
+export const BlogPostContext = createContext({
+  playingTrack: '',
+  setPlayingTrack: (trackName: string) => {}
+})
+export const BlogPostProvider = BlogPostContext.Provider
 
 export default function BlogPost(props: TinaQueryResponse)
 {
@@ -39,6 +46,8 @@ export default function BlogPost(props: TinaQueryResponse)
     backUrl = `/posts/${backPage}`
   }
 
+  const [playingTrack, setPlayingTrack] = useState('')
+
   return (
     <div className={styles.blogPost}>
       <section className={styles.blogPostHero}>
@@ -62,9 +71,9 @@ export default function BlogPost(props: TinaQueryResponse)
       </section>
       <section className={styles.blogPostContent}>
         <h3 className={styles.blogPostPublishDate}>Published: {formattedDate}</h3>
-        <div>
+        <BlogPostProvider value={{ playingTrack, setPlayingTrack }}>
           <TinaMarkdown content={body} components={{ 'songEmbed': AudioPlayer }}/>
-        </div>
+        </BlogPostProvider>
         {backPage ? (
           <Link
             href={backUrl}

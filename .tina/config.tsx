@@ -16,10 +16,6 @@ const URLWithIconContainer = ({ serviceName, input } : { serviceName: string, in
   </div>
 )
 
-const test = () => {
-  console.log('wee coooking babeeeee');
-}
-
 const commonFields: any[] = [
   {
     label: 'Draft?',
