@@ -25,7 +25,6 @@ export default function Success()
         Success
       </motion.h1>
       <Lottie
-        id='test-lottie'
         className='w-72 h-72 mx-auto'
         animationData={successAnimation} loop={false}
       />
@@ -44,7 +43,7 @@ export default function Success()
       >
         <Link
           href='/'
-          className='inline-block bg-black text-yellow p-4 rounded-md'
+          className='inline-block bg-black text-yellow py-3 px-6 rounded-full font-inter text-base'
         >
           To home
         </Link>
