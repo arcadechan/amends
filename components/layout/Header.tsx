@@ -2,12 +2,11 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import styles from '../../styles/layout/Header.module.scss'
 import amendsLogo from '../../public/logo/logo-black.png'
 import accordionCollapsed from '../../public/accordion-collapsed.svg'
 import accordionClose from '../../public/accordion-close.svg'
-import { useEffect, useState, useRef, MutableRefObject } from 'react'
-import { motion, useAnimate } from 'framer-motion'
+import { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
 
 interface headerPropsI {
     navigationLinks: navigationLinksI[]|null
@@ -23,13 +22,13 @@ const Header = ({ navigationLinks } : headerPropsI): JSX.Element => {
     const [ menuIsOpen, setMenuIsOpen ] = useState(false);
     const [ closeAnimationComplete, setCloseAnimationComplete ] = useState(false)
     const [ isDesktop, setIsDesktop ] = useState(false)
-    const navRef: MutableRefObject<null | HTMLElement> = useRef(null)
 
     useEffect(() =>
     {
-        setIsDesktop(window.innerWidth >= 768)
+        const desktopInnerWidth = window.innerWidth >= 768
+        setIsDesktop(desktopInnerWidth)
 
-        if(isDesktop)
+        if(desktopInnerWidth)
         {
             if(!menuIsOpen)
             {
@@ -38,9 +37,10 @@ const Header = ({ navigationLinks } : headerPropsI): JSX.Element => {
         }
 
         const onResize = (): void => {
-            setIsDesktop(window.innerWidth >= 768)
+            const desktopInnerWidth = window.innerWidth >= 768
+            setIsDesktop(desktopInnerWidth)
 
-            if(isDesktop)
+            if(desktopInnerWidth)
             {
                 if(!menuIsOpen)
                 {
@@ -56,7 +56,7 @@ const Header = ({ navigationLinks } : headerPropsI): JSX.Element => {
         window.addEventListener('resize', onResize)
 
         return (): void => window.removeEventListener('resize', onResize)
-    }, [ menuIsOpen, isDesktop])
+    }, [isDesktop])
 
     const variants = {
         navMenuClosed: {
@@ -126,7 +126,6 @@ const Header = ({ navigationLinks } : headerPropsI): JSX.Element => {
                 </div>
                 <motion.nav
                     id='navMenu'
-                    ref={navRef}
                     className='bg-yellow w-full absolute left-1/2 -translate-x-1/2 z-10 md:pr-10 md:shadow-none md:flex md:relative md:top-0 md:left-0 md:translate-x-0 md:items-center md:justify-end'
                     aria-labelledby='nav-menu-accordion'
                     hidden={!menuIsOpen && closeAnimationComplete}
