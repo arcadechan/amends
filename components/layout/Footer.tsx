@@ -6,16 +6,23 @@ import styles from '../../styles/layout/Footer.module.scss'
 import amendsLogo from '../../public/logo/logo-black.png'
 
 interface footerProps {
-    socialPlatforms: any|null
+    socialPlatforms: any|null,
+    navigationLinks: navigationLinksI[]|null
+}
+
+interface navigationLinksI {
+    url: string
+    name: string
 }
 
 interface SocialIconProps {
-    href: any;
-    title: string;
-    iconSrc: string;
+    href: any
+    alt: string
+    title: string
+    iconSrc: string
 }
 
-const SocialIcon = ({href = '', title = '', iconSrc = ''}: SocialIconProps): JSX.Element => {
+const SocialIcon = ({href = '', title = '', iconSrc = '', alt =''}: SocialIconProps): JSX.Element => {
     return (
         <Link
             href={href}
@@ -25,7 +32,7 @@ const SocialIcon = ({href = '', title = '', iconSrc = ''}: SocialIconProps): JSX
         >
             <Image
                 src={iconSrc}
-                alt=''
+                alt={alt}
                 width={27}
                 height={27}
             />
@@ -33,7 +40,7 @@ const SocialIcon = ({href = '', title = '', iconSrc = ''}: SocialIconProps): JSX
     )
 }
 
-const Footer = ({ socialPlatforms } : footerProps): JSX.Element => {
+const Footer = ({ socialPlatforms, navigationLinks } : footerProps): JSX.Element => {
     const currentYear: number = new Date().getFullYear()
 
     return (    
@@ -52,6 +59,30 @@ const Footer = ({ socialPlatforms } : footerProps): JSX.Element => {
                     style={{ objectFit: 'contain' }}
                 />
             </Link>
+            {navigationLinks && navigationLinks.length && (
+                <ul className='list-none ml-0 mt-3 flex gap-5'>
+                    {navigationLinks.map((link: navigationLinksI, i: number) => (
+                        <li key={i}>
+                            <Link
+                                href={link.url}
+                                className='inline-block'
+                                prefetch={false}
+                            >
+                                {link.name}
+                            </Link>
+                        </li>
+                    ))}
+                    <li>
+                        <Link
+                            href='/credits'
+                            className='inline-block'
+                            prefetch={false}
+                        >
+                            Credits
+                        </Link>
+                    </li>
+                </ul>
+            )}
             <p style={{textAlign: 'center'}}>
                 <small>
                     Questions, comments, or concerns? <Link href='/contact'>Drop me a line by filling out the contact form.</Link>
@@ -60,10 +91,10 @@ const Footer = ({ socialPlatforms } : footerProps): JSX.Element => {
             {socialPlatforms && Object.keys(socialPlatforms).length > 0 && (
                 <div id={styles.socialBar} className='flex justify-center flex-wrap my-5 rounded-3xl drop-shadow-sm'>
                     {socialPlatforms?.spotifyUrl && (
-                        <SocialIcon href={socialPlatforms.spotifyUrl} title="Arcade's Spotify" iconSrc='/icons/spotify.png'/>
+                        <SocialIcon href={socialPlatforms.spotifyUrl} title="Arcade's Spotify" iconSrc='/icons/spotify.png' alt="Go to Arcade's Spotify"/>
                     )}
                     {socialPlatforms?.githubUrl && (
-                        <SocialIcon href={socialPlatforms.githubUrl} title="Arcade's GitHub" iconSrc='/icons/github.png'/>
+                        <SocialIcon href={socialPlatforms.githubUrl} title="Arcade's GitHub" iconSrc='/icons/github.png' alt="Go to Arcade's Github"/>
                     )}
                 </div>
             )}

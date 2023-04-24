@@ -27,9 +27,9 @@ const getBlogPost = cache(async (slug: string) =>
   const queryResponse = await client.queries.post({ relativePath: `${slug}.mdx` });
 
   return {
-    query: queryResponse?.query || null,
-    variables: queryResponse?.variables || null,
-    data: queryResponse?.data?.post || null
+    query: queryResponse.query,
+    variables: queryResponse.variables,
+    data: queryResponse.data
 }
 })
 
@@ -37,5 +37,5 @@ export default async function Page({ params }: BlogPostProps)
 {
   const post = await getBlogPost(params?.slug)
 
-  return <BlogPost componentProps={post.data}/>
+  return <BlogPost {...post}/>
 }

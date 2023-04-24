@@ -1,4 +1,5 @@
 import { Template } from 'tinacms'
+import { Exact, PostQuery, PostQueryVariables } from '../.tina/__generated__/types'
 
 declare type CustomTemplateField = {
     ui?: {
@@ -15,3 +16,9 @@ declare type CustomTemplate = {
 }
 
 export declare type CustomTemplateWithExtraFieldUI = Template & CustomTemplate
+
+export declare type TinaQueryResponse = {
+  data: PostQuery
+  variables: PostQueryVariables
+  query: string
+}

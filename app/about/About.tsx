@@ -40,6 +40,8 @@ export default function About()
         </ul>
         <p>
           <Link href='https://github.com/arcadechan/amends' target='_blank'>Or check out the repo at https://github.com/arcadechan/amends</Link>
+          <br/>
+          <Link href='/credits'>Visit the credits page</Link> to get more info on the various assets used throughout the site.
           <br/><br/>
           Thanks for stopping by!
         </p>

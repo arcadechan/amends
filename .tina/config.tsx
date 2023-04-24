@@ -5,7 +5,7 @@ import CardGridSchema from '../components/schemas/CardGridSchema'
 const URLWithIconContainer = ({ serviceName, input } : { serviceName: string, input: any}) : JSX.Element => (
   <div style={{ display: 'flex', alignItems: 'center' }}>
     <div style={{ display: 'flex', height: '100%', width: '50px', padding: '0 .5rem' }}>
-      <img src={`/icons/${serviceName}.png`} style={{ maxHeight: '30px', margin: '0 auto' }}/>
+      <img src={`/icons/${serviceName.toLowerCase().split(' ').join('-')}.png`} style={{ maxHeight: '30px', margin: '0 auto' }}/>
     </div>
     <input
       id={`${serviceName}Url`}
@@ -177,6 +177,10 @@ const schema: Schema = {
       path: 'content/posts',
       format: 'mdx',
       ui: {
+        router: ({ document }) => {
+          // navigate to the post that was clicked
+          return `/post/${document._sys.filename}`
+        },
         /**
          * Commenting this code out for this in the meantime as there
          * are no longer plans to launch with post categories
@@ -224,6 +228,26 @@ const schema: Schema = {
               label: 'Song Embed',
               fields: [
                 {
+                  label: 'Artist Name',
+                  name: 'artistName',
+                  type: 'string'
+                },
+                {
+                  label: 'Track Name',
+                  name: 'trackName',
+                  type: 'string'
+                },
+                {
+                  label: 'Album Name',
+                  name: 'albumName',
+                  type: 'string'
+                },
+                {
+                  label: 'Album Art',
+                  name: 'albumArt',
+                  type: 'image'
+                },
+                {
                   label: 'Audio Preview URL',
                   name: 'audioPreviewUrl',
                   type: 'string'
@@ -234,7 +258,7 @@ const schema: Schema = {
                   type: 'string',
                   ui: {
                     component: wrapFieldsWithMeta(({field, input, meta, ...props}): JSX.Element => {
-                      return <URLWithIconContainer serviceName='spotify' input={input}/>
+                      return <URLWithIconContainer serviceName='Spotify' input={input}/>
                     })
                   }
                 },
@@ -244,7 +268,7 @@ const schema: Schema = {
                   type: 'string',
                   ui: {
                     component: wrapFieldsWithMeta(({field, input, meta, ...props}): JSX.Element => {
-                      return <URLWithIconContainer serviceName='youtubeMusic' input={input}/>
+                      return <URLWithIconContainer serviceName='Youtube Music' input={input}/>
                     })
                   }
                 },
@@ -254,7 +278,7 @@ const schema: Schema = {
                   type: 'string',
                   ui: {
                     component: wrapFieldsWithMeta(({field, input, meta, ...props}): JSX.Element => {
-                      return <URLWithIconContainer serviceName='appleMusic' input={input}/>
+                      return <URLWithIconContainer serviceName='Apple Music' input={input}/>
                     })
                   }
                 },
@@ -264,7 +288,7 @@ const schema: Schema = {
                   type: 'string',
                   ui: {
                     component: wrapFieldsWithMeta(({field, input, meta, ...props}): JSX.Element => {
-                      return <URLWithIconContainer serviceName='deezer' input={input}/>
+                      return <URLWithIconContainer serviceName='Deezer' input={input}/>
                     })
                   }
                 },
@@ -274,7 +298,7 @@ const schema: Schema = {
                   type: 'string',
                   ui: {
                     component: wrapFieldsWithMeta(({field, input, meta, ...props}): JSX.Element => {
-                      return <URLWithIconContainer serviceName='bandcamp' input={input}/>
+                      return <URLWithIconContainer serviceName='Bandcamp' input={input}/>
                     })
                   }
                 },

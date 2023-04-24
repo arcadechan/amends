@@ -3,12 +3,28 @@
 import styles from '../../../styles/pages/BlogPost.module.scss'
 import { LineBreak, PinkyPromise } from '../../../components'
 import Image from 'next/image'
-import { PostQuery } from '../../../.tina/__generated__/types'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
+import { useTina } from 'tinacms/dist/react'
+import { TinaQueryResponse } from '../../../@types/tinacms-custom'
+import Link from 'next/link'
+import AudioPlayer from '../../../components/AudioPlayer'
+import { createContext, useState } from 'react'
 
-export default function BlogPost({ componentProps }: { componentProps: PostQuery['post'] })
+export const BlogPostContext = createContext({
+  playingTrack: '',
+  setPlayingTrack: (trackName: string) => {}
+})
+export const BlogPostProvider = BlogPostContext.Provider
+
+export default function BlogPost(props: TinaQueryResponse)
 {
+  const { data } = useTina({
+    query: props.query,
+    variables: props.variables,
+    data: props.data
+  })
+
   const {
     publishDate,
     heroImage,
@@ -16,41 +32,64 @@ export default function BlogPost({ componentProps }: { componentProps: PostQuery
     title,
     subTitle,
     body
-  } = componentProps
+  } = data.post
 
   const formattedDate = new Date(publishDate).toLocaleString('default', { dateStyle: 'long' })
-
+  const searchParams = useSearchParams()
   const router = useRouter()
+
+  let backUrl = '/posts'
+  let backPage = searchParams?.get('back')
+
+  if(backPage)
+  {
+    backUrl = `/posts/${backPage}`
+  }
+
+  const [playingTrack, setPlayingTrack] = useState('')
 
   return (
     <div className={styles.blogPost}>
       <section className={styles.blogPostHero}>
         {heroImage && (
-          <Image
-            src={ heroImage }
-            width={500}
-            height={500}
-            alt=''
-            className={styles.blogPostImage}
-            blurDataURL={imageBlurDataURL || undefined}
-          />
+          <div className={styles.blogPostImageContainer}>
+            <Image
+              className={styles.blogPostImage}
+              src={heroImage}
+              alt=''
+              height={460}
+              width={985}
+              blurDataURL={imageBlurDataURL || undefined}
+            />
+          </div>
         )}
         <div className={styles.blogPostInfo}>
-          <h1 className={styles.blogPostTitle}>{title} there! Welcome to the very first post!</h1>
+          <h1 className={styles.blogPostTitle}>{title}</h1>
           {subTitle && <h2 className={styles.blogPostSubtitle}>{subTitle}</h2>}
-          <h3 className={styles.blogPostPublishDate}>{formattedDate}</h3>
         </div>
         <LineBreak className={styles.blogPostLineBreak}/>
       </section>
       <section className={styles.blogPostContent}>
-        <TinaMarkdown content={body}/>
-        <button
-          type='button'
-          onClick={() => router.back()}
-          className={styles.blogPostBackButton}
-        >
-          &larr; Back to Posts
-        </button>
+        <h3 className={styles.blogPostPublishDate}>Published: {formattedDate}</h3>
+        <BlogPostProvider value={{ playingTrack, setPlayingTrack }}>
+          <TinaMarkdown content={body} components={{ 'songEmbed': AudioPlayer }}/>
+        </BlogPostProvider>
+        {backPage ? (
+          <Link
+            href={backUrl}
+            className={styles.blogPostBackButton}
+          >
+            &larr; Back to Posts
+          </Link>
+        ) : (
+          <button
+            type='button'
+            className={styles.blogPostBackButton}
+            onClick={() => router.back()}
+          >
+            &larr; Back to Posts
+          </button>
+        )}
       </section>
       <PinkyPromise/>
     </div>

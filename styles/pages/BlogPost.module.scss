@@ -4,17 +4,25 @@
     @apply text-center;
     @apply relative;
 
-    .blogPostImage {
-      @apply mx-auto;
-      @apply pt-10;
-      @apply px-12;
-      max-height: 500px;
-      object-fit: contain;
+    .blogPostImageContainer {
+        @apply pt-10;
+        @apply px-12;
+        object-fit: cover;
+        width: auto;
+
+      .blogPostImage {
+        @apply mx-auto;
+        @apply rounded-[20px];
+        @apply w-auto;
+        max-height: 500px;
+      }
     }
 
     .blogPostInfo {
-      margin-top: 45px;
+      @apply mt-[45px];
       @apply px-12;
+      @apply max-w-5xl;
+      @apply mx-auto;
 
       .blogPostTitle,
       .blogPostSubtitle {
@@ -32,16 +40,14 @@
       }
 
       .blogPostSubtitle {
+        @apply mt-3;
         @apply text-2xl;
+        @apply italic;
+        -webkit-text-stroke: 1px $white;
 
         @screen lg {
-          @apply text-5xl;
+          @apply text-4xl;
         }
-      }
-
-      .blogPostPublishDate {
-        @apply italic;
-        @apply mt-3;
       }
     }
 
@@ -51,18 +57,31 @@
   }
 
   .blogPostContent {
-    @apply px-12;
+    @apply px-4;
     @apply py-4;
-    @apply max-w-screen-2xl;
+    @apply max-w-5xl;
     @apply mx-auto;
     @apply mb-8;
     @apply font-inter;
+
+    @screen md {
+      @apply px-12;
+    }
+
+    .blogPostPublishDate {
+      @apply italic;
+      @apply mt-3;
+      @apply text-center;
+      @apply text-sm;
+    }
   }
 
   .blogPostBackButton {
     @apply text-blue;
     @apply block;
+    @apply text-center;
     @apply mx-auto;
+    @apply mt-5;
 
     &:hover {
       @apply underline;

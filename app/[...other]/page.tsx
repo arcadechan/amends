@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import { redirect } from 'next/navigation';
 
 export const dynamic = 'force-static'
 export const metadata = {
@@ -6,6 +7,13 @@ export const metadata = {
   description: 'Uh oh. There\'s nothing here. Was there supposed to be?'
 }
 
-export default function NotFoundCatchAll() {
+export default function NotFoundCatchAll(props: any) {
+
+  // Redirect /posts to /posts/1
+  if(props.params.other.length === 1 && props.params.other[0] === 'posts')
+  {
+    redirect('/posts/1')
+  }
+
   notFound()
 }
