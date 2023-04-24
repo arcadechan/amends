@@ -6,7 +6,13 @@ import styles from '../../styles/layout/Footer.module.scss'
 import amendsLogo from '../../public/logo/logo-black.png'
 
 interface footerProps {
-    socialPlatforms: any|null
+    socialPlatforms: any|null,
+    navigationLinks: navigationLinksI[]|null
+}
+
+interface navigationLinksI {
+    url: string
+    name: string
 }
 
 interface SocialIconProps {
@@ -34,7 +40,7 @@ const SocialIcon = ({href = '', title = '', iconSrc = '', alt =''}: SocialIconPr
     )
 }
 
-const Footer = ({ socialPlatforms } : footerProps): JSX.Element => {
+const Footer = ({ socialPlatforms, navigationLinks } : footerProps): JSX.Element => {
     const currentYear: number = new Date().getFullYear()
 
     return (    
@@ -53,6 +59,30 @@ const Footer = ({ socialPlatforms } : footerProps): JSX.Element => {
                     style={{ objectFit: 'contain' }}
                 />
             </Link>
+            {navigationLinks && navigationLinks.length && (
+                <ul className='list-none ml-0 mt-3 flex gap-5'>
+                    {navigationLinks.map((link: navigationLinksI, i: number) => (
+                        <li key={i}>
+                            <Link
+                                href={link.url}
+                                className='inline-block'
+                                prefetch={false}
+                            >
+                                {link.name}
+                            </Link>
+                        </li>
+                    ))}
+                    <li>
+                        <Link
+                            href='/credits'
+                            className='inline-block'
+                            prefetch={false}
+                        >
+                            Credits
+                        </Link>
+                    </li>
+                </ul>
+            )}
             <p style={{textAlign: 'center'}}>
                 <small>
                     Questions, comments, or concerns? <Link href='/contact'>Drop me a line by filling out the contact form.</Link>

@@ -15,7 +15,7 @@ const Layout = ({ children, siteMeta, className = '' } : layoutPropsI): JSX.Elem
         <body className={className}>
             <Header navigationLinks={navigationLinks}/>
             <Main>{children}</Main>
-            <Footer socialPlatforms={socialPlatforms}/>
+            <Footer navigationLinks={navigationLinks} socialPlatforms={socialPlatforms}/>
         </body>
     )
 }
