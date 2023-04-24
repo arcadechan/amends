@@ -35,7 +35,6 @@ const AudioPlayer = (props: any): JSX.Element =>
   const [storedVolumeLevel, setStoredVolumeLevel] = useState(50)
   const progressRef: MutableRefObject<HTMLProgressElement| null> = useRef(null)
   const volumeRef: MutableRefObject<HTMLInputElement | null> = useRef(null)
-
   const {playingTrack, setPlayingTrack} = useContext(BlogPostContext)
   
   const restart = (): void =>
@@ -94,7 +93,7 @@ const AudioPlayer = (props: any): JSX.Element =>
         audio.pause();
       }
     }
-  }, [isPlaying, audio, restart])
+  }, [isPlaying, audio, playingTrack, props.trackName])
 
   useEffect(() => {
     const updateProgress = (e: any) => {
@@ -124,7 +123,7 @@ const AudioPlayer = (props: any): JSX.Element =>
         audio?.removeEventListener('ended', onEnded)
       }
     }
-  }, [isPlaying, audio, restart])
+  }, [isPlaying, audio])
 
   return (
     <BlogPostContext.Consumer>
