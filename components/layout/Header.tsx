@@ -3,9 +3,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import amendsLogo from '../../public/logo/logo-black.png'
-import accordionCollapsed from '../../public/accordion-collapsed.svg'
-import accordionClose from '../../public/accordion-close.svg'
-import { useEffect, useState } from 'react'
+import hamburgerMenu from '../../public/animations/hamburger-menu.json'
+import Lottie, { LottieRefCurrentProps } from 'lottie-react'
+import { MutableRefObject, useEffect, useState, useRef } from 'react'
 import { motion } from 'framer-motion'
 
 interface headerPropsI {
@@ -22,9 +22,11 @@ const Header = ({ navigationLinks } : headerPropsI): JSX.Element => {
     const [ menuIsOpen, setMenuIsOpen ] = useState(false);
     const [ closeAnimationComplete, setCloseAnimationComplete ] = useState(false)
     const [ isDesktop, setIsDesktop ] = useState(false)
+    const menuRef: MutableRefObject<LottieRefCurrentProps | null> = useRef(null)
 
     useEffect(() =>
-    {
+    {   
+        menuRef.current?.setSpeed(1.5)
         const desktopInnerWidth = window.innerWidth >= 768
         setIsDesktop(desktopInnerWidth)
 
@@ -55,8 +57,10 @@ const Header = ({ navigationLinks } : headerPropsI): JSX.Element => {
         
         window.addEventListener('resize', onResize)
 
-        return (): void => window.removeEventListener('resize', onResize)
-    }, [isDesktop])
+        return (): void => {
+            window.removeEventListener('resize', onResize)
+        }
+    }, [menuIsOpen, isDesktop])
 
     const variants = {
         navMenuClosed: {
@@ -109,17 +113,23 @@ const Header = ({ navigationLinks } : headerPropsI): JSX.Element => {
                     {navigationLinks && (
                         <button
                             id='nav-menu-accordion'
-                            className='d-block md:hidden flex items-center p-4'
+                            className='d-block md:hidden flex items-center p-2'
                             aria-expanded={menuIsOpen}
                             aria-controls='navMenu'
                             aria-label={menuIsOpen ? 'Close menu' : 'Open menu'}
-                            onClick={() => setMenuIsOpen(!menuIsOpen)}
+                            onClick={() => {
+                                setMenuIsOpen(!menuIsOpen)
+                                menuRef.current?.setDirection( menuIsOpen ? -1 : 1 )
+                                menuRef.current?.play()
+                            }}
                         >
-                            <Image
-                                src={menuIsOpen ? accordionClose : accordionCollapsed}
-                                alt=''
-                                width={25}
-                                aria-hidden='true'
+                            <Lottie
+                                lottieRef={menuRef}
+                                style={{ width: '55px', height: '55px' }}
+                                autoplay={false}
+                                loop={false}
+                                initialSegment={[0, 70]}
+                                animationData={hamburgerMenu}
                             />
                         </button>
                     )}
