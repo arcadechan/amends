@@ -2,20 +2,16 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
+import { navigationLink } from '../../@types/amends'
 import styles from '../../styles/layout/Footer.module.scss'
 import amendsLogo from '../../public/logo/logo-black.png'
 
-interface footerProps {
-    socialPlatforms: any|null,
-    navigationLinks: navigationLinksI[]|null
+type footerProps = {
+    socialPlatforms: any | null,
+    navigationLinks: navigationLink[] | null
 }
 
-interface navigationLinksI {
-    url: string
-    name: string
-}
-
-interface SocialIconProps {
+type SocialIconProps = {
     href: any
     alt: string
     title: string
@@ -61,7 +57,7 @@ const Footer = ({ socialPlatforms, navigationLinks } : footerProps): JSX.Element
             </Link>
             {navigationLinks && navigationLinks.length && (
                 <ul className='list-none ml-0 mt-3 flex gap-5'>
-                    {navigationLinks.map((link: navigationLinksI, i: number) => (
+                    {navigationLinks.map((link: navigationLink, i: number) => (
                         <li key={i}>
                             <Link
                                 href={link.url}

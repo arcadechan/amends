@@ -1,180 +1,184 @@
 'use client'
 
-import Image from 'next/image';
-import Link from 'next/link';
+import Image from "next/image"
+import Link from "next/link"
+import dynamic from "next/dynamic"
+import { useState, useEffect } from "react"
 import amendsLogo from '../../public/logo/logo-black.png'
-import hamburgerMenu from '../../public/animations/hamburger-menu.json'
-import Lottie, { LottieRefCurrentProps } from 'lottie-react'
-import { MutableRefObject, useEffect, useState, useRef } from 'react'
-import { motion } from 'framer-motion'
+import { navigationLink } from "../../@types/amends"
+import { motion, AnimatePresence } from 'framer-motion'
 
-interface headerPropsI {
-    navigationLinks: navigationLinksI[]|null
+type HeaderProps = {
+  navigationLinks: navigationLink[] | null
 }
 
-interface navigationLinksI {
-    url: string
-    name: string
-}
+const DynamicHamburger = dynamic(() => import('../HamburgerMenu'), {
+  ssr: false,
+  loading: () => (
+    <div className='block md:hidden p-2'>
+      <Image
+        src='/icons/hamburger-menu-static.svg'
+        alt=''
+        width={55}
+        height={55}
+      />
+    </div>
+  )
+})
 
-const Header = ({ navigationLinks } : headerPropsI): JSX.Element => {
+const HeaderV2 = ({ navigationLinks }: HeaderProps): JSX.Element => {
+  const [menuIsOpen, setMenuIsOpen] = useState(false)
+  const [isDesktop, setIsDesktop] = useState(false)
 
-    const [ menuIsOpen, setMenuIsOpen ] = useState(false);
-    const [ closeAnimationComplete, setCloseAnimationComplete ] = useState(false)
-    const [ isDesktop, setIsDesktop ] = useState(false)
-    const menuRef: MutableRefObject<LottieRefCurrentProps | null> = useRef(null)
+  const variants = {
+    navMenuClosed: {
+      top: '-100%',
+      boxShadow: '0 0 0 0 rgb(0, 0, 0, 0), 0 0px 0px 0px rgb(0, 0, 0, 0)',
+      transition: {
+        type: 'tween',
+        ease: 'easeInOut',
+        duration: .4
+      },
+      transitionEnd: {
+        display: 'none',
+      }
+    },
+    navMenuOpen: {
+      top: '75px',
+      boxShadow: '0 20px 25px -5px rgb(0, 0, 0, .1), 0 8px 10px -6px rgb(0, 0, 0, .1)',
+      transition: {
+        type: 'tween',
+        ease: 'easeInOut',
+        duration: .4,
+        staggerChildren: .08,
+        delayChildren: .15,
+        staggerDirection: -1
+      },
+      transitionEnd: {
+        display: 'block',
+      }
+    }
+  }
 
-    useEffect(() =>
-    {   
-        menuRef.current?.setSpeed(1.5)
-        const desktopInnerWidth = window.innerWidth >= 768
-        setIsDesktop(desktopInnerWidth)
 
-        if(desktopInnerWidth)
-        {
-            if(!menuIsOpen)
-            {
-                setMenuIsOpen(true)
-            }
-        }
+  useEffect(() => {
+    const handleResize = async () => {
 
-        const onResize = (): void => {
-            const desktopInnerWidth = window.innerWidth >= 768
-            setIsDesktop(desktopInnerWidth)
-
-            if(desktopInnerWidth)
-            {
-                if(!menuIsOpen)
-                {
-                    setMenuIsOpen(true)
-                }
-            }
-            else
-            {
-                setMenuIsOpen(false)
-            }
-        }
-        
-        window.addEventListener('resize', onResize)
-
-        return (): void => {
-            window.removeEventListener('resize', onResize)
-        }
-    }, [menuIsOpen, isDesktop])
-
-    const variants = {
-        navMenuClosed: {
-            top: isDesktop ? '0px' : '-100%',
-            display: isDesktop ? 'flex' : 'block',
-            boxShadow: '0 0 0 0 rgb(0, 0, 0, 0), 0 0px 0px 0px rgb(0, 0, 0, 0)',
-            transition: {
-                duration: isDesktop ? 0 : .35,
-            },
-            transitionEnd: {
-                display: 'none',
-            }
-        },
-        navMenuOpen: {
-            top: isDesktop ? '0px' : '75px',
-            display: isDesktop ? 'flex' : 'block',
-            boxShadow: isDesktop ? '0 0 0 0 rgb(0, 0, 0, 0), 0 0px 0px 0px rgb(0, 0, 0, 0)' : '0 20px 25px -5px rgb(0, 0, 0, .1), 0 8px 10px -6px rgb(0, 0, 0, .1)',
-            transition: {
-                type: 'tween',
-                ease: 'easeInOut',
-                duration: isDesktop ? 0 : .35,
-                staggerChildren: isDesktop ? 0 : .08,
-                delayChildren: isDesktop ? 0 : .15,
-                staggerDirection: isDesktop ? 1 : -1
-            },
-            transitionEnd: {
-                display: isDesktop ? 'flex' : 'block'
-            }
-        }
+      if(window.innerWidth >= 768) {
+        setIsDesktop(true)
+      }
+      else {
+        setIsDesktop(false)
+      }
     }
 
-    return (
-        <header className='h-[75px] sticky top-0 z-50 bg-yellow'>
-            <div className='max-w-screen-2xl m-auto w-full h-full md:flex justify-between items-center'>
-                <div className='flex items-center justify-between px-12 py-l z-20 w-full h-full relative md:w-auto'>
-                    <Link 
-                        href='/'
-                        className='h-[30px] w-[150px] relative'
-                        aria-label='Amends Logo. Link to home'
-                        onClick={() => setMenuIsOpen(false)}
-                    >
-                        <Image
-                            src={amendsLogo}
-                            alt='Amends home'
-                            fill
-                            sizes='25vw'
-                            style={{ objectFit: 'contain' }}
-                        />
-                    </Link>
-                    {navigationLinks && (
-                        <button
-                            id='nav-menu-accordion'
-                            className='d-block md:hidden flex items-center p-2'
-                            aria-expanded={menuIsOpen}
-                            aria-controls='navMenu'
-                            aria-label={menuIsOpen ? 'Close menu' : 'Open menu'}
-                            onClick={() => {
-                                setMenuIsOpen(!menuIsOpen)
-                                menuRef.current?.setDirection( menuIsOpen ? -1 : 1 )
-                                menuRef.current?.play()
-                            }}
-                        >
-                            <Lottie
-                                lottieRef={menuRef}
-                                style={{ width: '55px', height: '55px' }}
-                                autoplay={false}
-                                loop={false}
-                                initialSegment={[0, 70]}
-                                animationData={hamburgerMenu}
-                            />
-                        </button>
-                    )}
-                </div>
-                <motion.nav
-                    id='navMenu'
-                    className='bg-yellow w-full absolute left-1/2 -translate-x-1/2 z-10 md:pr-10 md:shadow-none md:flex md:relative md:top-0 md:left-0 md:translate-x-0 md:items-center md:justify-end'
-                    aria-labelledby='nav-menu-accordion'
-                    hidden={!menuIsOpen && closeAnimationComplete}
-                    initial={false}
-                    animate={ menuIsOpen ? 'navMenuOpen' : 'navMenuClosed'}
-                    variants={variants}
-                    onAnimationStart={(e) => {e === 'navMenuOpen' && setCloseAnimationComplete(false) }}
-                    onAnimationComplete={(e) => {
-                        if(e === 'navMenuOpen') setCloseAnimationComplete(false)
-                        if(e === 'navMenuClosed') setCloseAnimationComplete(true)
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [isDesktop])
+
+  useEffect(() => {
+    const desktopWidth = window.innerWidth >= 768
+
+    if(desktopWidth) {
+      setIsDesktop(true)
+    } else {
+      setIsDesktop(false)
+    }
+
+  }, [isDesktop])
+
+  return (
+    <header
+      className='bg-yellow h-[75px] sticky top-0 z-[999]'
+      onBlur={e => {
+        if(!e.currentTarget.contains(e.relatedTarget) && menuIsOpen) {
+          setMenuIsOpen(false)
+        }
+      }}
+    >
+      <div className='max-w-screen-2xl m-auto w-full h-full md:flex justify-between items-center'>
+        <div className='bg-yellow flex items-center justify-between px-12 py-1 w-full h-full relative md:w-auto z-[999]'>
+          <Link
+            href='/'
+            id='amends-logo'
+            className='h-[30px] w-[150px] relative'
+            aria-label='Link to home'
+          >
+            <Image
+              src={amendsLogo}
+              alt='Amends Logo'
+              fill
+              sizes='25vw'
+              style={{ objectFit: 'contain' }}
+            />
+          </Link>
+          <DynamicHamburger
+            menuIsOpen={menuIsOpen}
+            setMenuIsOpen={setMenuIsOpen}
+          />
+        </div>
+        {isDesktop ? (
+          <motion.div
+            id='navMenu'
+            className='bg-yellow w-full pr-10 shadow-none flex relative top-0 left-0 items-center justify-end'
+            aria-labelledby='navMenuAccordion'
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, transition: { duration: 0.3 } }}
+          >
+            <ul className='list-none ml-0 flex'>
+              {navigationLinks && navigationLinks.map((link: any, i: number) => (
+                <li key={i} >
+                  <Link
+                    href={link.url || ''}
+                    className='font-inter font-bold uppercase text-black my-2 text-center hover:underline hover:underline-offset-[3px] hover:decoration-2 inline-block p-3 ml-4'
+                  >
+                    {link.name || ''}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        ) : (
+          <AnimatePresence initial={false}>
+            <motion.div
+              id='navMenu'
+              className='bg-yellow w-full absolute left-1/2 -translate-x-1/2 z-[998]'
+              aria-labelledby='navMenuAccordion'
+              animate={menuIsOpen ? 'navMenuOpen' : 'navMenuClosed'}
+              variants={variants}
+            >
+              <ul className='list-none ml-0'>
+                {navigationLinks && navigationLinks.map((link: any, i: number) => (
+                  <motion.li
+                    key={i}
+                    variants={{
+                      navMenuClosed: {
+                        opacity: 0
+                      },
+                      navMenuOpen: {
+                        opacity: 1
+                      }
                     }}
-                >
-                    <ul className='list-none ml-0 md:flex'>
-                        {navigationLinks && navigationLinks.map(link => (                    
-                            <motion.li
-                                key={link.name}
-                                variants={{
-                                    navMenuClosed: {
-                                        opacity: 0
-                                    },
-                                    navMenuOpen: {
-                                        opacity: 1
-                                    }
-                                }}
-                            >
-                                <Link
-                                    href={link.url || ''}
-                                    className='font-inter font-bold uppercase text-black block p-3 my-2 text-center hover:underline hover:underline-offset-[3px] hover:decoration-2 md:inline-block md:p-3 md:ml-4'
-                                    onClick={() => setMenuIsOpen(false)}
-                                >
-                                    {link.name || ''}
-                                </Link>
-                            </motion.li>
-                        ))}
-                    </ul>
-                </motion.nav>
-            </div>
-        </header>
-    )
+                  >
+                    <Link
+                      href={link.url || ''}
+                      className='font-inter font-bold uppercase text-black block p-3 my-2 text-center hover:underline hover:underline-offset-[3px] hover:decoration-2'
+                    >
+                      {link.name || ''}
+                    </Link>
+                  </motion.li>
+                ))}
+              </ul>
+            </motion.div>
+          </AnimatePresence>
+        )}
+
+      </div>
+    </header>
+  )
 }
 
-export default Header;
+export default HeaderV2
