@@ -1,90 +1,14 @@
-.blogPost {
-  .blogPostHero {
-    @apply bg-yellow;
-    @apply text-center;
-    @apply relative;
+.blogPostTitle {
+  -webkit-text-stroke: 2px theme('colors.white');
+  text-stroke: 2px theme('colors.white');
 
-    .blogPostImageContainer {
-        @apply pt-10;
-        @apply px-12;
-        object-fit: cover;
-        width: auto;
-
-      .blogPostImage {
-        @apply mx-auto;
-        @apply rounded-[20px];
-        @apply w-auto;
-        max-height: 500px;
-      }
-    }
-
-    .blogPostInfo {
-      @apply mt-[45px];
-      @apply px-12;
-      @apply max-w-5xl;
-      @apply mx-auto;
-
-      .blogPostTitle,
-      .blogPostSubtitle {
-        @apply font-candy;
-      }
-
-      .blogPostTitle {
-        @apply text-4xl;
-        -webkit-text-stroke: 2px $white;
-
-        @screen lg {
-          @apply text-6xl;
-          -webkit-text-stroke: 3px $white;
-        }
-      }
-
-      .blogPostSubtitle {
-        @apply mt-3;
-        @apply text-2xl;
-        @apply italic;
-        -webkit-text-stroke: 1px $white;
-
-        @screen lg {
-          @apply text-4xl;
-        }
-      }
-    }
-
-    .blogPostLineBreak {
-      margin: 1rem 0;
-    }
+  @screen lg {
+    -webkit-text-stroke: 3px theme('colors.white');
+    text-stroke: 3px theme('colors.white');
   }
+}
 
-  .blogPostContent {
-    @apply px-4;
-    @apply py-4;
-    @apply max-w-5xl;
-    @apply mx-auto;
-    @apply mb-8;
-    @apply font-inter;
-
-    @screen md {
-      @apply px-12;
-    }
-
-    .blogPostPublishDate {
-      @apply italic;
-      @apply mt-3;
-      @apply text-center;
-      @apply text-sm;
-    }
-  }
-
-  .blogPostBackButton {
-    @apply text-blue;
-    @apply block;
-    @apply text-center;
-    @apply mx-auto;
-    @apply mt-5;
-
-    &:hover {
-      @apply underline;
-    }
-  }
+.blogPostSubtitle {
+  -webkit-text-stroke: 1px theme('colors.white');
+  text-stroke: 1px theme('colors.white');
 }

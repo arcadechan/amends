@@ -35,21 +35,21 @@ const CardImage = ({ cardImage }: any): JSX.Element =>
   if(cardImage)
   {
     return (
-      <div className={styles.postImageContainer}>
+      <div className='absolute h-full w-full z-0'>
         <Image
+          className='rounded-[20px]'
           src={cardImage}
           alt=''
           fill
           style={{ objectFit: 'cover' }}
           sizes='100vw, (min-width: 768px) 50vw'
-          className={styles.postImage}
         />
       </div>
     )
   }
   else
   {
-    return <div className={styles.postNoImage}></div>
+    return <div className='h-full w-full absolute bg-[#808080] left-0 top-0 z-0 rounded-[20px]'></div>
   }
 }
 
@@ -68,50 +68,68 @@ const BlogPostList = ({ componentProps, params }: { componentProps: GetPostsQuer
   const posts = componentProps.edges ? componentProps.edges.map(post => post?.node) : []
 
   return (
-    <section className={styles.postList}>
-      {posts?.length > 0 && posts.map((post: any, i: number) => {
-        return (
-          <article className={`${styles.post} ${ post?.heroImage ? styles.postHasImage : styles.postHasNoImage }`} key={i}>
-            <Link
-              href={getCardUrl(post, params?.pageNumber)}
-              aria-label={getAriaLabel(post)}
-              className={styles.postAnchor}
-            >
-              <CardImage cardImage={post?.heroImage}/>
-              <div className={styles.postTextLabels}>
-                {post?.title && <h2 className={styles.postTitle} aria-hidden>{post?.title}</h2>}
-                {post?.subTitle && <h3 className={styles.postSubtitle} aria-hidden>{post?.subTitle}</h3>}
-              </div>
-            </Link>
-          </article>
-        )
-      })}
-      {(posts.length > 0) && pageInfo && (
-        <div className={styles.pagination}>
-          {(params?.pageNumber && params.pageNumber !== '1') && (
-            <Link
-              className={styles.newerPostsLink}
-              href={`/posts/${ parseInt(params?.pageNumber) - 1 }`}
-              prefetch={false}
-            >
-              &larr; Newer Posts
-            </Link>
-          )}
-          {params && componentProps?.pageInfo?.hasPreviousPage && (
-            <Link
-              className={styles.olderPostsLink}
-              href={`/posts/${ params?.pageNumber && params.pageNumber !== '1' ? (parseInt(params.pageNumber) + 1) : 2 }`}
-              prefetch={false}
-            >
-              Older Posts &rarr;
-            </Link>
-          )}
-        </div>
-      )}
-      {!(posts.length > 0) && (
+    <section className='px-12 pt-12 pb-4 max-w-screen-lg mx-auto grid gap-8'>
+      {posts.length > 0 ? (
         <>
-          <h1 className={styles.noPosts}>No posts found!</h1>
-          <Link href='/' className={styles.noPostHomeLink}>Back to home</Link>
+          {/* MAP POSTS */}
+          {posts.map((post: any, i: number) => (
+              <article
+                key={i}
+                className={`relative rounded-[20px] ${ post?.heroImage ? 'min-h-[300px] lg:min-h-[400px]' : 'min-h-[200px]' }`}
+              >
+                <Link
+                  href={getCardUrl(post, params?.pageNumber)}
+                  aria-label={getAriaLabel(post)}
+                  className='group block h-full rounded-[20px] focus:outline focus:outline-[5px] focus:outline-offset-[-1px] outline-black'
+                >
+                  <CardImage cardImage={post?.heroImage}/>
+                  <div className={
+                    `flex flex-col justify-end p-6 absolute bottom-0 left-0 z-0 w-full text-[#fff] bg-gradient-to-r from-black rounded-b-[20px] ${!post?.heroImage ? 'h-full rounded-t-[20px]' : ''}`
+                  }>
+                    {post?.title && (
+                      <h2
+                        className='font-inter text-2xl font-bold group-hover:underline group-focus:underline'
+                        aria-hidden
+                      >
+                        {post?.title}
+                      </h2>
+                    )}
+                    {post?.subTitle && (
+                      <h3 className='font-inter text-lg italic group-hover:underline group-focus:underline' aria-hidden>{post?.subTitle}</h3>
+                    )}
+                  </div>
+                </Link>
+              </article>
+          ))}
+
+          {/* PAGINATION */}
+          {pageInfo && (
+              <div className='flex justify-center my-3'>
+                {(params?.pageNumber && params.pageNumber !== '1') && (
+                  <Link
+                    className='bg-yellow text-black px-3 py-2 text-lg font-inter rounded-lg mx-5 hover:shadow-md'
+                    href={`/posts/${ parseInt(params?.pageNumber) - 1 }`}
+                    prefetch={false}
+                  >
+                    &larr; Newer Posts
+                  </Link>
+                )}
+                {params && componentProps?.pageInfo?.hasPreviousPage && (
+                  <Link
+                    className='bg-yellow text-black px-3 py-2 text-lg font-inter rounded-lg mx-5 hover:shadow-md'
+                    href={`/posts/${ params?.pageNumber && params.pageNumber !== '1' ? (parseInt(params.pageNumber) + 1) : 2 }`}
+                    prefetch={false}
+                  >
+                    Older Posts &rarr;
+                  </Link>
+                )}
+              </div>
+          )}
+        </>
+      ) : (
+        <>
+          <h1 className='text-4xl font-candy text-center'>No posts found!</h1>
+          <Link href='/' className='underline font-inter font-bold text-center'>Back to home</Link>
         </>
       )}
     </section>

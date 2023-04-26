@@ -8,20 +8,20 @@ import Link from 'next/link'
 export default function About()
 {
   return (
-    <div className={styles.about}>
-      <section className={styles.aboutHero}>
+    <>
+      <section className='bg-yellow text-center relative'>
         <Image
           src='/logo/avatar-w-outline.png'
+          className='mx-auto pt-10 z-10'
           width={316}
           height={414}
           alt='Cartoon image of the site author holding a warm cup of coffee with a perplexed empty stare off into the distance.'
-          className={styles.aboutAvatar}
         />
-        <LineBreak className={styles.aboutName}>
-          <h1 className={styles.aboutTitle}>ARCADE</h1>
+        <LineBreak className='my-20'>
+          <h1 className={`${styles.aboutTitle} font-candy text-8xl lg:text-9xl`}>ARCADE</h1>
         </LineBreak>
       </section>
-      <section className={styles.aboutContent}>
+      <section className='px-12 py-4 max-w-screen-2xl, mx-auto font-inter text-xl'>
         <p>
           Hello there! Name&apos;s Arcade and I like wasting my time. I program, do photography, and listen to lots of music. Did I mention I waste my time?
           This is a small blog I&apos;ve set up to test Next.JS + TinaCMS, but will also serve as a personal log of things I find. I used to write a lot and
@@ -52,6 +52,6 @@ export default function About()
         <br />
         <PinkyPromise/>
       </section>
-    </div>
+    </>
   )
 }

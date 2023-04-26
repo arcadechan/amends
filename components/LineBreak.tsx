@@ -1,5 +1,3 @@
-import styles from '../styles/components/LineBreak.module.scss';
-
 type LineBreakProps = {
   children?: React.ReactNode
   className?: string
@@ -8,16 +6,14 @@ type LineBreakProps = {
 export default function LineBreak({ children, className }: LineBreakProps): JSX.Element
 {
   return (
-    <div className={`${styles.lineBreak} ${className}`}>
-      <div className={styles.lineBreakTop}></div>
-      <div className={styles.lineBreakBottom}></div>
+    <div className={`relative ${className || 'my-20'}`}>
+      <div className='bg-yellow border-b-white border-b-[16px] border-solid min-h-[50px] h-auto'/>
+      <div className='bg-white border-t-yellow border-t-[16px] border-solid min-h-[50px] h-auto'/>
       {children && (
-        <div className={styles.lineBreakChildren}>
+        <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
           {children}
         </div>
       )}
-      {/* <hr className={`${styles.lineBreak} ${styles.lineBreakWhite}`}/>
-      <hr className={`${styles.lineBreak} ${styles.lineBreakYellow}`}/> */}
     </div>
   )
 }

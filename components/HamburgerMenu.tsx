@@ -18,8 +18,6 @@ const DynamicHamburger = ({ menuIsOpen, setMenuIsOpen }: DynamicHamburgerProps):
     menuRef.current?.play()
   }, [ menuIsOpen ])
 
-  console.log('1️⃣ Dynamic Hamburger menu is', (menuIsOpen ? 'open' : 'closed'))
-
   return (
     <button
       id='navMenuAccordion'

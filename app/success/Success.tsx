@@ -1,9 +1,14 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Lottie from 'lottie-react'
 import Link from 'next/link'
 import successAnimation from '../../public/animations/success.json'
+import dynamic from 'next/dynamic'
+
+const DynamicLottie = dynamic(() => import('lottie-react'), {
+  ssr: false,
+  loading: () => <div className='w-72 h-72 mx-auto'/>
+})
 
 export default function Success()
 {
@@ -24,7 +29,7 @@ export default function Success()
       >
         Success
       </motion.h1>
-      <Lottie
+      <DynamicLottie
         className='w-72 h-72 mx-auto'
         animationData={successAnimation} loop={false}
       />
