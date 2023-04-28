@@ -3,7 +3,7 @@
 export default function Contact() {
 
   const labelClasses = 'font-inter font-bold text-base block'
-  const inputClasses = 'bg-[#fff] block w-full mb-3 rounded-lg py-1 px-2'
+  const inputClasses = 'bg-white block w-full mb-3 rounded-lg py-1 px-2'
 
   return (
     <>
@@ -59,7 +59,7 @@ export default function Contact() {
           />
           <div className='text-center'>
             <button
-              className='bg-black text-yellow px-3 py-2 text-lg font-inter rounded-lg mx-5 hover:bg-white hover:text-black hover:underline'
+              className='bg-black text-yellow px-3 py-2 text-lg font-inter rounded-lg mx-5 hover:bg-lace hover:text-black hover:underline'
               type='submit'
             >
               Submit

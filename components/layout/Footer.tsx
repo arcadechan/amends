@@ -84,7 +84,7 @@ const Footer = ({ socialPlatforms, navigationLinks }: footerProps): JSX.Element 
         </small>
       </p>
       {socialPlatforms && Object.keys(socialPlatforms).length > 0 && (
-        <div className='flex justify-center flex-wrap my-5 rounded-3xl drop-shadow-sm bg-[#fff]'>
+        <div className='flex justify-center flex-wrap my-5 rounded-3xl drop-shadow-sm bg-white'>
           {socialPlatforms?.spotifyUrl && (
             <SocialIcon href={socialPlatforms.spotifyUrl} title="Arcade's Spotify" iconSrc='/icons/spotify.png' alt="Go to Arcade's Spotify" />
           )}

@@ -63,7 +63,7 @@ const CardImage = ({cardImage, columnCount}: CardImageProps): JSX.Element =>
       <div className='absolute h-full w-full z-0'>
         <Image
           src={cardImage.src}
-          className='rounded-[20px] object-cover'
+          className='rounded-3xl object-cover'
           alt=''
           fill
           sizes={sizes}
@@ -75,7 +75,7 @@ const CardImage = ({cardImage, columnCount}: CardImageProps): JSX.Element =>
   }
   else
   {
-    return <div className='h-full w-full absolute bg-[#808080] left-0 top-0 z-0 rounded-[20px]'/>
+    return <div className='h-full w-full absolute bg-gray left-0 top-0 z-0 rounded-3xl'/>
   }
 }
 
@@ -105,15 +105,15 @@ const CardGrid = ({ componentProps }: { componentProps: HomePageBlocksCardGrid }
           const showCtaButton = card?.manualCard?.showCtaButton
 
           return (
-            <article className={`relative rounded-[20px] ${cardImage ? 'min-h-[300px] lg:min-h-[400px]' : 'min-h-[200px]' }`} key={i}>
+            <article className={`relative rounded-3xl ${cardImage ? 'min-h-[300px] lg:min-h-[400px]' : 'min-h-[200px]' }`} key={i}>
               <Link
                 href={getCardUrl(card)}
                 aria-label={getAriaLabel(card)}
-                className={`group block h-full focus:outline-black focus:outline-[5px] focus:rounded-[20px] focus:outline focus:outline-offset-[-1px]`}
+                className={`group block h-full focus:outline-black focus:outline-[5px] focus:rounded-3xl focus:outline focus:outline-offset-[-1px]`}
                 prefetch={false}
               >
                 <CardImage cardImage={cardImage} columnCount={columnCount}/>
-                <div className={`flex flex-col just-end p-6 absolute bottom-0 left-0 z-0 w-full text-[#fff] bg-gradient-to-r from-black rounded-b-[20px] ${ !cardImage?.src && 'h-full rounded-t-[20px]'}`}>
+                <div className={`flex flex-col just-end p-6 absolute bottom-0 left-0 z-0 w-full text-white bg-gradient-to-r from-black rounded-b-3xl ${ !cardImage?.src && 'h-full rounded-t-3xl'}`}>
                   {cardTitle && (
                     <h2 className={`font-inter text-2xl font-bold ${showCtaButton && 'text-center'} ${!showCtaButton && 'group-hover:underline'}`} aria-hidden>{cardTitle}</h2>
                   )}

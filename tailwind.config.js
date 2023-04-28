@@ -8,19 +8,22 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
     colors: {
-      black: '#1a1d27',
-      yellow: '#ffdc8b',
-      white: '#faf4eb',
+      black: '#1A1D27',
+      yellow: '#FFDC8B',
+      white: '#FFFFFF',
+      lace: '#FAF4EB',
       red: '#D23232',
       blue: '#1D76AA',
-      green: '#2D7B42'
+      green: '#2D7B42',
+      gray: '#808080',
+      transparent: 'transparent'
     },
     fontFamily: {
       'candy': ['var(--font-candy)', ...fontFamily.sans],
       'inter': ['var(--font-inter)', ...fontFamily.sans]
-    }
+    },
+    extend: {}
   },
   plugins: [],
 }

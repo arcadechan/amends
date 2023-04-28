@@ -54,7 +54,7 @@ export default function BlogPost(props: TinaQueryResponse)
         {heroImage && (
           <div className='pt-10 px-12 object-cover w-auto'>
             <Image
-              className='mx-auto rounded-[20px] w-auto max-h-[500px]'
+              className='mx-auto rounded-3xl w-auto max-h-[500px]'
               src={heroImage}
               alt=''
               height={460}

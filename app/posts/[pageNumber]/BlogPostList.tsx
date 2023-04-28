@@ -37,7 +37,7 @@ const CardImage = ({ cardImage }: any): JSX.Element =>
     return (
       <div className='absolute h-full w-full z-0'>
         <Image
-          className='rounded-[20px]'
+          className='rounded-3xl'
           src={cardImage}
           alt=''
           fill
@@ -49,7 +49,7 @@ const CardImage = ({ cardImage }: any): JSX.Element =>
   }
   else
   {
-    return <div className='h-full w-full absolute bg-[#808080] left-0 top-0 z-0 rounded-[20px]'></div>
+    return <div className='h-full w-full absolute bg-gray left-0 top-0 z-0 rounded-3xl'></div>
   }
 }
 
@@ -75,17 +75,17 @@ const BlogPostList = ({ componentProps, params }: { componentProps: GetPostsQuer
           {posts.map((post: any, i: number) => (
               <article
                 key={i}
-                className={`relative rounded-[20px] ${ post?.heroImage ? 'min-h-[300px] lg:min-h-[400px]' : 'min-h-[200px]' }`}
+                className={`relative rounded-3xl ${ post?.heroImage ? 'min-h-[300px] lg:min-h-[400px]' : 'min-h-[200px]' }`}
               >
                 <Link
                   href={getCardUrl(post, params?.pageNumber)}
                   aria-label={getAriaLabel(post)}
-                  className='group block h-full rounded-[20px] focus:outline focus:outline-[5px] focus:outline-offset-[-1px] outline-black'
+                  className='group block h-full rounded-3xl focus:outline focus:outline-[5px] focus:outline-offset-[-1px] outline-black'
                   prefetch={false}
                 >
                   <CardImage cardImage={post?.heroImage}/>
                   <div className={
-                    `flex flex-col justify-end p-6 absolute bottom-0 left-0 z-0 w-full text-[#fff] bg-gradient-to-r from-black rounded-b-[20px] ${!post?.heroImage ? 'h-full rounded-t-[20px]' : ''}`
+                    `flex flex-col justify-end p-6 absolute bottom-0 left-0 z-0 w-full text-white bg-gradient-to-r from-black rounded-b-3xl ${!post?.heroImage ? 'h-full rounded-t-3xl' : ''}`
                   }>
                     {post?.title && (
                       <h2
