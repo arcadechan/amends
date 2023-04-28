@@ -1,8 +1,8 @@
 'use client'
 
-import Link from "next/link";
 import Lottie from 'lottie-react'
 import compassAnimation from '../../public/animations/404-compass.json'
+import ButtonLink from "../../components/ButtonLink";
 import '../../styles/main.css'
 
 export default function NotFound(): JSX.Element
@@ -22,12 +22,9 @@ export default function NotFound(): JSX.Element
         Uh oh. There&apos;s nothing here.<br/>
         Was there supposed to be?
       </h2>
-      <Link
-        href='/'
-        className='inline-block bg-black text-yellow py-3 px-6 rounded-full font-inter text-base'
-      >
+      <ButtonLink href='/'>
         Back to the homepage.
-      </Link>
+      </ButtonLink>
     </section>
   )
 }

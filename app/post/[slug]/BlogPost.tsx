@@ -7,7 +7,7 @@ import { TinaMarkdown } from 'tinacms/dist/rich-text'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useTina } from 'tinacms/dist/react'
 import { TinaQueryResponse } from '../../../@types/tinacms-custom'
-import Link from 'next/link'
+import ButtonLink from '../../../components/ButtonLink'
 import AudioPlayer from '../../../components/AudioPlayer'
 import { createContext, useState } from 'react'
 
@@ -75,22 +75,20 @@ export default function BlogPost(props: TinaQueryResponse)
           <TinaMarkdown content={body} components={{ 'songEmbed': AudioPlayer }}/>
         </BlogPostProvider>
         <PinkyPromise className='mt-10'/>
-        {backPage ? (
-          <Link
-            href={backUrl}
-            className='text-blue block text-center mx-auto mt-5 hover:underline'
-          >
-            &larr; Back to Posts
-          </Link>
-        ) : (
-          <button
-            type='button'
-            className='text-blue block text-center mx-auto mt-5 hover:underline'
-            onClick={() => router.back()}
-          >
-            &larr; Back to Posts
-          </button>
-        )}
+        <div className='text-center'>
+          {backPage ? (
+            <ButtonLink href={backUrl}>
+              &larr; Back to Posts
+            </ButtonLink>
+          ) : (
+            <ButtonLink
+              button
+              onClick={() => router.back()}
+            >
+              &larr; Back to Posts
+            </ButtonLink>
+          )}
+        </div>
       </section>
     </>
   )

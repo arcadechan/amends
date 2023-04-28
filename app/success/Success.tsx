@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import successAnimation from '../../public/animations/success.json'
 import dynamic from 'next/dynamic'
+import ButtonLink from '../../components/ButtonLink'
 
 const DynamicLottie = dynamic(() => import('lottie-react'), {
   ssr: false,
@@ -46,12 +47,7 @@ export default function Success()
         animate={animate}
         transition={transition}
       >
-        <Link
-          href='/'
-          className='inline-block bg-black text-yellow py-3 px-6 rounded-full font-inter text-base'
-        >
-          To home
-        </Link>
+        <ButtonLink href='/'>To home</ButtonLink>
       </motion.div>
     </section>
   )

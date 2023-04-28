@@ -110,6 +110,7 @@ const CardGrid = ({ componentProps }: { componentProps: HomePageBlocksCardGrid }
                 href={getCardUrl(card)}
                 aria-label={getAriaLabel(card)}
                 className={`group block h-full focus:outline-black focus:outline-[5px] focus:rounded-[20px] focus:outline focus:outline-offset-[-1px]`}
+                prefetch={false}
               >
                 <CardImage cardImage={cardImage} columnCount={columnCount}/>
                 <div className={`flex flex-col just-end p-6 absolute bottom-0 left-0 z-0 w-full text-[#fff] bg-gradient-to-r from-black rounded-b-[20px] ${ !cardImage?.src && 'h-full rounded-t-[20px]'}`}>

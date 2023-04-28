@@ -24,6 +24,7 @@ const SocialIcon = ({ href = '', title = '', iconSrc = '', alt = '' }: SocialIco
       className='m-2 w-7 h-7'
       target='_blank'
       title={title}
+      prefetch={false}
     >
       <Image
         src={iconSrc}
@@ -59,8 +60,8 @@ const Footer = ({ socialPlatforms, navigationLinks }: footerProps): JSX.Element 
             <li key={i}>
               <Link
                 href={link.url}
-                className='inline-block'
                 prefetch={false}
+                className='inline-block'
               >
                 {link.name}
               </Link>
@@ -69,8 +70,8 @@ const Footer = ({ socialPlatforms, navigationLinks }: footerProps): JSX.Element 
           <li>
             <Link
               href='/credits'
-              className='inline-block'
               prefetch={false}
+              className='inline-block'
             >
               Credits
             </Link>

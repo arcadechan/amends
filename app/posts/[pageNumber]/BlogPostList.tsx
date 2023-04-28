@@ -1,8 +1,8 @@
 'use-client'
 
 import Image from 'next/image'
-import Link from 'next/link'
-import styles from '../../../styles/components/BlogPostList.module.scss'
+import Link from 'next/link';
+import ButtonLink from '../../../components/ButtonLink';
 import { GetPostsQueryQuery, Post } from "../../../.tina/__generated__/types";
 import { PageSearchParamProps } from './page'
 
@@ -81,6 +81,7 @@ const BlogPostList = ({ componentProps, params }: { componentProps: GetPostsQuer
                   href={getCardUrl(post, params?.pageNumber)}
                   aria-label={getAriaLabel(post)}
                   className='group block h-full rounded-[20px] focus:outline focus:outline-[5px] focus:outline-offset-[-1px] outline-black'
+                  prefetch={false}
                 >
                   <CardImage cardImage={post?.heroImage}/>
                   <div className={
@@ -106,22 +107,20 @@ const BlogPostList = ({ componentProps, params }: { componentProps: GetPostsQuer
           {pageInfo && (
               <div className='flex justify-center my-3'>
                 {(params?.pageNumber && params.pageNumber !== '1') && (
-                  <Link
-                    className='bg-yellow text-black px-3 py-2 text-lg font-inter rounded-lg mx-5 hover:shadow-md'
+                  <ButtonLink
                     href={`/posts/${ parseInt(params?.pageNumber) - 1 }`}
                     prefetch={false}
                   >
                     &larr; Newer Posts
-                  </Link>
+                  </ButtonLink>
                 )}
                 {params && componentProps?.pageInfo?.hasPreviousPage && (
-                  <Link
-                    className='bg-yellow text-black px-3 py-2 text-lg font-inter rounded-lg mx-5 hover:shadow-md'
+                  <ButtonLink
                     href={`/posts/${ params?.pageNumber && params.pageNumber !== '1' ? (parseInt(params.pageNumber) + 1) : 2 }`}
                     prefetch={false}
                   >
                     Older Posts &rarr;
-                  </Link>
+                  </ButtonLink>
                 )}
               </div>
           )}
@@ -129,7 +128,7 @@ const BlogPostList = ({ componentProps, params }: { componentProps: GetPostsQuer
       ) : (
         <>
           <h1 className='text-4xl font-candy text-center'>No posts found!</h1>
-          <Link href='/' className='underline font-inter font-bold text-center'>Back to home</Link>
+          <ButtonLink href='/'>Back to home</ButtonLink>
         </>
       )}
     </section>
