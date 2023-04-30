@@ -1,4 +1,5 @@
 const path = require('path');
+const { withPlaiceholder } = require('@plaiceholder/next')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -28,9 +29,8 @@ const nextConfig = {
     ]
   },
   sassOptions: {
-    includePaths: [path.join(__dirname, 'styles')],
-    prependData: `@import "variables.scss";`
+    includePaths: [path.join(__dirname, 'styles')]
   }
 }
 
-module.exports = nextConfig
+module.exports = withPlaiceholder(nextConfig)
