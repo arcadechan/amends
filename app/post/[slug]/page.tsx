@@ -13,9 +13,12 @@ type BlogPostProps = {
   }
 }
 
-export const generateMetadata = async ({ params }: BlogPostProps): Promise<Metadata> =>
-{
-  const { data: { post: { title, description } } } = await client.queries.post({ relativePath: `${params.slug}.mdx` });
+export const generateMetadata = async ({ params }: BlogPostProps): Promise<Metadata> => {
+  const {
+    data: {
+      post: { title, description }
+    }
+  } = await client.queries.post({ relativePath: `${params.slug}.mdx` })
 
   return {
     title: `${title} | Amends`,
@@ -23,15 +26,17 @@ export const generateMetadata = async ({ params }: BlogPostProps): Promise<Metad
   }
 }
 
-const getBlogPost = cache(async (slug: string) =>
-{
-  const queryResponse = await client.queries.post({ relativePath: `${slug}.mdx` });
+const getBlogPost = cache(async (slug: string) => {
+  const queryResponse = await client.queries.post({ relativePath: `${slug}.mdx` })
 
-  let imageBlurDataURL = '';
-  if(queryResponse.data?.post?.heroImage)
-  {
-    const { base64 } = await getPlaiceholder(queryResponse.data.post.heroImage)
-      .catch(() => ({ base64: 'data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=='}))
+  let imageBlurDataURL = ''
+  if (queryResponse.data?.post?.heroImage) {
+    const { base64 } = await getPlaiceholder(queryResponse.data.post.heroImage).catch(
+      () => ({
+        base64:
+          'data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=='
+      })
+    )
 
     imageBlurDataURL = base64
   }
@@ -44,9 +49,8 @@ const getBlogPost = cache(async (slug: string) =>
   }
 })
 
-export default async function Page({ params }: BlogPostProps)
-{
+export default async function Page({ params }: BlogPostProps) {
   const post = await getBlogPost(params?.slug)
 
-  return <BlogPost {...post}/>
+  return <BlogPost {...post} />
 }

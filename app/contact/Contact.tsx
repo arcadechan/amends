@@ -9,7 +9,8 @@ export default function Contact() {
       <section className='text-center'>
         <h1 className='font-candy text-8xl'>Contact</h1>
         <p className='font-inter text-xl'>
-          Uh, surely something&apos;s on your mind if you&apos;re here? 😮<br/>
+          Uh, surely something&apos;s on your mind if you&apos;re here? 😮
+          <br />
         </p>
       </section>
       <section className='px-5'>
@@ -22,7 +23,9 @@ export default function Contact() {
           netlify-honeypot='bot-field'
         >
           {/* BEGIN: Hidden Fields */}
-          <p style={{display: 'none'}}>Leave blank if you&apos;re human: <input name='bot-field'/></p>
+          <p style={{ display: 'none' }}>
+            Leave blank if you&apos;re human: <input name='bot-field' />
+          </p>
           <input
             className={inputClasses}
             type='hidden'
@@ -30,29 +33,23 @@ export default function Contact() {
             value='contact-us'
           />
           {/* END: Hidden Fields */}
-          <label 
-            className={labelClasses}
-            htmlFor="email"
-          >
+          <label className={labelClasses} htmlFor='email'>
             Email *
           </label>
           <input
             id='email'
             className={inputClasses}
-            type="email"
+            type='email'
             name='email'
             required={true}
           />
-          <label
-            className={labelClasses}
-            htmlFor="message"
-          >
+          <label className={labelClasses} htmlFor='message'>
             Message *
           </label>
           <textarea
-            id="message"
+            id='message'
             className={inputClasses}
-            name="message"
+            name='message'
             rows={7}
             required={true}
           />

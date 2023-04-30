@@ -5,7 +5,6 @@ export const metadata = {
   description: 'Questions, comments, or concerns? Drop me a line!'
 }
 
-export default function Page() 
-{
-  return <Contact/>
+export default function Page() {
+  return <Contact />
 }

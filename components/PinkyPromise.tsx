@@ -1,7 +1,10 @@
-import Image from "next/image"
+import Image from 'next/image'
 
-export default function PinkyPromise({ className = '' }: { className?: string }): JSX.Element
-{
+export default function PinkyPromise({
+  className = ''
+}: {
+  className?: string
+}): JSX.Element {
   return (
     <Image
       src='/logo/promise-black.png'

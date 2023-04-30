@@ -9,9 +9,10 @@ export const metadata = {
   description: 'Writing nonsense one word at a time.'
 }
 
-const getHome = async () =>
-{
-  const queryResponse = await client.queries.getHomePageQuery({ relativePath: 'home.mdx' });
+const getHome = async () => {
+  const queryResponse = await client.queries.getHomePageQuery({
+    relativePath: 'home.mdx'
+  })
   const homePageDataWithPlaiceholders: GetHomePageQueryQuery = await getPlaceholders.forHomePage(queryResponse.data)
 
   return {
@@ -21,13 +22,10 @@ const getHome = async () =>
   }
 }
 
-const Page = async () =>
-{
+const Page = async () => {
   const homeData = await getHome()
 
-  return (
-    <HomePage {...homeData}/>
-  )
+  return <HomePage {...homeData} />
 }
 
 export default Page

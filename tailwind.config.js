@@ -1,11 +1,11 @@
 const { fontFamily } = require('tailwindcss/defaultTheme')
 
-/** @type {import('tailwindcss').Config} */ 
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./app/**/*.{js,ts,jsx,tsx}",
-    "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
+    './app/**/*.{js,ts,jsx,tsx}',
+    './pages/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}'
   ],
   theme: {
     colors: {
@@ -20,12 +20,10 @@ module.exports = {
       transparent: 'transparent'
     },
     fontFamily: {
-      'candy': ['var(--font-candy)', ...fontFamily.sans],
-      'inter': ['var(--font-inter)', ...fontFamily.sans]
+      candy: ['var(--font-candy)', ...fontFamily.sans],
+      inter: ['var(--font-inter)', ...fontFamily.sans]
     },
     extend: {}
   },
-  plugins: [
-    require('@tailwindcss/typography')
-  ],
+  plugins: [require('@tailwindcss/typography')]
 }

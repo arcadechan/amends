@@ -1,11 +1,11 @@
 'use client'
 
-import Image from "next/image"
-import Link from "next/link"
-import dynamic from "next/dynamic"
-import { useState, useEffect } from "react"
+import Image from 'next/image'
+import Link from 'next/link'
+import dynamic from 'next/dynamic'
+import { useState, useEffect } from 'react'
 import amendsLogo from '../../public/logo/logo-black.png'
-import { navigationLink } from "../../@types/amends"
+import { navigationLink } from '../../@types/amends'
 import { motion, AnimatePresence } from 'framer-motion'
 
 type HeaderProps = {
@@ -16,12 +16,7 @@ const DynamicHamburger = dynamic(() => import('../HamburgerMenu'), {
   ssr: false,
   loading: () => (
     <div className='block md:hidden p-2'>
-      <Image
-        src='/icons/hamburger-menu-static.svg'
-        alt=''
-        width={55}
-        height={55}
-      />
+      <Image src='/icons/hamburger-menu-static.svg' alt='' width={55} height={55} />
     </div>
   )
 })
@@ -37,10 +32,10 @@ const Header = ({ navigationLinks }: HeaderProps): JSX.Element => {
       transition: {
         type: 'tween',
         ease: 'easeInOut',
-        duration: .4
+        duration: 0.4
       },
       transitionEnd: {
-        display: 'none',
+        display: 'none'
       }
     },
     navMenuOpen: {
@@ -49,25 +44,22 @@ const Header = ({ navigationLinks }: HeaderProps): JSX.Element => {
       transition: {
         type: 'tween',
         ease: 'easeInOut',
-        duration: .4,
-        staggerChildren: .08,
-        delayChildren: .15,
+        duration: 0.4,
+        staggerChildren: 0.08,
+        delayChildren: 0.15,
         staggerDirection: -1
       },
       transitionEnd: {
-        display: 'block',
+        display: 'block'
       }
     }
   }
 
-
   useEffect(() => {
     const handleResize = async () => {
-
-      if(window.innerWidth >= 768) {
+      if (window.innerWidth >= 768) {
         setIsDesktop(true)
-      }
-      else {
+      } else {
         setIsDesktop(false)
       }
     }
@@ -82,19 +74,18 @@ const Header = ({ navigationLinks }: HeaderProps): JSX.Element => {
   useEffect(() => {
     const desktopWidth = window.innerWidth >= 768
 
-    if(desktopWidth) {
+    if (desktopWidth) {
       setIsDesktop(true)
     } else {
       setIsDesktop(false)
     }
-
   }, [isDesktop])
 
   return (
     <header
       className='bg-yellow h-[75px] sticky top-0 z-[999]'
-      onBlur={e => {
-        if(!e.currentTarget.contains(e.relatedTarget) && menuIsOpen) {
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget) && menuIsOpen) {
           setMenuIsOpen(false)
         }
       }}
@@ -115,10 +106,7 @@ const Header = ({ navigationLinks }: HeaderProps): JSX.Element => {
               style={{ objectFit: 'contain' }}
             />
           </Link>
-          <DynamicHamburger
-            menuIsOpen={menuIsOpen}
-            setMenuIsOpen={setMenuIsOpen}
-          />
+          <DynamicHamburger menuIsOpen={menuIsOpen} setMenuIsOpen={setMenuIsOpen} />
         </div>
         {isDesktop ? (
           <motion.div
@@ -129,16 +117,17 @@ const Header = ({ navigationLinks }: HeaderProps): JSX.Element => {
             animate={{ opacity: 1, transition: { duration: 0.3 } }}
           >
             <ul className='list-none ml-0 flex'>
-              {navigationLinks && navigationLinks.map((link: any, i: number) => (
-                <li key={i} >
-                  <Link
-                    href={link.url || ''}
-                    className='font-inter font-bold uppercase text-black my-2 text-center hover:underline hover:underline-offset-[3px] hover:decoration-2 inline-block p-3 ml-4'
-                  >
-                    {link.name || ''}
-                  </Link>
-                </li>
-              ))}
+              {navigationLinks &&
+                navigationLinks.map((link: any, i: number) => (
+                  <li key={i}>
+                    <Link
+                      href={link.url || ''}
+                      className='font-inter font-bold uppercase text-black my-2 text-center hover:underline hover:underline-offset-[3px] hover:decoration-2 inline-block p-3 ml-4'
+                    >
+                      {link.name || ''}
+                    </Link>
+                  </li>
+                ))}
             </ul>
           </motion.div>
         ) : (
@@ -151,31 +140,31 @@ const Header = ({ navigationLinks }: HeaderProps): JSX.Element => {
               variants={variants}
             >
               <ul className='list-none ml-0'>
-                {navigationLinks && navigationLinks.map((link: any, i: number) => (
-                  <motion.li
-                    key={i}
-                    variants={{
-                      navMenuClosed: {
-                        opacity: 0
-                      },
-                      navMenuOpen: {
-                        opacity: 1
-                      }
-                    }}
-                  >
-                    <Link
-                      href={link.url || ''}
-                      className='font-inter font-bold uppercase text-black block p-3 my-2 text-center hover:underline hover:underline-offset-[3px] hover:decoration-2'
+                {navigationLinks &&
+                  navigationLinks.map((link: any, i: number) => (
+                    <motion.li
+                      key={i}
+                      variants={{
+                        navMenuClosed: {
+                          opacity: 0
+                        },
+                        navMenuOpen: {
+                          opacity: 1
+                        }
+                      }}
                     >
-                      {link.name || ''}
-                    </Link>
-                  </motion.li>
-                ))}
+                      <Link
+                        href={link.url || ''}
+                        className='font-inter font-bold uppercase text-black block p-3 my-2 text-center hover:underline hover:underline-offset-[3px] hover:decoration-2'
+                      >
+                        {link.name || ''}
+                      </Link>
+                    </motion.li>
+                  ))}
               </ul>
             </motion.div>
           </AnimatePresence>
         )}
-
       </div>
     </header>
   )

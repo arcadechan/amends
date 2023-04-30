@@ -2,15 +2,29 @@ import React from 'react'
 import { defineConfig, wrapFieldsWithMeta, Schema } from 'tinacms'
 import CardGridSchema from '../components/schemas/CardGridSchema'
 
-const URLWithIconContainer = ({ serviceName, input } : { serviceName: string, input: any}) : JSX.Element => (
+const URLWithIconContainer = ({
+  serviceName,
+  input
+}: {
+  serviceName: string
+  input: any
+}): JSX.Element => (
   <div style={{ display: 'flex', alignItems: 'center' }}>
     <div style={{ display: 'flex', height: '100%', width: '50px', padding: '0 .5rem' }}>
-      <img src={`/icons/${serviceName.toLowerCase().split(' ').join('-')}.png`} style={{ maxHeight: '30px', margin: '0 auto' }}/>
+      <img
+        src={`/icons/${serviceName.toLowerCase().split(' ').join('-')}.png`}
+        style={{ maxHeight: '30px', margin: '0 auto' }}
+      />
     </div>
     <input
       id={`${serviceName}Url`}
       type='text'
-      style={{width: '100%', padding: '.5rem', border: '1px solid #e1ddec', borderRadius: '6px'}}
+      style={{
+        width: '100%',
+        padding: '.5rem',
+        border: '1px solid #e1ddec',
+        borderRadius: '6px'
+      }}
       {...input}
     />
   </div>
@@ -53,7 +67,7 @@ const commonFields: any[] = [
   {
     label: 'Subtitle',
     name: 'subTitle',
-    type: 'string',
+    type: 'string'
   },
   {
     label: 'Description',
@@ -61,20 +75,30 @@ const commonFields: any[] = [
     type: 'string',
     description: 'Max character count: 160',
     ui: {
-      component: wrapFieldsWithMeta(({ field, input, meta, ...props}): JSX.Element => {
+      component: wrapFieldsWithMeta(({ field, input, meta, ...props }): JSX.Element => {
         return (
           <div>
             <textarea
-              id="pageDescription"
+              id='pageDescription'
               rows={3}
-              style={{width: '100%', padding: '.5rem', border: '1px solid #e1ddec', borderRadius: '6px'}}
+              style={{
+                width: '100%',
+                padding: '.5rem',
+                border: '1px solid #e1ddec',
+                borderRadius: '6px'
+              }}
               maxLength={160}
               {...input}
             />
-            <br/>
-            Character Count: {input.value.length } { input.value.length === 160 ? <small style={{color: 'red'}}>Max!</small>: ''}
+            <br />
+            Character Count: {input.value.length}{' '}
+            {input.value.length === 160 ? (
+              <small style={{ color: 'red' }}>Max!</small>
+            ) : (
+              ''
+            )}
           </div>
-        );
+        )
       })
     }
   }
@@ -90,7 +114,7 @@ const schema: Schema = {
       ui: {
         allowedActions: {
           create: false,
-          delete: false,
+          delete: false
         },
         router: () => '/' // navigate to the home page
       },
@@ -100,9 +124,7 @@ const schema: Schema = {
           label: 'Page Blocks',
           type: 'object',
           list: true,
-          templates: [
-            CardGridSchema
-          ]
+          templates: [CardGridSchema]
         }
       ]
     },
@@ -132,7 +154,7 @@ const schema: Schema = {
             {
               label: 'Link Name',
               name: 'name',
-              type: 'string',
+              type: 'string'
             },
             {
               label: 'URL',
@@ -170,7 +192,7 @@ const schema: Schema = {
       name: 'page',
       path: 'content/pages',
       format: 'mdx',
-      fields: [ ...commonFields ]
+      fields: [...commonFields]
     },
     {
       label: 'Blog Posts',
@@ -180,9 +202,9 @@ const schema: Schema = {
       ui: {
         router: ({ document }) => {
           // navigate to the post that was clicked
-          console.log({document})
+          console.log({ document })
           return `/post/${document._sys.filename}`
-        },
+        }
         /**
          * Commenting this code out for this in the meantime as there
          * are no longer plans to launch with post categories
@@ -210,12 +232,10 @@ const schema: Schema = {
         body: {
           children: [
             {
-              children: [
-                { text: '', type: 'text' }
-              ]
+              children: [{ text: '', type: 'text' }]
             }
           ]
-        },
+        }
       },
       fields: [
         ...commonFields,
@@ -259,9 +279,16 @@ const schema: Schema = {
                   name: 'spotifyUrl',
                   type: 'string',
                   ui: {
-                    component: wrapFieldsWithMeta(({field, input, meta, ...props}): JSX.Element => {
-                      return <URLWithIconContainer serviceName='Spotify' input={input}/>
-                    })
+                    component: wrapFieldsWithMeta(
+                      ({ field, input, meta, ...props }): JSX.Element => {
+                        return (
+                          <URLWithIconContainer
+                            serviceName='Spotify'
+                            input={input}
+                          />
+                        )
+                      }
+                    )
                   }
                 },
                 {
@@ -269,9 +296,16 @@ const schema: Schema = {
                   name: 'youtubeUrl',
                   type: 'string',
                   ui: {
-                    component: wrapFieldsWithMeta(({field, input, meta, ...props}): JSX.Element => {
-                      return <URLWithIconContainer serviceName='Youtube Music' input={input}/>
-                    })
+                    component: wrapFieldsWithMeta(
+                      ({ field, input, meta, ...props }): JSX.Element => {
+                        return (
+                          <URLWithIconContainer
+                            serviceName='Youtube Music'
+                            input={input}
+                          />
+                        )
+                      }
+                    )
                   }
                 },
                 {
@@ -279,9 +313,16 @@ const schema: Schema = {
                   name: 'appleMusicUrl',
                   type: 'string',
                   ui: {
-                    component: wrapFieldsWithMeta(({field, input, meta, ...props}): JSX.Element => {
-                      return <URLWithIconContainer serviceName='Apple Music' input={input}/>
-                    })
+                    component: wrapFieldsWithMeta(
+                      ({ field, input, meta, ...props }): JSX.Element => {
+                        return (
+                          <URLWithIconContainer
+                            serviceName='Apple Music'
+                            input={input}
+                          />
+                        )
+                      }
+                    )
                   }
                 },
                 {
@@ -289,9 +330,16 @@ const schema: Schema = {
                   name: 'deezerUrl',
                   type: 'string',
                   ui: {
-                    component: wrapFieldsWithMeta(({field, input, meta, ...props}): JSX.Element => {
-                      return <URLWithIconContainer serviceName='Deezer' input={input}/>
-                    })
+                    component: wrapFieldsWithMeta(
+                      ({ field, input, meta, ...props }): JSX.Element => {
+                        return (
+                          <URLWithIconContainer
+                            serviceName='Deezer'
+                            input={input}
+                          />
+                        )
+                      }
+                    )
                   }
                 },
                 {
@@ -299,9 +347,16 @@ const schema: Schema = {
                   name: 'bandcampUrl',
                   type: 'string',
                   ui: {
-                    component: wrapFieldsWithMeta(({field, input, meta, ...props}): JSX.Element => {
-                      return <URLWithIconContainer serviceName='Bandcamp' input={input}/>
-                    })
+                    component: wrapFieldsWithMeta(
+                      ({ field, input, meta, ...props }): JSX.Element => {
+                        return (
+                          <URLWithIconContainer
+                            serviceName='Bandcamp'
+                            input={input}
+                          />
+                        )
+                      }
+                    )
                   }
                 },
                 {
@@ -309,14 +364,21 @@ const schema: Schema = {
                   name: 'soundcloudUrl',
                   type: 'string',
                   ui: {
-                    component: wrapFieldsWithMeta(({field, input, meta, ...props}): JSX.Element => {
-                      return <URLWithIconContainer serviceName='soundcloud' input={input}/>
-                    })
+                    component: wrapFieldsWithMeta(
+                      ({ field, input, meta, ...props }): JSX.Element => {
+                        return (
+                          <URLWithIconContainer
+                            serviceName='soundcloud'
+                            input={input}
+                          />
+                        )
+                      }
+                    )
                   }
                 }
-              ],
-            },
-          ],
+              ]
+            }
+          ]
         },
         {
           label: 'Category',
@@ -326,27 +388,27 @@ const schema: Schema = {
           options: [
             {
               label: 'Music',
-              value: 'music',
+              value: 'music'
             },
             {
               label: 'Technology',
-              value: 'technology',
+              value: 'technology'
             },
             {
               label: 'Art',
-              value: 'art',
+              value: 'art'
             },
             {
               label: 'Film',
-              value: 'film',
+              value: 'film'
             },
             {
               label: 'Writing',
-              value: 'writing',
+              value: 'writing'
             },
             {
               label: 'Misc.',
-              value: 'misc',
+              value: 'misc'
             }
           ]
         },
@@ -357,9 +419,9 @@ const schema: Schema = {
           list: true,
           component: 'tags'
         }
-      ],
-    },
-  ],
+      ]
+    }
+  ]
 }
 
 const config = defineConfig({
@@ -398,7 +460,7 @@ const config = defineConfig({
     })
 
     return cms
-  },
+  }
 })
 
-export default config;
+export default config

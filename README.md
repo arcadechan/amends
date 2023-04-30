@@ -1,6 +1,7 @@
 Node Version: 17.3.0
 
 ENV Variables:
+
 - TINA_CLIENT_ID: Get from Tina Cloud
 - TINA_TOKEN: Get from Tina Cloud
 - NEXT_PUBLIC_TINA_BRANCH: Usually set to `main` during local dev.
