@@ -6,7 +6,7 @@
     "node": ">= 18.0.0 || 18.15.0"
   },
   "scripts": {
-    "postinstall": "git config core.hooksPath .git-hooks",
+    "postinstall": "git config core.hooksPath ./git-hooks",
     "dev": "tinacms dev -c \"next dev\"",
     "build": "tinacms build && next build",
     "start": "tinacms build && next start",
