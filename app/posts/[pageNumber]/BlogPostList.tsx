@@ -1,10 +1,9 @@
-'use-client'
-
 import Image from 'next/image'
-import Link from 'next/link'
-import styles from '../../../styles/components/BlogPostList.module.scss'
+import Link from 'next/link';
+import ButtonLink from '../../../components/ButtonLink';
 import { GetPostsQueryQuery, Post } from "../../../.tina/__generated__/types";
 import { PageSearchParamProps } from './page'
+import { getPlaiceholder } from 'plaiceholder';
 
 const getCardUrl = (card: Post, pageNumber: string = '1'): string =>
 {
@@ -30,88 +29,104 @@ const getAriaLabel = (card: Post): string =>
   return ''
 }
 
-const CardImage = ({ cardImage }: any): JSX.Element =>
+const CardImage = async ({ cardImage }: any): Promise<JSX.Element> =>
 {
   if(cardImage)
   {
+    const { base64 } = await getPlaiceholder(cardImage)
+
     return (
-      <div className={styles.postImageContainer}>
+      <div className='absolute h-full w-full z-0'>
         <Image
+          className='rounded-3xl object-cover'
           src={cardImage}
           alt=''
           fill
-          style={{ objectFit: 'cover' }}
           sizes='100vw, (min-width: 768px) 50vw'
-          className={styles.postImage}
+          placeholder='blur'
+          blurDataURL={base64 || ''}
         />
       </div>
     )
   }
   else
   {
-    return <div className={styles.postNoImage}></div>
+    return <div className='h-full w-full absolute bg-gray left-0 top-0 z-0 rounded-3xl'></div>
   }
 }
 
 const BlogPostList = ({ componentProps, params }: { componentProps: GetPostsQueryQuery['postConnection'] | null, params: PageSearchParamProps['params'] }): JSX.Element =>
 {
-  if(!componentProps?.pageInfo)
-  {
-    return (
-      <section>
-        <h2>Loading...</h2>
-      </section>
-    )
+  let pageInfo = null;
+  let posts: Array<any> = [];
+  if(componentProps) {
+    pageInfo = componentProps.pageInfo
+    posts = componentProps.edges ? componentProps.edges.map(post => post?.node) : []
   }
 
-  const { pageInfo } = componentProps
-  const posts = componentProps.edges ? componentProps.edges.map(post => post?.node) : []
-
   return (
-    <section className={styles.postList}>
-      {posts?.length > 0 && posts.map((post: any, i: number) => {
-        return (
-          <article className={`${styles.post} ${ post?.heroImage ? styles.postHasImage : styles.postHasNoImage }`} key={i}>
-            <Link
-              href={getCardUrl(post, params?.pageNumber)}
-              aria-label={getAriaLabel(post)}
-              className={styles.postAnchor}
-            >
-              <CardImage cardImage={post?.heroImage}/>
-              <div className={styles.postTextLabels}>
-                {post?.title && <h2 className={styles.postTitle} aria-hidden>{post?.title}</h2>}
-                {post?.subTitle && <h3 className={styles.postSubtitle} aria-hidden>{post?.subTitle}</h3>}
-              </div>
-            </Link>
-          </article>
-        )
-      })}
-      {(posts.length > 0) && pageInfo && (
-        <div className={styles.pagination}>
-          {(params?.pageNumber && params.pageNumber !== '1') && (
-            <Link
-              className={styles.newerPostsLink}
-              href={`/posts/${ parseInt(params?.pageNumber) - 1 }`}
-              prefetch={false}
-            >
-              &larr; Newer Posts
-            </Link>
-          )}
-          {params && componentProps?.pageInfo?.hasPreviousPage && (
-            <Link
-              className={styles.olderPostsLink}
-              href={`/posts/${ params?.pageNumber && params.pageNumber !== '1' ? (parseInt(params.pageNumber) + 1) : 2 }`}
-              prefetch={false}
-            >
-              Older Posts &rarr;
-            </Link>
-          )}
-        </div>
-      )}
-      {!(posts.length > 0) && (
+    <section className='px-12 pt-12 pb-4 max-w-screen-lg mx-auto grid gap-8'>
+      {posts.length > 0 ? (
         <>
-          <h1 className={styles.noPosts}>No posts found!</h1>
-          <Link href='/' className={styles.noPostHomeLink}>Back to home</Link>
+          {/* MAP POSTS */}
+          {posts.map((post: any, i: number) => (
+              <article
+                key={i}
+                className={`relative rounded-3xl ${ post?.heroImage ? 'min-h-[300px] lg:min-h-[400px]' : 'min-h-[200px]' }`}
+              >
+                <Link
+                  href={getCardUrl(post, params?.pageNumber)}
+                  aria-label={getAriaLabel(post)}
+                  className='group block h-full rounded-3xl focus:outline focus:outline-[5px] focus:outline-offset-[-1px] outline-black'
+                  prefetch={false}
+                >
+                  {/* @ts-expect-error Server Component */}
+                  <CardImage cardImage={post?.heroImage}/>
+                  <div className={
+                    `flex flex-col justify-end p-6 absolute bottom-0 left-0 z-0 w-full text-white bg-gradient-to-r from-black rounded-b-3xl ${!post?.heroImage ? 'h-full rounded-t-3xl' : ''}`
+                  }>
+                    {post?.title && (
+                      <h2
+                        className='font-inter text-2xl font-bold group-hover:underline group-focus:underline'
+                        aria-hidden
+                      >
+                        {post?.title}
+                      </h2>
+                    )}
+                    {post?.subTitle && (
+                      <h3 className='font-inter text-lg italic group-hover:underline group-focus:underline' aria-hidden>{post?.subTitle}</h3>
+                    )}
+                  </div>
+                </Link>
+              </article>
+          ))}
+
+          {/* PAGINATION */}
+          {pageInfo && (
+              <div className='flex justify-center my-3'>
+                {(params?.pageNumber && params.pageNumber !== '1') && (
+                  <ButtonLink
+                    href={`/posts/${ parseInt(params?.pageNumber) - 1 }`}
+                    prefetch={false}
+                  >
+                    &larr; Newer Posts
+                  </ButtonLink>
+                )}
+                {params && componentProps?.pageInfo?.hasPreviousPage && (
+                  <ButtonLink
+                    href={`/posts/${ params?.pageNumber && params.pageNumber !== '1' ? (parseInt(params.pageNumber) + 1) : 2 }`}
+                    prefetch={false}
+                  >
+                    Older Posts &rarr;
+                  </ButtonLink>
+                )}
+              </div>
+          )}
+        </>
+      ) : (
+        <>
+          <h1 className='text-4xl font-candy text-center'>No posts found!</h1>
+          <ButtonLink href='/'>Back to home</ButtonLink>
         </>
       )}
     </section>

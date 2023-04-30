@@ -7,7 +7,7 @@ import { TinaMarkdown } from 'tinacms/dist/rich-text'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useTina } from 'tinacms/dist/react'
 import { TinaQueryResponse } from '../../../@types/tinacms-custom'
-import Link from 'next/link'
+import ButtonLink from '../../../components/ButtonLink'
 import AudioPlayer from '../../../components/AudioPlayer'
 import { createContext, useState } from 'react'
 
@@ -49,12 +49,12 @@ export default function BlogPost(props: TinaQueryResponse)
   const [playingTrack, setPlayingTrack] = useState('')
 
   return (
-    <div className={styles.blogPost}>
-      <section className={styles.blogPostHero}>
+    <>
+      <section className='bg-yellow text-center relative'>
         {heroImage && (
-          <div className={styles.blogPostImageContainer}>
+          <div className='pt-10 px-12 object-cover w-auto'>
             <Image
-              className={styles.blogPostImage}
+              className='mx-auto rounded-3xl w-auto max-h-[500px]'
               src={heroImage}
               alt=''
               height={460}
@@ -63,35 +63,33 @@ export default function BlogPost(props: TinaQueryResponse)
             />
           </div>
         )}
-        <div className={styles.blogPostInfo}>
-          <h1 className={styles.blogPostTitle}>{title}</h1>
-          {subTitle && <h2 className={styles.blogPostSubtitle}>{subTitle}</h2>}
+        <div className='mt-[45px] px-12 max-w-5xl mx-auto font-candy'>
+          <h1 className={`${styles.blogPostTitle} text-4xl lg:text-6xl`}>{title}</h1>
+          {subTitle && <h2 className={`${styles.blogPostSubtitle} mt-3 text-2xl lg:text-4xl italic`}>{subTitle}</h2>}
         </div>
-        <LineBreak className={styles.blogPostLineBreak}/>
+        <LineBreak className='my-4'/>
       </section>
-      <section className={styles.blogPostContent}>
-        <h3 className={styles.blogPostPublishDate}>Published: {formattedDate}</h3>
+      <section className='px-4 py-4 max-w-5xl mx-auto mb-8 font-inter md:px-12'>
+        <h3 className='italic mt-3 text-center text-sm'>Published: {formattedDate}</h3>
         <BlogPostProvider value={{ playingTrack, setPlayingTrack }}>
           <TinaMarkdown content={body} components={{ 'songEmbed': AudioPlayer }}/>
         </BlogPostProvider>
-        {backPage ? (
-          <Link
-            href={backUrl}
-            className={styles.blogPostBackButton}
-          >
-            &larr; Back to Posts
-          </Link>
-        ) : (
-          <button
-            type='button'
-            className={styles.blogPostBackButton}
-            onClick={() => router.back()}
-          >
-            &larr; Back to Posts
-          </button>
-        )}
+        <PinkyPromise className='mt-10'/>
+        <div className='text-center'>
+          {backPage ? (
+            <ButtonLink href={backUrl}>
+              &larr; Back to Posts
+            </ButtonLink>
+          ) : (
+            <ButtonLink
+              button
+              onClick={() => router.back()}
+            >
+              &larr; Back to Posts
+            </ButtonLink>
+          )}
+        </div>
       </section>
-      <PinkyPromise/>
-    </div>
+    </>
   )
 }

@@ -1,232 +1,72 @@
-.audioPlayer {
-  @apply flex;
-  @apply flex-col;
-  @apply flex-nowrap;
-  @apply bg-[#fff];
-  @apply rounded-[20px];
-  @apply max-w-[311px];
-  @apply mx-auto;
-  @apply overflow-hidden;
-  box-shadow: 0px 0px 10px 10px rgba(0,0,0,.1);
-
-  .imageContainer {
-    @apply w-full;
-
-    img {
-      @apply w-full;
-      @apply rounded-[20px];
-      box-shadow: 0px 4px 4px rgba(0,0,0,.25);
-    }
-  }
-
-  .infoContainer,
-  .infoContainerNoAlbum {
-    @apply p-3;
-    @apply w-full;
-
-    .trackName,
-    .artistName {
-      @apply font-inter;
-      @apply text-black;
-      @apply whitespace-nowrap;
-      @apply text-ellipsis;
-      @apply overflow-hidden;
-    }
-
-    .trackName {
-      @apply text-base;
-      @apply font-bold;
-    }
-
-    .artistName {
-      @apply text-xs;
-    }
-  }
-
-  .progressBarContainer {
-    @apply my-3;
-    height: 6px;
-
-    .progressTrack {
-      @apply w-full;
-      -webkit-appearance: none;
-      appearance: none;
-      background: transparent;
-      @apply rounded-xl;
-      
-      &::-webkit-progress-bar {
-        @apply rounded-xl;
-        background-color: #989898;
-        height: 6px;
-      }
-
-      &::-webkit-progress-value {
-        @apply bg-black;
-        @apply rounded-xl;
-      }
-    }
-  }
-
-  .controlsContainer {
-    @apply flex;
-    @apply items-center;
-    @apply justify-center;
-    @apply gap-7;
-
-    button {
-      @apply my-2;
-    }
-
-    .volume {
-      -webkit-appearance: none;
-      background-color: transparent;
-      cursor: pointer;
-      --volume-level: 50%;
-
-      &::-webkit-slider-runnable-track {
-        background: linear-gradient(to right, theme('colors.blue') var(--volume-level), theme('colors.blue' / 40%) var(--volume-level));
-        height: 6px;
-        border-radius: 4px;
-      }
-
-      &::-moz-range-track {
-        @apply bg-blue;
-        height: 6px;
-        border-radius: 4px;
-      }
-
-      /* Chrome, Safari, Opera, and Edge */
-      &::-webkit-slider-thumb {
-        -webkit-appearance: none;
-      }
-
-      /* Firefox */
-      &::-moz-range-thumb {
-        border: none;
-      }
-
-      &::-webkit-slider-thumb {
-        @apply bg-blue;
-        height: 10px;
-        width: 10px;
-        border-radius: 50%;
-        @apply border-blue;
-        border-width: 2px;
-        border-style: solid;
-        margin-top: -2px;
-      }
-
-      &::-moz-range-thumb {
-        @apply bg-blue;
-        height: 10px;
-        width: 10px;
-        border-radius: 50%;
-        @apply border-blue;
-        border-width: 2px;
-        border-style: solid;
-      }
-
-      &:hover {
-        &::-webkit-slider-thumb,
-        &::-moz-range-thumb {
-          @apply bg-[#fff];
-          width: 13px;
-          height: 13px;
-          margin-left: -10px;
-        }
-      }
-    }
-  }
-
-  @screen md {
-    @apply flex-row;
-    @apply max-w-[400px];
-    @apply h-[125px];
-
-    .imageContainer {
-      @apply min-w-[125px];
-      @apply min-h-[125px];
-      @apply w-[125px];
-      @apply h-[125px];
-    }
-
-    .infoContainer,
-    .infoContainerNoAlbum {
-      @apply w-full;
-      @apply flex;
-      @apply flex-col;
-      @apply justify-between;
-
-      .trackName {
-        @apply text-2xl;
-        @apply font-bold;
-      }
+.progressTrack {
+  -webkit-appearance: none;
   
-      .artistName {
-        @apply text-sm;
-      }
-    }
+  &::-webkit-progress-bar {
+    @apply rounded-xl;
+    background-color: #989898;
+    height: 6px;
+  }
 
-    .infoContainer {
-      .trackName,
-      .artistName {
-        @apply w-[250px];
-      }
-    }
-
-    .infoContainerNoAlbum {
-      .trackName,
-      .artistName {
-        @apply w-[100%];
-      }
-    }
-
-    .progressBarContainer {
-      @apply my-2;
-    }
-
-    .controlsContainer {
-      @apply gap-5;
-
-      button {
-        @apply my-0;
-      }
-
-      .restart {
-        width: 35px;
-      }
-
-      .play {
-        width: 30px;
-      }
-
-      .volume {
-        width: 100%;
-      }
-    }
+  &::-webkit-progress-value {
+    @apply bg-black;
+    @apply rounded-xl;
   }
 }
 
-.audioLinksContainer {
-  @apply text-center;
+.volume {
+  -webkit-appearance: none;
+  --volume-level: 50%;
 
-  .audioLinks {
-    @apply w-auto;
-    @apply bg-[#fff];
-    @apply inline-flex;
-    @apply max-w-[311px];
-    @apply mx-auto;
-    @apply justify-around;
-    @apply rounded-[20px];
-    @apply flex-wrap;
-    @apply mt-3;
-    box-shadow: 0px 0px 10px 5px rgba(0,0,0,.08);
-    position: relative;
+  &::-webkit-slider-runnable-track {
+    background: linear-gradient(to right, theme('colors.blue') var(--volume-level), theme('colors.blue' / 40%) var(--volume-level));
+    height: 6px;
+    border-radius: 4px;
+  }
 
-    .audioLinkIcon {
-      @apply m-2;
-      @apply inline-block;
-      position: relative;
+  &::-moz-range-track {
+    @apply bg-blue;
+    height: 6px;
+    border-radius: 4px;
+  }
+
+  /* Chrome, Safari, Opera, and Edge */
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+  }
+
+  /* Firefox */
+  &::-moz-range-thumb {
+    border: none;
+  }
+
+  &::-webkit-slider-thumb {
+    @apply bg-blue;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    @apply border-blue;
+    border-width: 2px;
+    border-style: solid;
+    margin-top: -2px;
+  }
+
+  &::-moz-range-thumb {
+    @apply bg-blue;
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    @apply border-blue;
+    border-width: 2px;
+    border-style: solid;
+  }
+
+  &:hover {
+    &::-webkit-slider-thumb,
+    &::-moz-range-thumb {
+      @apply bg-white;
+      width: 13px;
+      height: 13px;
+      margin-left: -10px;
     }
   }
 }

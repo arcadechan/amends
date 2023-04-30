@@ -11,8 +11,7 @@ body {
 }
 
 a {
-  @apply font-bold;
-  @apply text-blue;
+  @apply font-bold text-blue;
   text-underline-offset: 3px;
 }
 

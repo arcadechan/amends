@@ -16,7 +16,7 @@ const StreamIcon = ({ href, serviceName }: { href: string, serviceName: string }
       title={`Listen to the song on ${serviceName}`}
     >
       <Image
-        className={styles.audioLinkIcon}
+        className='m-2 inline-block relative'
         src={`/icons/${serviceName.toLowerCase().split(' ').join('-')}.png`}
         aria-label={`${serviceName} link to song.`}
         alt=''
@@ -131,34 +131,32 @@ const AudioPlayer = (props: any): JSX.Element =>
         <>
           {!!props.audioPreviewUrl && (
             <>
-              <div className={styles.audioPlayer}>
+              <div className='flex flex-col flex-nowrap bg-white rounded-2xl max-w-[311px] mx-auto overflow-hidden shadow-lg md:flex-row md:max-w-[400px] md:h-[125px]'>
                 {props?.albumArt?.length && (
-                  <div className={styles.imageContainer}>
+                  <div className='w-full md:min-w-[125px] md:min-h-[125px] md:w-[125px] md:h-[125px]'>
                     <Image
                       src={props.albumArt}
+                      className='w-full rounded-2xl shadow-lg'
                       alt={`Album cover for ${props.albumName} by ${props.artistName}`}
                       width={125}
                       height={125}
                     />
                   </div>
                 )}
-                <div className={props?.albumArt?.length ? styles.infoContainer : styles.infoContainerNoAlbum}>
-                  <h4 className={styles.trackName}>{props.trackName}</h4>
-                  <h5 className={styles.artistName}>{props.artistName}</h5>
-                  <div className={styles.progressBarContainer}>
+                <div className={`p-3 w-full md:w-full md:flex md:flex-col md:justify-between ${props?.albumArt?.length ? styles.infoContainer : styles.infoContainerNoAlbum}`}>
+                  <h4 className={`font-inter text-black whitespace-nowrap text-ellipsis overflow-hidden text-base font-bold md:text-2xl md:font-bold ${props?.albumArt?.length ? 'md:w-[250px]' : 'md:w-full'}`}>{props.trackName}</h4>
+                  <h5 className={`font-inter text-black whitespace-nowrap text-ellipsis overflow-hidden text-xs md:text-sm ${props?.albumArt?.length ? 'md:w-[250px]' : 'md:w-full'}`}>{props.artistName}</h5>
+                  <div className='my-3 h-[6px] md:my-2'>
                     <progress
                       ref={progressRef}
-                      className={styles.progressTrack}
+                      className={`${styles.progressTrack} w-full appearance-none bg-transparent rounded-xl`}
                       value='0'
                       max='100'
                     />
-                    <div className={styles.progressBarBackground}>
-                      <div className={styles.progressBarForeground} style={{ width: `${progress}%` }}/>
-                    </div>
                   </div>
-                  <div className={styles.controlsContainer}>
+                  <div className='flex items-center justify-center gap-7 md:gap-5'>
                     <button
-                      className={styles.restart}
+                      className='my-2 md:my-0 md:w-9'
                       type='button'
                       aria-label='Restart playback'
                       onClick={() => restart()}
@@ -171,7 +169,7 @@ const AudioPlayer = (props: any): JSX.Element =>
                       />
                     </button>
                     <button
-                      className={styles.play}
+                      className='my-2 md:my-0 w-7'
                       type='button'
                       aria-label='Play button'
                       onClick={() => {
@@ -187,7 +185,7 @@ const AudioPlayer = (props: any): JSX.Element =>
                       />
                     </button>
                     <button
-                      className={styles.volumeIcon}
+                      className='my-2 md:my-0 w-10'
                       type='button'
                       aria-label='Volume control'
                       onClick={(e) => handleVolume(e, true)}
@@ -204,7 +202,7 @@ const AudioPlayer = (props: any): JSX.Element =>
                       id={`volume-control-${props.trackName.toLowerCase().split(' ').join('-')}`}
                       name={`volume-control-${props.trackName.toLowerCase().split(' ').join('-')}`}
                       ref={volumeRef}
-                      className={styles.volume}
+                      className={`${styles.volume} bg-transparent cursor-pointer md:w-full`}
                       type='range'
                       min='0'
                       max='100'
@@ -215,8 +213,8 @@ const AudioPlayer = (props: any): JSX.Element =>
                   </div>
                 </div>
               </div>
-              <div className={styles.audioLinksContainer}>
-                <div className={styles.audioLinks}>
+              <div className='text-center'>
+                <div className='w-auto bg-white inline-flex max-w-[311px] mx-auto justify-around rounded-full flex-wrap mt-3 relative shadow-lg'>
                     {props?.spotifyUrl && <StreamIcon href={props.spotifyUrl} serviceName='Spotify'/>}
                     {props?.youtubeUrl && <StreamIcon href={props.youtubeUrl} serviceName='Youtube Music'/>}
                     {props?.appleMusicUrl && <StreamIcon href={props.appleMusicUrl} serviceName='Apple Music'/>}

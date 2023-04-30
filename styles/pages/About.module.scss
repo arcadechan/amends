@@ -1,39 +1,9 @@
-.about {
-  .aboutHero {
-    @apply bg-yellow;
-    @apply text-center;
-    @apply relative;
+.aboutTitle {
+  -webkit-text-stroke: 5px theme('colors.white');
+  text-stroke: 5px theme('colors.white');
 
-    .aboutAvatar {
-      @apply mx-auto;
-      @apply pt-10;
-    }
-
-    .aboutName {
-      .aboutTitle,
-      .aboutSubtitle {
-        @apply font-candy;
-      }
-
-      .aboutTitle {
-        font-size: 95px;
-        line-height: 98px;
-        -webkit-text-stroke: 8px $white;
-
-        @screen lg {
-          font-size: 130px;
-          line-height: 135px;
-        }
-      }
-    }
+  @screen lg {
+    -webkit-text-stroke: 8px theme('colors.white');
+    text-stroke: 8px theme('colors.white');
   }
-
-  .aboutContent {
-    @apply px-12;
-    @apply py-4;
-    @apply max-w-screen-2xl;
-    @apply mx-auto;
-    @apply font-inter;
-    font-size: 20px;
-  }
-}
+} 

@@ -3,7 +3,5 @@
 
 html {
   height: 100%;
-  @apply bg-white;
-  @apply text-black;
-  @apply scroll-smooth;
+  @apply bg-lace text-black scroll-smooth;
 }

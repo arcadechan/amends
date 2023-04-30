@@ -4,7 +4,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import { HomePageBlocksCardGrid, HomePageBlocksCardGridCards } from '../.tina/__generated__/types'
-import styles from '../styles/components/CardGrid.module.scss'
 
 interface CardImageProps {
   cardImage: {
@@ -38,7 +37,7 @@ const getAriaLabel = (card: HomePageBlocksCardGridCards | null): string =>
 
 const CardImage = ({cardImage, columnCount}: CardImageProps): JSX.Element => 
 {
-  if(cardImage && cardImage.src) {
+  if(cardImage?.src !== undefined && cardImage.src?.length) {
     let sizes = ''
 
     switch(columnCount)
@@ -61,34 +60,41 @@ const CardImage = ({cardImage, columnCount}: CardImageProps): JSX.Element =>
     }
 
     return (
-      <div className={styles.cardGridImageContainer}>
+      <div className='absolute h-full w-full z-0'>
         <Image
           src={cardImage.src}
+          className='rounded-3xl object-cover'
           alt=''
           fill
-          style={{ objectFit: 'cover' }}
           sizes={sizes}
-          className={styles.cardGridImage}
           placeholder={ cardImage?.imageBlurDataURL ? 'blur' : 'empty' }
-          blurDataURL={ cardImage?.imageBlurDataURL || undefined}
+          blurDataURL={ cardImage?.imageBlurDataURL || undefined }
         />
       </div>
     )
   }
   else
   {
-    return <div className={styles.cardGridNoImage}></div>
+    return <div className='h-full w-full absolute bg-gray left-0 top-0 z-0 rounded-3xl'/>
   }
 }
 
 const CardGrid = ({ componentProps }: { componentProps: HomePageBlocksCardGrid }): JSX.Element =>
 {
-  const { columnCount = 'one', sectionTitle, cards } = componentProps
+  const { sectionTitle, cards } = componentProps
+  const columnCount: string = componentProps?.columnCount || 'one'
+
+  const columnClasses: {[key: string]: string} = {
+    'one': '',
+    'two': 'md:grid-cols-2',
+    'three': 'md:grid-cols-3',
+    'four': 'md:grid-cols-2 lg:grid-cols-4'
+  }
 
   return (
-    <section className={styles.cardGrid}>
-      {sectionTitle && <h2 className={styles.cardGridTitle}>{sectionTitle}</h2>}
-      <div className={`${styles.cardGridCardContainer} ${styles[`${columnCount}ColumnGrid`]}`}>
+    <section className='max-w-screen-lg mx-auto pt-10 pb-4 px-12'>
+      {sectionTitle && <h2 className='font-candy text-3xl mb-3 text-center'>{sectionTitle}</h2>}
+      <div className={`grid gap-8 grid-cols-1 ${columnClasses[columnCount]}`}>
         {cards && cards?.length > 0 && cards.map((card, i: number) => {
           const cardImage = {
             src: card?.manualCard?.image || card?.referenceCard?.heroImage,
@@ -99,22 +105,23 @@ const CardGrid = ({ componentProps }: { componentProps: HomePageBlocksCardGrid }
           const showCtaButton = card?.manualCard?.showCtaButton
 
           return (
-            <article className={`${styles.card} ${cardImage ? styles.cardHasImage : styles.cardHasNoImage }`} key={i}>
+            <article className={`relative rounded-3xl ${cardImage ? 'min-h-[300px] lg:min-h-[400px]' : 'min-h-[200px]' }`} key={i}>
               <Link
                 href={getCardUrl(card)}
                 aria-label={getAriaLabel(card)}
-                className={`${styles.cardAnchor} ${showCtaButton ? styles.cardAnchorWithCta : ''}`}
+                className={`group block h-full focus:outline-black focus:outline-[5px] focus:rounded-3xl focus:outline focus:outline-offset-[-1px]`}
+                prefetch={false}
               >
                 <CardImage cardImage={cardImage} columnCount={columnCount}/>
-                <div className={styles.cardTextLabels}>
+                <div className={`flex flex-col just-end p-6 absolute bottom-0 left-0 z-0 w-full text-white bg-gradient-to-r from-black rounded-b-3xl ${ !cardImage?.src && 'h-full rounded-t-3xl'}`}>
                   {cardTitle && (
-                    <h2 className={showCtaButton ? styles.cardTitleCentered : styles.cardTitle} aria-hidden>{cardTitle}</h2>
+                    <h2 className={`font-inter text-2xl font-bold ${showCtaButton && 'text-center'} ${!showCtaButton && 'group-hover:underline'}`} aria-hidden>{cardTitle}</h2>
                   )}
                   {cardSubtitle && (
-                    <h3 className={styles.cardSubtitle} aria-hidden>{cardSubtitle}</h3>
+                    <h3 className={`font-inter text-lg italic ${showCtaButton && 'text-center'} ${!showCtaButton && 'group-hover:underline'}`} aria-hidden>{cardSubtitle}</h3>
                   )}
                   {showCtaButton && (
-                    <span className={styles.cardCtaButton}>
+                    <span className='bg-yellow text-black font-inter text-center p-[10px] mt-4 font-bold rounded-xl w-auto group-hover:underline'>
                       {card?.manualCard?.ctaText || ''}
                     </span>
                   )}

@@ -1,9 +1,9 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Lottie from 'lottie-react'
-import Link from 'next/link'
 import successAnimation from '../../public/animations/success.json'
+import ButtonLink from '../../components/ButtonLink'
+import DynamicLottie from '../../components/DynamicLottie'
 
 export default function Success()
 {
@@ -24,9 +24,10 @@ export default function Success()
       >
         Success
       </motion.h1>
-      <Lottie
+      <DynamicLottie
         className='w-72 h-72 mx-auto'
-        animationData={successAnimation} loop={false}
+        animationData={successAnimation}
+        loop={false}
       />
       <motion.p
         className='text-2xl font-inter font-bold'
@@ -41,12 +42,7 @@ export default function Success()
         animate={animate}
         transition={transition}
       >
-        <Link
-          href='/'
-          className='inline-block bg-black text-yellow py-3 px-6 rounded-full font-inter text-base'
-        >
-          To home
-        </Link>
+        <ButtonLink href='/'>To home</ButtonLink>
       </motion.div>
     </section>
   )
