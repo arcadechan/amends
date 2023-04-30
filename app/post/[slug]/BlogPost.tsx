@@ -21,8 +21,7 @@ type BlogPostProps = {
   imageBlurDataURL: string
 } & TinaQueryResponse
 
-export default function BlogPost(props: BlogPostProps)
-{
+export default function BlogPost(props: BlogPostProps) {
   const { data } = useTina({
     query: props.query,
     variables: props.variables,
@@ -31,23 +30,18 @@ export default function BlogPost(props: BlogPostProps)
 
   const imageBlurDataURL = props.imageBlurDataURL
 
-  const {
-    publishDate,
-    heroImage,
-    title,
-    subTitle,
-    body
-  } = data.post
+  const { publishDate, heroImage, title, subTitle, body } = data.post
 
-  const formattedDate = new Date(publishDate).toLocaleString('default', { dateStyle: 'long' })
+  const formattedDate = new Date(publishDate).toLocaleString('default', {
+    dateStyle: 'long'
+  })
   const searchParams = useSearchParams()
   const router = useRouter()
 
   let backUrl = '/posts'
   let backPage = searchParams?.get('back')
 
-  if(backPage)
-  {
+  if (backPage) {
     backUrl = `/posts/${backPage}`
   }
 
@@ -71,28 +65,27 @@ export default function BlogPost(props: BlogPostProps)
         )}
         <div className='mt-[45px] px-12 max-w-5xl mx-auto font-candy'>
           <h1 className={`${styles.blogPostTitle} text-4xl lg:text-6xl`}>{title}</h1>
-          {subTitle && <h2 className={`${styles.blogPostSubtitle} mt-3 text-2xl lg:text-4xl italic`}>{subTitle}</h2>}
+          {subTitle && (
+            <h2 className={`${styles.blogPostSubtitle} mt-3 text-2xl lg:text-4xl italic`}>
+              {subTitle}
+            </h2>
+          )}
         </div>
-        <LineBreak className='my-4'/>
+        <LineBreak className='my-4' />
       </section>
       <section className='px-4 py-4 max-w-5xl mx-auto mb-8 font-inter md:px-12'>
         <h3 className='italic mb-5 text-center text-sm'>Published: {formattedDate}</h3>
         <BlogPostProvider value={{ playingTrack, setPlayingTrack }}>
           <div className='prose lg:prose-lg max-w-none'>
-            <TinaMarkdown content={body} components={{ 'songEmbed': AudioPlayer }}/>
+            <TinaMarkdown content={body} components={{ songEmbed: AudioPlayer }} />
           </div>
         </BlogPostProvider>
-        <PinkyPromise className='mt-10'/>
+        <PinkyPromise className='mt-10' />
         <div className='text-center'>
           {backPage ? (
-            <ButtonLink href={backUrl}>
-              &larr; Back to Posts
-            </ButtonLink>
+            <ButtonLink href={backUrl}>&larr; Back to Posts</ButtonLink>
           ) : (
-            <ButtonLink
-              button
-              onClick={() => router.back()}
-            >
+            <ButtonLink button onClick={() => router.back()}>
               &larr; Back to Posts
             </ButtonLink>
           )}

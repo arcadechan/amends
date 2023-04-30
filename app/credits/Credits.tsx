@@ -1,8 +1,7 @@
-import { PinkyPromise } from "../../components"
-import Link from "next/link"
+import { PinkyPromise } from '../../components'
+import Link from 'next/link'
 
-export default function Credits()
-{
+export default function Credits() {
   const credits = [
     {
       type: 'Animations',
@@ -18,11 +17,11 @@ export default function Credits()
         {
           creator: {
             name: 'Splash Animation',
-            url: 'https://lottiefiles.com/splashanimation',
+            url: 'https://lottiefiles.com/splashanimation'
           },
           assetName: 'Compass Needle',
           locationUsed: '/not-found'
-        },
+        }
       ]
     },
     {
@@ -30,16 +29,16 @@ export default function Credits()
       items: [
         {
           creator: {
-           name: 'Chequered Ink' ,
-           url: 'https://chequered.ink/'
+            name: 'Chequered Ink',
+            url: 'https://chequered.ink/'
           },
           assetName: 'Candy Bean',
           locationUsed: 'Headers & titles'
         },
         {
           creator: {
-           name: 'Rasmus Andersson' ,
-           url: 'https://fonts.google.com/?query=Rasmus+Andersson'
+            name: 'Rasmus Andersson',
+            url: 'https://fonts.google.com/?query=Rasmus+Andersson'
           },
           assetName: 'Inter (Google Font)',
           locationUsed: 'Headers, titles, general text, etc.'
@@ -51,24 +50,24 @@ export default function Credits()
       items: [
         {
           creator: {
-           name: 'Stockio',
-           url: 'https://www.flaticon.com/free-icons/heartbeat'
+            name: 'Stockio',
+            url: 'https://www.flaticon.com/free-icons/heartbeat'
           },
           assetName: 'Heartbeat',
           locationUsed: 'The Amends logo'
         },
         {
           creator: {
-           name: 'Freepik',
-           url: 'https://www.flaticon.com/free-icons/spotify'
+            name: 'Freepik',
+            url: 'https://www.flaticon.com/free-icons/spotify'
           },
           assetName: 'Spotify icon',
           locationUsed: 'Footer & Audio Player component'
         },
         {
           creator: {
-           name: 'Pixel perfect',
-           url: 'https://www.flaticon.com/free-icons/github'
+            name: 'Pixel perfect',
+            url: 'https://www.flaticon.com/free-icons/github'
           },
           assetName: 'Github icon',
           locationUsed: 'Footer'
@@ -97,8 +96,9 @@ export default function Credits()
     <section className='max-w-screen-2xl mx-auto my-5 px-12 py-4'>
       <h1 className='text-8xl font-candy text-center'>Credits</h1>
       <p>
-        Although it&apos;s a small site, there are a lot of assets throughout the site that I&apos;ve borrowed from other individuals.
-        Take some time to look through them and make sure to check their stuff out!
+        Although it&apos;s a small site, there are a lot of assets throughout the site
+        that I&apos;ve borrowed from other individuals. Take some time to look through
+        them and make sure to check their stuff out!
       </p>
       {credits.map((credit: any, i: number) => (
         <div key={i}>
@@ -106,15 +106,19 @@ export default function Credits()
           <ul className='mb-8'>
             {credit.items.map((item: any, j: number) => (
               <li key={j}>
-                <b>{item.assetName}</b> by <Link href={item.creator.url} prefetch={false} target='_blank'><b>{item.creator.name}</b></Link><br/>
+                <b>{item.assetName}</b> by{' '}
+                <Link href={item.creator.url} prefetch={false} target='_blank'>
+                  <b>{item.creator.name}</b>
+                </Link>
+                <br />
                 <small>Location(s) used: {item.locationUsed}</small>
-              </li>  
+              </li>
             ))}
           </ul>
         </div>
       ))}
       <div className='mt-5'>
-        <PinkyPromise/>
+        <PinkyPromise />
       </div>
     </section>
   )

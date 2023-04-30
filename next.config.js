@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('path')
 const { withPlaiceholder } = require('@plaiceholder/next')
 
 /** @type {import('next').NextConfig} */
@@ -16,9 +16,9 @@ const nextConfig = {
       test: /\.(graphql|gql)/,
       exclude: /node_modules/,
       loader: 'graphql-tag/loader'
-    });
+    })
 
-    return config;
+    return config
   },
   async rewrites() {
     return [

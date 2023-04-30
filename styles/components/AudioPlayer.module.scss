@@ -1,6 +1,6 @@
 .progressTrack {
   -webkit-appearance: none;
-  
+
   &::-webkit-progress-bar {
     @apply rounded-xl;
     background-color: #989898;
@@ -18,7 +18,11 @@
   --volume-level: 50%;
 
   &::-webkit-slider-runnable-track {
-    background: linear-gradient(to right, theme('colors.blue') var(--volume-level), theme('colors.blue' / 40%) var(--volume-level));
+    background: linear-gradient(
+      to right,
+      theme('colors.blue') var(--volume-level),
+      theme('colors.blue' / 40%) var(--volume-level)
+    );
     height: 6px;
     border-radius: 4px;
   }

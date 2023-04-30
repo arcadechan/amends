@@ -1,12 +1,11 @@
 import { CustomTemplateWithExtraFieldUI } from '../../@types/tinacms-custom'
 
-const CardGridSchema: CustomTemplateWithExtraFieldUI =
-{
+const CardGridSchema: CustomTemplateWithExtraFieldUI = {
   name: 'cardGrid',
   label: 'Card Grid',
   ui: {
     defaultItem: {
-      columnCount: 'one',
+      columnCount: 'one'
     }
   },
   fields: [
@@ -43,7 +42,7 @@ const CardGridSchema: CustomTemplateWithExtraFieldUI =
           label: 'Reference Card',
           type: 'reference',
           description: 'Manual Card settings take precedence over references.',
-          collections: [ 'post', 'page' ]
+          collections: ['post', 'page']
         },
         {
           name: 'manualCard',
@@ -84,7 +83,7 @@ const CardGridSchema: CustomTemplateWithExtraFieldUI =
               label: 'Show CTA Button?',
               type: 'boolean',
               ui: {
-                component: 'toggle',
+                component: 'toggle'
               }
             },
             {

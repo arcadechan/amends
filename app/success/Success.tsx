@@ -5,17 +5,13 @@ import successAnimation from '../../public/animations/success.json'
 import ButtonLink from '../../components/ButtonLink'
 import DynamicLottie from '../../components/DynamicLottie'
 
-export default function Success()
-{
+export default function Success() {
   const initial = { opacity: 0 }
   const animate = { opacity: 1 }
   const transition = { duration: 0.5, delay: 1.3 }
 
   return (
-    <section
-      id='success'
-      className='text-center mx-auto my-10'
-    >
+    <section id='success' className='text-center mx-auto my-10'>
       <motion.h1
         className='text-5xl font-candy'
         initial={initial}
@@ -37,11 +33,7 @@ export default function Success()
       >
         Thanks for your submission!
       </motion.p>
-      <motion.div
-        initial={initial}
-        animate={animate}
-        transition={transition}
-      >
+      <motion.div initial={initial} animate={animate} transition={transition}>
         <ButtonLink href='/'>To home</ButtonLink>
       </motion.div>
     </section>

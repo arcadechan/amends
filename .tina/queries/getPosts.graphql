@@ -1,5 +1,12 @@
 query getPostsQuery($first: Float, $last: Float, $before: String, $after: String) {
-  postConnection(first: $first, last: $last, filter: { draft: { eq: false } }, sort: "publishDate", before: $before, after: $after){
+  postConnection(
+    first: $first
+    last: $last
+    filter: { draft: { eq: false } }
+    sort: "publishDate"
+    before: $before
+    after: $after
+  ) {
     pageInfo {
       hasPreviousPage
       hasNextPage

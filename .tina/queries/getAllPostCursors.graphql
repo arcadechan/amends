@@ -1,5 +1,5 @@
 query getAllPostCursorsQuery($last: Float) {
-  postConnection(last: $last, filter: { draft: { eq: false } }, sort: "publishDate"){
+  postConnection(last: $last, filter: { draft: { eq: false } }, sort: "publishDate") {
     pageInfo {
       hasPreviousPage
       hasNextPage

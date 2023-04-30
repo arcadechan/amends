@@ -2,7 +2,7 @@ import { Template } from 'tinacms'
 import { Exact, PostQuery, PostQueryVariables } from '../.tina/__generated__/types'
 
 declare type CustomTemplateField = {
-    ui?: {
+  ui?: {
     name?: string
     component?: string
     direction?: string

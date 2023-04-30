@@ -5,7 +5,6 @@ export const metadata = {
   description: 'What is Amends all about?'
 }
 
-export default function Page()
-{
-  return <About/>
+export default function Page() {
+  return <About />
 }
