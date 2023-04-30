@@ -13,8 +13,7 @@ const getHome = async () => {
   const queryResponse = await client.queries.getHomePageQuery({
     relativePath: 'home.mdx'
   })
-  const homePageDataWithPlaiceholders: GetHomePageQueryQuery =
-    await getPlaceholders.forHomePage(queryResponse.data)
+  const homePageDataWithPlaiceholders: GetHomePageQueryQuery = await getPlaceholders.forHomePage(queryResponse.data)
 
   return {
     query: queryResponse.query || null,
