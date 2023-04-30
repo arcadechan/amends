@@ -1,0 +1,14 @@
+query getAllPostCursorsQuery($last: Float) {
+  postConnection(last: $last, filter: { draft: { eq: false } }, sort: "publishDate") {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+    }
+  }
+}

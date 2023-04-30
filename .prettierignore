@@ -1,0 +1,12 @@
+/.next
+/out
+.vscode
+json
+/node_modules
+.env*
+!.env.example
+.vercel
+.tina/__generated__/
+content
+public/admin
+.eslintrc.json

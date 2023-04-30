@@ -1,3 +1,6 @@
+const path = require('path')
+const { withPlaiceholder } = require('@plaiceholder/next')
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -13,9 +16,9 @@ const nextConfig = {
       test: /\.(graphql|gql)/,
       exclude: /node_modules/,
       loader: 'graphql-tag/loader'
-    });
+    })
 
-    return config;
+    return config
   },
   async rewrites() {
     return [
@@ -24,7 +27,10 @@ const nextConfig = {
         destination: '/admin/index.html'
       }
     ]
+  },
+  sassOptions: {
+    includePaths: [path.join(__dirname, 'styles')]
   }
 }
 
-module.exports = nextConfig
+module.exports = withPlaiceholder(nextConfig)
