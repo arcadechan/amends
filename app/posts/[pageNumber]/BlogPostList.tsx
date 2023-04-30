@@ -1,10 +1,9 @@
-'use-client'
-
 import Image from 'next/image'
 import Link from 'next/link';
 import ButtonLink from '../../../components/ButtonLink';
 import { GetPostsQueryQuery, Post } from "../../../.tina/__generated__/types";
 import { PageSearchParamProps } from './page'
+import { getPlaiceholder } from 'plaiceholder';
 
 const getCardUrl = (card: Post, pageNumber: string = '1'): string =>
 {
@@ -30,19 +29,22 @@ const getAriaLabel = (card: Post): string =>
   return ''
 }
 
-const CardImage = ({ cardImage }: any): JSX.Element =>
+const CardImage = async ({ cardImage }: any): Promise<JSX.Element> =>
 {
   if(cardImage)
   {
+    const { base64 } = await getPlaiceholder(cardImage)
+
     return (
       <div className='absolute h-full w-full z-0'>
         <Image
-          className='rounded-3xl'
+          className='rounded-3xl object-cover'
           src={cardImage}
           alt=''
           fill
-          style={{ objectFit: 'cover' }}
           sizes='100vw, (min-width: 768px) 50vw'
+          placeholder='blur'
+          blurDataURL={base64 || ''}
         />
       </div>
     )
@@ -55,17 +57,12 @@ const CardImage = ({ cardImage }: any): JSX.Element =>
 
 const BlogPostList = ({ componentProps, params }: { componentProps: GetPostsQueryQuery['postConnection'] | null, params: PageSearchParamProps['params'] }): JSX.Element =>
 {
-  if(!componentProps?.pageInfo)
-  {
-    return (
-      <section>
-        <h2>Loading...</h2>
-      </section>
-    )
+  let pageInfo = null;
+  let posts: Array<any> = [];
+  if(componentProps) {
+    pageInfo = componentProps.pageInfo
+    posts = componentProps.edges ? componentProps.edges.map(post => post?.node) : []
   }
-
-  const { pageInfo } = componentProps
-  const posts = componentProps.edges ? componentProps.edges.map(post => post?.node) : []
 
   return (
     <section className='px-12 pt-12 pb-4 max-w-screen-lg mx-auto grid gap-8'>
@@ -83,6 +80,7 @@ const BlogPostList = ({ componentProps, params }: { componentProps: GetPostsQuer
                   className='group block h-full rounded-3xl focus:outline focus:outline-[5px] focus:outline-offset-[-1px] outline-black'
                   prefetch={false}
                 >
+                  {/* @ts-expect-error Server Component */}
                   <CardImage cardImage={post?.heroImage}/>
                   <div className={
                     `flex flex-col justify-end p-6 absolute bottom-0 left-0 z-0 w-full text-white bg-gradient-to-r from-black rounded-b-3xl ${!post?.heroImage ? 'h-full rounded-t-3xl' : ''}`
