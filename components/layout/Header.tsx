@@ -26,7 +26,7 @@ const DynamicHamburger = dynamic(() => import('../HamburgerMenu'), {
   )
 })
 
-const HeaderV2 = ({ navigationLinks }: HeaderProps): JSX.Element => {
+const Header = ({ navigationLinks }: HeaderProps): JSX.Element => {
   const [menuIsOpen, setMenuIsOpen] = useState(false)
   const [isDesktop, setIsDesktop] = useState(false)
 
@@ -181,4 +181,4 @@ const HeaderV2 = ({ navigationLinks }: HeaderProps): JSX.Element => {
   )
 }
 
-export default HeaderV2
+export default Header
