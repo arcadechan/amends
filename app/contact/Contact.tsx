@@ -1,7 +1,6 @@
 'use client'
 
 export default function Contact() {
-
   const labelClasses = 'font-inter font-bold text-base block'
   const inputClasses = 'bg-white block w-full mb-3 rounded-lg py-1 px-2'
 

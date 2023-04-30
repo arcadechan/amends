@@ -1,15 +1,9 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Link from 'next/link'
 import successAnimation from '../../public/animations/success.json'
-import dynamic from 'next/dynamic'
 import ButtonLink from '../../components/ButtonLink'
-
-const DynamicLottie = dynamic(() => import('lottie-react'), {
-  ssr: false,
-  loading: () => <div className='w-72 h-72 mx-auto'/>
-})
+import DynamicLottie from '../../components/DynamicLottie'
 
 export default function Success()
 {
@@ -32,7 +26,8 @@ export default function Success()
       </motion.h1>
       <DynamicLottie
         className='w-72 h-72 mx-auto'
-        animationData={successAnimation} loop={false}
+        animationData={successAnimation}
+        loop={false}
       />
       <motion.p
         className='text-2xl font-inter font-bold'

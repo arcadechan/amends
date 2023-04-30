@@ -1,5 +1,6 @@
-import Lottie, { LottieRefCurrentProps } from 'lottie-react'
-import { useRef, useEffect, useState } from "react"
+import { LottieRefCurrentProps } from 'lottie-react'
+import DynamicLottie from './DynamicLottie'
+import { useRef, useEffect } from "react"
 import type { MutableRefObject, Dispatch, SetStateAction } from 'react'
 import hamburgerMenu from '../public/animations/hamburger-menu.json'
 
@@ -34,7 +35,7 @@ const DynamicHamburger = ({ menuIsOpen, setMenuIsOpen }: DynamicHamburgerProps):
         }
       }}
     >
-      <Lottie
+      <DynamicLottie
         lottieRef={menuRef}
         style={{ width: '55px', height: '55px' }}
         autoplay={false}
