@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Image from 'next/image'
 import Link from 'next/link';
 import ButtonLink from '../../../components/ButtonLink';
@@ -34,6 +35,11 @@ const CardImage = async ({ cardImage }: any): Promise<JSX.Element> =>
   if(cardImage)
   {
     const { base64 } = await getPlaiceholder(cardImage)
+      .then(res => res)
+      .catch(e => {
+        console.error(e)
+        return { base64: 'data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=='}
+      })
 
     return (
       <div className='absolute h-full w-full z-0'>
