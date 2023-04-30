@@ -38,6 +38,7 @@ const commonFields: any[] = [
     label: 'Image Blur Data URL',
     description: 'base64',
     type: 'string',
+    default: '',
     ui: {
       component: () => false
     }
@@ -174,11 +175,12 @@ const schema: Schema = {
     {
       label: 'Blog Posts',
       name: 'post',
-      path: 'content/posts',
+      path: 'content/post',
       format: 'mdx',
       ui: {
         router: ({ document }) => {
           // navigate to the post that was clicked
+          console.log({document})
           return `/post/${document._sys.filename}`
         },
         /**

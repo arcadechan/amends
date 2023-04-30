@@ -4,6 +4,7 @@ import { GetHomePageQueryQuery } from "../.tina/__generated__/types"
 const getPlaceholders = {
   forHomePage: async (homePageQueryData: GetHomePageQueryQuery): Promise<GetHomePageQueryQuery> =>
   {
+    const fallbackBase64 = 'data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=='
     try {
       const { pageBlocks } = homePageQueryData?.home
 
@@ -20,13 +21,13 @@ const getPlaceholders = {
                 {
                   if(card?.manualCard?.image)
                   {
-                    const { base64 } = await getPlaiceholder(card.manualCard.image)
+                    const { base64 } = await getPlaiceholder(card.manualCard.image).catch(() => ({base64: fallbackBase64}))
                     card.manualCard = { ...card.manualCard, ...{imageBlurDataURL: base64} }
                   }
 
                   if(card?.referenceCard?.heroImage)
                   {
-                    const { base64 } = await getPlaiceholder(card.referenceCard.heroImage)
+                    const { base64 } = await getPlaiceholder(card.referenceCard.heroImage).catch(() => ({base64: fallbackBase64}))
                     card.referenceCard = { ...card.referenceCard, ...{imageBlurDataURL: base64} }
                   }
 

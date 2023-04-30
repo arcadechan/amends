@@ -131,7 +131,7 @@ const AudioPlayer = (props: any): JSX.Element =>
         <>
           {!!props.audioPreviewUrl && (
             <>
-              <div className='flex flex-col flex-nowrap bg-white rounded-2xl max-w-[311px] mx-auto overflow-hidden shadow-lg md:flex-row md:max-w-[400px] md:h-[125px]'>
+              <div className='flex flex-col flex-nowrap bg-white rounded-2xl max-w-[311px] mx-auto overflow-hidden shadow-lg md:flex-row md:max-w-[400px] md:h-[125px] not-prose'>
                 {props?.albumArt?.length && (
                   <div className='w-full md:min-w-[125px] md:min-h-[125px] md:w-[125px] md:h-[125px]'>
                     <Image
@@ -213,7 +213,7 @@ const AudioPlayer = (props: any): JSX.Element =>
                   </div>
                 </div>
               </div>
-              <div className='text-center'>
+              <div className='text-center not-prose'>
                 <div className='w-auto bg-white inline-flex max-w-[311px] mx-auto justify-around rounded-full flex-wrap mt-3 relative shadow-lg'>
                     {props?.spotifyUrl && <StreamIcon href={props.spotifyUrl} serviceName='Spotify'/>}
                     {props?.youtubeUrl && <StreamIcon href={props.youtubeUrl} serviceName='Youtube Music'/>}

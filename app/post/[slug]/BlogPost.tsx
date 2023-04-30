@@ -17,7 +17,11 @@ export const BlogPostContext = createContext({
 })
 export const BlogPostProvider = BlogPostContext.Provider
 
-export default function BlogPost(props: TinaQueryResponse)
+type BlogPostProps = {
+  imageBlurDataURL: string
+} & TinaQueryResponse
+
+export default function BlogPost(props: BlogPostProps)
 {
   const { data } = useTina({
     query: props.query,
@@ -25,10 +29,11 @@ export default function BlogPost(props: TinaQueryResponse)
     data: props.data
   })
 
+  const imageBlurDataURL = props.imageBlurDataURL
+
   const {
     publishDate,
     heroImage,
-    imageBlurDataURL,
     title,
     subTitle,
     body
@@ -52,14 +57,15 @@ export default function BlogPost(props: TinaQueryResponse)
     <>
       <section className='bg-yellow text-center relative'>
         {heroImage && (
-          <div className='pt-10 px-12 object-cover w-auto'>
+          <div className='pt-10 px-12 object-cover w-auto min-h-[460px] min-w-[985px]'>
             <Image
               className='mx-auto rounded-3xl w-auto max-h-[500px]'
               src={heroImage}
               alt=''
               height={460}
               width={985}
-              blurDataURL={imageBlurDataURL || undefined}
+              placeholder='blur'
+              blurDataURL={imageBlurDataURL}
             />
           </div>
         )}
@@ -70,9 +76,11 @@ export default function BlogPost(props: TinaQueryResponse)
         <LineBreak className='my-4'/>
       </section>
       <section className='px-4 py-4 max-w-5xl mx-auto mb-8 font-inter md:px-12'>
-        <h3 className='italic mt-3 text-center text-sm'>Published: {formattedDate}</h3>
+        <h3 className='italic mb-5 text-center text-sm'>Published: {formattedDate}</h3>
         <BlogPostProvider value={{ playingTrack, setPlayingTrack }}>
-          <TinaMarkdown content={body} components={{ 'songEmbed': AudioPlayer }}/>
+          <div className='prose lg:prose-lg max-w-none'>
+            <TinaMarkdown content={body} components={{ 'songEmbed': AudioPlayer }}/>
+          </div>
         </BlogPostProvider>
         <PinkyPromise className='mt-10'/>
         <div className='text-center'>
