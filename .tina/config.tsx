@@ -427,7 +427,7 @@ const schema: Schema = {
 const config = defineConfig({
   schema,
   clientId: process.env.TINA_CLIENT_ID!,
-  branch: process.env.NEXT_PUBLIC_TINA_BRANCH || process.env.HEAD || 'main',
+  branch: process.env.NEXT_PUBLIC_BRANCH || process.env.HEAD || 'main',
   token: process.env.TINA_TOKEN!,
   build: {
     publicFolder: 'public',
