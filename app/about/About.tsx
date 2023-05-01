@@ -1,6 +1,6 @@
 'use client'
 
-import styles from '../../styles/pages/About.module.scss'
+import styles from '../../styles/pages/About.module.css'
 import { LineBreak, PinkyPromise } from '../../components'
 import Image from 'next/image'
 import Link from 'next/link'

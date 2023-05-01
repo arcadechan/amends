@@ -1,14 +1,16 @@
 .blogPostTitle {
   -webkit-text-stroke: 2px theme('colors.white');
   text-stroke: 2px theme('colors.white');
-
-  @screen lg {
-    -webkit-text-stroke: 3px theme('colors.white');
-    text-stroke: 3px theme('colors.white');
-  }
 }
 
 .blogPostSubtitle {
   -webkit-text-stroke: 1px theme('colors.white');
   text-stroke: 1px theme('colors.white');
+}
+
+@screen lg {
+  .blogPostTitle {
+    -webkit-text-stroke: 3px theme('colors.white');
+    text-stroke: 3px theme('colors.white');
+  }
 }
