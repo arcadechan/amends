@@ -202,7 +202,6 @@ const schema: Schema = {
       ui: {
         router: ({ document }) => {
           // navigate to the post that was clicked
-          console.log({ document })
           return `/post/${document._sys.filename}`
         }
         /**

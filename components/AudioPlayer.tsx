@@ -31,7 +31,6 @@ const AudioPlayer = (props: any): JSX.Element => {
     typeof Audio !== 'undefined' && new Audio(props.audioPreviewUrl || '')
   )
   const [isPlaying, setIsPlaying] = useState(false)
-  const [progress, setProgress] = useState(0)
   const [storedVolumeLevel, setStoredVolumeLevel] = useState(50)
   const progressRef: MutableRefObject<HTMLProgressElement | null> = useRef(null)
   const volumeRef: MutableRefObject<HTMLInputElement | null> = useRef(null)
@@ -107,7 +106,6 @@ const AudioPlayer = (props: any): JSX.Element => {
 
     const onEnded = () => {
       setIsPlaying(false)
-      setProgress(0)
     }
 
     if (audio) {
@@ -119,6 +117,7 @@ const AudioPlayer = (props: any): JSX.Element => {
       if (audio) {
         audio?.removeEventListener('timeupdate', updateProgress)
         audio?.removeEventListener('ended', onEnded)
+        audio.pause()
       }
     }
   }, [isPlaying, audio])
