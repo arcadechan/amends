@@ -1,10 +1,14 @@
-import { useState } from 'react'
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
 import ButtonLink from '../../../components/ButtonLink'
-import { GetPostsQueryQuery, Post } from '../../../.tina/__generated__/types'
+import {
+  GetPostsQueryQuery,
+  Post,
+  PostConnectionEdges
+} from '../../../.tina/__generated__/types'
 import { PageSearchParamProps } from './page'
-import { getPlaiceholder } from 'plaiceholder'
 
 const getCardUrl = (card: Post, pageNumber: string = '1'): string => {
   const backParam = `?back=${pageNumber}`
@@ -27,23 +31,19 @@ const getAriaLabel = (card: Post): string => {
   return ''
 }
 
-const CardImage = async ({ cardImage }: any): Promise<JSX.Element> => {
+const CardImage = ({ cardImage, imageBlurDataURL }: any): JSX.Element => {
   if (cardImage) {
-    const { base64 } = await getPlaiceholder(cardImage).catch(() => ({
-      base64:
-        'data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=='
-    }))
-
     return (
-      <div className='absolute h-full w-full z-0'>
+      <div className='w-full h-auto min-h-[300px] max-h-[520px] max-w-[985px] mx-auto z-0'>
         <Image
-          className='rounded-3xl object-cover'
+          className='rounded-3xl w-full h-auto min-h-[300px] max-h-[440px] max-w-[985px] object-cover'
           src={cardImage}
+          height={460}
+          width={985}
           alt=''
-          fill
           sizes='100vw, (min-width: 768px) 50vw'
           placeholder='blur'
-          blurDataURL={base64 || ''}
+          blurDataURL={imageBlurDataURL || ''}
         />
       </div>
     )
@@ -65,7 +65,9 @@ const BlogPostList = ({
   let posts: Array<any> = []
   if (componentProps) {
     pageInfo = componentProps.pageInfo
-    posts = componentProps.edges ? componentProps.edges.map((post) => post?.node) : []
+    if (componentProps?.edges && componentProps.edges.length > 0) {
+      posts = componentProps.edges.map((post) => post?.node)
+    }
   }
 
   return (
@@ -73,7 +75,7 @@ const BlogPostList = ({
       {posts.length > 0 ? (
         <>
           {/* MAP POSTS */}
-          {posts.map((post: any, i: number) => (
+          {posts.map((post, i: number) => (
             <article
               key={i}
               className={`relative rounded-3xl ${
@@ -86,8 +88,10 @@ const BlogPostList = ({
                 className='group block h-full rounded-3xl focus:outline focus:outline-[5px] focus:outline-offset-[-1px] outline-black'
                 prefetch={false}
               >
-                {/* @ts-expect-error Server Component */}
-                <CardImage cardImage={post?.heroImage} />
+                <CardImage
+                  cardImage={post.heroImage}
+                  imageBlurDataURL={post.imageBlurDataURL}
+                />
                 <div
                   className={`flex flex-col justify-end p-6 absolute bottom-0 left-0 z-0 w-full text-white bg-gradient-to-r from-black rounded-b-3xl ${
                     !post?.heroImage ? 'h-full rounded-t-3xl' : ''

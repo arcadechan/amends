@@ -1,4 +1,4 @@
-'use-client'
+'use client'
 
 import Image from 'next/image'
 import Link from 'next/link'
@@ -59,15 +59,16 @@ const CardImage = ({ cardImage, columnCount }: CardImageProps): JSX.Element => {
     }
 
     return (
-      <div className='absolute h-full w-full z-0'>
+      <div className='w-full h-auto min-h-[300px] max-h-[520px] max-w-[985px] mx-auto z-0'>
         <Image
           src={cardImage.src}
-          className='rounded-3xl object-cover'
+          className='rounded-3xl w-full h-auto min-h-[300px] max-h-[440px] max-w-[985px] object-cover'
+          height={460}
+          width={985}
           alt=''
-          fill
           sizes={sizes}
-          placeholder={cardImage?.imageBlurDataURL ? 'blur' : 'empty'}
-          blurDataURL={cardImage?.imageBlurDataURL || undefined}
+          placeholder='blur'
+          blurDataURL={cardImage?.imageBlurDataURL || ''}
         />
       </div>
     )
@@ -112,12 +113,7 @@ const CardGrid = ({
             const showCtaButton = card?.manualCard?.showCtaButton
 
             return (
-              <article
-                className={`relative rounded-3xl ${
-                  cardImage ? 'min-h-[300px] lg:min-h-[400px]' : 'min-h-[200px]'
-                }`}
-                key={i}
-              >
+              <article className='relative rounded-3xl w-full h-full' key={i}>
                 <Link
                   href={getCardUrl(card)}
                   aria-label={getAriaLabel(card)}

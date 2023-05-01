@@ -1,12 +1,13 @@
 import { getPlaiceholder } from 'plaiceholder'
-import { GetHomePageQueryQuery } from '../.tina/__generated__/types'
+import { GetHomePageQueryQuery, GetPostsQueryQuery } from '../.tina/__generated__/types'
+
+const fallbackBase64 =
+  'data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=='
 
 const getPlaceholders = {
   forHomePage: async (
     homePageQueryData: GetHomePageQueryQuery
   ): Promise<GetHomePageQueryQuery> => {
-    const fallbackBase64 =
-      'data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=='
     try {
       const { pageBlocks } = homePageQueryData?.home
 
@@ -56,6 +57,35 @@ const getPlaceholders = {
       console.error(e)
       return homePageQueryData
     }
+  },
+  forBlogPostList: async (
+    postsQueryData: GetPostsQueryQuery
+  ): Promise<GetPostsQueryQuery> => {
+    try {
+      const { edges } = postsQueryData?.postConnection
+
+      if (edges?.length) {
+        const modifiedEdges = await Promise.all(
+          edges.map(async (edge) => {
+            if (edge?.node?.heroImage?.length) {
+              const { base64 } = await getPlaiceholder(edge.node.heroImage).catch(() => ({
+                base64: fallbackBase64
+              }))
+              edge.node = { ...edge.node, ...{ imageBlurDataURL: base64 } }
+            }
+
+            return edge
+          })
+        )
+
+        postsQueryData.postConnection.edges = modifiedEdges
+      }
+    } catch (e) {
+      console.error(e)
+      return postsQueryData
+    }
+
+    return postsQueryData
   }
 }
 
