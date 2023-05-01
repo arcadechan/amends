@@ -2,7 +2,7 @@
 
 import { MutableRefObject, useContext, useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
-import styles from '../styles/components/AudioPlayer.module.scss'
+import styles from '../styles/components/AudioPlayer.module.css'
 import Link from 'next/link'
 import { BlogPostContext } from '../app/post/[slug]/BlogPost'
 

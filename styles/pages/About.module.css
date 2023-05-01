@@ -1,8 +1,10 @@
 .aboutTitle {
   -webkit-text-stroke: 5px theme('colors.white');
   text-stroke: 5px theme('colors.white');
+}
 
-  @screen lg {
+@screen lg {
+  .aboutTitle {
     -webkit-text-stroke: 8px theme('colors.white');
     text-stroke: 8px theme('colors.white');
   }
