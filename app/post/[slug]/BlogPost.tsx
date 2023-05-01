@@ -1,6 +1,6 @@
 'use client'
 
-import styles from '../../../styles/pages/BlogPost.module.scss'
+import styles from '../../../styles/pages/BlogPost.module.css'
 import { LineBreak, PinkyPromise } from '../../../components'
 import Image from 'next/image'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
@@ -51,9 +51,9 @@ export default function BlogPost(props: BlogPostProps) {
     <>
       <section className='bg-yellow text-center relative'>
         {heroImage && (
-          <div className='pt-10 px-12 object-cover w-auto min-h-[460px] min-w-[985px]'>
+          <div className='py-10 px-12 w-full h-auto max-h-[520px] max-w-[985px] mx-auto'>
             <Image
-              className='mx-auto rounded-3xl w-auto max-h-[500px]'
+              className='mx-auto rounded-3xl w-full h-auto max-h-[440px] max-w-[985px] object-cover'
               src={heroImage}
               alt=''
               height={460}
