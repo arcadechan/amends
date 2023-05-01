@@ -3,6 +3,8 @@ import { client } from '../../../.tina/__generated__/client'
 import path from 'path'
 import { promises as fs } from 'fs'
 import { cache } from 'react'
+import getPlaceholders from '../../../lib/getPlaceholder'
+import { GetPostsQueryQuery } from '../../../.tina/__generated__/types'
 
 const POSTS_PER_PAGE = 3
 
@@ -96,11 +98,13 @@ const getPosts = cache(async (pageNumber: string) => {
   }
 
   const queryResponse = await client.queries.getPostsQuery(variables)
+  const queryResponseWithPlaiceholders: GetPostsQueryQuery =
+    await getPlaceholders.forBlogPostList(queryResponse.data)
 
   return {
     query: queryResponse?.query || null,
     variables: queryResponse?.variables || null,
-    data: queryResponse?.data?.postConnection || null
+    data: queryResponseWithPlaiceholders.postConnection || null
   }
 })
 
