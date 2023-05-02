@@ -16,3 +16,49 @@
 [functions]
   external_node_modules = ['sharp']
   included_files = ['node_modules/sharp/**/*']
+
+[[redirects]]
+  from = '/_next/static/*'
+  to = '/static/:splat'
+  status = 200
+
+[[redirects]]
+  from = '/api/*'
+  to = '/.netlify/functions/___netlify-handler'
+  status = 200
+
+[[redirects]]
+  from = '/post/:slug.rsc'
+  to = '/.netlify/builders/___netlify-odb-handler'
+  status = 2000
+  force = false
+
+[[redirects]]
+  from = '/post/:slug'
+  to = '/.netlify/builders/___netlify-odb-handler'
+  status = 2000
+  force = false
+
+[[redirects]]
+  from =  '/_next/data/H-QecfhjSpQ7Usrmhaglv/posts/:pageNumber.json'
+  to = '/.netlify/functions/___netlify-handler'
+  status =  200
+  force =  false
+
+[[redirects]]
+  from =  '/posts/:pageNumber'
+  to = '/.netlify/functions/___netlify-handler'
+  status =  200
+  force =  false
+
+[[redirects]]
+  from =  '/:...other.rsc'
+  to = '/.netlify/builders/___netlify-odb-handler'
+  status =  200
+  force =  false
+
+[[redirects]]
+  from =  '/:other/*'
+  to = '/.netlify/builders/___netlify-odb-handler'
+  status =  200
+  force =  false
