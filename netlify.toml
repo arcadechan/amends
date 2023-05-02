@@ -12,3 +12,7 @@
 
 [build.production]
   environment = { NEXT_PUBLIC_BRANCH = 'main' }
+
+[functions]
+  external_node_modules = ['sharp']
+  included_files = ['node_modules/sharp/**/*']
