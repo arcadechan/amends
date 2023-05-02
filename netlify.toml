@@ -1,8 +1,11 @@
 [build]
 
   publish = ".next"
-  command = "npm config set legacy-peer-deps true && npm run build"
-  environment = { NODE_VERSION = "18.15.0" }
+  command = "npm run build"
+
+  [environment]
+    NODE_VERSION = "18.15.0"
+    NPM_FLAGS = '--legacy-peer-deps'
 
 [build.development]
   environment = { NEXT_PUBLIC_BRANCH = 'development' }
