@@ -15,12 +15,12 @@ const StreamIcon = ({ href, serviceName }: { href: string; serviceName: string }
       title={`Listen to the song on ${serviceName}`}
     >
       <Image
-        className='m-2 inline-block relative'
+        className='my-2 mx-3 inline-block relative w-8 md:m-2 md:w-6'
         src={`/icons/${serviceName.toLowerCase().split(' ').join('-')}.png`}
         aria-label={`${serviceName} link to song.`}
         alt=''
-        width={25}
-        height={25}
+        width={24}
+        height={24}
       />
     </Link>
   )
@@ -31,10 +31,11 @@ const AudioPlayer = (props: any): JSX.Element => {
     typeof Audio !== 'undefined' && new Audio(props.audioPreviewUrl || '')
   )
   const [isPlaying, setIsPlaying] = useState(false)
-  const [storedVolumeLevel, setStoredVolumeLevel] = useState(50)
+  const [storedVolumeLevel, setStoredVolumeLevel] = useState(0.5)
   const progressRef: MutableRefObject<HTMLProgressElement | null> = useRef(null)
   const volumeRef: MutableRefObject<HTMLInputElement | null> = useRef(null)
   const { playingTrack, setPlayingTrack } = useContext(BlogPostContext)
+  const [isMuted, setIsMuted] = useState(false)
 
   const restart = (): void => {
     if (audio) {
@@ -46,33 +47,43 @@ const AudioPlayer = (props: any): JSX.Element => {
     }
   }
 
-  const handleVolume = (e: any, mute: boolean = false): void => {
+  const handleVolume = (e: any): void => {
     if (audio) {
-      if (!mute) {
-        const volumeValue = e.target.valueAsNumber
-        audio.volume = volumeValue / 100
+      const volumeValue = e.target.valueAsNumber
+      audio.volume = volumeValue
 
-        if (volumeRef?.current) {
-          volumeRef.current.style.setProperty('--volume-level', `${volumeValue}%`)
+      if (volumeRef?.current) {
+        volumeRef.current.style.setProperty('--volume-level', `${volumeValue * 100}%`)
+        setStoredVolumeLevel(volumeValue)
+
+        if (volumeValue === 0) {
+          setIsMuted(true)
+          setStoredVolumeLevel(0.5)
+        } else {
+          setIsMuted(false)
         }
+      }
+    }
+  }
+
+  const handleMute = () => {
+    if (audio && volumeRef?.current?.value) {
+      const currentVolumeValue = parseFloat(volumeRef.current.value)
+
+      if (currentVolumeValue > 0) {
+        setIsMuted(true)
+        setStoredVolumeLevel(currentVolumeValue)
+        audio.volume = 0
+        volumeRef.current.value = '0'
+        volumeRef.current.style.setProperty('--volume-level', `0%`)
       } else {
-        if (volumeRef?.current?.value) {
-          const currentVolumeValue = parseInt(volumeRef.current.value)
-
-          if (currentVolumeValue > 0) {
-            setStoredVolumeLevel(currentVolumeValue / 100)
-            audio.volume = 0
-            volumeRef.current.value = '0'
-            volumeRef.current.style.setProperty('--volume-level', `0%`)
-          } else {
-            audio.volume = storedVolumeLevel
-            volumeRef.current.value = `${storedVolumeLevel * 100}%`
-            volumeRef.current.style.setProperty(
-              '--volume-level',
-              `${storedVolumeLevel * 100}%`
-            )
-          }
-        }
+        setIsMuted(false)
+        audio.volume = storedVolumeLevel
+        volumeRef.current.value = `${storedVolumeLevel}`
+        volumeRef.current.style.setProperty(
+          '--volume-level',
+          `${storedVolumeLevel * 100}%`
+        )
       }
     }
   }
@@ -174,7 +185,7 @@ const AudioPlayer = (props: any): JSX.Element => {
                       className='my-2 md:my-0 md:w-9'
                       type='button'
                       aria-label='Restart playback'
-                      onClick={() => restart()}
+                      onClick={restart}
                     >
                       <Image src='/icons/reload.png' alt='' width={25} height={25} />
                     </button>
@@ -198,17 +209,14 @@ const AudioPlayer = (props: any): JSX.Element => {
                       className='my-2 md:my-0 w-10'
                       type='button'
                       aria-label='Volume control'
-                      onClick={(e) => handleVolume(e, true)}
+                      onClick={handleMute}
                     >
                       <Image
-                        src={
-                          audio && audio.volume === 0
-                            ? '/icons/volume-muted.png'
-                            : '/icons/volume-on.png'
-                        }
+                        src={isMuted ? '/icons/volume-muted.png' : '/icons/volume-on.png'}
                         alt=''
                         width={22}
                         height={35}
+                        className='pointer-events-none'
                       />
                     </button>
                     <label
@@ -233,9 +241,9 @@ const AudioPlayer = (props: any): JSX.Element => {
                       className={`${styles.volume} bg-transparent cursor-pointer md:w-full`}
                       type='range'
                       min='0'
-                      max='100'
-                      step='1'
-                      defaultValue='50'
+                      max='1'
+                      step='0.01'
+                      defaultValue='.5'
                       onChange={handleVolume}
                     />
                   </div>
