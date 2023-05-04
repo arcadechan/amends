@@ -1,68 +1,220 @@
 'use client'
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import useWeb3Forms from '@web3forms/react'
+import { motion } from 'framer-motion'
+import successAnimation from '../../public/animations/success.json'
+import ButtonLink from '../../components/ButtonLink'
+import DynamicLottie from '../../components/DynamicLottie'
 
 export default function Contact() {
-  const labelClasses = 'font-inter font-bold text-base block'
-  const inputClasses = 'bg-white block w-full mb-3 rounded-lg py-1 px-2'
+  const {
+    register,
+    handleSubmit,
+    reset,
+    getValues,
+    formState: { errors, isSubmitSuccessful, isSubmitting, isSubmitted }
+  } = useForm({
+    mode: 'onTouched'
+  })
+
+  const [isSuccess, setIsSuccess] = useState(false)
+  const [message, setMessage] = useState('')
+  const [isFilledOut, setIsFilledOut] = useState(false)
+
+  const NEXT_PUBLIC_WEB3_KEY = process.env.NEXT_PUBLIC_WEB3_KEY!
+
+  const { submit: onSubmit } = useWeb3Forms({
+    access_key: NEXT_PUBLIC_WEB3_KEY,
+    settings: {
+      from_name: 'Amends',
+      subject: 'New message from amends.blog'
+    },
+    onSuccess: (msg: string) => {
+      setIsSuccess(true)
+      setMessage(msg)
+      reset()
+    },
+    onError: (msg: string) => {
+      setIsSuccess(false)
+      setMessage(msg)
+    }
+  })
+
+  const handleProgress = () => {
+    const values = getValues(['email', 'message'])
+
+    if (values.length === values.filter((val) => val.length).length) {
+      setIsFilledOut(true)
+    } else {
+      setIsFilledOut(false)
+    }
+  }
+
+  // Success animation
+  const initial = { opacity: 0 }
+  const animate = { opacity: 1 }
+  const transition = { duration: 0.5, delay: 1.3 }
 
   return (
-    <>
-      <section className='text-center'>
-        <h1 className='font-candy text-8xl'>Contact</h1>
-        <p className='font-inter text-xl'>
-          Uh, surely something&apos;s on your mind if you&apos;re here? 😮
-          <br />
-        </p>
-      </section>
-      <section className='px-5'>
-        <form
-          className='max-w-screen-md rounded-xl bg-yellow mx-auto p-5'
-          name='contact-us'
-          method='POST'
-          action='/success'
-          data-netlify='true'
-          netlify-honeypot='bot-field'
-        >
-          {/* BEGIN: Hidden Fields */}
-          <p style={{ display: 'none' }}>
-            Leave blank if you&apos;re human: <input name='bot-field' />
-          </p>
-          <input
-            className={inputClasses}
-            type='hidden'
-            name='form-name'
-            value='contact-us'
-          />
-          {/* END: Hidden Fields */}
-          <label className={labelClasses} htmlFor='email'>
-            Email *
-          </label>
-          <input
-            id='email'
-            className={inputClasses}
-            type='email'
-            name='email'
-            required={true}
-          />
-          <label className={labelClasses} htmlFor='message'>
-            Message *
-          </label>
-          <textarea
-            id='message'
-            className={inputClasses}
-            name='message'
-            rows={7}
-            required={true}
-          />
-          <div className='text-center'>
-            <button
-              className='bg-black text-yellow px-3 py-2 text-lg font-inter rounded-lg mx-5 hover:bg-lace hover:text-black hover:underline'
-              type='submit'
+    <div className='mx-auto pt-10 pb-4 px-12'>
+      {!isSubmitted && (
+        <>
+          <section className='text-center'>
+            <h1 className='font-candy text-6xl md:text-8xl'>Contact</h1>
+            <p className='font-inter text-xl'>
+              Uh, surely something&apos;s on your mind if you&apos;re here? 😮
+              <br />
+            </p>
+          </section>
+          <section>
+            <form
+              className='max-w-screen-md rounded-xl bg-yellow mx-auto p-5'
+              name='contact-us'
+              onSubmit={handleSubmit(onSubmit)}
+              onChange={handleProgress}
             >
-              Submit
-            </button>
-          </div>
-        </form>
-      </section>
-    </>
+              {/* BEGIN: Hidden Fields */}
+              <p style={{ display: 'none' }}>
+                Leave blank if you&apos;re human:
+                <input type='text' id='' {...register('botcheck')} />
+              </p>
+              {/* END: Hidden Fields */}
+              <label htmlFor='email' className='sr-only'>
+                Email *
+              </label>
+              <input
+                id='email'
+                className={`bg-white block w-full mb-3 rounded-lg py-1 px-2
+                  ${errors.email ? '!mb-0 border-2 border-red focus:border-red' : ''}
+                  ${isSubmitting ? '!bg-lace text-gray' : ''}
+                `}
+                type='email'
+                placeholder='Email *'
+                autoComplete='false'
+                required={true}
+                disabled={isSubmitting}
+                {...register('email', {
+                  required: 'Enter your email',
+                  pattern: {
+                    value: /^\S+@\S+$/i,
+                    message: 'Please enter a valid email'
+                  }
+                })}
+              />
+              {errors?.email && (
+                <div className='mt-0.5 mb-3 text-red font-bold'>
+                  {/* @ts-ignore */}
+                  <small>{errors.email.message}</small>
+                </div>
+              )}
+              <label htmlFor='message' className='sr-only'>
+                Message *
+              </label>
+              <textarea
+                id='message'
+                className={`bg-white block w-full mb-3 rounded-lg py-1 px-2
+                  ${errors.message ? '!mb-0 border-2 border-red focus:border-red' : ''}
+                  ${isSubmitting ? '!bg-lace text-gray' : ''}
+                `}
+                rows={7}
+                required={true}
+                placeholder='Message *'
+                disabled={isSubmitting}
+                {...register('message', {
+                  required: 'Please type out a message'
+                })}
+              />
+              {errors.message && (
+                <div className='mt-0.5 mb-3 text-red font-bold'>
+                  {/* @ts-ignore */}
+                  <small>{errors.message.message}</small>
+                </div>
+              )}
+              <div className='text-center'>
+                {isSubmitting ? (
+                  <button
+                    className='bg-black text-yellow px-3 py-2 text-lg font-inter rounded-lg mx-5'
+                    type='button'
+                    disabled={true}
+                  >
+                    <svg
+                      className='w-14 h-7 mx-auto text-white dark:text-black animate-spin'
+                      xmlns='http://www.w3.org/2000/svg'
+                      fill='none'
+                      viewBox='0 0 24 24'
+                    >
+                      <circle
+                        className='opacity-25'
+                        cx='12'
+                        cy='12'
+                        r='10'
+                        stroke='currentColor'
+                        strokeWidth='4'
+                      ></circle>
+                      <path
+                        className='opacity-75 fill-yellow'
+                        d='M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z'
+                      ></path>
+                    </svg>
+                  </button>
+                ) : (
+                  <button
+                    className='bg-black text-yellow px-3 py-2 text-lg font-inter rounded-lg mx-5 hover:bg-lace hover:text-black hover:underline disabled:bg-gray disabled:text-white disabled:cursor-not-allowed disabled:no-underline'
+                    type='submit'
+                    disabled={!isFilledOut}
+                  >
+                    Submit
+                  </button>
+                )}
+              </div>
+            </form>
+          </section>
+        </>
+      )}
+
+      {isSubmitSuccessful && isSuccess && (
+        <section id='success' className='text-center mx-auto my-10'>
+          <motion.h1
+            className='text-5xl font-candy'
+            initial={initial}
+            animate={animate}
+            transition={transition}
+          >
+            Success
+          </motion.h1>
+          <DynamicLottie
+            className='w-72 h-72 mx-auto'
+            animationData={successAnimation}
+            loop={false}
+          />
+          <motion.p
+            className='text-2xl font-inter font-bold'
+            initial={initial}
+            animate={animate}
+            transition={transition}
+          >
+            Thanks for your submission!
+          </motion.p>
+          <motion.div initial={initial} animate={animate} transition={transition}>
+            <ButtonLink href='/'>To home</ButtonLink>
+          </motion.div>
+        </section>
+      )}
+
+      {isSubmitSuccessful && !isSuccess && (
+        <section className='max-w-screen-md text-center bg-black py-1 px-4 text-white rounded-xl text-lg mx-auto my-10'>
+          {message ? (
+            <p>{message}</p>
+          ) : (
+            <p>
+              Something went wrong.
+              <br />
+              Please try submitting the form or try again later. 😢
+            </p>
+          )}
+        </section>
+      )}
+    </div>
   )
 }

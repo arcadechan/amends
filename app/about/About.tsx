@@ -37,7 +37,7 @@ export default function About() {
           <li>Tina CMS</li>
           <li>Tailwind CSS + Sass</li>
           <li>Plaiceholder</li>
-          <li>Netlify</li>
+          <li>Vercel</li>
           <li>Spotify API</li>
         </ul>
         <p>
