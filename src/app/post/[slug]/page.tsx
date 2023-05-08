@@ -15,15 +15,32 @@ type BlogPostProps = {
 
 export const generateMetadata = async ({ params }: BlogPostProps): Promise<Metadata> => {
   const {
-    data: {
-      post: { title, description }
-    }
+    data: { post }
   } = await client.queries.post({ relativePath: `${params.slug}.mdx` })
 
-  return {
-    title: `${title} | Amends`,
-    description: description || ''
+  const title = `${post.title} | Amends`
+  const description = post.description || ''
+  const metadataBase = new URL(
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:3000'
+      : process.env.VERCEL_URL!
+  )
+
+  const metadata = {
+    title,
+    description,
+    metadataBase,
+    openGraph: {
+      title,
+      url: metadataBase,
+      description,
+      images: [`${metadataBase}/${post?.heroImage}`]
+    }
   }
+
+  console.log({ metadata })
+
+  return metadata
 }
 
 const getBlogPost = cache(async (slug: string) => {
