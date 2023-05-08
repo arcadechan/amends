@@ -26,14 +26,17 @@ export const generateMetadata = async ({ params }: BlogPostProps): Promise<Metad
       : process.env.VERCEL_URL!
   )
 
-  const metadata = {
+  const metadata: Metadata = {
     title,
     description,
     metadataBase,
     openGraph: {
+      type: 'article',
       title,
       url: metadataBase,
       description,
+      publishedTime: post.publishDate,
+      section: post.category,
       images: [`${metadataBase}/${post?.heroImage}`]
     }
   }
