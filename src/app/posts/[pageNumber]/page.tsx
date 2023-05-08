@@ -5,16 +5,34 @@ import { promises as fs } from 'fs'
 import { cache } from 'react'
 import getPlaceholders from 'lib/getPlaceholder'
 import { GetPostsQueryQuery } from '.tina/__generated__/types'
+import type { Metadata } from 'next'
 
 const POSTS_PER_PAGE = 3
 
 export const dynamic = 'auto'
 export const revalidate = 604800 // Total seconds in one week
 export const dynamicParams = 'false'
-export const metadata = {
-  title: 'Posts | Amends',
-  description: 'Just some stuff to read and stuffs.'
-}
+export const metadata = ((): Metadata => {
+  const title = 'Posts | Amends'
+  const description = 'Just some stuff about stuff.'
+
+  const metadataBase = new URL(
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:3000'
+      : process.env.VERCEL_URL!
+  )
+
+  return {
+    title,
+    description,
+    metadataBase,
+    openGraph: {
+      title,
+      description,
+      images: [`${metadataBase}/logo/amends-og.jpeg`]
+    }
+  }
+})()
 
 export const generateStaticParams = cache(async (): Promise<{ pageNumber: string }[]> => {
   let pages = [{ pageNumber: '1' }]

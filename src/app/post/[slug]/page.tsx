@@ -41,8 +41,6 @@ export const generateMetadata = async ({ params }: BlogPostProps): Promise<Metad
     }
   }
 
-  console.log({ metadata })
-
   return metadata
 }
 
