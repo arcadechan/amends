@@ -1,10 +1,12 @@
-import BlogPost from './BlogPost'
+// import BlogPost from './BlogPost'
 import { client } from '.tina/__generated__/client'
 import { cache } from 'react'
 import type { Metadata } from 'next'
 import { getPlaiceholder } from 'plaiceholder'
+import dynamicComponent from 'next/dynamic'
+import BlogPostLoading from './BlogPostLoading'
 
-export const dynamic = 'force-static'
+export const dynamic = 'auto'
 export const revalidate = 2628002 // Seconds in one month
 
 type BlogPostProps = {
@@ -65,6 +67,11 @@ const getBlogPost = cache(async (slug: string) => {
     data: queryResponse.data,
     imageBlurDataURL
   }
+})
+
+const BlogPost = dynamicComponent(() => import('./BlogPost'), {
+  ssr: false,
+  loading: () => <BlogPostLoading />
 })
 
 export default async function Page({ params }: BlogPostProps) {

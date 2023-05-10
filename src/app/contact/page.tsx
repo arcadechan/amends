@@ -13,6 +13,7 @@ export const metadata = ((): Metadata => {
   return {
     title,
     description,
+    metadataBase,
     openGraph: {
       type: 'website',
       title,

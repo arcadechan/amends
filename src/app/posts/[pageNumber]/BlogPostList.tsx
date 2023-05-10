@@ -82,7 +82,6 @@ const BlogPostList = ({
                 href={getCardUrl(post, params?.pageNumber)}
                 aria-label={getAriaLabel(post)}
                 className='group block h-full rounded-3xl focus:outline focus:outline-[5px] focus:outline-offset-[-1px] outline-black'
-                prefetch={false}
               >
                 <CardImage
                   cardImage={post.heroImage}
@@ -118,10 +117,7 @@ const BlogPostList = ({
           {pageInfo && (
             <div className='flex justify-center my-3'>
               {params?.pageNumber && params.pageNumber !== '1' && (
-                <ButtonLink
-                  href={`/posts/${parseInt(params?.pageNumber) - 1}`}
-                  prefetch={false}
-                >
+                <ButtonLink href={`/posts/${parseInt(params?.pageNumber) - 1}`}>
                   &larr; Newer Posts
                 </ButtonLink>
               )}
@@ -132,7 +128,6 @@ const BlogPostList = ({
                       ? parseInt(params.pageNumber) + 1
                       : 2
                   }`}
-                  prefetch={false}
                 >
                   Older Posts &rarr;
                 </ButtonLink>
