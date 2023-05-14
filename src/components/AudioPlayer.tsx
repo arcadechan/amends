@@ -1,12 +1,59 @@
 'use client'
 
 import { MutableRefObject, useContext, useEffect, useRef, useState } from 'react'
-import Image from 'next/image'
+import Image, { StaticImageData } from 'next/image'
 import styles from 'styles/components/AudioPlayer.module.css'
 import Link from 'next/link'
 import { BlogPostContext } from 'app/post/[slug]/BlogPost'
+// ICONS
+import appleMusicIcon from 'public/icons/apple-music.png'
+import bandcampIcon from 'public/icons/bandcamp.png'
+import deezerIcon from 'public/icons/deezer.png'
+import soundcloudIcon from 'public/icons/soundcloud.png'
+import spotifyIcon from 'public/icons/spotify.png'
+import youtubeMusicIcon from 'public/icons/youtube-music.png'
+import reloadIcon from 'public/icons/reload.png'
+import pauseIcon from 'public/icons/pause.png'
+import playButton from 'public/icons/playButton.svg'
+import volumeMutedIcon from 'public/icons/volume-muted.png'
+import volumeOnIcon from 'public/icons/volume-on.png'
 
-const StreamIcon = ({ href, serviceName }: { href: string; serviceName: string }) => {
+type StreamIconProps = {
+  href: string
+  serviceName:
+    | 'Spotify'
+    | 'Youtube Music'
+    | 'Apple Music'
+    | 'Deezer'
+    | 'Bandcamp'
+    | 'Soundcloud'
+}
+
+const StreamIcon = ({ href, serviceName }: StreamIconProps) => {
+  let iconSrc: StaticImageData | string = ''
+
+  switch (serviceName) {
+    case 'Spotify':
+      iconSrc = spotifyIcon
+      break
+    case 'Youtube Music':
+      iconSrc = youtubeMusicIcon
+      break
+    case 'Apple Music':
+      iconSrc = appleMusicIcon
+      break
+    case 'Deezer':
+      iconSrc = deezerIcon
+      break
+    case 'Bandcamp':
+      iconSrc = bandcampIcon
+      break
+    case 'Soundcloud':
+      iconSrc = soundcloudIcon
+    default:
+      break
+  }
+
   return (
     <Link
       href={href}
@@ -16,7 +63,7 @@ const StreamIcon = ({ href, serviceName }: { href: string; serviceName: string }
     >
       <Image
         className='my-2 mx-3 inline-block relative w-8 md:m-2 md:w-6'
-        src={`/icons/${serviceName.toLowerCase().split(' ').join('-')}.png`}
+        src={iconSrc}
         aria-label={`${serviceName} link to song.`}
         alt=''
         width={24}
@@ -188,7 +235,7 @@ const AudioPlayer = (props: any): JSX.Element => {
                       onClick={restart}
                     >
                       <Image
-                        src='/icons/reload.png'
+                        src={reloadIcon}
                         alt=''
                         width={25}
                         height={25}
@@ -204,10 +251,10 @@ const AudioPlayer = (props: any): JSX.Element => {
                       }}
                     >
                       <Image
-                        src={isPlaying ? '/icons/pause.png' : '/icons/playButton.svg'}
+                        src={isPlaying ? pauseIcon : playButton}
                         alt=''
-                        width={22}
-                        height={35}
+                        width={isPlaying ? 128 : 30}
+                        height={isPlaying ? 128 : 35}
                       />
                     </button>
                     <button
@@ -217,10 +264,10 @@ const AudioPlayer = (props: any): JSX.Element => {
                       onClick={handleMute}
                     >
                       <Image
-                        src={isMuted ? '/icons/volume-muted.png' : '/icons/volume-on.png'}
+                        src={isMuted ? volumeMutedIcon : volumeOnIcon}
                         alt=''
-                        width={22}
-                        height={35}
+                        width={64}
+                        height={64}
                         className='pointer-events-none'
                       />
                     </button>
