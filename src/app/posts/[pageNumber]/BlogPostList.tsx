@@ -70,6 +70,7 @@ const BlogPostList = ({
     <section className='px-12 pt-12 pb-4 max-w-screen-lg mx-auto grid gap-8'>
       {posts.length > 0 ? (
         <>
+          <h1 className='text-4xl font-candy text-center'>Posts</h1>
           {/* MAP POSTS */}
           {posts.map((post, i: number) => (
             <article
