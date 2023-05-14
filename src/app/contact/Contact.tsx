@@ -2,9 +2,11 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import useWeb3Forms from '@web3forms/react'
-import { motion } from 'framer-motion'
-import successAnimation from 'public/animations/success.json'
-import { ButtonLink, DynamicLottie } from 'components/index'
+import dynamic from 'next/dynamic'
+
+const ContactSuccessMessage = dynamic(() => import('./ContactSuccessMessage'), {
+  ssr: false
+})
 
 export default function Contact() {
   const {
@@ -49,11 +51,6 @@ export default function Contact() {
       setIsFilledOut(false)
     }
   }
-
-  // Success animation
-  const initial = { opacity: 0 }
-  const animate = { opacity: 1 }
-  const transition = { duration: 0.5, delay: 1.3 }
 
   return (
     <div className='mx-auto pt-10 pb-4 px-12'>
@@ -182,41 +179,7 @@ export default function Contact() {
         </>
       )}
 
-      {isSubmitSuccessful && isSuccess && (
-        <section
-          id='success'
-          className='text-center mx-auto my-10'
-        >
-          <motion.h1
-            className='text-5xl font-candy'
-            initial={initial}
-            animate={animate}
-            transition={transition}
-          >
-            Success
-          </motion.h1>
-          <DynamicLottie
-            className='w-72 h-72 mx-auto'
-            animationData={successAnimation}
-            loop={false}
-          />
-          <motion.p
-            className='text-2xl font-inter font-bold'
-            initial={initial}
-            animate={animate}
-            transition={transition}
-          >
-            Thanks for your submission!
-          </motion.p>
-          <motion.div
-            initial={initial}
-            animate={animate}
-            transition={transition}
-          >
-            <ButtonLink href='/'>To home</ButtonLink>
-          </motion.div>
-        </section>
-      )}
+      {isSubmitSuccessful && isSuccess && <ContactSuccessMessage />}
 
       {isSubmitSuccessful && !isSuccess && (
         <section className='max-w-screen-md text-center bg-black py-1 px-4 text-white rounded-xl text-lg mx-auto my-10'>

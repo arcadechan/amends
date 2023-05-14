@@ -1,4 +1,3 @@
-import BlogPostList from './BlogPostList'
 import { client } from '.tina/__generated__/client'
 import path from 'path'
 import { promises as fs } from 'fs'
@@ -6,6 +5,8 @@ import { cache } from 'react'
 import getPlaceholders from 'lib/getPlaceholder'
 import { GetPostsQueryQuery } from '.tina/__generated__/types'
 import type { Metadata } from 'next'
+import BlogPostListLoading from './BlogPostListLoading'
+import dynamicComponent from 'next/dynamic'
 
 const POSTS_PER_PAGE = 3
 
@@ -124,6 +125,11 @@ const getPosts = cache(async (pageNumber: string) => {
     variables: queryResponse?.variables || null,
     data: queryResponseWithPlaiceholders.postConnection || null
   }
+})
+
+const BlogPostList = dynamicComponent(() => import('./BlogPostList'), {
+  ssr: false,
+  loading: () => <BlogPostListLoading />
 })
 
 const Page = async ({ params }: any) => {
