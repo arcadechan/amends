@@ -3,17 +3,14 @@ import { GetHomePageQueryQuery } from '.tina/__generated__/types'
 import getPlaceholders from 'lib/getPlaceholder'
 import { client } from '.tina/__generated__/client'
 import { Metadata } from 'next'
+import getMetadataBase from 'lib/metadata'
 
 export const dynamic = 'force-static'
 export const metadata = ((): Metadata => {
   const title = 'Amends'
   const description = 'Writing nonsense one word at a time.'
 
-  const metadataBase = new URL(
-    process.env.NODE_ENV === 'development'
-      ? 'http://localhost:3000'
-      : process.env.VERCEL_URL!
-  )
+  const metadataBase = getMetadataBase()
 
   return {
     title,

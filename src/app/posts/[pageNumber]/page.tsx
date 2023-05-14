@@ -7,6 +7,7 @@ import { GetPostsQueryQuery } from '.tina/__generated__/types'
 import type { Metadata } from 'next'
 import BlogPostListLoading from './BlogPostListLoading'
 import dynamicComponent from 'next/dynamic'
+import getMetadataBase from 'lib/metadata'
 
 const POSTS_PER_PAGE = 3
 
@@ -17,11 +18,7 @@ export const metadata = ((): Metadata => {
   const title = 'Posts | Amends'
   const description = 'Just some stuff about stuff.'
 
-  const metadataBase = new URL(
-    process.env.NODE_ENV === 'development'
-      ? 'http://localhost:3000'
-      : process.env.VERCEL_URL!
-  )
+  const metadataBase = getMetadataBase()
 
   return {
     title,

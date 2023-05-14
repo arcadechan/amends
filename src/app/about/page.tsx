@@ -1,14 +1,11 @@
 import About from './About'
 import type { Metadata } from 'next'
+import getMetadataBase from 'lib/metadata'
 
 export const metadata = ((): Metadata => {
   const title = 'About | Amends'
   const description = 'What is Amends all about?'
-  const metadataBase = new URL(
-    process.env.NODE_ENV === 'development'
-      ? 'http://localhost:3000'
-      : process.env.VERCEL_URL!
-  )
+  const metadataBase = getMetadataBase()
 
   return {
     title,
