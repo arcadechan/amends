@@ -18,7 +18,17 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "customTypes/*": ["src/types/*"],
+      "components/*": ["src/components/*"],
+      "app/*": ["src/app/*"],
+      "styles/*": ["src/styles/*"],
+      "lib/*": ["src/lib/*"],
+      "tina/*": [".tina/*"],
+      "public/*": ["public/*"]
+    }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
