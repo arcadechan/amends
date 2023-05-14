@@ -1,3 +1,5 @@
+'use client'
+
 import { PinkyPromise } from 'components/index'
 import Link from 'next/link'
 
