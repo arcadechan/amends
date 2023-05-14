@@ -5,6 +5,7 @@ import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import { useState, useEffect } from 'react'
 import amendsLogo from 'public/logo/logo-black.png'
+import hamburgerIcon from 'public/icons/hamburger-menu-static.svg'
 import { navigationLink } from 'customTypes/amends'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -17,7 +18,7 @@ const DynamicHamburger = dynamic(() => import('../HamburgerMenu'), {
   loading: () => (
     <div className='block md:hidden p-2'>
       <Image
-        src='/icons/hamburger-menu-static.svg'
+        src={hamburgerIcon}
         alt=''
         width={55}
         height={55}
@@ -109,6 +110,7 @@ const Header = ({ navigationLinks }: HeaderProps): JSX.Element => {
               fill
               sizes='25vw'
               style={{ objectFit: 'contain' }}
+              priority
             />
           </Link>
           <DynamicHamburger
@@ -164,6 +166,7 @@ const Header = ({ navigationLinks }: HeaderProps): JSX.Element => {
                       <Link
                         href={link.url || ''}
                         className='font-inter font-bold uppercase text-black block p-3 my-2 text-center hover:underline hover:underline-offset-[3px] hover:decoration-2'
+                        onMouseUp={() => setMenuIsOpen(false)}
                       >
                         {link.name || ''}
                       </Link>
