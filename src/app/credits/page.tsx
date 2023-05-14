@@ -1,15 +1,12 @@
 import Credits from './Credits'
 import type { Metadata } from 'next'
+import getMetadataBase from 'lib/metadata'
 
 export const metadata = ((): Metadata => {
   const title = 'Credits | Amends'
   const description =
     "This site wouldn't be possible without all the marvelous content produced by these individuals."
-  const metadataBase = new URL(
-    process.env.NODE_ENV === 'development'
-      ? 'http://localhost:3000'
-      : process.env.VERCEL_URL!
-  )
+  const metadataBase = getMetadataBase()
 
   return {
     title,
