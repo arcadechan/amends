@@ -5,6 +5,7 @@ import type { Metadata } from 'next'
 import { getPlaiceholder } from 'plaiceholder'
 import dynamicComponent from 'next/dynamic'
 import BlogPostLoading from './BlogPostLoading'
+import getMetadataBase from 'lib/metadata'
 
 export const dynamic = 'auto'
 export const revalidate = 2628002 // Seconds in one month
@@ -22,11 +23,7 @@ export const generateMetadata = async ({ params }: BlogPostProps): Promise<Metad
 
   const title = `${post.title} | Amends`
   const description = post.description || ''
-  const metadataBase = new URL(
-    process.env.NODE_ENV === 'development'
-      ? 'http://localhost:3000'
-      : process.env.VERCEL_URL!
-  )
+  const metadataBase = getMetadataBase()
 
   const metadata: Metadata = {
     title,
