@@ -1,6 +1,6 @@
 import React from 'react'
 import { defineConfig, wrapFieldsWithMeta, Schema } from 'tinacms'
-import CardGridSchema from '../components/schemas/CardGridSchema'
+import { CardGridSchema } from '../src/components/CardGrid'
 
 const URLWithIconContainer = ({
   serviceName,
@@ -52,7 +52,6 @@ const commonFields: any[] = [
     label: 'Image Blur Data URL',
     description: 'base64',
     type: 'string',
-    default: '',
     ui: {
       component: () => false
     }
@@ -75,7 +74,7 @@ const commonFields: any[] = [
     type: 'string',
     description: 'Max character count: 160',
     ui: {
-      component: wrapFieldsWithMeta(({ field, input, meta, ...props }): JSX.Element => {
+      component: wrapFieldsWithMeta(({ field, input, meta, ...props }) => {
         return (
           <div>
             <textarea
@@ -135,7 +134,7 @@ const schema: Schema = {
       format: 'mdx',
       ui: {
         allowedActions: {
-          create: true,
+          create: false,
           delete: false
         }
       },
