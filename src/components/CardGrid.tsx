@@ -8,7 +8,7 @@ import {
   HomePageBlocksCardGridCards
 } from '.tina/__generated__/types'
 
-interface CardImageProps {
+type CardImageProps = {
   cardImage: {
     src: string | null | undefined
     imageBlurDataURL?: string | null | undefined

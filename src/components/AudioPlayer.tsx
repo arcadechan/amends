@@ -5,6 +5,7 @@ import Image, { StaticImageData } from 'next/image'
 import styles from 'styles/components/AudioPlayer.module.css'
 import Link from 'next/link'
 import { BlogPostContext } from 'app/post/[slug]/BlogPost'
+import { StreamService } from 'customTypes/amends'
 // ICONS
 import appleMusicIcon from 'public/icons/apple-music.png'
 import bandcampIcon from 'public/icons/bandcamp.png'
@@ -20,35 +21,29 @@ import volumeOnIcon from 'public/icons/volume-on.png'
 
 type StreamIconProps = {
   href: string
-  serviceName:
-    | 'Spotify'
-    | 'Youtube Music'
-    | 'Apple Music'
-    | 'Deezer'
-    | 'Bandcamp'
-    | 'Soundcloud'
+  serviceName: StreamService
 }
 
 const StreamIcon = ({ href, serviceName }: StreamIconProps) => {
   let iconSrc: StaticImageData | string = ''
 
   switch (serviceName) {
-    case 'Spotify':
+    case StreamService.SPOTIFY:
       iconSrc = spotifyIcon
       break
-    case 'Youtube Music':
+    case StreamService.YOUTUBE:
       iconSrc = youtubeMusicIcon
       break
-    case 'Apple Music':
+    case StreamService.APPLE:
       iconSrc = appleMusicIcon
       break
-    case 'Deezer':
+    case StreamService.DEEZER:
       iconSrc = deezerIcon
       break
-    case 'Bandcamp':
+    case StreamService.BANDCAMP:
       iconSrc = bandcampIcon
       break
-    case 'Soundcloud':
+    case StreamService.SONDCLOUD:
       iconSrc = soundcloudIcon
     default:
       break

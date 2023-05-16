@@ -78,59 +78,58 @@ export const generateStaticParams = cache(async (): Promise<{ pageNumber: string
 })
 
 export type PageSearchParamProps = {
-  searchParams: {
-    startCursor?: string
-    endCursor?: string
-    prevCursor?: string
+  params: {
+    pageNumber: string
   }
-  params: any
 }
 
-const getPosts = cache(async (pageNumber: string) => {
-  let variables: any = { last: POSTS_PER_PAGE }
+const getPosts = cache(
+  async (pageNumber: PageSearchParamProps['params']['pageNumber']) => {
+    let variables: any = { last: POSTS_PER_PAGE }
 
-  const jsonDirectory = path.join(process.cwd(), 'json')
-  let fileExists: boolean = false
+    const jsonDirectory = path.join(process.cwd(), 'json')
+    let fileExists: boolean = false
 
-  await fs
-    .stat(`${jsonDirectory}/pages.json`)
-    .then(() => {
-      fileExists = true
-    })
-    .catch((err) => console.error(err))
+    await fs
+      .stat(`${jsonDirectory}/pages.json`)
+      .then(() => {
+        fileExists = true
+      })
+      .catch((err) => console.error(err))
 
-  if (fileExists) {
-    const pageJson = await fs.readFile(jsonDirectory + '/pages.json', {
-      encoding: 'utf-8'
-    })
-    const parsedJson = JSON.parse(pageJson)
-    const currentPageIndex = parseInt(pageNumber) - 1
+    if (fileExists) {
+      const pageJson = await fs.readFile(jsonDirectory + '/pages.json', {
+        encoding: 'utf-8'
+      })
+      const parsedJson = JSON.parse(pageJson)
+      const currentPageIndex = parseInt(pageNumber) - 1
 
-    if (currentPageIndex !== 0) {
-      const prevPage = currentPageIndex - 1
-      const lastCursor = parsedJson[prevPage].slice(-1)[0]
-      variables = { ...variables, before: lastCursor }
+      if (currentPageIndex !== 0) {
+        const prevPage = currentPageIndex - 1
+        const lastCursor = parsedJson[prevPage].slice(-1)[0]
+        variables = { ...variables, before: lastCursor }
+      }
+    }
+
+    const queryResponse = await client.queries.getPostsQuery(variables)
+    const queryResponseWithPlaiceholders: GetPostsQueryQuery =
+      await getPlaceholders.forBlogPostList(queryResponse.data)
+
+    return {
+      query: queryResponse?.query || null,
+      variables: queryResponse?.variables || null,
+      data: queryResponseWithPlaiceholders.postConnection || null
     }
   }
-
-  const queryResponse = await client.queries.getPostsQuery(variables)
-  const queryResponseWithPlaiceholders: GetPostsQueryQuery =
-    await getPlaceholders.forBlogPostList(queryResponse.data)
-
-  return {
-    query: queryResponse?.query || null,
-    variables: queryResponse?.variables || null,
-    data: queryResponseWithPlaiceholders.postConnection || null
-  }
-})
+)
 
 const BlogPostList = dynamicComponent(() => import('./BlogPostList'), {
   ssr: false,
   loading: () => <BlogPostListLoading />
 })
 
-const Page = async ({ params }: any) => {
-  const posts = await getPosts(params?.pageNumber)
+const Page = async ({ params }: PageSearchParamProps) => {
+  const posts = await getPosts(params.pageNumber)
 
   return (
     <BlogPostList
