@@ -1,5 +1,4 @@
-// import BlogPost from './BlogPost'
-import { client } from '.tina/__generated__/client'
+import { client } from 'tina/__generated__/client'
 import { cache } from 'react'
 import type { Metadata } from 'next'
 import { getPlaiceholder } from 'plaiceholder'
@@ -43,7 +42,7 @@ export const generateMetadata = async ({ params }: BlogPostProps): Promise<Metad
   return metadata
 }
 
-const getBlogPost = cache(async (slug: string) => {
+const getBlogPost = cache(async (slug: BlogPostProps['params']['slug']) => {
   const queryResponse = await client.queries.post({ relativePath: `${slug}.mdx` })
 
   let imageBlurDataURL = ''

@@ -1,5 +1,5 @@
 import { Layout } from 'components/index'
-import { client } from '.tina/__generated__/client'
+import { client } from 'tina/__generated__/client'
 import { Inter } from 'next/font/google'
 import localFont from 'next/font/local'
 import 'styles/main.css'
@@ -22,7 +22,7 @@ const getMeta = async (): Promise<any> => {
   const siteMetaQuery = await client.queries.meta({ relativePath: 'meta.mdx' })
   const siteMeta = siteMetaQuery?.data?.meta || null
 
-  return siteMeta || null
+  return siteMeta || {}
 }
 
 const RootLayout = async ({ children }: LayoutProps): Promise<JSX.Element> => {

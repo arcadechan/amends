@@ -3,12 +3,13 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import { CustomTemplateWithExtraFieldUI } from 'types/tinacms-custom'
 import {
   HomePageBlocksCardGrid,
   HomePageBlocksCardGridCards
-} from '.tina/__generated__/types'
+} from 'tina/__generated__/types'
 
-interface CardImageProps {
+type CardImageProps = {
   cardImage: {
     src: string | null | undefined
     imageBlurDataURL?: string | null | undefined
@@ -167,8 +168,6 @@ const CardGrid = ({
 }
 
 export default CardGrid
-
-import { CustomTemplateWithExtraFieldUI } from 'customTypes/tinacms-custom'
 
 export const CardGridSchema: CustomTemplateWithExtraFieldUI = {
   name: 'cardGrid',

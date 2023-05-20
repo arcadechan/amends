@@ -7,7 +7,7 @@ import Image from 'next/image'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
 import { useTina } from 'tinacms/dist/react'
-import { TinaQueryResponse } from 'customTypes/tinacms-custom'
+import { TinaQueryResponse } from 'types/tinacms-custom'
 
 export const BlogPostContext = createContext({
   playingTrack: '',

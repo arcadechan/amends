@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { ButtonLink } from 'components/index'
-import { GetPostsQueryQuery, Post } from '.tina/__generated__/types'
+import { GetPostsQueryQuery, Post } from 'tina/__generated__/types'
 import { PageSearchParamProps } from './page'
 
 const getCardUrl = (card: Post, pageNumber: string = '1'): string => {
