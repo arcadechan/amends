@@ -26,7 +26,7 @@
       "app/*": ["src/app/*"],
       "styles/*": ["src/styles/*"],
       "lib/*": ["src/lib/*"],
-      "tina/*": [".tina/*"],
+      "tina/*": ["tina/*"],
       "public/*": ["public/*"]
     }
   },

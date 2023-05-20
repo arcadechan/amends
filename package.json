@@ -16,8 +16,8 @@
   },
   "dependencies": {
     "@plaiceholder/next": "^2.5.0",
-    "@tinacms/auth": "^0.50.4",
-    "@tinacms/cli": "^1.5.9",
+    "@tinacms/auth": "^1.0.3",
+    "@tinacms/cli": "^1.5.12",
     "@web3forms/react": "^1.1.3",
     "framer-motion": "^10.12.4",
     "lottie-react": "^2.4.0",
@@ -27,7 +27,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.9",
     "sharp": "^0.32.1",
-    "tinacms": "^1.5.4"
+    "tinacms": "^1.5.5"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.9",

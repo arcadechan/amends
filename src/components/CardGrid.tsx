@@ -7,7 +7,7 @@ import { CustomTemplateWithExtraFieldUI } from 'types/tinacms-custom'
 import {
   HomePageBlocksCardGrid,
   HomePageBlocksCardGridCards
-} from '.tina/__generated__/types'
+} from 'tina/__generated__/types'
 
 type CardImageProps = {
   cardImage: {

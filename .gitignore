@@ -41,3 +41,5 @@ node_modules
 json
 # Local Netlify folder
 .netlify
+
+tina/__generated__/**/*

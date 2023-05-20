@@ -1,5 +1,5 @@
 import { getPlaiceholder } from 'plaiceholder'
-import { GetHomePageQueryQuery, GetPostsQueryQuery } from '.tina/__generated__/types'
+import { GetHomePageQueryQuery, GetPostsQueryQuery } from 'tina/__generated__/types'
 
 const fallbackBase64 =
   'data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=='

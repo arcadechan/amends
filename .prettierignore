@@ -6,7 +6,7 @@ json
 .env*
 !.env.example
 .vercel
-.tina/__generated__/
+tina/__generated__/
 content
 public/admin
 .eslintrc.json

@@ -1,4 +1,4 @@
-import { client } from '.tina/__generated__/client'
+import { client } from 'tina/__generated__/client'
 import { cache } from 'react'
 import type { Metadata } from 'next'
 import { getPlaiceholder } from 'plaiceholder'

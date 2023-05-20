@@ -1,5 +1,5 @@
 import { Layout } from 'components/index'
-import { client } from '.tina/__generated__/client'
+import { client } from 'tina/__generated__/client'
 import { Inter } from 'next/font/google'
 import localFont from 'next/font/local'
 import 'styles/main.css'
