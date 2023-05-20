@@ -29,7 +29,7 @@ const DynamicHamburger = dynamic(() => import('../HamburgerMenu'), {
 
 const Header = ({ navigationLinks }: HeaderProps): JSX.Element => {
   const [menuIsOpen, setMenuIsOpen] = useState(false)
-  const [isDesktop, setIsDesktop] = useState(false)
+  const [isDesktop, setIsDesktop] = useState(true)
 
   const variants = {
     navMenuClosed: {
@@ -119,12 +119,10 @@ const Header = ({ navigationLinks }: HeaderProps): JSX.Element => {
           />
         </div>
         {isDesktop ? (
-          <motion.div
+          <nav
             id='navMenu'
-            className='bg-yellow w-full pr-10 shadow-none flex relative top-0 left-0 items-center justify-end'
+            className='hidden md:flex bg-yellow w-full pr-10 shadow-none relative top-0 left-0 items-center justify-end'
             aria-labelledby='navMenuAccordion'
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1, transition: { duration: 0.3 } }}
           >
             <ul className='list-none ml-0 flex'>
               {navigationLinks &&
@@ -139,12 +137,12 @@ const Header = ({ navigationLinks }: HeaderProps): JSX.Element => {
                   </li>
                 ))}
             </ul>
-          </motion.div>
+          </nav>
         ) : (
           <AnimatePresence initial={false}>
-            <motion.div
+            <motion.nav
               id='navMenu'
-              className='bg-yellow w-full absolute left-1/2 -translate-x-1/2 z-[998]'
+              className='block md:hidden bg-yellow w-full absolute left-1/2 -translate-x-1/2 z-[998]'
               aria-labelledby='navMenuAccordion'
               animate={menuIsOpen ? 'navMenuOpen' : 'navMenuClosed'}
               variants={variants}
@@ -173,7 +171,7 @@ const Header = ({ navigationLinks }: HeaderProps): JSX.Element => {
                     </motion.li>
                   ))}
               </ul>
-            </motion.div>
+            </motion.nav>
           </AnimatePresence>
         )}
       </div>
