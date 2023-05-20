@@ -6,11 +6,11 @@ import dynamic from 'next/dynamic'
 import { useState, useEffect } from 'react'
 import amendsLogo from 'public/logo/logo-black.png'
 import hamburgerIcon from 'public/icons/hamburger-menu-static.svg'
-import { navigationLink } from 'customTypes/amends'
+import { NavigationLink } from 'types/amends'
 import { motion, AnimatePresence } from 'framer-motion'
 
 type HeaderProps = {
-  navigationLinks: navigationLink[] | null
+  navigationLinks: NavigationLink[] | null
 }
 
 const DynamicHamburger = dynamic(() => import('../HamburgerMenu'), {

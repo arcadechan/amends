@@ -21,7 +21,7 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "customTypes/*": ["src/types/*"],
+      "types/*": ["src/types/*"],
       "components/*": ["src/components/*"],
       "app/*": ["src/app/*"],
       "styles/*": ["src/styles/*"],

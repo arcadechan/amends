@@ -1,4 +1,4 @@
-export type navigationLink = {
+export type NavigationLink = {
   url: string
   name: string
 }
@@ -9,5 +9,5 @@ export enum StreamService {
   APPLE = 'Apple Music',
   DEEZER = 'Deezer',
   BANDCAMP = 'Bandcamp',
-  SONDCLOUD = 'Soundcloud'
+  SOUNDCLOUD = 'Soundcloud'
 }

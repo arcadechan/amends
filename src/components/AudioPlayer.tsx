@@ -5,7 +5,7 @@ import Image, { StaticImageData } from 'next/image'
 import styles from 'styles/components/AudioPlayer.module.css'
 import Link from 'next/link'
 import { BlogPostContext } from 'app/post/[slug]/BlogPost'
-import { StreamService } from 'customTypes/amends'
+import { StreamService } from 'types/amends'
 // ICONS
 import appleMusicIcon from 'public/icons/apple-music.png'
 import bandcampIcon from 'public/icons/bandcamp.png'
@@ -43,7 +43,7 @@ const StreamIcon = ({ href, serviceName }: StreamIconProps) => {
     case StreamService.BANDCAMP:
       iconSrc = bandcampIcon
       break
-    case StreamService.SONDCLOUD:
+    case StreamService.SOUNDCLOUD:
       iconSrc = soundcloudIcon
     default:
       break
@@ -301,37 +301,37 @@ const AudioPlayer = (props: any): JSX.Element => {
                   {props?.spotifyUrl && (
                     <StreamIcon
                       href={props.spotifyUrl}
-                      serviceName='Spotify'
+                      serviceName={StreamService.SPOTIFY}
                     />
                   )}
                   {props?.youtubeUrl && (
                     <StreamIcon
                       href={props.youtubeUrl}
-                      serviceName='Youtube Music'
+                      serviceName={StreamService.YOUTUBE}
                     />
                   )}
                   {props?.appleMusicUrl && (
                     <StreamIcon
                       href={props.appleMusicUrl}
-                      serviceName='Apple Music'
+                      serviceName={StreamService.APPLE}
                     />
                   )}
                   {props?.deezerUrl && (
                     <StreamIcon
                       href={props.deezerUrl}
-                      serviceName='Deezer'
+                      serviceName={StreamService.DEEZER}
                     />
                   )}
                   {props?.bandcampUrl && (
                     <StreamIcon
                       href={props.bandcampUrl}
-                      serviceName='Bandcamp'
+                      serviceName={StreamService.BANDCAMP}
                     />
                   )}
                   {props?.soundcloudUrl && (
                     <StreamIcon
                       href={props.soundcloudUrl}
-                      serviceName='Soundcloud'
+                      serviceName={StreamService.SOUNDCLOUD}
                     />
                   )}
                 </div>
