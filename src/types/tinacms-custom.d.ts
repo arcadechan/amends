@@ -1,5 +1,5 @@
 import { Template } from 'tinacms'
-import { Exact, PostQuery, PostQueryVariables } from '../../.tina/__generated__/types'
+import { PostQuery, PostQueryVariables } from 'tina/__generated__/types'
 
 declare type CustomTemplateField = {
   ui?: {

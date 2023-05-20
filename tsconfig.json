@@ -21,12 +21,12 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "customTypes/*": ["src/types/*"],
+      "types/*": ["src/types/*"],
       "components/*": ["src/components/*"],
       "app/*": ["src/app/*"],
       "styles/*": ["src/styles/*"],
       "lib/*": ["src/lib/*"],
-      "tina/*": [".tina/*"],
+      "tina/*": ["tina/*"],
       "public/*": ["public/*"]
     }
   },

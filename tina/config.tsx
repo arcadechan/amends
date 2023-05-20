@@ -1,12 +1,13 @@
 import React from 'react'
 import { defineConfig, wrapFieldsWithMeta, Schema } from 'tinacms'
 import { CardGridSchema } from '../src/components/CardGrid'
+import { StreamService } from '../src/types/amends'
 
 const URLWithIconContainer = ({
   serviceName,
   input
 }: {
-  serviceName: string
+  serviceName: StreamService
   input: any
 }): JSX.Element => (
   <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -108,7 +109,10 @@ const schema: Schema = {
     {
       label: 'Home',
       name: 'home',
-      path: 'content/home',
+      path: 'content',
+      match: {
+        include: 'home'
+      },
       format: 'mdx',
       ui: {
         allowedActions: {
@@ -130,7 +134,10 @@ const schema: Schema = {
     {
       label: 'Meta',
       name: 'meta',
-      path: 'content/meta',
+      path: 'content',
+      match: {
+        include: 'meta'
+      },
       format: 'mdx',
       ui: {
         allowedActions: {
@@ -281,7 +288,7 @@ const schema: Schema = {
                       ({ field, input, meta, ...props }): JSX.Element => {
                         return (
                           <URLWithIconContainer
-                            serviceName='Spotify'
+                            serviceName={StreamService.SPOTIFY}
                             input={input}
                           />
                         )
@@ -298,7 +305,7 @@ const schema: Schema = {
                       ({ field, input, meta, ...props }): JSX.Element => {
                         return (
                           <URLWithIconContainer
-                            serviceName='Youtube Music'
+                            serviceName={StreamService.YOUTUBE}
                             input={input}
                           />
                         )
@@ -315,7 +322,7 @@ const schema: Schema = {
                       ({ field, input, meta, ...props }): JSX.Element => {
                         return (
                           <URLWithIconContainer
-                            serviceName='Apple Music'
+                            serviceName={StreamService.APPLE}
                             input={input}
                           />
                         )
@@ -332,7 +339,7 @@ const schema: Schema = {
                       ({ field, input, meta, ...props }): JSX.Element => {
                         return (
                           <URLWithIconContainer
-                            serviceName='Deezer'
+                            serviceName={StreamService.DEEZER}
                             input={input}
                           />
                         )
@@ -349,7 +356,7 @@ const schema: Schema = {
                       ({ field, input, meta, ...props }): JSX.Element => {
                         return (
                           <URLWithIconContainer
-                            serviceName='Bandcamp'
+                            serviceName={StreamService.BANDCAMP}
                             input={input}
                           />
                         )
@@ -366,7 +373,7 @@ const schema: Schema = {
                       ({ field, input, meta, ...props }): JSX.Element => {
                         return (
                           <URLWithIconContainer
-                            serviceName='soundcloud'
+                            serviceName={StreamService.SOUNDCLOUD}
                             input={input}
                           />
                         )

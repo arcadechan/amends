@@ -1,7 +1,7 @@
 import HomePage from './HomePage'
-import { GetHomePageQueryQuery } from '.tina/__generated__/types'
+import { GetHomePageQueryQuery } from 'tina/__generated__/types'
 import getPlaceholders from 'lib/getPlaceholder'
-import { client } from '.tina/__generated__/client'
+import { client } from 'tina/__generated__/client'
 import { Metadata } from 'next'
 import getMetadataBase from 'lib/metadata'
 

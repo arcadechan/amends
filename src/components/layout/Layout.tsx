@@ -2,13 +2,13 @@
 
 import { Header, Main, Footer } from '.'
 
-interface layoutPropsI {
+type LayoutProps = {
   children: React.ReactNode
   siteMeta: any | null
   className?: string
 }
 
-const Layout = ({ children, siteMeta, className = '' }: layoutPropsI): JSX.Element => {
+const Layout = ({ children, siteMeta, className = '' }: LayoutProps): JSX.Element => {
   const { navigationLinks, socialPlatforms } = siteMeta
 
   return (
