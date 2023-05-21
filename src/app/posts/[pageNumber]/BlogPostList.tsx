@@ -82,7 +82,7 @@ const BlogPostList = ({
               <Link
                 href={getCardUrl(post, params?.pageNumber)}
                 aria-label={getAriaLabel(post)}
-                className='group block h-full rounded-3xl focus:outline focus:outline-[5px] focus:outline-offset-[-1px] outline-black'
+                className='group block h-full rounded-3xl focus:outline focus:outline-[5px] focus:outline-offset-[-1px] outline-black dark:outline-yellow'
               >
                 <CardImage
                   cardImage={post.heroImage}

@@ -121,7 +121,7 @@ const CardGrid = ({
                 <Link
                   href={getCardUrl(card)}
                   aria-label={getAriaLabel(card)}
-                  className={`group block h-full focus:outline-black focus:outline-[5px] focus:rounded-3xl focus:outline focus:outline-offset-[-1px]`}
+                  className={`group block h-full focus:outline-black dark:focus:outline-yellow focus:outline-[5px] focus:rounded-3xl focus:outline focus:outline-offset-[-1px]`}
                 >
                   <CardImage
                     cardImage={cardImage}

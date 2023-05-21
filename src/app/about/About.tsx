@@ -8,7 +8,7 @@ import Link from 'next/link'
 export default function About() {
   return (
     <>
-      <section className='bg-yellow text-center relative'>
+      <section className='bg-yellow dark:bg-black text-center relative'>
         <Image
           src='/logo/avatar-w-outline.png'
           className='mx-auto pt-10 z-10'
@@ -23,7 +23,7 @@ export default function About() {
           </h1>
         </LineBreak>
       </section>
-      <section className='px-12 py-4 max-w-screen-2xl, mx-auto font-inter text-xl'>
+      <section className='px-12 py-4 max-w-screen-2xl mx-auto font-inter prose prose-light dark:prose-dark'>
         <p>
           Hello there! Name&apos;s Arcade and I like wasting my time. I program, do
           photography, and listen to lots of music. Did I mention I waste my time? This is

@@ -3,7 +3,10 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { NavigationLink } from 'types/amends'
-import amendsLogo from 'public/logo/logo-black.png'
+import amendsLogoBlack from 'public/logo/logo-black.png'
+import amendsLogoYellow from 'public/logo/logo-yellow.png'
+import { useContext } from 'react'
+import { AppContext } from '../layout/Layout'
 
 type footerProps = {
   socialPlatforms: any | null
@@ -42,17 +45,17 @@ const SocialIcon = ({
 }
 
 const Footer = ({ socialPlatforms, navigationLinks }: footerProps): JSX.Element => {
-  const currentYear: number = new Date().getFullYear()
+  const { prefersDark } = useContext(AppContext)
 
   return (
     <footer className='max-w-screen-2xl 2xl:mx-auto py-10 px-12 flex flex-col items-center'>
-      <hr className='bg-black h-[3px] w-full' />
+      <hr className='bg-black border-black h-[3px] w-full' />
       <Link
         href='/'
         className='mb-2 md:mb-0 my-5 h-6 w-full relative'
       >
         <Image
-          src={amendsLogo}
+          src={prefersDark ? amendsLogoYellow : amendsLogoBlack}
           alt='Amends home'
           fill
           sizes='25vw'
@@ -109,7 +112,6 @@ const Footer = ({ socialPlatforms, navigationLinks }: footerProps): JSX.Element 
           )}
         </div>
       )}
-      <small className='my-5'>&copy; {currentYear} Amends. All Rights Reserved</small>
     </footer>
   )
 }

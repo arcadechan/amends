@@ -5,9 +5,9 @@ import { LineBreak } from 'components/index'
 export default function BlogPostLoading() {
   return (
     <div role='status'>
-      <div className='bg-yellow text-center relative'>
+      <div className='bg-yellow dark:bg-black text-center relative'>
         <div className='py-10 px-12 mx-auto w-full h-auto max-h-[520px] max-w-[985px]'>
-          <div className='flex items-center justify-center rounded-3xl w-full h-auto min-h-[230px] lg:min-h-[460px] max-w-[985px] bg-lace animate-pulse'>
+          <div className='flex items-center justify-center rounded-3xl w-full h-auto min-h-[230px] lg:min-h-[460px] max-w-[985px] bg-lace dark:bg-lightBlack animate-pulse'>
             <svg
               className='w-12 h-12 text-black'
               xmlns='http://www.w3.org/2000/svg'
