@@ -5,3 +5,7 @@ html {
   height: 100%;
   @apply bg-lace text-black scroll-smooth;
 }
+
+html.dark {
+  @apply bg-lightBlack text-lace;
+}

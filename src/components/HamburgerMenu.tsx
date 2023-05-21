@@ -4,16 +4,19 @@ import { LottieRefCurrentProps } from 'lottie-react'
 import DynamicLottie from './DynamicLottie'
 import { useRef, useEffect } from 'react'
 import type { MutableRefObject, Dispatch, SetStateAction } from 'react'
-import hamburgerMenu from 'public/animations/hamburger-menu.json'
+import hamburgerMenuBlack from 'public/animations/hamburger-menu-black.json'
+import hamburgerMenuYellow from 'public/animations/hamburger-menu-yellow.json'
 
 type DynamicHamburgerProps = {
   menuIsOpen: boolean
   setMenuIsOpen: Dispatch<SetStateAction<boolean>>
+  prefersDark: boolean
 }
 
 const DynamicHamburger = ({
   menuIsOpen,
-  setMenuIsOpen
+  setMenuIsOpen,
+  prefersDark
 }: DynamicHamburgerProps): JSX.Element => {
   const menuRef: MutableRefObject<LottieRefCurrentProps | null> = useRef(null)
   menuRef.current?.setSpeed(2)
@@ -44,7 +47,7 @@ const DynamicHamburger = ({
         autoplay={false}
         loop={false}
         initialSegment={[0, 70]}
-        animationData={hamburgerMenu}
+        animationData={prefersDark ? hamburgerMenuYellow : hamburgerMenuBlack}
       />
     </button>
   )

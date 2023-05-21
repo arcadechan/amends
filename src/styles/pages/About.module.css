@@ -9,3 +9,9 @@
     text-stroke: 8px theme('colors.white');
   }
 }
+
+@media (prefers-color-scheme: dark) {
+  .aboutTitle {
+    color: theme('colors.black') !important;
+  }
+}

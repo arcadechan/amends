@@ -14,3 +14,10 @@
     text-stroke: 3px theme('colors.white');
   }
 }
+
+@media (prefers-color-scheme: dark) {
+  .blogPostTitle,
+  .blogPostSubtitle {
+    color: theme('colors.black');
+  }
+}

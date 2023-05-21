@@ -65,7 +65,7 @@ export default function Contact() {
           </section>
           <section>
             <form
-              className='max-w-screen-md rounded-xl bg-yellow mx-auto p-5'
+              className='max-w-screen-md rounded-xl bg-yellow dark:bg-black mx-auto p-5'
               name='contact-us'
               onSubmit={handleSubmit(onSubmit)}
               onChange={handleProgress}
@@ -88,7 +88,7 @@ export default function Contact() {
               </label>
               <input
                 id='email'
-                className={`bg-white block w-full mb-3 rounded-lg py-1 px-2
+                className={`bg-white dark:text-black block w-full mb-3 rounded-lg py-1 px-2
                   ${errors.email ? '!mb-0 border-2 border-red focus:border-red' : ''}
                   ${isSubmitting ? '!bg-lace text-gray' : ''}
                 `}
@@ -119,7 +119,7 @@ export default function Contact() {
               </label>
               <textarea
                 id='message'
-                className={`bg-white block w-full mb-3 rounded-lg py-1 px-2
+                className={`bg-white dark:text-black block w-full mb-3 rounded-lg py-1 px-2
                   ${errors.message ? '!mb-0 border-2 border-red focus:border-red' : ''}
                   ${isSubmitting ? '!bg-lace text-gray' : ''}
                 `}
@@ -140,7 +140,7 @@ export default function Contact() {
               <div className='text-center'>
                 {isSubmitting ? (
                   <button
-                    className='bg-black text-yellow px-3 py-2 text-lg font-inter rounded-lg mx-5'
+                    className='bg-black dark:bg-yellow text-yellow dark:text-black px-3 py-2 text-lg font-inter rounded-lg mx-5'
                     type='button'
                     disabled={true}
                   >
@@ -166,7 +166,7 @@ export default function Contact() {
                   </button>
                 ) : (
                   <button
-                    className='bg-black text-yellow px-3 py-2 text-lg font-inter rounded-lg mx-5 hover:bg-lace hover:text-black hover:underline disabled:bg-gray disabled:text-white disabled:cursor-not-allowed disabled:no-underline'
+                    className='bg-black dark:bg-yellow text-yellow dark:text-black px-3 py-2 text-lg font-inter rounded-lg mx-5 hover:bg-lace hover:text-black hover:underline disabled:bg-gray disabled:text-white disabled:cursor-not-allowed disabled:no-underline'
                     type='submit'
                     disabled={!isFilledOut}
                   >

@@ -21,7 +21,7 @@ const ButtonLink = ({
 }: ButtonLinkProps) => {
   const classes =
     className ||
-    'inline-block bg-yellow text-black py-3 px-6 rounded-full font-inter font-bold text-lg m-5 hover:shadow-md'
+    'inline-block bg-yellow !text-black py-3 px-6 rounded-full font-inter font-bold text-lg m-5 hover:shadow-md'
 
   return !button || anchor ? (
     <Link
