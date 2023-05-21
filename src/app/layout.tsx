@@ -2,6 +2,7 @@ import { Layout } from 'components/index'
 import { client } from 'tina/__generated__/client'
 import { Inter } from 'next/font/google'
 import localFont from 'next/font/local'
+import Script from 'next/script'
 import 'styles/main.css'
 
 interface LayoutProps {
@@ -29,7 +30,10 @@ const RootLayout = async ({ children }: LayoutProps): Promise<JSX.Element> => {
   const siteMeta = await getMeta()
 
   return (
-    <html lang='en'>
+    <html
+      lang='en'
+      suppressHydrationWarning
+    >
       <head>
         <link
           rel='apple-touch-icon'
@@ -51,6 +55,14 @@ const RootLayout = async ({ children }: LayoutProps): Promise<JSX.Element> => {
         <link
           rel='manifest'
           href='/site.webmanifest'
+        />
+        <meta
+          name='theme-color'
+          content='#000000'
+        />
+        <Script
+          src='/scripts/theme-switcher.js'
+          strategy='beforeInteractive'
         />
       </head>
       <Layout

@@ -47,7 +47,7 @@ export default function BlogPost(props: BlogPostProps) {
 
   return (
     <>
-      <section className='bg-yellow text-center relative'>
+      <section className='bg-yellow dark:bg-black text-center relative'>
         {heroImage && (
           <div className='py-10 px-12 w-full h-auto max-h-[520px] max-w-[985px] mx-auto'>
             <Image
@@ -62,7 +62,9 @@ export default function BlogPost(props: BlogPostProps) {
           </div>
         )}
         <div className='mt-[45px] px-12 max-w-5xl mx-auto font-candy'>
-          <h1 className={`${styles.blogPostTitle} text-4xl lg:text-6xl`}>{title}</h1>
+          <h1 className={`${styles.blogPostTitle} text-4xl lg:text-6xl dark:black`}>
+            {title}
+          </h1>
           {subTitle && (
             <h2 className={`${styles.blogPostSubtitle} mt-3 text-2xl lg:text-4xl italic`}>
               {subTitle}
@@ -72,9 +74,13 @@ export default function BlogPost(props: BlogPostProps) {
         <LineBreak className='my-4' />
       </section>
       <section className='px-4 py-4 max-w-5xl mx-auto mb-8 font-inter md:px-12'>
-        <h3 className='italic mb-5 text-center text-sm'>Published: {formattedDate}</h3>
+        <h3 className='italic mb-5 text-center text-sm dark:text-lace'>
+          Published: {formattedDate}
+        </h3>
         <BlogPostProvider value={{ playingTrack, setPlayingTrack }}>
-          <div className='prose lg:prose-lg max-w-none'>
+          <div
+            className={`${styles.blogPostContent} prose prose-light dark:prose-dark lg:prose-lg max-w-none`}
+          >
             <TinaMarkdown
               content={body}
               components={{ songEmbed: AudioPlayer }}

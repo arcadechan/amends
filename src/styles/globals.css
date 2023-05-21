@@ -11,8 +11,12 @@ body {
 }
 
 a {
-  @apply font-bold text-blue;
+  @apply !font-bold text-blue;
   text-underline-offset: 3px;
+}
+
+.dark * a {
+  @apply text-yellow;
 }
 
 a:hover {
