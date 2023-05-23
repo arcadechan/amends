@@ -1,13 +1,14 @@
 'use client'
 
 import { createContext, useState } from 'react'
-import styles from 'styles/pages/BlogPost.module.css'
+import styles from 'styles/pages/main/BlogPost.module.css'
 import { LineBreak, PinkyPromise, ButtonLink, AudioPlayer } from 'components/index'
 import Image from 'next/image'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
 import { useTina } from 'tinacms/dist/react'
 import { TinaQueryResponse } from 'types/tinacms-custom'
+import Link from 'next/link'
 
 export const BlogPostContext = createContext({
   playingTrack: '',
@@ -19,6 +20,23 @@ type BlogPostProps = {
   imageBlurDataURL: string
 } & TinaQueryResponse
 
+// const Attribution = (heroImageAttribution: TinaQueryResponse['data']['post']['heroImageAttribution']) => {
+const Attribution = ({ heroImageAttribution }: TinaQueryResponse['data']['post']) => {
+  if (heroImageAttribution?.link && heroImageAttribution.link.length > 0) {
+    return (
+      <Link
+        href={heroImageAttribution.link}
+        target='_blank'
+        className='text-black !font-normal underline'
+      >
+        <small>Image credit: {heroImageAttribution.creator}</small>
+      </Link>
+    )
+  } else {
+    return <small>Image credit: {heroImageAttribution?.creator || 'wow'}</small>
+  }
+}
+
 export default function BlogPost(props: BlogPostProps) {
   const { data } = useTina({
     query: props.query,
@@ -28,7 +46,8 @@ export default function BlogPost(props: BlogPostProps) {
 
   const imageBlurDataURL = props.imageBlurDataURL
 
-  const { publishDate, heroImage, title, subTitle, body } = data.post
+  const { publishDate, heroImage, title, subTitle, body, heroImageAttribution } =
+    data.post
 
   const formattedDate = new Date(publishDate).toLocaleString('default', {
     dateStyle: 'long'
@@ -59,6 +78,12 @@ export default function BlogPost(props: BlogPostProps) {
               placeholder='blur'
               blurDataURL={imageBlurDataURL}
             />
+            {heroImageAttribution?.creator &&
+              heroImageAttribution.creator?.length > 0 && (
+                <div className='text-right pr-6'>
+                  <Attribution heroImageAttribution={heroImageAttribution} />
+                </div>
+              )}
           </div>
         )}
         <div className='mt-[45px] px-12 max-w-5xl mx-auto font-candy'>

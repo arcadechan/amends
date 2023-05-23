@@ -1,0 +1,47 @@
+.container {
+  background-color: #000000;
+  z-index: -20;
+}
+
+.video {
+  filter: hue-rotate(90deg) brightness(10) contrast(1.5);
+  animation: videoHueRotate 20s linear infinite;
+}
+
+@keyframes videoHueRotate {
+  0% {
+    filter: hue-rotate(90deg) brightness(10) contrast(1.5);
+  }
+
+  50% {
+    filter: hue-rotate(450deg) brightness(10) contrast(1.5);
+  }
+
+  100% {
+    filter: hue-rotate(90deg) brightness(10) contrast(1.5);
+  }
+}
+
+.necromancer {
+  /* filter: hue-rotate(0deg) brightness(2) contrast(1) saturate(1.5); */
+  filter: hue-rotate(0deg) brightness(1.5) contrast(1.25) saturate(1.5);
+  animation: necromancerHueRotate 20s linear infinite;
+}
+
+@keyframes necromancerHueRotate {
+  0% {
+    filter: hue-rotate(0deg) brightness(1.5) contrast(1.25) saturate(1.5);
+  }
+
+  50% {
+    filter: hue-rotate(360deg) brightness(1.5) contrast(1.25) saturate(1.5);
+  }
+
+  100% {
+    filter: hue-rotate(0deg) brightness(1.5) contrast(1.25) saturate(1.5);
+  }
+}
+
+.rubik {
+  font-family: var(--font-rubik);
+}

@@ -278,6 +278,26 @@
             "namespace": ["page", "heroImage"]
           },
           {
+            "label": "Hero Image Attribution",
+            "name": "heroImageAttribution",
+            "type": "object",
+            "fields": [
+              {
+                "label": "Creator",
+                "name": "creator",
+                "type": "string",
+                "namespace": ["page", "heroImageAttribution", "creator"]
+              },
+              {
+                "label": "Link to site",
+                "name": "link",
+                "type": "string",
+                "namespace": ["page", "heroImageAttribution", "link"]
+              }
+            ],
+            "namespace": ["page", "heroImageAttribution"]
+          },
+          {
             "name": "imageBlurDataURL",
             "label": "Image Blur Data URL",
             "description": "base64",
@@ -316,10 +336,7 @@
         "path": "content/post",
         "format": "mdx",
         "ui": {},
-        "defaultItem": {
-          "draft": true,
-          "body": { "children": [{ "children": [{ "text": "", "type": "text" }] }] }
-        },
+        "defaultItem": { "draft": true },
         "fields": [
           {
             "label": "Draft?",
@@ -339,6 +356,26 @@
             "name": "heroImage",
             "type": "image",
             "namespace": ["post", "heroImage"]
+          },
+          {
+            "label": "Hero Image Attribution",
+            "name": "heroImageAttribution",
+            "type": "object",
+            "fields": [
+              {
+                "label": "Creator",
+                "name": "creator",
+                "type": "string",
+                "namespace": ["post", "heroImageAttribution", "creator"]
+              },
+              {
+                "label": "Link to site",
+                "name": "link",
+                "type": "string",
+                "namespace": ["post", "heroImageAttribution", "link"]
+              }
+            ],
+            "namespace": ["post", "heroImageAttribution"]
           },
           {
             "name": "imageBlurDataURL",
@@ -2369,6 +2406,26 @@
       },
       {
         "kind": "ObjectTypeDefinition",
+        "interfaces": [],
+        "directives": [],
+        "name": { "kind": "Name", "value": "PageHeroImageAttribution" },
+        "fields": [
+          {
+            "kind": "FieldDefinition",
+            "name": { "kind": "Name", "value": "creator" },
+            "arguments": [],
+            "type": { "kind": "NamedType", "name": { "kind": "Name", "value": "String" } }
+          },
+          {
+            "kind": "FieldDefinition",
+            "name": { "kind": "Name", "value": "link" },
+            "arguments": [],
+            "type": { "kind": "NamedType", "name": { "kind": "Name", "value": "String" } }
+          }
+        ]
+      },
+      {
+        "kind": "ObjectTypeDefinition",
         "interfaces": [
           { "kind": "NamedType", "name": { "kind": "Name", "value": "Node" } },
           { "kind": "NamedType", "name": { "kind": "Name", "value": "Document" } }
@@ -2402,6 +2459,15 @@
             "name": { "kind": "Name", "value": "heroImage" },
             "arguments": [],
             "type": { "kind": "NamedType", "name": { "kind": "Name", "value": "String" } }
+          },
+          {
+            "kind": "FieldDefinition",
+            "name": { "kind": "Name", "value": "heroImageAttribution" },
+            "arguments": [],
+            "type": {
+              "kind": "NamedType",
+              "name": { "kind": "Name", "value": "PageHeroImageAttribution" }
+            }
           },
           {
             "kind": "FieldDefinition",
@@ -2507,6 +2573,28 @@
       },
       {
         "kind": "InputObjectTypeDefinition",
+        "name": { "kind": "Name", "value": "PageHeroImageAttributionFilter" },
+        "fields": [
+          {
+            "kind": "InputValueDefinition",
+            "name": { "kind": "Name", "value": "creator" },
+            "type": {
+              "kind": "NamedType",
+              "name": { "kind": "Name", "value": "StringFilter" }
+            }
+          },
+          {
+            "kind": "InputValueDefinition",
+            "name": { "kind": "Name", "value": "link" },
+            "type": {
+              "kind": "NamedType",
+              "name": { "kind": "Name", "value": "StringFilter" }
+            }
+          }
+        ]
+      },
+      {
+        "kind": "InputObjectTypeDefinition",
         "name": { "kind": "Name", "value": "PageFilter" },
         "fields": [
           {
@@ -2531,6 +2619,14 @@
             "type": {
               "kind": "NamedType",
               "name": { "kind": "Name", "value": "ImageFilter" }
+            }
+          },
+          {
+            "kind": "InputValueDefinition",
+            "name": { "kind": "Name", "value": "heroImageAttribution" },
+            "type": {
+              "kind": "NamedType",
+              "name": { "kind": "Name", "value": "PageHeroImageAttributionFilter" }
             }
           },
           {
@@ -2641,6 +2737,26 @@
       },
       {
         "kind": "ObjectTypeDefinition",
+        "interfaces": [],
+        "directives": [],
+        "name": { "kind": "Name", "value": "PostHeroImageAttribution" },
+        "fields": [
+          {
+            "kind": "FieldDefinition",
+            "name": { "kind": "Name", "value": "creator" },
+            "arguments": [],
+            "type": { "kind": "NamedType", "name": { "kind": "Name", "value": "String" } }
+          },
+          {
+            "kind": "FieldDefinition",
+            "name": { "kind": "Name", "value": "link" },
+            "arguments": [],
+            "type": { "kind": "NamedType", "name": { "kind": "Name", "value": "String" } }
+          }
+        ]
+      },
+      {
+        "kind": "ObjectTypeDefinition",
         "interfaces": [
           { "kind": "NamedType", "name": { "kind": "Name", "value": "Node" } },
           { "kind": "NamedType", "name": { "kind": "Name", "value": "Document" } }
@@ -2674,6 +2790,15 @@
             "name": { "kind": "Name", "value": "heroImage" },
             "arguments": [],
             "type": { "kind": "NamedType", "name": { "kind": "Name", "value": "String" } }
+          },
+          {
+            "kind": "FieldDefinition",
+            "name": { "kind": "Name", "value": "heroImageAttribution" },
+            "arguments": [],
+            "type": {
+              "kind": "NamedType",
+              "name": { "kind": "Name", "value": "PostHeroImageAttribution" }
+            }
           },
           {
             "kind": "FieldDefinition",
@@ -2763,6 +2888,28 @@
             "type": {
               "kind": "NonNullType",
               "type": { "kind": "NamedType", "name": { "kind": "Name", "value": "JSON" } }
+            }
+          }
+        ]
+      },
+      {
+        "kind": "InputObjectTypeDefinition",
+        "name": { "kind": "Name", "value": "PostHeroImageAttributionFilter" },
+        "fields": [
+          {
+            "kind": "InputValueDefinition",
+            "name": { "kind": "Name", "value": "creator" },
+            "type": {
+              "kind": "NamedType",
+              "name": { "kind": "Name", "value": "StringFilter" }
+            }
+          },
+          {
+            "kind": "InputValueDefinition",
+            "name": { "kind": "Name", "value": "link" },
+            "type": {
+              "kind": "NamedType",
+              "name": { "kind": "Name", "value": "StringFilter" }
             }
           }
         ]
@@ -2901,6 +3048,14 @@
             "type": {
               "kind": "NamedType",
               "name": { "kind": "Name", "value": "ImageFilter" }
+            }
+          },
+          {
+            "kind": "InputValueDefinition",
+            "name": { "kind": "Name", "value": "heroImageAttribution" },
+            "type": {
+              "kind": "NamedType",
+              "name": { "kind": "Name", "value": "PostHeroImageAttributionFilter" }
             }
           },
           {
@@ -3730,6 +3885,22 @@
       },
       {
         "kind": "InputObjectTypeDefinition",
+        "name": { "kind": "Name", "value": "PageHeroImageAttributionMutation" },
+        "fields": [
+          {
+            "kind": "InputValueDefinition",
+            "name": { "kind": "Name", "value": "creator" },
+            "type": { "kind": "NamedType", "name": { "kind": "Name", "value": "String" } }
+          },
+          {
+            "kind": "InputValueDefinition",
+            "name": { "kind": "Name", "value": "link" },
+            "type": { "kind": "NamedType", "name": { "kind": "Name", "value": "String" } }
+          }
+        ]
+      },
+      {
+        "kind": "InputObjectTypeDefinition",
         "name": { "kind": "Name", "value": "PageMutation" },
         "fields": [
           {
@@ -3749,6 +3920,14 @@
             "kind": "InputValueDefinition",
             "name": { "kind": "Name", "value": "heroImage" },
             "type": { "kind": "NamedType", "name": { "kind": "Name", "value": "String" } }
+          },
+          {
+            "kind": "InputValueDefinition",
+            "name": { "kind": "Name", "value": "heroImageAttribution" },
+            "type": {
+              "kind": "NamedType",
+              "name": { "kind": "Name", "value": "PageHeroImageAttributionMutation" }
+            }
           },
           {
             "kind": "InputValueDefinition",
@@ -3774,6 +3953,22 @@
       },
       {
         "kind": "InputObjectTypeDefinition",
+        "name": { "kind": "Name", "value": "PostHeroImageAttributionMutation" },
+        "fields": [
+          {
+            "kind": "InputValueDefinition",
+            "name": { "kind": "Name", "value": "creator" },
+            "type": { "kind": "NamedType", "name": { "kind": "Name", "value": "String" } }
+          },
+          {
+            "kind": "InputValueDefinition",
+            "name": { "kind": "Name", "value": "link" },
+            "type": { "kind": "NamedType", "name": { "kind": "Name", "value": "String" } }
+          }
+        ]
+      },
+      {
+        "kind": "InputObjectTypeDefinition",
         "name": { "kind": "Name", "value": "PostMutation" },
         "fields": [
           {
@@ -3793,6 +3988,14 @@
             "kind": "InputValueDefinition",
             "name": { "kind": "Name", "value": "heroImage" },
             "type": { "kind": "NamedType", "name": { "kind": "Name", "value": "String" } }
+          },
+          {
+            "kind": "InputValueDefinition",
+            "name": { "kind": "Name", "value": "heroImageAttribution" },
+            "type": {
+              "kind": "NamedType",
+              "name": { "kind": "Name", "value": "PostHeroImageAttributionMutation" }
+            }
           },
           {
             "kind": "InputValueDefinition",
