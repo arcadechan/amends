@@ -32,9 +32,9 @@ const getHome = async () => {
     await getPlaceholders.forHomePage(queryResponse.data)
 
   return {
-    query: queryResponse.query || null,
-    variables: queryResponse.variables || null,
-    data: homePageDataWithPlaiceholders || null
+    query: queryResponse.query,
+    variables: queryResponse.variables,
+    data: homePageDataWithPlaiceholders
   }
 }
 
