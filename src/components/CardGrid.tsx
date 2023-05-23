@@ -69,7 +69,10 @@ const CardImage = ({ cardImage, columnCount }: CardImageProps): JSX.Element => {
           alt=''
           sizes={sizes}
           placeholder='blur'
-          blurDataURL={cardImage?.imageBlurDataURL || ''}
+          blurDataURL={
+            cardImage?.imageBlurDataURL ||
+            'data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=='
+          }
         />
       </div>
     )
