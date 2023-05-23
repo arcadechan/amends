@@ -4,7 +4,7 @@ import { MutableRefObject, useContext, useEffect, useRef, useState } from 'react
 import Image, { StaticImageData } from 'next/image'
 import styles from 'styles/components/AudioPlayer.module.css'
 import Link from 'next/link'
-import { BlogPostContext } from 'app/post/[slug]/BlogPost'
+import { BlogPostContext } from 'app/(main)/post/[slug]/BlogPost'
 import { StreamService } from 'types/amends'
 // ICONS
 import appleMusicIcon from 'public/icons/apple-music.png'
