@@ -15,7 +15,7 @@ const inter = Inter({
 })
 
 const candyBean = localFont({
-  src: '../../public/fonts/candy-beans.otf',
+  src: '../../../public/fonts/candy-beans.otf',
   variable: '--font-candy'
 })
 

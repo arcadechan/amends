@@ -49,6 +49,23 @@ const commonFields: any[] = [
     type: 'image'
   },
   {
+    label: 'Hero Image Attribution',
+    name: 'heroImageAttribution',
+    type: 'object',
+    fields: [
+      {
+        label: 'Creator',
+        name: 'creator',
+        type: 'string'
+      },
+      {
+        label: 'Link to site',
+        name: 'link',
+        type: 'string'
+      }
+    ]
+  },
+  {
     name: 'imageBlurDataURL',
     label: 'Image Blur Data URL',
     description: 'base64',
@@ -207,6 +224,7 @@ const schema: Schema = {
       format: 'mdx',
       ui: {
         router: ({ document }) => {
+          // console.log({document})
           // navigate to the post that was clicked
           return `/post/${document._sys.filename}`
         }
@@ -233,14 +251,8 @@ const schema: Schema = {
         // }
       },
       defaultItem: {
-        draft: true,
-        body: {
-          children: [
-            {
-              children: [{ text: '', type: 'text' }]
-            }
-          ]
-        }
+        draft: true
+        // publishDate: new Date().toISOString()
       },
       fields: [
         ...commonFields,
