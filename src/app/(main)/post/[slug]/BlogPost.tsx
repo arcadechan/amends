@@ -9,6 +9,7 @@ import { TinaMarkdown } from 'tinacms/dist/rich-text'
 import { useTina } from 'tinacms/dist/react'
 import { TinaQueryResponse } from 'types/tinacms-custom'
 import Link from 'next/link'
+import { PostQuery } from 'tina/__generated__/types'
 
 export const BlogPostContext = createContext({
   playingTrack: '',
@@ -20,8 +21,11 @@ type BlogPostProps = {
   imageBlurDataURL: string
 } & TinaQueryResponse
 
-// const Attribution = (heroImageAttribution: TinaQueryResponse['data']['post']['heroImageAttribution']) => {
-const Attribution = ({ heroImageAttribution }: TinaQueryResponse['data']['post']) => {
+type AttributionProps = {
+  heroImageAttribution: PostQuery['post']['heroImageAttribution']
+}
+
+const Attribution = ({ heroImageAttribution }: AttributionProps) => {
   if (heroImageAttribution?.link && heroImageAttribution.link.length > 0) {
     return (
       <Link
@@ -33,7 +37,7 @@ const Attribution = ({ heroImageAttribution }: TinaQueryResponse['data']['post']
       </Link>
     )
   } else {
-    return <small>Image credit: {heroImageAttribution?.creator || 'wow'}</small>
+    return <small>Image credit: {heroImageAttribution?.creator}</small>
   }
 }
 
