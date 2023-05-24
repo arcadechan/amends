@@ -2,7 +2,7 @@ import Credits from './Credits'
 import type { Metadata } from 'next'
 import getMetadataBase from 'lib/metadata'
 
-export const metadata = ((): Metadata => {
+export const generateMetadata = (): Metadata => {
   const title = 'Credits | Amends'
   const description =
     "This site wouldn't be possible without all the marvelous content produced by these individuals."
@@ -19,7 +19,7 @@ export const metadata = ((): Metadata => {
       images: [`${metadataBase}/logo/amends-og.jpeg`]
     }
   }
-})()
+}
 
 export default function Page() {
   return <Credits />

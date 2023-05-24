@@ -6,7 +6,7 @@ import { Metadata } from 'next'
 import getMetadataBase from 'lib/metadata'
 
 export const dynamic = 'force-static'
-export const metadata = ((): Metadata => {
+export const generateMetadata = (): Metadata => {
   const title = 'Amends'
   const description = 'Writing nonsense one word at a time.'
 
@@ -22,7 +22,7 @@ export const metadata = ((): Metadata => {
       images: [`${metadataBase}/logo/amends-og.jpeg`]
     }
   }
-})()
+}
 
 const getHome = async () => {
   const queryResponse = await client.queries.getHomePageQuery({
