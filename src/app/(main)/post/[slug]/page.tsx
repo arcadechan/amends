@@ -15,16 +15,20 @@ type BlogPostProps = {
   }
 }
 
+const getPostData = cache(async (slug: string) => {
+  return await client.queries.post({ relativePath: `${slug}.mdx` })
+})
+
 export const generateMetadata = async ({ params }: BlogPostProps): Promise<Metadata> => {
   const {
     data: { post }
-  } = await client.queries.post({ relativePath: `${params.slug}.mdx` })
+  } = await getPostData(params.slug)
 
   const title = `${post.title} | Amends`
   const description = post.description || ''
   const metadataBase = getMetadataBase()
 
-  const metadata: Metadata = {
+  return {
     title,
     description,
     metadataBase,
@@ -38,12 +42,10 @@ export const generateMetadata = async ({ params }: BlogPostProps): Promise<Metad
       images: [`${metadataBase}/${post?.heroImage}`]
     }
   }
-
-  return metadata
 }
 
 const getBlogPost = cache(async (slug: BlogPostProps['params']['slug']) => {
-  const queryResponse = await client.queries.post({ relativePath: `${slug}.mdx` })
+  const queryResponse = await getPostData(slug)
 
   let imageBlurDataURL = ''
   if (queryResponse.data?.post?.heroImage) {

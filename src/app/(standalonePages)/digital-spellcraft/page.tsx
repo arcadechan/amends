@@ -2,7 +2,7 @@ import DigitalSpellcraft from './DigitalSpellcraft'
 import type { Metadata } from 'next'
 import getMetadataBase from 'lib/metadata'
 
-export const metadata = ((): Metadata => {
+export const generateMetadata = (): Metadata => {
   const title = 'World | Amends'
   const description = 'The world.'
   const metadataBase = getMetadataBase()
@@ -18,7 +18,7 @@ export const metadata = ((): Metadata => {
       images: [`${metadataBase}/logo/amends-og.jpeg`]
     }
   }
-})()
+}
 
 export default function Page() {
   return <DigitalSpellcraft />
