@@ -1,14 +1,15 @@
-const { withPlaiceholder } = require('@plaiceholder/next')
+import withPlaiceholder from '@plaiceholder/next'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  experimental: {
-    appDir: true
-  },
   images: {
-    domains: ['assets.tina.io']
+    remotePatterns: [
+      {
+        hostname: 'assets.tina.io'
+      }
+    ]
   },
   async rewrites() {
     return [
@@ -20,4 +21,4 @@ const nextConfig = {
   }
 }
 
-module.exports = withPlaiceholder(nextConfig)
+export default withPlaiceholder(nextConfig)

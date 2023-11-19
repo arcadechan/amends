@@ -1,7 +1,8 @@
 'use client'
 
 import styles from 'styles/pages/main/About.module.css'
-import { LineBreak, PinkyPromise } from 'components/index'
+import LineBreak from '@/components/LineBreak'
+import PinkyPromise from '@/components/PinkyPromise'
 import Image from 'next/image'
 import Link from 'next/link'
 

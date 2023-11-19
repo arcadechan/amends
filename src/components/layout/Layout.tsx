@@ -1,7 +1,9 @@
 'use client'
 
 import React, { useEffect, useState, createContext } from 'react'
-import { Header, Main, Footer } from '.'
+import Header from './Header'
+import Main from './Main'
+import Footer from './Footer'
 
 type LayoutProps = {
   children: React.ReactNode

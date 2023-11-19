@@ -2,11 +2,11 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { NavigationLink } from 'types/amends'
+import { NavigationLink } from '@/types/amends'
 import amendsLogoBlack from 'public/logo/logo-black.png'
 import amendsLogoYellow from 'public/logo/logo-yellow.png'
 import { useContext } from 'react'
-import { AppContext } from '../layout/Layout'
+import { AppContext } from '@/components/layout/Layout'
 
 type footerProps = {
   socialPlatforms: any | null

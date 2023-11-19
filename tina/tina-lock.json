@@ -1,6 +1,6 @@
 {
   "schema": {
-    "version": { "fullVersion": "1.4.14", "major": "1", "minor": "4", "patch": "14" },
+    "version": { "fullVersion": "1.4.29", "major": "1", "minor": "4", "patch": "29" },
     "meta": { "flags": ["experimentalData"] },
     "collections": [
       {
@@ -45,13 +45,17 @@
                         "columnCount"
                       ]
                     },
-                    "namespace": ["home", "pageBlocks", "cardGrid", "columnCount"]
+                    "namespace": ["home", "pageBlocks", "cardGrid", "columnCount"],
+                    "searchable": true,
+                    "uid": false
                   },
                   {
                     "name": "sectionTitle",
                     "label": "Section Title",
                     "type": "string",
-                    "namespace": ["home", "pageBlocks", "cardGrid", "sectionTitle"]
+                    "namespace": ["home", "pageBlocks", "cardGrid", "sectionTitle"],
+                    "searchable": true,
+                    "uid": false
                   },
                   {
                     "name": "cards",
@@ -182,13 +186,17 @@
                         ]
                       }
                     ],
-                    "namespace": ["home", "pageBlocks", "cardGrid", "cards"]
+                    "namespace": ["home", "pageBlocks", "cardGrid", "cards"],
+                    "searchable": true,
+                    "uid": false
                   }
                 ],
                 "namespace": ["home", "pageBlocks", "cardGrid"]
               }
             ],
-            "namespace": ["home", "pageBlocks"]
+            "namespace": ["home", "pageBlocks"],
+            "searchable": true,
+            "uid": false
           }
         ],
         "namespace": ["home"]
@@ -212,16 +220,22 @@
                 "label": "Link Name",
                 "name": "name",
                 "type": "string",
-                "namespace": ["meta", "navigationLinks", "name"]
+                "namespace": ["meta", "navigationLinks", "name"],
+                "searchable": true,
+                "uid": false
               },
               {
                 "label": "URL",
                 "name": "url",
                 "type": "string",
-                "namespace": ["meta", "navigationLinks", "url"]
+                "namespace": ["meta", "navigationLinks", "url"],
+                "searchable": true,
+                "uid": false
               }
             ],
-            "namespace": ["meta", "navigationLinks"]
+            "namespace": ["meta", "navigationLinks"],
+            "searchable": true,
+            "uid": false
           },
           {
             "label": "Social Platforms",
@@ -232,22 +246,30 @@
                 "label": "Spotify URL",
                 "name": "spotifyUrl",
                 "type": "string",
-                "namespace": ["meta", "socialPlatforms", "spotifyUrl"]
+                "namespace": ["meta", "socialPlatforms", "spotifyUrl"],
+                "searchable": true,
+                "uid": false
               },
               {
                 "label": "GitHub URL",
                 "name": "githubUrl",
                 "type": "string",
-                "namespace": ["meta", "socialPlatforms", "githubUrl"]
+                "namespace": ["meta", "socialPlatforms", "githubUrl"],
+                "searchable": true,
+                "uid": false
               },
               {
                 "label": "Soundcloud URL",
                 "name": "soundcloudUrl",
                 "type": "string",
-                "namespace": ["meta", "socialPlatforms", "soundcloudUrl"]
+                "namespace": ["meta", "socialPlatforms", "soundcloudUrl"],
+                "searchable": true,
+                "uid": false
               }
             ],
-            "namespace": ["meta", "socialPlatforms"]
+            "namespace": ["meta", "socialPlatforms"],
+            "searchable": true,
+            "uid": false
           }
         ],
         "namespace": ["meta"]
@@ -262,20 +284,26 @@
             "label": "Draft?",
             "name": "draft",
             "type": "boolean",
-            "namespace": ["page", "draft"]
+            "namespace": ["page", "draft"],
+            "searchable": true,
+            "uid": false
           },
           {
             "label": "Publish Date",
             "name": "publishDate",
             "type": "datetime",
             "required": true,
-            "namespace": ["page", "publishDate"]
+            "namespace": ["page", "publishDate"],
+            "searchable": true,
+            "uid": false
           },
           {
             "label": "Hero Image",
             "name": "heroImage",
             "type": "image",
-            "namespace": ["page", "heroImage"]
+            "namespace": ["page", "heroImage"],
+            "searchable": false,
+            "uid": false
           },
           {
             "label": "Hero Image Attribution",
@@ -286,16 +314,22 @@
                 "label": "Creator",
                 "name": "creator",
                 "type": "string",
-                "namespace": ["page", "heroImageAttribution", "creator"]
+                "namespace": ["page", "heroImageAttribution", "creator"],
+                "searchable": true,
+                "uid": false
               },
               {
                 "label": "Link to site",
                 "name": "link",
                 "type": "string",
-                "namespace": ["page", "heroImageAttribution", "link"]
+                "namespace": ["page", "heroImageAttribution", "link"],
+                "searchable": true,
+                "uid": false
               }
             ],
-            "namespace": ["page", "heroImageAttribution"]
+            "namespace": ["page", "heroImageAttribution"],
+            "searchable": true,
+            "uid": false
           },
           {
             "name": "imageBlurDataURL",
@@ -303,7 +337,9 @@
             "description": "base64",
             "type": "string",
             "ui": {},
-            "namespace": ["page", "imageBlurDataURL"]
+            "namespace": ["page", "imageBlurDataURL"],
+            "searchable": true,
+            "uid": false
           },
           {
             "label": "Title",
@@ -311,13 +347,17 @@
             "type": "string",
             "required": true,
             "isTitle": true,
-            "namespace": ["page", "title"]
+            "namespace": ["page", "title"],
+            "searchable": true,
+            "uid": false
           },
           {
             "label": "Subtitle",
             "name": "subTitle",
             "type": "string",
-            "namespace": ["page", "subTitle"]
+            "namespace": ["page", "subTitle"],
+            "searchable": true,
+            "uid": false
           },
           {
             "label": "Description",
@@ -325,7 +365,9 @@
             "type": "string",
             "description": "Max character count: 160",
             "ui": {},
-            "namespace": ["page", "description"]
+            "namespace": ["page", "description"],
+            "searchable": true,
+            "uid": false
           }
         ],
         "namespace": ["page"]
@@ -342,20 +384,26 @@
             "label": "Draft?",
             "name": "draft",
             "type": "boolean",
-            "namespace": ["post", "draft"]
+            "namespace": ["post", "draft"],
+            "searchable": true,
+            "uid": false
           },
           {
             "label": "Publish Date",
             "name": "publishDate",
             "type": "datetime",
             "required": true,
-            "namespace": ["post", "publishDate"]
+            "namespace": ["post", "publishDate"],
+            "searchable": true,
+            "uid": false
           },
           {
             "label": "Hero Image",
             "name": "heroImage",
             "type": "image",
-            "namespace": ["post", "heroImage"]
+            "namespace": ["post", "heroImage"],
+            "searchable": false,
+            "uid": false
           },
           {
             "label": "Hero Image Attribution",
@@ -366,16 +414,22 @@
                 "label": "Creator",
                 "name": "creator",
                 "type": "string",
-                "namespace": ["post", "heroImageAttribution", "creator"]
+                "namespace": ["post", "heroImageAttribution", "creator"],
+                "searchable": true,
+                "uid": false
               },
               {
                 "label": "Link to site",
                 "name": "link",
                 "type": "string",
-                "namespace": ["post", "heroImageAttribution", "link"]
+                "namespace": ["post", "heroImageAttribution", "link"],
+                "searchable": true,
+                "uid": false
               }
             ],
-            "namespace": ["post", "heroImageAttribution"]
+            "namespace": ["post", "heroImageAttribution"],
+            "searchable": true,
+            "uid": false
           },
           {
             "name": "imageBlurDataURL",
@@ -383,7 +437,9 @@
             "description": "base64",
             "type": "string",
             "ui": {},
-            "namespace": ["post", "imageBlurDataURL"]
+            "namespace": ["post", "imageBlurDataURL"],
+            "searchable": true,
+            "uid": false
           },
           {
             "label": "Title",
@@ -391,13 +447,17 @@
             "type": "string",
             "required": true,
             "isTitle": true,
-            "namespace": ["post", "title"]
+            "namespace": ["post", "title"],
+            "searchable": true,
+            "uid": false
           },
           {
             "label": "Subtitle",
             "name": "subTitle",
             "type": "string",
-            "namespace": ["post", "subTitle"]
+            "namespace": ["post", "subTitle"],
+            "searchable": true,
+            "uid": false
           },
           {
             "label": "Description",
@@ -405,7 +465,9 @@
             "type": "string",
             "description": "Max character count: 160",
             "ui": {},
-            "namespace": ["post", "description"]
+            "namespace": ["post", "description"],
+            "searchable": true,
+            "uid": false
           },
           {
             "type": "rich-text",
@@ -421,80 +483,104 @@
                     "label": "Artist Name",
                     "name": "artistName",
                     "type": "string",
-                    "namespace": ["post", "body", "songEmbed", "artistName"]
+                    "namespace": ["post", "body", "songEmbed", "artistName"],
+                    "searchable": true,
+                    "uid": false
                   },
                   {
                     "label": "Track Name",
                     "name": "trackName",
                     "type": "string",
-                    "namespace": ["post", "body", "songEmbed", "trackName"]
+                    "namespace": ["post", "body", "songEmbed", "trackName"],
+                    "searchable": true,
+                    "uid": false
                   },
                   {
                     "label": "Album Name",
                     "name": "albumName",
                     "type": "string",
-                    "namespace": ["post", "body", "songEmbed", "albumName"]
+                    "namespace": ["post", "body", "songEmbed", "albumName"],
+                    "searchable": true,
+                    "uid": false
                   },
                   {
                     "label": "Album Art",
                     "name": "albumArt",
                     "type": "image",
-                    "namespace": ["post", "body", "songEmbed", "albumArt"]
+                    "namespace": ["post", "body", "songEmbed", "albumArt"],
+                    "searchable": false,
+                    "uid": false
                   },
                   {
                     "label": "Audio Preview URL",
                     "name": "audioPreviewUrl",
                     "type": "string",
-                    "namespace": ["post", "body", "songEmbed", "audioPreviewUrl"]
+                    "namespace": ["post", "body", "songEmbed", "audioPreviewUrl"],
+                    "searchable": true,
+                    "uid": false
                   },
                   {
                     "label": "Spotify URL",
                     "name": "spotifyUrl",
                     "type": "string",
                     "ui": {},
-                    "namespace": ["post", "body", "songEmbed", "spotifyUrl"]
+                    "namespace": ["post", "body", "songEmbed", "spotifyUrl"],
+                    "searchable": true,
+                    "uid": false
                   },
                   {
                     "label": "Youtube URL",
                     "name": "youtubeUrl",
                     "type": "string",
                     "ui": {},
-                    "namespace": ["post", "body", "songEmbed", "youtubeUrl"]
+                    "namespace": ["post", "body", "songEmbed", "youtubeUrl"],
+                    "searchable": true,
+                    "uid": false
                   },
                   {
                     "label": "Apple Music URL",
                     "name": "appleMusicUrl",
                     "type": "string",
                     "ui": {},
-                    "namespace": ["post", "body", "songEmbed", "appleMusicUrl"]
+                    "namespace": ["post", "body", "songEmbed", "appleMusicUrl"],
+                    "searchable": true,
+                    "uid": false
                   },
                   {
                     "label": "Deezer URL",
                     "name": "deezerUrl",
                     "type": "string",
                     "ui": {},
-                    "namespace": ["post", "body", "songEmbed", "deezerUrl"]
+                    "namespace": ["post", "body", "songEmbed", "deezerUrl"],
+                    "searchable": true,
+                    "uid": false
                   },
                   {
                     "label": "Bandcamp URL",
                     "name": "bandcampUrl",
                     "type": "string",
                     "ui": {},
-                    "namespace": ["post", "body", "songEmbed", "bandcampUrl"]
+                    "namespace": ["post", "body", "songEmbed", "bandcampUrl"],
+                    "searchable": true,
+                    "uid": false
                   },
                   {
                     "label": "Soundcloud URL",
                     "name": "soundcloudUrl",
                     "type": "string",
                     "ui": {},
-                    "namespace": ["post", "body", "songEmbed", "soundcloudUrl"]
+                    "namespace": ["post", "body", "songEmbed", "soundcloudUrl"],
+                    "searchable": true,
+                    "uid": false
                   }
                 ],
                 "namespace": ["post", "body", "songEmbed"]
               }
             ],
             "namespace": ["post", "body"],
-            "parser": { "type": "mdx" }
+            "searchable": true,
+            "parser": { "type": "mdx" },
+            "uid": false
           },
           {
             "label": "Category",
@@ -509,7 +595,9 @@
               { "label": "Writing", "value": "writing" },
               { "label": "Misc.", "value": "misc" }
             ],
-            "namespace": ["post", "category"]
+            "namespace": ["post", "category"],
+            "searchable": true,
+            "uid": false
           },
           {
             "label": "Tags",
@@ -517,7 +605,9 @@
             "type": "string",
             "list": true,
             "component": "tags",
-            "namespace": ["post", "tags"]
+            "namespace": ["post", "tags"],
+            "searchable": true,
+            "uid": false
           }
         ],
         "namespace": ["post"]

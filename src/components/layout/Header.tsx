@@ -7,10 +7,10 @@ import { useState, useEffect } from 'react'
 import amendsLogoBlack from 'public/logo/logo-black.png'
 import amendsLogoYellow from 'public/logo/logo-yellow.png'
 import hamburgerIcon from 'public/icons/hamburger-menu-static.svg'
-import { NavigationLink } from 'types/amends'
+import { NavigationLink } from '@/types/amends'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useContext } from 'react'
-import { AppContext } from '../layout/Layout'
+import { AppContext } from '@/components/layout/Layout'
 
 type HeaderProps = {
   navigationLinks: NavigationLink[] | null

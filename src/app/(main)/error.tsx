@@ -1,7 +1,8 @@
 'use client'
 
 import { useEffect } from 'react'
-import { ButtonLink, DynamicLottie } from 'components/index'
+import ButtonLink from '@/components/ButtonLink'
+import DynamicLottie from '@/components/DynamicLottie'
 import errorAnimation from 'public/animations/error.json'
 
 type ErrorProps = {

@@ -4,7 +4,7 @@ import type { Metadata } from 'next'
 import { getPlaiceholder } from 'plaiceholder'
 import dynamicComponent from 'next/dynamic'
 import BlogPostLoading from './BlogPostLoading'
-import getMetadataBase from 'lib/metadata'
+import getMetadataBase from '@/lib/metadata'
 
 export const dynamic = 'auto'
 export const revalidate = 2628002 // Seconds in one month

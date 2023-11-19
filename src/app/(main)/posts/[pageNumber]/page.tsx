@@ -2,12 +2,12 @@ import { client } from 'tina/__generated__/client'
 import path from 'path'
 import { promises as fs } from 'fs'
 import { cache } from 'react'
-import getPlaceholders from 'lib/getPlaceholder'
+import getPlaceholders from '@/lib/getPlaceholder'
 import { GetPostsQueryQuery } from 'tina/__generated__/types'
 import type { Metadata } from 'next'
 import BlogPostListLoading from './BlogPostListLoading'
 import dynamicComponent from 'next/dynamic'
-import getMetadataBase from 'lib/metadata'
+import getMetadataBase from '@/lib/metadata'
 
 const POSTS_PER_PAGE = 3
 

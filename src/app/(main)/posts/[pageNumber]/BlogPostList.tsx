@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { ButtonLink } from 'components/index'
+import ButtonLink from '@/components/ButtonLink'
 import { GetPostsQueryQuery, Post } from 'tina/__generated__/types'
 import { PageSearchParamProps } from './page'
 

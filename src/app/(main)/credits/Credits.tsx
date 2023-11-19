@@ -1,6 +1,6 @@
 'use client'
 
-import { PinkyPromise } from 'components/index'
+import PinkyPromise from '@/components/PinkyPromise'
 import Link from 'next/link'
 
 export default function Credits() {

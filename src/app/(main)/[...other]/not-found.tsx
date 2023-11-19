@@ -1,7 +1,8 @@
 'use client'
 
 import compassAnimation from 'public/animations/404-compass.json'
-import { ButtonLink, DynamicLottie } from 'components/index'
+import ButtonLink from '@/components/ButtonLink'
+import DynamicLottie from '@/components/DynamicLottie'
 import 'styles/main.css'
 
 export default function NotFound(): JSX.Element {
