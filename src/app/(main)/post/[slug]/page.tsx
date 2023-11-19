@@ -5,6 +5,8 @@ import { getPlaiceholder } from 'plaiceholder'
 import dynamicComponent from 'next/dynamic'
 import BlogPostLoading from './BlogPostLoading'
 import getMetadataBase from '@/lib/metadata'
+import path from 'node:path'
+import fs from 'node:fs/promises'
 
 export const dynamic = 'auto'
 export const revalidate = 2628002 // Seconds in one month
@@ -49,12 +51,14 @@ const getBlogPost = cache(async (slug: BlogPostProps['params']['slug']) => {
 
   let imageBlurDataURL = ''
   if (queryResponse.data?.post?.heroImage) {
-    const { base64 } = await getPlaiceholder(queryResponse.data.post.heroImage).catch(
-      () => ({
-        base64:
-          'data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=='
-      })
+    const buffer = await fs.readFile(
+      path.join('./public', queryResponse.data.post.heroImage)
     )
+
+    const { base64 } = await getPlaiceholder(buffer, { size: 10 }).catch(() => ({
+      base64:
+        'data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=='
+    }))
 
     imageBlurDataURL = base64
   }
