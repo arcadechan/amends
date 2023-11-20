@@ -2,7 +2,7 @@
 
 import { MutableRefObject, useContext, useEffect, useRef, useState } from 'react'
 import Image, { StaticImageData } from 'next/image'
-import styles from 'styles/components/AudioPlayer.module.css'
+import styles from '@/styles/components/AudioPlayer.module.css'
 import Link from 'next/link'
 import { BlogPostContext } from '@/app/(main)/post/[slug]/BlogPost'
 import { StreamService } from '@/types/amends'

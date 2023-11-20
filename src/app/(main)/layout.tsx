@@ -3,7 +3,7 @@ import { client } from 'tina/__generated__/client'
 import { Inter } from 'next/font/google'
 import localFont from 'next/font/local'
 import Script from 'next/script'
-import 'styles/main.css'
+import '@/styles/main.css'
 
 interface LayoutProps {
   children: React.ReactNode

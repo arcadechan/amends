@@ -1,12 +1,7 @@
-'use client'
-
 import Image from 'next/image'
 import Link from 'next/link'
 import { NavigationLink } from '@/types/amends'
 import amendsLogoBlack from 'public/logo/logo-black.png'
-import amendsLogoYellow from 'public/logo/logo-yellow.png'
-import { useContext } from 'react'
-import { AppContext } from '@/components/layout/Layout'
 
 type footerProps = {
   socialPlatforms: any | null
@@ -45,8 +40,6 @@ const SocialIcon = ({
 }
 
 const Footer = ({ socialPlatforms, navigationLinks }: footerProps): JSX.Element => {
-  const { prefersDark } = useContext(AppContext)
-
   return (
     <footer className='max-w-screen-2xl 2xl:mx-auto py-10 px-12 flex flex-col items-center'>
       <hr className='bg-black border-black h-[3px] w-full' />
@@ -55,7 +48,7 @@ const Footer = ({ socialPlatforms, navigationLinks }: footerProps): JSX.Element 
         className='mb-2 md:mb-0 my-5 h-6 w-full relative'
       >
         <Image
-          src={prefersDark ? amendsLogoYellow : amendsLogoBlack}
+          src={amendsLogoBlack}
           alt='Amends home'
           fill
           sizes='25vw'

@@ -5,20 +5,12 @@ import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import { useState, useEffect } from 'react'
 import amendsLogoBlack from 'public/logo/logo-black.png'
-import amendsLogoYellow from 'public/logo/logo-yellow.png'
 import hamburgerIcon from 'public/icons/hamburger-menu-static.svg'
 import { NavigationLink } from '@/types/amends'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useContext } from 'react'
-import { AppContext } from '@/components/layout/Layout'
 
 type HeaderProps = {
   navigationLinks: NavigationLink[] | null
-}
-
-type ThemeSwitchProps = {
-  switchTheme(): void
-  prefersDark: boolean
 }
 
 const DynamicHamburger = dynamic(() => import('../HamburgerMenu'), {
@@ -34,31 +26,6 @@ const DynamicHamburger = dynamic(() => import('../HamburgerMenu'), {
     </div>
   )
 })
-
-const ThemeSwitchButton = ({ switchTheme, prefersDark }: ThemeSwitchProps) => (
-  <div className='py-2 pl-5 pr-2'>
-    <input
-      id='checkbox'
-      type='checkbox'
-      className='opacity-0 absolute'
-      checked={prefersDark}
-      readOnly
-    />
-    <label
-      htmlFor='checkbox'
-      className='bg-black dark:bg-lightBlack  w-12 h-6 rounded-2xl relative p-1 cursor-pointer flex justify-between items-center'
-      onClick={switchTheme}
-    >
-      <span className='text-xs select-none'>🔆</span>
-      <span className='text-xs select-none'>🌙</span>
-      <span
-        className={`ball bg-lace dark:bg-yellow w-5 h-5 absolute left-[2px] top-[2px] rounded-full transition-transform duration-150 ease-in-out ${
-          prefersDark ? 'translate-x-6' : ''
-        }`}
-      ></span>
-    </label>
-  </div>
-)
 
 const Header = ({ navigationLinks }: HeaderProps): JSX.Element => {
   const [menuIsOpen, setMenuIsOpen] = useState(false)
@@ -120,24 +87,6 @@ const Header = ({ navigationLinks }: HeaderProps): JSX.Element => {
     }
   }, [isDesktop])
 
-  const { prefersDark, setPrefersDark } = useContext(AppContext)
-
-  const switchTheme = () => {
-    const theme = localStorage.getItem('theme')
-
-    if (theme) {
-      if (theme === 'dark') {
-        document.documentElement.classList.remove('dark')
-        localStorage.setItem('theme', 'light')
-        setPrefersDark(false)
-      } else {
-        document.documentElement.classList.add('dark')
-        localStorage.setItem('theme', 'dark')
-        setPrefersDark(true)
-      }
-    }
-  }
-
   return (
     <header
       className='bg-yellow dark:bg-black h-[75px] sticky top-0 z-[999]'
@@ -156,7 +105,7 @@ const Header = ({ navigationLinks }: HeaderProps): JSX.Element => {
             aria-label='Link to home'
           >
             <Image
-              src={prefersDark ? amendsLogoYellow : amendsLogoBlack}
+              src={amendsLogoBlack}
               className='object-contain w-full min-w-[150px]'
               alt='Amends Logo'
               width={1019}
@@ -165,16 +114,9 @@ const Header = ({ navigationLinks }: HeaderProps): JSX.Element => {
               priority
             />
           </Link>
-          {!isDesktop && (
-            <ThemeSwitchButton
-              switchTheme={switchTheme}
-              prefersDark={prefersDark}
-            />
-          )}
           <DynamicHamburger
             menuIsOpen={menuIsOpen}
             setMenuIsOpen={setMenuIsOpen}
-            prefersDark={prefersDark}
           />
         </div>
         {isDesktop ? (
@@ -232,12 +174,6 @@ const Header = ({ navigationLinks }: HeaderProps): JSX.Element => {
               </ul>
             </motion.nav>
           </AnimatePresence>
-        )}
-        {isDesktop && (
-          <ThemeSwitchButton
-            switchTheme={switchTheme}
-            prefersDark={prefersDark}
-          />
         )}
       </div>
     </header>

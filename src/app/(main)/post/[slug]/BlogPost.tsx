@@ -1,7 +1,7 @@
 'use client'
 
 import { createContext, useState } from 'react'
-import styles from 'styles/pages/main/BlogPost.module.css'
+import styles from '@/styles/pages/main/BlogPost.module.css'
 import LineBreak from '@/components/LineBreak'
 import PinkyPromise from '@/components/PinkyPromise'
 import ButtonLink from '@/components/ButtonLink'
