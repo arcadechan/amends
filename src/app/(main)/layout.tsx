@@ -60,10 +60,6 @@ export default async function RootLayout({ children }: LayoutProps) {
           name='theme-color'
           content='#000000'
         />
-        <Script
-          src='/scripts/theme-switcher.js'
-          strategy='beforeInteractive'
-        />
       </head>
       <Layout
         siteMeta={siteMeta}
