@@ -8,7 +8,6 @@ import getMetadataBase from '@/lib/metadata'
 import path from 'node:path'
 import fs from 'node:fs/promises'
 
-export const dynamic = 'auto'
 export const revalidate = 2628002 // Seconds in one month
 
 type BlogPostProps = {

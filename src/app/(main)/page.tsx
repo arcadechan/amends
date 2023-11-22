@@ -5,7 +5,6 @@ import { client } from 'tina/__generated__/client'
 import { Metadata } from 'next'
 import getMetadataBase from '@/lib/metadata'
 
-export const dynamic = 'force-static'
 export const generateMetadata = (): Metadata => {
   const title = 'Amends'
   const description = 'Writing nonsense one word at a time.'

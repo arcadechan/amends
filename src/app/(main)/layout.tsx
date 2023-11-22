@@ -2,7 +2,7 @@ import Layout from '@/components/layout/Layout'
 import { client } from 'tina/__generated__/client'
 import { Inter } from 'next/font/google'
 import localFont from 'next/font/local'
-import Script from 'next/script'
+import { cookies } from 'next/headers'
 import '@/styles/main.css'
 
 interface LayoutProps {
@@ -28,11 +28,12 @@ const getMeta = async (): Promise<any> => {
 
 export default async function RootLayout({ children }: LayoutProps) {
   const siteMeta = await getMeta()
+  const theme = cookies().get('theme')
 
   return (
     <html
       lang='en'
-      suppressHydrationWarning
+      className={theme?.value || 'light'}
     >
       <head>
         <link
@@ -64,6 +65,7 @@ export default async function RootLayout({ children }: LayoutProps) {
       <Layout
         siteMeta={siteMeta}
         className={`${inter.variable} ${candyBean.variable}`}
+        theme={theme?.value || 'light'}
       >
         {children}
       </Layout>

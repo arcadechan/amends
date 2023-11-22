@@ -1,11 +1,15 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
 import { NavigationLink } from '@/types/amends'
 import amendsLogoBlack from 'public/logo/logo-black.png'
+import handleThemeSwitch from '@/actions/ThemeSwitch'
 
-type footerProps = {
+type FooterProps = {
   socialPlatforms: any | null
   navigationLinks: NavigationLink[] | null
+  theme: string
 }
 
 type SocialIconProps = {
@@ -39,7 +43,15 @@ const SocialIcon = ({
   )
 }
 
-const Footer = ({ socialPlatforms, navigationLinks }: footerProps): JSX.Element => {
+const Footer = ({
+  socialPlatforms,
+  navigationLinks,
+  theme
+}: FooterProps): JSX.Element => {
+  const handleThemeFormSubmit = async (event: any) => {
+    event.target?.form?.requestSubmit()
+  }
+
   return (
     <footer className='max-w-screen-2xl 2xl:mx-auto py-10 px-12 flex flex-col items-center'>
       <hr className='bg-black border-black h-[3px] w-full' />
@@ -85,6 +97,23 @@ const Footer = ({ socialPlatforms, navigationLinks }: footerProps): JSX.Element 
           <Link href='/contact'>Drop me a line by filling out the contact form.</Link>
         </small>
       </p>
+      <div>
+        <form
+          id='theme-switch-form'
+          action={handleThemeSwitch}
+        >
+          <label htmlFor='theme'>Select theme: </label>
+          <select
+            onChange={handleThemeFormSubmit}
+            name='theme'
+            defaultValue={theme}
+            className='text-black'
+          >
+            <option value='light'>Light</option>
+            <option value='dark'>Dark</option>
+          </select>
+        </form>
+      </div>
       {socialPlatforms && Object.keys(socialPlatforms).length > 0 && (
         <div className='flex justify-center flex-wrap my-5 rounded-3xl drop-shadow-sm bg-white'>
           {socialPlatforms?.spotifyUrl && (

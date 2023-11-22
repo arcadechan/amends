@@ -2,13 +2,19 @@ import Header from './Header'
 import Main from './Main'
 import Footer from './Footer'
 
-type LayoutProps = {
+export type LayoutProps = {
   children: React.ReactNode
   siteMeta: any | null
   className?: string
+  theme: string
 }
 
-const Layout = ({ children, siteMeta, className = '' }: LayoutProps): JSX.Element => {
+const Layout = ({
+  children,
+  siteMeta,
+  className = '',
+  theme = 'light'
+}: LayoutProps): JSX.Element => {
   const { navigationLinks, socialPlatforms } = siteMeta
 
   return (
@@ -18,6 +24,7 @@ const Layout = ({ children, siteMeta, className = '' }: LayoutProps): JSX.Elemen
       <Footer
         navigationLinks={navigationLinks}
         socialPlatforms={socialPlatforms}
+        theme={theme}
       />
     </body>
   )
