@@ -3,8 +3,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { NavigationLink } from '@/types/amends'
-import amendsLogoBlack from 'public/logo/logo-black.png'
 import handleThemeSwitch from '@/actions/ThemeSwitch'
+import logos from '@/lib/logos'
 
 type FooterProps = {
   socialPlatforms: any | null
@@ -60,7 +60,7 @@ const Footer = ({
         className='mb-2 md:mb-0 my-5 h-6 w-full relative'
       >
         <Image
-          src={amendsLogoBlack}
+          src={logos[theme]}
           alt='Amends home'
           fill
           sizes='25vw'

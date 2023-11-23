@@ -9,17 +9,15 @@ export type LayoutProps = {
   theme: string
 }
 
-const Layout = ({
-  children,
-  siteMeta,
-  className = '',
-  theme = 'light'
-}: LayoutProps): JSX.Element => {
+const Layout = ({ children, siteMeta, className = '', theme = 'light' }: LayoutProps) => {
   const { navigationLinks, socialPlatforms } = siteMeta
 
   return (
     <body className={className}>
-      <Header navigationLinks={navigationLinks} />
+      <Header
+        navigationLinks={navigationLinks}
+        theme={theme}
+      />
       <Main>{children}</Main>
       <Footer
         navigationLinks={navigationLinks}

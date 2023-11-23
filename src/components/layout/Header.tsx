@@ -1,33 +1,54 @@
 'use client'
 
+import { createContext, useContext } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import { useState, useEffect } from 'react'
-import amendsLogoBlack from 'public/logo/logo-black.png'
-import hamburgerIcon from 'public/icons/hamburger-menu-static.svg'
+import hamburgerIconBlack from 'public/icons/hamburger-menu-black.svg'
+import hamburgerIconYellow from 'public/icons/hamburger-menu-yellow.svg'
 import { NavigationLink } from '@/types/amends'
 import { motion, AnimatePresence } from 'framer-motion'
+import logos from '@/lib/logos'
 
 type HeaderProps = {
   navigationLinks: NavigationLink[] | null
+  theme: string
 }
+
+const HamburgerMenuContext = createContext('light')
 
 const DynamicHamburger = dynamic(() => import('../HamburgerMenu'), {
   ssr: false,
-  loading: () => (
-    <div className='block md:hidden p-2'>
-      <Image
-        src={hamburgerIcon}
-        alt=''
-        width={55}
-        height={55}
-      />
-    </div>
-  )
+  loading: () => {
+    const theme = useContext(HamburgerMenuContext)
+    let menuIconStatic = hamburgerIconBlack
+
+    switch (theme) {
+      case 'dark':
+        menuIconStatic = hamburgerIconYellow
+        break
+      case 'light':
+      default:
+        menuIconStatic = hamburgerIconBlack
+        break
+    }
+
+    return (
+      <div className='block md:hidden p-2'>
+        <Image
+          src={menuIconStatic}
+          alt=''
+          width={55}
+          height={55}
+          priority={true}
+        />
+      </div>
+    )
+  }
 })
 
-const Header = ({ navigationLinks }: HeaderProps): JSX.Element => {
+const Header = ({ navigationLinks, theme }: HeaderProps): JSX.Element => {
   const [menuIsOpen, setMenuIsOpen] = useState(false)
   const [isDesktop, setIsDesktop] = useState(true)
 
@@ -38,7 +59,7 @@ const Header = ({ navigationLinks }: HeaderProps): JSX.Element => {
       transition: {
         type: 'tween',
         ease: 'easeInOut',
-        duration: 0.4
+        duration: 0.1
       },
       transitionEnd: {
         display: 'none'
@@ -50,9 +71,9 @@ const Header = ({ navigationLinks }: HeaderProps): JSX.Element => {
       transition: {
         type: 'tween',
         ease: 'easeInOut',
-        duration: 0.4,
+        duration: 0.1,
         staggerChildren: 0.08,
-        delayChildren: 0.15,
+        delayChildren: 0.1,
         staggerDirection: -1
       },
       transitionEnd: {
@@ -105,7 +126,7 @@ const Header = ({ navigationLinks }: HeaderProps): JSX.Element => {
             aria-label='Link to home'
           >
             <Image
-              src={amendsLogoBlack}
+              src={logos[theme]}
               className='object-contain w-full min-w-[150px]'
               alt='Amends Logo'
               width={1019}
@@ -114,10 +135,13 @@ const Header = ({ navigationLinks }: HeaderProps): JSX.Element => {
               priority
             />
           </Link>
-          <DynamicHamburger
-            menuIsOpen={menuIsOpen}
-            setMenuIsOpen={setMenuIsOpen}
-          />
+          <HamburgerMenuContext.Provider value={theme}>
+            <DynamicHamburger
+              menuIsOpen={menuIsOpen}
+              setMenuIsOpen={setMenuIsOpen}
+              theme={theme}
+            />
+          </HamburgerMenuContext.Provider>
         </div>
         {isDesktop ? (
           <nav

@@ -1,0 +1,84 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  viewBox="0 0 100 100"
+  width="100"
+  height="100"
+  preserveAspectRatio="xMidYMid meet"
+  style="
+    width: 100%;
+    height: 100%;
+    transform: translate3d(0px, 0px, 0px);
+    content-visibility: visible;
+  "
+>
+  <defs>
+    <clipPath id="__lottie_element_196">
+      <rect
+        width="100"
+        height="100"
+        x="0"
+        y="0"
+      ></rect>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#__lottie_element_196)">
+    <g
+      id="dCFAI5TPQQ"
+      transform="matrix(1,0,0,1,51,30)"
+      opacity="1"
+      style="display: block"
+    >
+      <g
+        id="cLEwCxJJqq"
+        opacity="1"
+        transform="matrix(2,0,0,2,0,0)"
+      >
+        <path
+          id="HSiRyi8gow"
+          fill="rgb(255,220,138)"
+          fill-opacity="1"
+          d=" M15.5,0 C15.5,0 15.5,0 15.5,0 C15.5,1.1038000583648682 14.603799819946289,2 13.5,2 C13.5,2 -13.5,2 -13.5,2 C-14.603799819946289,2 -15.5,1.1038000583648682 -15.5,0 C-15.5,0 -15.5,0 -15.5,0 C-15.5,-1.1038000583648682 -14.603799819946289,-2 -13.5,-2 C-13.5,-2 13.5,-2 13.5,-2 C14.603799819946289,-2 15.5,-1.1038000583648682 15.5,0z"
+        ></path>
+      </g>
+    </g>
+    <g
+      id="tFcBiW-E_0"
+      transform="matrix(1,0,0,1,51,50)"
+      opacity="1"
+      style="display: block"
+    >
+      <g
+        id="j8HzvQ4Cxa"
+        opacity="1"
+        transform="matrix(2,0,0,2,0,0)"
+      >
+        <path
+          id="Rg9gtDNwE-"
+          fill="rgb(255,220,138)"
+          fill-opacity="1"
+          d=" M15.5,0 C15.5,0 15.5,0 15.5,0 C15.5,1.1038000583648682 14.603799819946289,2 13.5,2 C13.5,2 -13.5,2 -13.5,2 C-14.603799819946289,2 -15.5,1.1038000583648682 -15.5,0 C-15.5,0 -15.5,0 -15.5,0 C-15.5,-1.1038000583648682 -14.603799819946289,-2 -13.5,-2 C-13.5,-2 13.5,-2 13.5,-2 C14.603799819946289,-2 15.5,-1.1038000583648682 15.5,0z"
+        ></path>
+      </g>
+    </g>
+    <g
+      id="LtOMAW78n7"
+      transform="matrix(1,0,0,1,51,70)"
+      opacity="1"
+      style="display: block"
+    >
+      <g
+        id="6syiiDrZ76"
+        opacity="1"
+        transform="matrix(2,0,0,2,0,0)"
+      >
+        <path
+          id="fKKBSB8oC8"
+          fill="rgb(255,220,138)"
+          fill-opacity="1"
+          d=" M15.5,0 C15.5,0 15.5,0 15.5,0 C15.5,1.1038000583648682 14.603799819946289,2 13.5,2 C13.5,2 -13.5,2 -13.5,2 C-14.603799819946289,2 -15.5,1.1038000583648682 -15.5,0 C-15.5,0 -15.5,0 -15.5,0 C-15.5,-1.1038000583648682 -14.603799819946289,-2 -13.5,-2 C-13.5,-2 13.5,-2 13.5,-2 C14.603799819946289,-2 15.5,-1.1038000583648682 15.5,0z"
+        ></path>
+      </g>
+    </g>
+  </g>
+</svg>
