@@ -59,7 +59,6 @@ const StreamIcon = ({ href, serviceName }: StreamIconProps) => {
       <Image
         className='my-2 mx-3 inline-block relative w-8 md:m-2 md:w-6'
         src={iconSrc}
-        aria-label={`${serviceName} link to song.`}
         alt=''
         width={24}
         height={24}
