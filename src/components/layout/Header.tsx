@@ -126,7 +126,7 @@ const Header = ({ navigationLinks, theme }: HeaderProps): JSX.Element => {
             aria-label='Link to home'
           >
             <Image
-              src={logos[theme]}
+              src={logos[theme] || logos['light']}
               className='object-contain w-full min-w-[150px]'
               alt='Amends Logo'
               width={1019}

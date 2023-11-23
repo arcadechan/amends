@@ -56,7 +56,7 @@ const HamburgerMenu = ({
         autoplay={false}
         loop={false}
         initialSegment={[0, 70]}
-        animationData={hamburgerIcon[theme]}
+        animationData={hamburgerIcon[theme] || hamburgerIcon['light']}
       />
     </button>
   )

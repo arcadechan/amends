@@ -17,18 +17,20 @@ type SocialIconProps = {
   alt: string
   title: string
   iconSrc: string
+  className?: string
 }
 
 const SocialIcon = ({
   href = '',
   title = '',
   iconSrc = '',
-  alt = ''
+  alt = '',
+  className = ''
 }: SocialIconProps): JSX.Element => {
   return (
     <Link
       href={href}
-      className='m-2 w-7 h-7'
+      className={`m-2 w-7 h-7 ${className}`}
       target='_blank'
       title={title}
       prefetch={false}
@@ -60,7 +62,7 @@ const Footer = ({
         className='mb-2 md:mb-0 my-5 h-6 w-full relative'
       >
         <Image
-          src={logos[theme]}
+          src={logos[theme] || logos['light']}
           alt='Amends home'
           fill
           sizes='25vw'
@@ -107,7 +109,7 @@ const Footer = ({
             onChange={handleThemeFormSubmit}
             name='theme'
             defaultValue={theme}
-            className='text-black'
+            className='bg-white dark:bg-black text-black dark:text-yellow px-2 py-1 shadow-md rounded-full cursor-pointer'
           >
             <option value='light'>Light</option>
             <option value='dark'>Dark</option>
@@ -115,7 +117,7 @@ const Footer = ({
         </form>
       </div>
       {socialPlatforms && Object.keys(socialPlatforms).length > 0 && (
-        <div className='flex justify-center flex-wrap my-5 rounded-3xl drop-shadow-sm bg-white'>
+        <div className='flex justify-center flex-wrap my-5 rounded-3xl drop-shadow-sm bg-white dark:bg-black'>
           {socialPlatforms?.spotifyUrl && (
             <SocialIcon
               href={socialPlatforms.spotifyUrl}
@@ -129,6 +131,7 @@ const Footer = ({
               href={socialPlatforms.githubUrl}
               title="Arcade's GitHub"
               iconSrc='/icons/github.png'
+              className='dark:invert'
               alt="Go to Arcade's Github"
             />
           )}
