@@ -7,6 +7,7 @@ import BlogPostLoading from './BlogPostLoading'
 import getMetadataBase from '@/lib/metadata'
 import path from 'node:path'
 import fs from 'node:fs/promises'
+import { cookies } from 'next/headers'
 
 export const revalidate = 2628002 // Seconds in one month
 
@@ -77,6 +78,12 @@ const BlogPost = dynamicComponent(() => import('./BlogPost'), {
 
 export default async function Page({ params }: BlogPostProps) {
   const post = await getBlogPost(params?.slug)
+  const theme = cookies().get('theme')
 
-  return <BlogPost {...post} />
+  return (
+    <BlogPost
+      {...post}
+      {...{ theme: theme?.value || 'light' }}
+    />
+  )
 }

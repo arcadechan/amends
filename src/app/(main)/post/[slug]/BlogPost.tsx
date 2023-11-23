@@ -22,6 +22,7 @@ export const BlogPostProvider = BlogPostContext.Provider
 
 type BlogPostProps = {
   imageBlurDataURL: string
+  theme?: string
 } & TinaQueryResponse
 
 type AttributionProps = {
@@ -119,7 +120,10 @@ export default function BlogPost(props: BlogPostProps) {
             />
           </div>
         </BlogPostProvider>
-        <PinkyPromise className='mt-10' />
+        <PinkyPromise
+          className='mt-10'
+          theme={props?.theme || 'light'}
+        />
         <div className='text-center'>
           {backPage ? (
             <ButtonLink href={backUrl}>&larr; Back to Posts</ButtonLink>
