@@ -21,30 +21,34 @@ const HamburgerMenuContext = createContext('light')
 const DynamicHamburger = dynamic(() => import('../HamburgerMenu'), {
   ssr: false,
   loading: () => {
-    const theme = useContext(HamburgerMenuContext)
-    let menuIconStatic = hamburgerIconBlack
+    const LoadingComponent = () => {
+      const theme = useContext(HamburgerMenuContext)
+      let menuIconStatic = hamburgerIconBlack
 
-    switch (theme) {
-      case 'dark':
-        menuIconStatic = hamburgerIconYellow
-        break
-      case 'light':
-      default:
-        menuIconStatic = hamburgerIconBlack
-        break
+      switch (theme) {
+        case 'dark':
+          menuIconStatic = hamburgerIconYellow
+          break
+        case 'light':
+        default:
+          menuIconStatic = hamburgerIconBlack
+          break
+      }
+
+      return (
+        <div className='block md:hidden p-2'>
+          <Image
+            src={menuIconStatic}
+            alt=''
+            width={55}
+            height={55}
+            priority={true}
+          />
+        </div>
+      )
     }
 
-    return (
-      <div className='block md:hidden p-2'>
-        <Image
-          src={menuIconStatic}
-          alt=''
-          width={55}
-          height={55}
-          priority={true}
-        />
-      </div>
-    )
+    return <LoadingComponent />
   }
 })
 
