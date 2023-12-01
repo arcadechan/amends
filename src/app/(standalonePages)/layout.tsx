@@ -1,6 +1,6 @@
 import { Inter } from 'next/font/google'
 import localFont from 'next/font/local'
-import 'styles/tailwind.css'
+import '@/styles/tailwind.css'
 
 const inter = Inter({
   subsets: ['latin'],

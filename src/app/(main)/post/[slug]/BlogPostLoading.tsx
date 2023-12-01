@@ -1,6 +1,6 @@
 'use client'
 
-import { LineBreak } from 'components/index'
+import LineBreak from '@/components/LineBreak'
 
 export default function BlogPostLoading() {
   return (

@@ -4,9 +4,11 @@ import type { Metadata } from 'next'
 import { getPlaiceholder } from 'plaiceholder'
 import dynamicComponent from 'next/dynamic'
 import BlogPostLoading from './BlogPostLoading'
-import getMetadataBase from 'lib/metadata'
+import getMetadataBase from '@/lib/metadata'
+import path from 'node:path'
+import fs from 'node:fs/promises'
+import { cookies } from 'next/headers'
 
-export const dynamic = 'auto'
 export const revalidate = 2628002 // Seconds in one month
 
 type BlogPostProps = {
@@ -49,12 +51,14 @@ const getBlogPost = cache(async (slug: BlogPostProps['params']['slug']) => {
 
   let imageBlurDataURL = ''
   if (queryResponse.data?.post?.heroImage) {
-    const { base64 } = await getPlaiceholder(queryResponse.data.post.heroImage).catch(
-      () => ({
-        base64:
-          'data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=='
-      })
+    const buffer = await fs.readFile(
+      path.join('./public', queryResponse.data.post.heroImage)
     )
+
+    const { base64 } = await getPlaiceholder(buffer, { size: 10 }).catch(() => ({
+      base64:
+        'data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=='
+    }))
 
     imageBlurDataURL = base64
   }
@@ -74,6 +78,12 @@ const BlogPost = dynamicComponent(() => import('./BlogPost'), {
 
 export default async function Page({ params }: BlogPostProps) {
   const post = await getBlogPost(params?.slug)
+  const theme = cookies().get('theme')
 
-  return <BlogPost {...post} />
+  return (
+    <BlogPost
+      {...post}
+      {...{ theme: theme?.value || 'light' }}
+    />
+  )
 }

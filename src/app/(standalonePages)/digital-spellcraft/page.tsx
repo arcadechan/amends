@@ -1,6 +1,6 @@
 import DigitalSpellcraft from './DigitalSpellcraft'
 import type { Metadata } from 'next'
-import getMetadataBase from 'lib/metadata'
+import getMetadataBase from '@/lib/metadata'
 
 export const generateMetadata = (): Metadata => {
   const title = 'World | Amends'

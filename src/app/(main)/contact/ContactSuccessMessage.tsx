@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import successAnimation from 'public/animations/success.json'
-import ButtonLink from 'components/ButtonLink'
+import ButtonLink from '@/components/ButtonLink'
 import Lottie from 'lottie-react'
 
 export default function ContactSuccessMessage() {

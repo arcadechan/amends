@@ -1,7 +1,7 @@
 'use client'
 import Image from 'next/image'
 import Link from 'next/link'
-import styles from 'styles/pages/standalonePages/DigitalSpellcraft.module.css'
+import styles from '@/styles/pages/standalonePages/DigitalSpellcraft.module.css'
 import { Seaweed_Script } from 'next/font/google'
 
 const rubikPuddles = Seaweed_Script({
