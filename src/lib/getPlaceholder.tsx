@@ -1,8 +1,25 @@
 import { getPlaiceholder } from 'plaiceholder'
 import { GetHomePageQueryQuery, GetPostsQueryQuery } from 'tina/__generated__/types'
+import path from 'node:path'
+import fs from 'node:fs/promises'
 
 const fallbackBase64 =
   'data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=='
+
+const getImage = async (src: string) => {
+  // const buffer = await fetch(src).then(async (res) =>
+  //   Buffer.from(await res.arrayBuffer())
+  // )
+  const buffer = await fs.readFile(path.join('./public', src))
+
+  const { ...plaiceholder } = await getPlaiceholder(buffer, { size: 10 }).catch(() => ({
+    base64: fallbackBase64
+  }))
+
+  return {
+    ...plaiceholder
+  }
+}
 
 const getPlaceholders = {
   forHomePage: async (
@@ -19,9 +36,7 @@ const getPlaceholders = {
               const modifiedCards = await Promise.all(
                 cards.map(async (card: any) => {
                   if (card?.manualCard?.image) {
-                    const { base64 } = await getPlaiceholder(card.manualCard.image).catch(
-                      () => ({ base64: fallbackBase64 })
-                    )
+                    const { base64 } = await getImage(card.manualCard.image)
                     card.manualCard = {
                       ...card.manualCard,
                       ...{ imageBlurDataURL: base64 }
@@ -29,9 +44,7 @@ const getPlaceholders = {
                   }
 
                   if (card?.referenceCard?.heroImage) {
-                    const { base64 } = await getPlaiceholder(
-                      card.referenceCard.heroImage
-                    ).catch(() => ({ base64: fallbackBase64 }))
+                    const { base64 } = await getImage(card.referenceCard.heroImage)
                     card.referenceCard = {
                       ...card.referenceCard,
                       ...{ imageBlurDataURL: base64 }
@@ -66,11 +79,9 @@ const getPlaceholders = {
 
       if (edges?.length) {
         const modifiedEdges = await Promise.all(
-          edges.map(async (edge) => {
+          edges.map(async (edge: any) => {
             if (edge?.node?.heroImage?.length) {
-              const { base64 } = await getPlaiceholder(edge.node.heroImage).catch(() => ({
-                base64: fallbackBase64
-              }))
+              const { base64 } = await getImage(edge.node.heroImage)
               edge.node = { ...edge.node, ...{ imageBlurDataURL: base64 } }
             }
 

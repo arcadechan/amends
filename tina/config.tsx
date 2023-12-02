@@ -1,5 +1,5 @@
 import React from 'react'
-import { defineConfig, wrapFieldsWithMeta, Schema } from 'tinacms'
+import { defineConfig, wrapFieldsWithMeta, Schema, Template } from 'tinacms'
 import { CardGridSchema } from '../src/components/CardGrid'
 import { StreamService } from '../src/types/amends'
 
@@ -144,7 +144,7 @@ const schema: Schema = {
           label: 'Page Blocks',
           type: 'object',
           list: true,
-          templates: [CardGridSchema]
+          templates: [CardGridSchema as Template]
         }
       ]
     },

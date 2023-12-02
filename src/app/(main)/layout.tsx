@@ -1,9 +1,9 @@
-import { Layout } from 'components/index'
+import Layout from '@/components/layout/Layout'
 import { client } from 'tina/__generated__/client'
 import { Inter } from 'next/font/google'
 import localFont from 'next/font/local'
-import Script from 'next/script'
-import 'styles/main.css'
+import { cookies } from 'next/headers'
+import '@/styles/main.css'
 
 interface LayoutProps {
   children: React.ReactNode
@@ -26,13 +26,14 @@ const getMeta = async (): Promise<any> => {
   return siteMeta || {}
 }
 
-const RootLayout = async ({ children }: LayoutProps): Promise<JSX.Element> => {
+export default async function RootLayout({ children }: LayoutProps) {
   const siteMeta = await getMeta()
+  const theme = cookies().get('theme')
 
   return (
     <html
       lang='en'
-      suppressHydrationWarning
+      className={theme?.value || 'light'}
     >
       <head>
         <link
@@ -60,19 +61,14 @@ const RootLayout = async ({ children }: LayoutProps): Promise<JSX.Element> => {
           name='theme-color'
           content='#000000'
         />
-        <Script
-          src='/scripts/theme-switcher.js'
-          strategy='beforeInteractive'
-        />
       </head>
       <Layout
         siteMeta={siteMeta}
         className={`${inter.variable} ${candyBean.variable}`}
+        theme={theme?.value || 'light'}
       >
         {children}
       </Layout>
     </html>
   )
 }
-
-export default RootLayout

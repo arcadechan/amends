@@ -1,66 +1,58 @@
 'use client'
 
+import { createContext, useContext } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import { useState, useEffect } from 'react'
-import amendsLogoBlack from 'public/logo/logo-black.png'
-import amendsLogoYellow from 'public/logo/logo-yellow.png'
-import hamburgerIcon from 'public/icons/hamburger-menu-static.svg'
-import { NavigationLink } from 'types/amends'
+import hamburgerIconBlack from 'public/icons/hamburger-menu-black.svg'
+import hamburgerIconYellow from 'public/icons/hamburger-menu-yellow.svg'
+import { NavigationLink } from '@/types/amends'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useContext } from 'react'
-import { AppContext } from '../layout/Layout'
+import logos from '@/lib/logos'
 
 type HeaderProps = {
   navigationLinks: NavigationLink[] | null
+  theme: string
 }
 
-type ThemeSwitchProps = {
-  switchTheme(): void
-  prefersDark: boolean
-}
+const HamburgerMenuContext = createContext('light')
 
 const DynamicHamburger = dynamic(() => import('../HamburgerMenu'), {
   ssr: false,
-  loading: () => (
-    <div className='block md:hidden p-2'>
-      <Image
-        src={hamburgerIcon}
-        alt=''
-        width={55}
-        height={55}
-      />
-    </div>
-  )
+  loading: () => {
+    const LoadingComponent = () => {
+      const theme = useContext(HamburgerMenuContext)
+      let menuIconStatic = hamburgerIconBlack
+
+      switch (theme) {
+        case 'dark':
+          menuIconStatic = hamburgerIconYellow
+          break
+        case 'light':
+        default:
+          menuIconStatic = hamburgerIconBlack
+          break
+      }
+
+      return (
+        <div className='block md:hidden p-2'>
+          <Image
+            src={menuIconStatic}
+            alt=''
+            width={55}
+            height={55}
+            priority={true}
+          />
+        </div>
+      )
+    }
+
+    return <LoadingComponent />
+  }
 })
 
-const ThemeSwitchButton = ({ switchTheme, prefersDark }: ThemeSwitchProps) => (
-  <div className='py-2 pl-5 pr-2'>
-    <input
-      id='checkbox'
-      type='checkbox'
-      className='opacity-0 absolute'
-      checked={prefersDark}
-      readOnly
-    />
-    <label
-      htmlFor='checkbox'
-      className='bg-black dark:bg-lightBlack  w-12 h-6 rounded-2xl relative p-1 cursor-pointer flex justify-between items-center'
-      onClick={switchTheme}
-    >
-      <span className='text-xs select-none'>🔆</span>
-      <span className='text-xs select-none'>🌙</span>
-      <span
-        className={`ball bg-lace dark:bg-yellow w-5 h-5 absolute left-[2px] top-[2px] rounded-full transition-transform duration-150 ease-in-out ${
-          prefersDark ? 'translate-x-6' : ''
-        }`}
-      ></span>
-    </label>
-  </div>
-)
-
-const Header = ({ navigationLinks }: HeaderProps): JSX.Element => {
+const Header = ({ navigationLinks, theme }: HeaderProps): JSX.Element => {
   const [menuIsOpen, setMenuIsOpen] = useState(false)
   const [isDesktop, setIsDesktop] = useState(true)
 
@@ -71,7 +63,7 @@ const Header = ({ navigationLinks }: HeaderProps): JSX.Element => {
       transition: {
         type: 'tween',
         ease: 'easeInOut',
-        duration: 0.4
+        duration: 0.1
       },
       transitionEnd: {
         display: 'none'
@@ -83,9 +75,9 @@ const Header = ({ navigationLinks }: HeaderProps): JSX.Element => {
       transition: {
         type: 'tween',
         ease: 'easeInOut',
-        duration: 0.4,
+        duration: 0.1,
         staggerChildren: 0.08,
-        delayChildren: 0.15,
+        delayChildren: 0.1,
         staggerDirection: -1
       },
       transitionEnd: {
@@ -120,24 +112,6 @@ const Header = ({ navigationLinks }: HeaderProps): JSX.Element => {
     }
   }, [isDesktop])
 
-  const { prefersDark, setPrefersDark } = useContext(AppContext)
-
-  const switchTheme = () => {
-    const theme = localStorage.getItem('theme')
-
-    if (theme) {
-      if (theme === 'dark') {
-        document.documentElement.classList.remove('dark')
-        localStorage.setItem('theme', 'light')
-        setPrefersDark(false)
-      } else {
-        document.documentElement.classList.add('dark')
-        localStorage.setItem('theme', 'dark')
-        setPrefersDark(true)
-      }
-    }
-  }
-
   return (
     <header
       className='bg-yellow dark:bg-black h-[75px] sticky top-0 z-[999]'
@@ -156,7 +130,7 @@ const Header = ({ navigationLinks }: HeaderProps): JSX.Element => {
             aria-label='Link to home'
           >
             <Image
-              src={prefersDark ? amendsLogoYellow : amendsLogoBlack}
+              src={logos[theme] || logos['light']}
               className='object-contain w-full min-w-[150px]'
               alt='Amends Logo'
               width={1019}
@@ -165,17 +139,13 @@ const Header = ({ navigationLinks }: HeaderProps): JSX.Element => {
               priority
             />
           </Link>
-          {!isDesktop && (
-            <ThemeSwitchButton
-              switchTheme={switchTheme}
-              prefersDark={prefersDark}
+          <HamburgerMenuContext.Provider value={theme}>
+            <DynamicHamburger
+              menuIsOpen={menuIsOpen}
+              setMenuIsOpen={setMenuIsOpen}
+              theme={theme}
             />
-          )}
-          <DynamicHamburger
-            menuIsOpen={menuIsOpen}
-            setMenuIsOpen={setMenuIsOpen}
-            prefersDark={prefersDark}
-          />
+          </HamburgerMenuContext.Provider>
         </div>
         {isDesktop ? (
           <nav
@@ -232,12 +202,6 @@ const Header = ({ navigationLinks }: HeaderProps): JSX.Element => {
               </ul>
             </motion.nav>
           </AnimatePresence>
-        )}
-        {isDesktop && (
-          <ThemeSwitchButton
-            switchTheme={switchTheme}
-            prefersDark={prefersDark}
-          />
         )}
       </div>
     </header>

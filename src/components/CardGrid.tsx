@@ -1,13 +1,11 @@
-'use client'
-
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
-import { CustomTemplateWithExtraFieldUI } from 'types/tinacms-custom'
 import {
   HomePageBlocksCardGrid,
   HomePageBlocksCardGridCards
 } from 'tina/__generated__/types'
+import { Template } from 'tinacms'
 
 type CardImageProps = {
   cardImage: {
@@ -172,7 +170,7 @@ const CardGrid = ({
 
 export default CardGrid
 
-export const CardGridSchema: CustomTemplateWithExtraFieldUI = {
+export const CardGridSchema = {
   name: 'cardGrid',
   label: 'Card Grid',
   ui: {

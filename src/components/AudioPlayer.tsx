@@ -2,10 +2,10 @@
 
 import { MutableRefObject, useContext, useEffect, useRef, useState } from 'react'
 import Image, { StaticImageData } from 'next/image'
-import styles from 'styles/components/AudioPlayer.module.css'
+import styles from '@/styles/components/AudioPlayer.module.css'
 import Link from 'next/link'
-import { BlogPostContext } from 'app/(main)/post/[slug]/BlogPost'
-import { StreamService } from 'types/amends'
+import { BlogPostContext } from '@/app/(main)/post/[slug]/BlogPost'
+import { StreamService } from '@/types/amends'
 // ICONS
 import appleMusicIcon from 'public/icons/apple-music.png'
 import bandcampIcon from 'public/icons/bandcamp.png'
@@ -59,7 +59,6 @@ const StreamIcon = ({ href, serviceName }: StreamIconProps) => {
       <Image
         className='my-2 mx-3 inline-block relative w-8 md:m-2 md:w-6'
         src={iconSrc}
-        aria-label={`${serviceName} link to song.`}
         alt=''
         width={24}
         height={24}

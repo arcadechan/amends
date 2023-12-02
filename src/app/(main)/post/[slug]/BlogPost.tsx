@@ -1,13 +1,16 @@
 'use client'
 
 import { createContext, useState } from 'react'
-import styles from 'styles/pages/main/BlogPost.module.css'
-import { LineBreak, PinkyPromise, ButtonLink, AudioPlayer } from 'components/index'
+import styles from '@/styles/pages/main/BlogPost.module.css'
+import LineBreak from '@/components/LineBreak'
+import PinkyPromise from '@/components/PinkyPromise'
+import ButtonLink from '@/components/ButtonLink'
+import AudioPlayer from '@/components/AudioPlayer'
 import Image from 'next/image'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
 import { useTina } from 'tinacms/dist/react'
-import { TinaQueryResponse } from 'types/tinacms-custom'
+import { TinaQueryResponse } from '@/types/tinacms-custom'
 import Link from 'next/link'
 import { PostQuery } from 'tina/__generated__/types'
 
@@ -19,6 +22,7 @@ export const BlogPostProvider = BlogPostContext.Provider
 
 type BlogPostProps = {
   imageBlurDataURL: string
+  theme?: string
 } & TinaQueryResponse
 
 type AttributionProps = {
@@ -116,7 +120,10 @@ export default function BlogPost(props: BlogPostProps) {
             />
           </div>
         </BlogPostProvider>
-        <PinkyPromise className='mt-10' />
+        <PinkyPromise
+          className='mt-10'
+          theme={props?.theme || 'light'}
+        />
         <div className='text-center'>
           {backPage ? (
             <ButtonLink href={backUrl}>&larr; Back to Posts</ButtonLink>
