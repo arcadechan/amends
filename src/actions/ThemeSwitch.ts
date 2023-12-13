@@ -14,7 +14,11 @@ export default async function handleThemeSwitch(formData: FormData) {
       httpOnly: false,
       sameSite: 'strict',
       secure: false,
-      domain: 'localhost'
+      domain:
+        process.env.DOMAIN ||
+        process.env.VERCEL_URL ||
+        process.env.VERCEL_BRANCH_URL ||
+        'localhost'
     })
   }
 }
