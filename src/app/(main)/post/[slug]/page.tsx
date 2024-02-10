@@ -17,6 +17,9 @@ type BlogPostProps = {
   }
 }
 
+const fallbackBase64 =
+  'data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=='
+
 const getPostData = cache(async (slug: string) => {
   return await client.queries.post({ relativePath: `${slug}.mdx` })
 })
@@ -51,16 +54,27 @@ const getBlogPost = cache(async (slug: BlogPostProps['params']['slug']) => {
 
   let imageBlurDataURL = ''
   if (queryResponse.data?.post?.heroImage) {
-    const buffer = await fs.readFile(
-      path.join('./public', queryResponse.data.post.heroImage)
-    )
+    let buffer: Buffer | undefined = undefined
 
-    const { base64 } = await getPlaiceholder(buffer, { size: 10 }).catch(() => ({
-      base64:
-        'data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=='
-    }))
+    const NEXT_PUBLIC_USE_LOCAL_CLIENT = process.env.NEXT_PUBLIC_USE_LOCAL_CLIENT || '0'
 
-    imageBlurDataURL = base64
+    if (NEXT_PUBLIC_USE_LOCAL_CLIENT === '0') {
+      buffer = await fetch(queryResponse.data.post.heroImage).then(async (res) =>
+        Buffer.from(await res.arrayBuffer())
+      )
+    } else {
+      buffer = await fs.readFile(path.join('./public', queryResponse.data.post.heroImage))
+    }
+
+    if (buffer) {
+      const { base64 } = await getPlaiceholder(buffer, { size: 10 }).catch(() => ({
+        base64: fallbackBase64
+      }))
+
+      imageBlurDataURL = base64
+    } else {
+      imageBlurDataURL = fallbackBase64
+    }
   }
 
   return {
