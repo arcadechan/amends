@@ -7,17 +7,28 @@ const fallbackBase64 =
   'data:image/gif;base64,R0lGODlhAQABAIAAAMLCwgAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw=='
 
 const getImage = async (src: string) => {
-  // const buffer = await fetch(src).then(async (res) =>
-  //   Buffer.from(await res.arrayBuffer())
-  // )
-  const buffer = await fs.readFile(path.join('./public', src))
+  let buffer: Buffer | undefined = undefined
 
-  const { ...plaiceholder } = await getPlaiceholder(buffer, { size: 10 }).catch(() => ({
-    base64: fallbackBase64
-  }))
+  const NEXT_PUBLIC_USE_LOCAL_CLIENT = process.env.NEXT_PUBLIC_USE_LOCAL_CLIENT || '0'
+
+  if (NEXT_PUBLIC_USE_LOCAL_CLIENT === '0') {
+    buffer = await fetch(src).then(async (res) => Buffer.from(await res.arrayBuffer()))
+  } else {
+    buffer = await fs.readFile(path.join('./public', src))
+  }
+
+  if (buffer) {
+    const { ...plaiceholder } = await getPlaiceholder(buffer, { size: 10 }).catch(() => ({
+      base64: fallbackBase64
+    }))
+
+    return {
+      ...plaiceholder
+    }
+  }
 
   return {
-    ...plaiceholder
+    base64: fallbackBase64
   }
 }
 
