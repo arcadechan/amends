@@ -1,0 +1,36 @@
+@font-face {
+  font-family: 'Roboto Mono';
+  src: url('../../public/fonts//RobotoMono-VariableFont_wght.ttf') format('truetype');
+}
+
+:root {
+  --color-sand: #FAF4EB;
+  --color-yellow: #FFDC8B;
+  --color-black: #1A1D27;
+  --font-primary: 'Roboto Mono', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: var(--font-primary);
+}
+
+html {
+  background-color: var(--color-sand);
+  color: var(--color-black);
+  font-family: sans-serif;
+}
+
+body {
+  margin: 0 auto;
+  width: 100%;
+}
+
+.sr-only {
+ position:absolute;
+  left:-10000px;
+  top:auto;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+}
