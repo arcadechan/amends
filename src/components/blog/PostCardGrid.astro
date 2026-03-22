@@ -1,0 +1,30 @@
+---
+interface Props {
+  mobileColumns: number;
+  desktopColumns?: number;
+}
+
+const { mobileColumns = 1 } = Astro.props;
+let { desktopColumns } = Astro.props;
+
+if (!desktopColumns) {
+  desktopColumns = mobileColumns;
+}
+---
+
+<section>
+  <slot />
+</section>
+
+<style lang="scss" define:vars={{ mobileColumns, desktopColumns }}>
+  section {
+    display: grid;
+    grid-template-columns: repeat(var(--mobileColumns), 1fr);
+    margin: 20px 0;
+    gap: 20px;
+
+    @include screen("lg") {
+      grid-template-columns: repeat(var(--desktopColumns), 1fr);
+    }
+  }
+</style>

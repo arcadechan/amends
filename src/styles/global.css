@@ -1,18 +1,24 @@
 @font-face {
-  font-family: 'Roboto Mono';
-  src: url('../../public/fonts//RobotoMono-VariableFont_wght.ttf') format('truetype');
+  font-family: 'Inter';
+  src: url('fonts/Inter-VariableFont_opsz,wght.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Candy Beans';
+  src: url('fonts/candy-beans.otf') format('opentype');
 }
 
 :root {
   --color-sand: #FAF4EB;
   --color-yellow: #FFDC8B;
   --color-black: #1A1D27;
-  --font-primary: 'Roboto Mono', sans-serif;
+  --font-inter: 'Inter', sans-serif;
+  --font-candy: 'Candy Beans', sans-serif;
 }
 
 * {
   box-sizing: border-box;
-  font-family: var(--font-primary);
+  font-family: var(--font-inter);
 }
 
 html {
@@ -22,12 +28,19 @@ html {
 }
 
 body {
-  margin: 0 auto;
+  margin: 0;
   width: 100%;
 }
 
+main {
+  width: 100%;
+  max-width: 954px;
+  padding: 0 2rem;
+  margin: 0 auto;
+}
+
 .sr-only {
- position:absolute;
+  position:absolute;
   left:-10000px;
   top:auto;
   width:1px;

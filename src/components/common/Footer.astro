@@ -1,13 +1,14 @@
 ---
-import Logo from './Logo.astro';
-import Social from './Social.astro'
+import Logo from "./Logo.astro";
+import Social from "./Social.astro";
 
-const socials: { url: string, label: string, icon: string }[] = [
-  { url: 'https://soundcloud.com', label: 'Soundcloud', icon: 'soundcloud' },
-  { url: 'https://github.com', label: 'GitHub', icon: 'github'  },
-  { url: 'https://spotify.com', label: 'Spotify', icon: 'spotify' },
-]
+const socials: { url: string; label: string; icon: string }[] = [
+  { url: "https://soundcloud.com", label: "Soundcloud", icon: "soundcloud" },
+  { url: "https://github.com", label: "GitHub", icon: "github" },
+  { url: "https://spotify.com", label: "Spotify", icon: "spotify" },
+];
 ---
+
 <style lang="scss">
   footer {
     display: flex;
@@ -15,7 +16,7 @@ const socials: { url: string, label: string, icon: string }[] = [
     justify-content: center;
     align-items: center;
     border-top: 3px solid black;
-    margin: 0 32px;
+    margin: 32px 32px 0;
     padding: 47px 0;
 
     p {
@@ -47,20 +48,18 @@ const socials: { url: string, label: string, icon: string }[] = [
 </style>
 
 <footer>
-    <Logo width="166" height="30"/>
-    <p><i>Repairing the world's cultural palate, one post at a time.</i></p>
-    <ul>
-      {socials.map(social => (
+  <Logo width="166" height="30" />
+  <p><i>Repairing the world's cultural palate, one post at a time.</i></p>
+  <ul>
+    {
+      socials.map((social) => (
         <li>
-          <a 
-            href={social.url}
-            title={social.label}
-            target="_blank"
-          >
-            <img src={`/icons/${social.icon}.png`} alt='' aria-hidden/>
+          <a href={social.url} title={social.label} target="_blank">
+            <img src={`/icons/${social.icon}.png`} alt="" aria-hidden />
             <span class="sr-only">{social.label}</span>
           </a>
         </li>
-      ))}
-    </ul>
+      ))
+    }
+  </ul>
 </footer>
