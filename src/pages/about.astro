@@ -1,0 +1,48 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/page/Hero.astro";
+import type { Props as HeroProps } from "../components/page/Hero.astro";
+import Title from "../components/page/Title.astro";
+import type { Props as TitleProps } from "../components/page/Title.astro";
+import Content from "../components/page/Content.astro";
+import PromiseMotif from "../components/PromiseMotif.astro";
+
+const pageTitle = "About";
+
+const hero: HeroProps = {
+  src: "/assets/avatar-w-outline.png",
+  fit: "contain",
+  alt: "",
+};
+
+const title: TitleProps = {
+  title: "ARCADE",
+  type: "bars-behind-text",
+  size: "large",
+};
+
+const content = `
+Hello there! Name's Arcade and I like wasting my time. I program, do photography, and listen to lots of music. Did I mention I waste my time? This is a small blog I've set up to test Next.JS + TinaCMS, but will also serve as a personal log of things I find. I used to write a lot and do doodles here and there, and feel like I need something similar again. Hopefully there's stuff here you find worth your time.\n
+\n
+Stack details:
+- Astro JS
+- Svelte
+- Keystatic
+- Spotify API
+\n
+Or <a href="https://github.com/arcadechan/amends" target="_blank">check out the repo on Github</a>.<br/>
+[Visit the credits](/credits) page to find more info on the varous assets used throughout the site.\n
+\n
+Thanks for stopping by!\n
+\n
+Yours,<br/>
+Arcade
+`;
+---
+
+<BaseLayout pageTitle={pageTitle}>
+  <Hero {...hero} />
+  <Title {...title} />
+  <Content content={content} />
+  <PromiseMotif />
+</BaseLayout>

@@ -24,25 +24,27 @@ const featuredPost = {
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-  <h1>Welcome to Amends! Check out the first post 👇️</h1>
+  <div class="content-container">
+    <h1>Welcome to Amends! Check out the first post 👇️</h1>
 
-  <PostCardGrid mobileColumns={1}>
-    <PostCard {...featuredPost} />
-  </PostCardGrid>
+    <PostCardGrid mobileColumns={1}>
+      <PostCard {...featuredPost} />
+    </PostCardGrid>
 
-  <PostCardGrid mobileColumns={2}>
-    <PostCard {...featuredPost} />
-    <PostCard {...featuredPost} />
-    <PostCard {...featuredPost} />
-    <PostCard {...featuredPost} />
-  </PostCardGrid>
+    <PostCardGrid mobileColumns={2}>
+      <PostCard {...featuredPost} />
+      <PostCard {...featuredPost} />
+      <PostCard {...featuredPost} />
+      <PostCard {...featuredPost} />
+    </PostCardGrid>
 
-  <PostCardGrid mobileColumns={2} desktopColumns={4}>
-    <PostCard {...featuredPost} />
-    <PostCard {...featuredPost} />
-    <PostCard {...featuredPost} />
-    <PostCard {...featuredPost} />
-  </PostCardGrid>
+    <PostCardGrid mobileColumns={2} desktopColumns={4}>
+      <PostCard {...featuredPost} />
+      <PostCard {...featuredPost} />
+      <PostCard {...featuredPost} />
+      <PostCard {...featuredPost} />
+    </PostCardGrid>
+  </div>
 </BaseLayout>
 
 <style>

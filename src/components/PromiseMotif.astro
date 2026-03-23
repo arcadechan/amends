@@ -1,0 +1,21 @@
+---
+import { Image } from "astro:assets";
+import promise from "../../public/assets/promise-black.png";
+---
+
+<Image
+  src={promise}
+  alt=""
+  aria-hidden="true"
+  width="144"
+  height="44"
+  loading="lazy"
+/>
+
+<style>
+  img {
+    display: block;
+    width: 144px;
+    margin: 32px auto 0;
+  }
+</style>
