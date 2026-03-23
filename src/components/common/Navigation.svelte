@@ -1,6 +1,10 @@
 <script>
   import { trapFocus } from "../../scripts/attachments.svelte";
-  let isOpen = false;
+
+  let { children } = $props();
+
+  let isOpen = $state(false);
+  let scrollY = $state(0);
 
   const links = [
     { text: "Posts", link: "/blog" },
@@ -9,10 +13,12 @@
   ];
 </script>
 
-<header {@attach isOpen ? trapFocus : undefined}>
+<svelte:window bind:scrollY />
+
+<header {@attach isOpen ? trapFocus : undefined} class:scrolled={scrollY > 0}>
   <div class="header-container">
     <div class="logo-and-hamburger">
-      <slot />
+      {@render children?.()}
       <button
         class="hamburger"
         class:open={isOpen}
@@ -55,7 +61,13 @@
     background-color: var(--color-yellow);
     height: 75px;
     z-index: 999;
-    position: relative;
+    top: 0;
+    position: sticky;
+    width: 100%;
+
+    &.scrolled {
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    }
 
     @include screen("md") {
       padding: 22px 60px;

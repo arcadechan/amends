@@ -1,9 +1,20 @@
 ---
-const { width, height } = Astro.props
+import { Image } from "astro:assets";
+import logo from "../../../public/logo/logo-black.png";
+
+interface Props {
+  width?: number | `${number}`;
+  height?: number | `${number}`;
+  loading?: "lazy" | "eager";
+}
+
+const { width, height, loading } = Astro.props;
 ---
-<img
-    src="/logo/logo-black.png"
-    alt=""
-    width={width || 300}
-    height={height || 54}
+
+<Image
+  src={logo}
+  alt=""
+  width={width || 300}
+  height={height || 54}
+  loading={loading || "lazy"}
 />

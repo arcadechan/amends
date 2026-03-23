@@ -44,7 +44,7 @@ const { url, title, subtitle, hero } = Astro.props;
 <style
   lang="scss"
   define:vars={{
-    overlayColor: hero?.overlay?.color,
+    overlayColor: hero?.overlay?.color || "transparent",
     overlayOpacity:
       hero?.overlay?.opacity !== null ? hero.overlay.opacity : 0.5,
     overlayMix: hero?.overlay?.mix || "color",
