@@ -39,7 +39,13 @@ const overlayMix = (overlay && overlay?.mix) || "color";
       <div class="page-hero--container">
         <div class="page-hero--image">
           {overlay?.color && <div class="page-hero--overlay" />}
-          <Image src={src} alt={alt} width="922" height="457" loading="eager" />
+          <Image
+            src={src}
+            alt={alt || ""}
+            width="922"
+            height="457"
+            loading="eager"
+          />
         </div>
         {attribution?.name && attribution.url && (
           <div class="page-hero--attribution">

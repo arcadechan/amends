@@ -7,7 +7,7 @@
   let scrollY = $state(0);
 
   const links = [
-    { text: "Posts", link: "/blog" },
+    { text: "Blog", link: "/blog/page/1" },
     { text: "About", link: "/about/" },
     { text: "Contact", link: "/contact" },
   ];
@@ -33,7 +33,7 @@
     </div>
     <nav id="main-menu" class:open={isOpen}>
       <ul>
-        {#each links as link, i}
+        {#each links as link}
           <li>
             <a href={link.link}>
               {link.text}

@@ -1,8 +1,11 @@
 ---
 interface Props {
-  url: string;
-  title: string;
+  title: {
+    title: string;
+    type: "bars-below-text" | "bars-behind-text";
+  };
   subtitle?: string | null;
+  slug: string;
   hero: {
     src?: string;
     alt?: string;
@@ -27,15 +30,15 @@ interface Props {
   };
 }
 
-const { url, title, subtitle, hero } = Astro.props;
+const { title, subtitle, slug, hero } = Astro.props;
 ---
 
-<a href={url}>
+<a href={`/blog/${slug}`}>
   <article>
     <img src={hero.src} alt={hero.alt} />
     {hero?.overlay?.color && <div class="post-card--overlay" />}
     <div class="post-card--title">
-      <h2>{title}</h2>
+      <h2>{title?.title}</h2>
       <h3>{subtitle}</h3>
     </div>
   </article>
@@ -46,7 +49,9 @@ const { url, title, subtitle, hero } = Astro.props;
   define:vars={{
     overlayColor: hero?.overlay?.color || "transparent",
     overlayOpacity:
-      hero?.overlay?.opacity !== null ? hero.overlay.opacity : 0.5,
+      hero?.overlay && hero?.overlay?.opacity !== null
+        ? hero.overlay.opacity
+        : 0.5,
     overlayMix: hero?.overlay?.mix || "color",
   }}
 >

@@ -1,0 +1,103 @@
+---
+import type { Page } from "astro";
+
+interface Props {
+  url: Page["url"];
+}
+
+const { url } = Astro.props;
+---
+
+<ul>
+  {
+    url?.first && (
+      <li>
+        <a href={url.first}>First</a>
+      </li>
+    )
+  }
+  {
+    url?.prev && (
+      <li>
+        <a href={url.prev}>
+          &larr;
+          <span>Previous</span>
+        </a>
+      </li>
+    )
+  }
+  {
+    url?.next && (
+      <li>
+        <a href={url.next}>
+          <span>Next</span>
+          &rarr;
+        </a>
+      </li>
+    )
+  }
+  {
+    url?.last && (
+      <li>
+        <a href={url.last}>Last</a>
+      </li>
+    )
+  }
+</ul>
+
+<style lang="scss">
+  ul {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0;
+    gap: 10px;
+
+    li {
+      width: 25%;
+      min-width: 75px;
+
+      a {
+        display: block;
+        background-color: var(--color-yellow);
+        border-radius: 100px;
+        color: var(--color-black);
+        padding: 12px 18px;
+        text-decoration: none;
+        text-align: center;
+        width: 100%;
+
+        span {
+          display: none;
+        }
+
+        &:hover {
+          transform: scale(105%);
+        }
+      }
+    }
+
+    @media screen and (min-width: 415px) {
+      flex-wrap: nowrap;
+    }
+
+    @media screen and (min-width: 475px) {
+      gap: 20px;
+    }
+
+    @include screen("sm") {
+      justify-content: center;
+      gap: 30px;
+
+      li {
+        width: auto;
+        a {
+          span {
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+</style>

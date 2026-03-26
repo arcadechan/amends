@@ -1,26 +1,11 @@
 ---
+import { getEntry } from "astro:content";
 import PostCard from "../components/blog/PostCard.astro";
 import PostCardGrid from "../components/blog/PostCardGrid.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 const pageTitle = "Homepage";
 
-const featuredPost = {
-  url: "/posts/1",
-  title: "Programming",
-  subtitle: "A modern-day magick",
-  hero: {
-    src: "https://images.unsplash.com/photo-1695999145964-76b78d81653b?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    overlay: {
-      color: "pink",
-      opacity: 0.5,
-    },
-    alt: "",
-    attribution: {
-      name: "",
-      url: "",
-    },
-  },
-};
+const featuredPost = await getEntry("blog", "post-1");
 ---
 
 <BaseLayout pageTitle={pageTitle}>
@@ -28,21 +13,21 @@ const featuredPost = {
     <h1>Welcome to Amends! Check out the first post 👇️</h1>
 
     <PostCardGrid mobileColumns={1}>
-      <PostCard {...featuredPost} />
+      <PostCard {...featuredPost.data} />
     </PostCardGrid>
 
     <PostCardGrid mobileColumns={2}>
-      <PostCard {...featuredPost} />
-      <PostCard {...featuredPost} />
-      <PostCard {...featuredPost} />
-      <PostCard {...featuredPost} />
+      <PostCard {...featuredPost.data} />
+      <PostCard {...featuredPost.data} />
+      <PostCard {...featuredPost.data} />
+      <PostCard {...featuredPost.data} />
     </PostCardGrid>
 
     <PostCardGrid mobileColumns={2} desktopColumns={4}>
-      <PostCard {...featuredPost} />
-      <PostCard {...featuredPost} />
-      <PostCard {...featuredPost} />
-      <PostCard {...featuredPost} />
+      <PostCard {...featuredPost.data} />
+      <PostCard {...featuredPost.data} />
+      <PostCard {...featuredPost.data} />
+      <PostCard {...featuredPost.data} />
     </PostCardGrid>
   </div>
 </BaseLayout>

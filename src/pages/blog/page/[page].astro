@@ -1,0 +1,33 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import PostCardGrid from "../../../components/blog/PostCardGrid.astro";
+import PostCard from "../../../components/blog/PostCard.astro";
+import type { Page } from "astro";
+import Pagination from "../../../components/blog/Pagination.astro";
+
+export async function getStaticPaths({ paginate }) {
+  const allPosts = await getCollection("blog");
+  return paginate(allPosts, { pageSize: 3 });
+}
+
+const { page }: { page: Page } = Astro.props;
+
+const pageTitle = `Page ${page.currentPage} | Blog`;
+---
+
+<BaseLayout pageTitle={pageTitle}>
+  <div class="content-container">
+    <h1>Blog</h1>
+    <PostCardGrid mobileColumns={1}>
+      {page.data.map((post) => <PostCard {...post.data} />)}
+    </PostCardGrid>
+    <Pagination url={page.url} />
+  </div>
+</BaseLayout>
+
+<style>
+  h1 {
+    text-align: center;
+  }
+</style>
