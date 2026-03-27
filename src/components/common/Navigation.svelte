@@ -176,7 +176,7 @@
           text-decoration: none;
           text-transform: uppercase;
           padding: 7px 23px;
-          border-radius: 50px;
+          border-radius: 10px;
 
           &:hover {
             background-color: white;
