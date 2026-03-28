@@ -8,6 +8,11 @@ import svelte, { vitePreprocess } from "@astrojs/svelte";
 export default defineConfig({
   site: "https://example.com",
   integrations: [ svelte() ],
+  markdown: {
+    shikiConfig: {
+      theme: 'dracula'
+    }
+  },
   vite: {
     css: {
       preprocessorOptions: {

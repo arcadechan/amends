@@ -1,9 +1,9 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Hero from "../../components/page/Hero.astro";
 import Title from "../../components/page/Title.astro";
-import Content from "../../components/page/Content.astro";
+import Body from "../../components/page/Body.astro";
 import PromiseMotif from "../../components/PromiseMotif.astro";
 
 export async function getStaticPaths() {
@@ -16,11 +16,14 @@ export async function getStaticPaths() {
 }
 
 const { post }: { post: any } = Astro.props;
+const { Content } = await render(post);
 ---
 
 <BaseLayout pageTitle={post.data.title?.title}>
   <Hero {...post.data.hero} />
   <Title {...post.data.title} />
-  <Content content={post.body} />
+  <Body>
+    <Content />
+  </Body>
   <PromiseMotif />
 </BaseLayout>

@@ -1,0 +1,83 @@
+<section>
+  <slot />
+</section>
+
+<style lang="scss">
+  section {
+    padding: 32px 48px;
+    width: 100%;
+    max-width: 954px;
+    margin: 0 auto;
+  }
+
+  section :global(*) {
+    font-family: var(--font-inter);
+    font-size: 16px;
+    line-height: 1.75;
+  }
+
+  section :global(h1) {
+    font-size: 36px;
+  }
+
+  section :global(h2) {
+    font-size: 32px;
+  }
+
+  section :global(h3) {
+    font-size: 28px;
+  }
+
+  section :global(h4) {
+    font-size: 24px;
+  }
+
+  section :global(h5) {
+    font-size: 20px;
+  }
+
+  section :global(h6) {
+    font-size: 16px;
+  }
+
+  section :global(table) {
+    // border: 1px solid var(--color-black);
+    border-collapse: collapse;
+  }
+
+  section :global(td, th) {
+    border: 1px solid var(--color-black);
+    padding: 10px;
+  }
+
+  section :global(.astro-code) {
+    padding: 10px 15px;
+    border-radius: 20px;
+  }
+
+  @include screen("md") {
+    section :global(h1) {
+      font-size: 40px;
+    }
+
+    section :global(h2) {
+      font-size: 36px;
+    }
+
+    section :global(h3) {
+      font-size: 32px;
+    }
+
+    section :global(h4) {
+      font-size: 28px;
+    }
+
+    section :global(h5) {
+      font-size: 24px;
+    }
+
+    section :global(h6) {
+      font-size: 20px;
+    }
+  }
+</style>
