@@ -3,6 +3,19 @@ import { glob } from 'astro/loaders'
 import { z } from 'astro/zod';
 import type { ImageFunction } from 'astro/content/config';
 
+const settings = defineCollection({
+    loader: glob({ base: './src/content/settings', pattern: '**/*.{yaml,md}' }),
+    schema: z.object({
+        navigation: z.array(
+            z.object({
+                label: z.string(),
+                path: z.string(),
+                active: z.boolean().default(true)
+            })
+        )
+    })
+})
+
 const hero = (image: ImageFunction) => z.object({
     image: image(),
     alt: z.string().optional(),
@@ -45,4 +58,7 @@ const blog = defineCollection({
     })
 });
 
-export const collections = { blog }
+export const collections = {
+    settings,
+    blog
+}

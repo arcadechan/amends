@@ -1,4 +1,4 @@
-import { config, fields, collection } from '@keystatic/core';
+import { config, fields, collection, singleton } from '@keystatic/core';
 
 export default config({
   storage: {
@@ -9,6 +9,27 @@ export default config({
       name: 'Amends',
       mark: () => <img src='/apple-touch-icon.png' height={24}/>
     },
+  },
+  singletons: {
+    settings: singleton({
+      label: 'Settings',
+      path: 'src/content/settings/',
+      schema: {
+        navigation: fields.array(
+          fields.object({
+            label: fields.text({ label: 'Label' }),
+            path: fields.text({ label: 'Path' }),
+            active: fields.checkbox({ label: 'Active', defaultValue: true }),
+          }, {
+            label: 'Nav Item'
+          }),
+          {
+            label: 'Nav Items',
+            itemLabel: (props) => props.fields.label.value
+          }
+        )
+      }
+    })
   },
   collections: {
     blog: collection({

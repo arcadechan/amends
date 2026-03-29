@@ -1,16 +1,16 @@
-<script>
+<script lang="ts">
+  type Links = {
+    label: string;
+    path: string;
+    active: boolean;
+  };
+
   import { trapFocus } from "../../scripts/attachments.svelte";
 
-  let { children } = $props();
+  let { children, links }: { children: any; links: Links[] } = $props();
 
   let isOpen = $state(false);
   let scrollY = $state(0);
-
-  const links = [
-    { text: "Blog", link: "/blog/page/1" },
-    { text: "About", link: "/about/" },
-    { text: "Contact", link: "/contact" },
-  ];
 </script>
 
 <svelte:window bind:scrollY />
@@ -34,11 +34,13 @@
     <nav id="main-menu" class:open={isOpen}>
       <ul>
         {#each links as link}
-          <li>
-            <a href={link.link}>
-              {link.text}
-            </a>
-          </li>
+          {#if link.active}
+            <li>
+              <a href={link.path}>
+                {link.label}
+              </a>
+            </li>
+          {/if}
         {/each}
       </ul>
     </nav>
