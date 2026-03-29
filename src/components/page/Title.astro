@@ -1,11 +1,16 @@
 ---
 export interface Props {
   title: string;
-  type: "bars-below-text" | "bars-behind-text";
-  size: "normal" | "large";
+  titleSettings: {
+    type: "bars-below-text" | "bars-behind-text";
+    size: "normal" | "large";
+  };
 }
 
-const { title, type, size } = Astro.props;
+const {
+  title,
+  titleSettings: { type, size },
+} = Astro.props;
 ---
 
 {

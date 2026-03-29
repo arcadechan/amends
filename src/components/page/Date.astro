@@ -1,0 +1,19 @@
+---
+interface Props {
+  date: Date;
+}
+
+const { date } = Astro.props;
+let formattedDate: string | null = null;
+
+if (date) {
+  formattedDate = date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "2-digit",
+    timeZone: "PST",
+  });
+}
+---
+
+{formattedDate && <p title="Publipaction Date">{formattedDate}</p>}

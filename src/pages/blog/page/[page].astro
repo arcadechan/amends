@@ -7,8 +7,10 @@ import type { Page } from "astro";
 import Pagination from "../../../components/blog/Pagination.astro";
 
 export async function getStaticPaths({ paginate }) {
-  const allPosts = await getCollection("blog");
-  return paginate(allPosts, { pageSize: 3 });
+  const allPosts = await getCollection("blog", ({ data }) => {
+    return data.draft !== true;
+  });
+  return paginate(allPosts, { pageSize: 2 });
 }
 
 const { page }: { page: Page } = Astro.props;
@@ -20,7 +22,7 @@ const pageTitle = `Page ${page.currentPage} | Blog`;
   <div class="content-container">
     <h1>Blog</h1>
     <PostCardGrid mobileColumns={1}>
-      {page.data.map((post) => <PostCard {...post.data} />)}
+      {page.data.map((post) => <PostCard {...post} />)}
     </PostCardGrid>
     <Pagination url={page.url} />
   </div>

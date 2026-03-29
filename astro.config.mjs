@@ -1,13 +1,15 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import path from 'path';
-
-import svelte, { vitePreprocess } from "@astrojs/svelte";
+import svelte from "@astrojs/svelte";
+import react from '@astrojs/react'
+import markdoc from "@astrojs/markdoc";
+import keystatic from '@keystatic/astro';
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://example.com",
-  integrations: [ svelte() ],
+  integrations: [svelte(), react(), markdoc(), keystatic()],
   markdown: {
     shikiConfig: {
       theme: 'dracula'

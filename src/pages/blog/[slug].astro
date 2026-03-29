@@ -5,6 +5,7 @@ import Hero from "../../components/page/Hero.astro";
 import Title from "../../components/page/Title.astro";
 import Body from "../../components/page/Body.astro";
 import PromiseMotif from "../../components/PromiseMotif.astro";
+import Date from "../../components/page/Date.astro";
 
 export async function getStaticPaths() {
   const allPosts = await getCollection("blog");
@@ -17,12 +18,15 @@ export async function getStaticPaths() {
 
 const { post }: { post: any } = Astro.props;
 const { Content } = await render(post);
+
+const { hero, title, titleSettings, publicationDate } = post.data;
 ---
 
-<BaseLayout pageTitle={post.data.title?.title}>
-  <Hero {...post.data.hero} />
-  <Title {...post.data.title} />
+<BaseLayout pageTitle={post.data.title}>
+  <Hero {...hero} />
+  <Title {...{ title, titleSettings }} />
   <Body>
+    <Date date={publicationDate} />
     <Content />
   </Body>
   <PromiseMotif />

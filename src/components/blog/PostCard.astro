@@ -1,45 +1,56 @@
 ---
+import type { ImageInputFormat } from "astro";
+import { Image } from "astro:assets";
+
 interface Props {
-  title: {
+  id: string;
+  data: {
     title: string;
-    type: "bars-below-text" | "bars-behind-text";
-  };
-  subtitle?: string | null;
-  slug: string;
-  hero: {
-    src?: string;
-    alt?: string;
-    overlay?: {
-      color: string;
-      opacity?: number;
-      mix?:
-        | "color"
-        | "screen"
-        | "lighten"
-        | "color-dodge"
-        | "color-burn"
-        | "soft-light"
-        | "difference"
-        | "exclusion"
-        | "luminosity";
-    };
-    attribution?: {
-      name: string;
-      url: string;
+    subtitle?: string | null;
+    hero: {
+      image: {
+        src: string;
+        width: number;
+        height: number;
+        format: ImageInputFormat;
+      };
+      alt?: string;
+      overlay?: {
+        color: string;
+        opacity?: number;
+        mix?:
+          | "none"
+          | "color"
+          | "screen"
+          | "lighten"
+          | "color-dodge"
+          | "color-burn"
+          | "soft-light"
+          | "difference"
+          | "exclusion"
+          | "luminosity";
+      };
+      attribution?: {
+        name: string;
+        url: string;
+      };
     };
   };
 }
 
-const { title, subtitle, slug, hero } = Astro.props;
+const {
+  id,
+  data: { title, subtitle, hero },
+} = Astro.props;
 ---
 
-<a href={`/blog/${slug}`}>
+<a href={`/blog/${id}`}>
   <article>
-    <img src={hero.src} alt={hero.alt} />
+    <Image src={hero?.image} alt={hero.alt || ""} />
     {hero?.overlay?.color && <div class="post-card--overlay" />}
     <div class="post-card--title">
-      <h2>{title?.title}</h2>
-      <h3>{subtitle}</h3>
+      <h2>{title}</h2>
+      {subtitle && <h3>{subtitle}</h3>}
     </div>
   </article>
 </a>
@@ -52,7 +63,7 @@ const { title, subtitle, slug, hero } = Astro.props;
       hero?.overlay && hero?.overlay?.opacity !== null
         ? hero.overlay.opacity
         : 0.5,
-    overlayMix: hero?.overlay?.mix || "color",
+    overlayMix: hero?.overlay?.mix || "none",
   }}
 >
   $black: var(--color-black);

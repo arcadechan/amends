@@ -1,9 +1,10 @@
 import { defineCollection } from 'astro/content/config';
-import { glob, file } from 'astro/loaders'
+import { glob } from 'astro/loaders'
 import { z } from 'astro/zod';
+import type { ImageFunction } from 'astro/content/config';
 
-const hero = z.object({
-    src: z.url(),
+const hero = (image: ImageFunction) => z.object({
+    image: image(),
     alt: z.string().optional(),
     fit: z.enum(['cover', 'contain']).optional(),
     overlay: z.object({
@@ -27,19 +28,20 @@ const hero = z.object({
     }).optional()
 })
 
-const title = z.object({
-    title: z.string(),
+const titleSettings = z.object({
     type: z.enum(['bars-below-text', 'bars-behind-text']),
     size: z.enum(['normal', 'large']),
 })
 
 const blog = defineCollection({
-    loader: glob({ base: './src/content/blog', pattern: '**/*.{md,mdx}' }),
-    schema: z.object({
-        title,
+    loader: glob({ base: './src/content/blog', pattern: '**/*.{md,mdx,mdoc}' }),
+    schema: ({ image }) => z.object({
+        draft: z.boolean().default(false),
+        title: z.string(),
+        titleSettings,
         subtitle: z.string().optional(),
-        slug: z.string().slugify(),
-        hero,
+        publicationDate: z.coerce.date().optional(),
+        hero: hero(image)
     })
 });
 

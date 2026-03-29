@@ -13,21 +13,21 @@ const featuredPost = await getEntry("blog", "post-1");
     <h1>Welcome to Amends! Check out the first post 👇️</h1>
 
     <PostCardGrid mobileColumns={1}>
-      <PostCard {...featuredPost.data} />
+      <PostCard {...featuredPost} />
     </PostCardGrid>
 
     <PostCardGrid mobileColumns={2}>
-      <PostCard {...featuredPost.data} />
-      <PostCard {...featuredPost.data} />
-      <PostCard {...featuredPost.data} />
-      <PostCard {...featuredPost.data} />
+      <PostCard {...featuredPost} />
+      <PostCard {...featuredPost} />
+      <PostCard {...featuredPost} />
+      <PostCard {...featuredPost} />
     </PostCardGrid>
 
     <PostCardGrid mobileColumns={2} desktopColumns={4}>
-      <PostCard {...featuredPost.data} />
-      <PostCard {...featuredPost.data} />
-      <PostCard {...featuredPost.data} />
-      <PostCard {...featuredPost.data} />
+      <PostCard {...featuredPost} />
+      <PostCard {...featuredPost} />
+      <PostCard {...featuredPost} />
+      <PostCard {...featuredPost} />
     </PostCardGrid>
   </div>
 </BaseLayout>

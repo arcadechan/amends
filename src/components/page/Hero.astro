@@ -1,14 +1,21 @@
 ---
+import type { ImageInputFormat } from "astro";
 import { Image } from "astro:assets";
 
 export interface Props {
-  src?: string;
+  image: {
+    src: string;
+    width: number;
+    height: number;
+    format: ImageInputFormat;
+  };
   alt?: string;
   fit: "cover" | "contain";
   overlay?: {
     color: string;
     opacity?: number;
     mix?:
+      | "none"
       | "color"
       | "screen"
       | "lighten"
@@ -25,25 +32,25 @@ export interface Props {
   };
 }
 
-const { src, alt, fit = "cover", overlay, attribution } = Astro.props;
+const { image, alt, fit = "cover", overlay, attribution } = Astro.props;
 
 const overlayColor = (overlay && overlay?.color) || "transparent";
 const overlayOpacity =
   overlay && overlay?.opacity !== null ? overlay.opacity : 0.0;
-const overlayMix = (overlay && overlay?.mix) || "color";
+const overlayMix = (overlay && overlay?.mix) || "none";
 ---
 
 {
-  src && (
+  image && (
     <div class="page-hero">
       <div class="page-hero--container">
         <div class="page-hero--image">
           {overlay?.color && <div class="page-hero--overlay" />}
           <Image
-            src={src}
+            src={image}
             alt={alt || ""}
-            width="922"
-            height="457"
+            width={image.width || "922"}
+            height={image.height || "457"}
             loading="eager"
           />
         </div>
