@@ -1,0 +1,15 @@
+motto: Repairing the world's cultural palate, one post at a time.
+navigation:
+  - label: Blog
+    path: /blog/page/1
+    active: true
+  - label: About
+    path: /about
+    active: true
+  - label: Contact
+    path: /contact
+    active: true
+socials:
+  soundcloud: https://soundcloud.com/
+  github: https://github.com/
+  spotify: https://spotify.com/
