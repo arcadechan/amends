@@ -55,9 +55,10 @@ const hero = (image: ImageFunction) => z.object({
     alt: z.string().optional(),
     fit: z.enum(['cover', 'contain']).optional(),
     overlay: z.object({
-        color: z.string(),
+        color: z.string().optional(),
         opacity: z.number().min(0).max(1).optional(),
         mix: z.enum([
+            'none',
             'color',
             'screen',
             'lighten',
@@ -92,8 +93,19 @@ const blog = defineCollection({
     })
 });
 
+const pages = defineCollection({
+    loader: glob({ base: './src/content/pages', pattern: '**/*.{md,mdx,mdoc}' }),
+    schema: ({ image }) => z.object({
+        draft: z.boolean().default(false),
+        title: z.string(),
+        titleSettings,
+        hero: hero(image)
+    })
+});
+
 export const collections = {
     homepage,
     settings,
-    blog
+    blog,
+    pages
 }
