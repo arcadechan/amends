@@ -3,6 +3,34 @@ import { glob } from 'astro/loaders'
 import { z } from 'astro/zod';
 import type { ImageFunction } from 'astro/content/config';
 
+const homepage = defineCollection({
+    loader: glob({ base: './src/content/homepage', pattern: '**/*.{yaml,md}' }),
+    schema: z.object({
+        blocks: z.array(
+            z.discriminatedUnion('discriminant', [
+                // Post Card Grid
+                z.object({
+                    discriminant: z.literal('postCardGrid'),
+                    value: z.object({
+                        mobileColumns: z.number().min(1).max(4),
+                        desktopColumns: z.number().min(1).max(4),
+                        posts: z.array(z.string())
+                    })
+                }),
+
+                // Heading
+                z.object({
+                    discriminant: z.literal('heading'),
+                    value: z.object({
+                        text: z.string(),
+                        type: z.enum(['h1', 'h2', 'h2', 'h3', 'h4', 'h5', 'h6'])
+                    })
+                })
+            ])
+        ).optional()
+    })
+})
+
 const settings = defineCollection({
     loader: glob({ base: './src/content/settings', pattern: '**/*.{yaml,md}' }),
     schema: z.object({
@@ -65,6 +93,7 @@ const blog = defineCollection({
 });
 
 export const collections = {
+    homepage,
     settings,
     blog
 }

@@ -3,38 +3,70 @@ import { getEntry } from "astro:content";
 import PostCard from "../components/blog/PostCard.astro";
 import PostCardGrid from "../components/blog/PostCardGrid.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import type { ImageInputFormat } from "astro";
 const pageTitle = "Homepage";
 
-const featuredPost = await getEntry("blog", "post-1");
+type Heading = {
+  discriminant: "heading";
+  value: {
+    text?: string;
+    type: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+  };
+};
+
+type PostCardGrid = {
+  discriminant: "postCardGrid";
+  value: {
+    posts: string[];
+    desktopColumns?: number;
+    mobileColumns?: number;
+  };
+};
+
+type Block = Heading | PostCardGrid;
+
+const homepage = await getEntry("homepage", "index");
+
+const { blocks }: { blocks: Block[] } = homepage?.data;
 ---
 
 <BaseLayout pageTitle={pageTitle}>
   <div class="content-container">
-    <h1>Welcome to Amends! Check out the first post 👇️</h1>
+    {
+      blocks.map((block) => {
+        if (block.discriminant === "postCardGrid") {
+          return (
+            <PostCardGrid
+              mobileColumns={block.value.mobileColumns ?? 1}
+              desktopColumns={block.value.desktopColumns ?? 1}
+            >
+              {block.value.posts.map(async (postId) => {
+                const post = await getEntry("blog", postId);
+                return <PostCard {...post} />;
+              })}
+            </PostCardGrid>
+          );
+        }
 
-    <PostCardGrid mobileColumns={1}>
-      <PostCard {...featuredPost} />
-    </PostCardGrid>
+        if (block.discriminant === "heading") {
+          const HeadingTag = block.value.type;
 
-    <PostCardGrid mobileColumns={2}>
-      <PostCard {...featuredPost} />
-      <PostCard {...featuredPost} />
-      <PostCard {...featuredPost} />
-      <PostCard {...featuredPost} />
-    </PostCardGrid>
-
-    <PostCardGrid mobileColumns={2} desktopColumns={4}>
-      <PostCard {...featuredPost} />
-      <PostCard {...featuredPost} />
-      <PostCard {...featuredPost} />
-      <PostCard {...featuredPost} />
-    </PostCardGrid>
+          return <HeadingTag>{block.value.text}</HeadingTag>;
+        }
+      })
+    }
   </div>
 </BaseLayout>
 
 <style>
-  h1 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-candy);
     text-align: center;
+    font-weight: 400;
   }
 </style>

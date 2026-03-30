@@ -11,6 +11,66 @@ export default config({
     },
   },
   singletons: {
+    homepage: singleton({
+      label: 'Homepage',
+      path: 'src/content/homepage/',
+      schema: {
+        blocks: fields.blocks({
+          postCardGrid: {
+            label: 'Post Card Grid',
+            schema: fields.object({
+              mobileColumns: fields.integer({
+                label: 'Mobile Column Count',
+                validation: { min: 1, max: 4 }
+              }),
+              desktopColumns: fields.integer({
+                label: 'Desktop Column Count',
+                validation: { min: 1, max: 4 }
+              }),
+              posts: fields.array(
+                fields.relationship({
+                  label: 'Posts',
+                  collection: 'blog'
+                }), {
+                  label: 'Posts',
+                  itemLabel: (props) => props.value
+                }
+              )
+            }),
+            itemLabel: (props) => {
+              const posts = props.fields.posts.elements
+                .map(element => element.value)
+                .join(', ')
+
+              return `Post Card Grid: ${posts}`
+            }
+          },
+          heading: {
+            label: 'Heading',
+            schema: fields.object({
+              text: fields.text({ label: 'Heading' }),
+              type: fields.select({
+                label: 'Type',
+                options: [
+                  { label: 'H1', value: 'h1' },
+                  { label: 'H2', value: 'h2' },
+                  { label: 'H3', value: 'h3' },
+                  { label: 'H4', value: 'h4' },
+                  { label: 'H5', value: 'h5' },
+                  { label: 'H6', value: 'h6' }
+                ],
+                defaultValue: 'h1'
+              })
+            }),
+            itemLabel: (props) => {
+              return `Heading: ${props.fields.text.value}`
+            }
+          }
+        }, {
+          label: 'Blocks'
+        })
+      }
+    }),
     settings: singleton({
       label: 'Settings',
       path: 'src/content/settings/',
