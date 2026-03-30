@@ -12,7 +12,12 @@ const settings = defineCollection({
                 path: z.string(),
                 active: z.boolean().default(true)
             })
-        )
+        ),
+        socials: z.object({
+            soundcloud: z.string().optional(),
+            github: z.string().optional(),
+            spotify: z.string().optional()
+        })
     })
 })
 

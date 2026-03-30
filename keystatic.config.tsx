@@ -27,7 +27,14 @@ export default config({
             label: 'Nav Items',
             itemLabel: (props) => props.fields.label.value
           }
-        )
+        ),
+        socials: fields.object({
+          soundcloud: fields.url({ label: 'Soundcloud' }),
+          github: fields.url({ label: 'Github' }),
+          spotify: fields.url({ label: 'Spotify' })
+        }, {
+          label: 'Socials'
+        })
       }
     })
   },

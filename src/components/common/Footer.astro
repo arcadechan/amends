@@ -1,13 +1,22 @@
 ---
 import { Image } from "astro:assets";
 import Logo from "./Logo.astro";
-import Social from "./Social.astro";
+import { getEntry } from "astro:content";
 
-const socials: { url: string; label: string; icon: string }[] = [
-  { url: "https://soundcloud.com", label: "Soundcloud", icon: "soundcloud" },
-  { url: "https://github.com", label: "GitHub", icon: "github" },
-  { url: "https://spotify.com", label: "Spotify", icon: "spotify" },
-];
+const SOCIAL_LABELS: Record<string, string> = {
+  soundcloud: "SoundCloud",
+  github: "GitHub",
+  spotify: "Spotify",
+};
+
+type Socials = Partial<Record<string, string>>;
+
+const settings = await getEntry("settings", "index");
+let socials: Socials = null;
+
+if (Object.entries(settings.data.socials).length > 0) {
+  socials = settings.data.socials;
+}
 ---
 
 <footer>
@@ -17,21 +26,26 @@ const socials: { url: string; label: string; icon: string }[] = [
   <p><i>Repairing the world's cultural palate, one post at a time.</i></p>
   <ul>
     {
-      socials.map((social) => (
-        <li>
-          <a href={social.url} title={social.label} target="_blank">
-            <Image
-              src={`/icons/${social.icon}.png`}
-              alt=""
-              aria-hidden="true"
-              loading="lazy"
-              width="20"
-              height="20"
-            />
-            <span class="sr-only">{social.label}</span>
-          </a>
-        </li>
-      ))
+      socials &&
+        Object.entries(socials).map(([platform, url]) => (
+          <li>
+            <a
+              href={url}
+              title={SOCIAL_LABELS[platform] ?? platform}
+              target="_blank"
+            >
+              <Image
+                src={`/icons/${platform}.png`}
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+                width="20"
+                height="20"
+              />
+              <span class="sr-only">{SOCIAL_LABELS[platform] ?? platform}</span>
+            </a>
+          </li>
+        ))
     }
   </ul>
 </footer>
