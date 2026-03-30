@@ -6,6 +6,7 @@ import type { ImageFunction } from 'astro/content/config';
 const settings = defineCollection({
     loader: glob({ base: './src/content/settings', pattern: '**/*.{yaml,md}' }),
     schema: z.object({
+        motto: z.string().optional(),
         navigation: z.array(
             z.object({
                 label: z.string(),

@@ -15,6 +15,9 @@ export default config({
       label: 'Settings',
       path: 'src/content/settings/',
       schema: {
+        motto: fields.text({
+          label: 'Site Motto',
+        }),
         navigation: fields.array(
           fields.object({
             label: fields.text({ label: 'Label' }),
