@@ -30,11 +30,11 @@ export default config({
               }),
               posts: fields.array(
                 fields.relationship({
-                  label: 'Posts',
+                  label: 'Post',
                   collection: 'blog'
                 }), {
                   label: 'Posts',
-                  itemLabel: (props) => props.value
+                  itemLabel: (props) => props.value ?? 'Post'
                 }
               )
             }),
