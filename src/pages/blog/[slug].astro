@@ -6,6 +6,8 @@ import Title from "../../components/page/Title.astro";
 import Body from "../../components/page/Body.astro";
 import PromiseMotif from "../../components/PromiseMotif.astro";
 import Date from "../../components/page/Date.astro";
+import PlayerIsland from "../../components/player/PlayerIsland.astro";
+import SpotifyIframe from "../../components/player/SpotifyIframe.svelte"
 
 export async function getStaticPaths() {
   const allPosts = await getCollection("blog");
@@ -20,6 +22,8 @@ const { post }: { post: any } = Astro.props;
 const { Content } = await render(post);
 
 const { hero, title, titleSettings, publicationDate } = post.data;
+
+const hasPlayerComponents = /\{%\s*Player\b/.test(post.body);
 ---
 
 <BaseLayout pageTitle={post.data.title}>
@@ -27,7 +31,21 @@ const { hero, title, titleSettings, publicationDate } = post.data;
   <Title {...{ title, titleSettings }} />
   <Body>
     <Date date={publicationDate} />
-    <Content />
+    <Content
+      component={{
+        PlayerIsland,
+      }}
+    />
   </Body>
   <PromiseMotif />
+  {
+    hasPlayerComponents && (
+      <script
+        src="https://open.spotify.com/embed/iframe-api/v1"
+        async
+        is:inline
+      />
+      <SpotifyIframe client:load/>
+    )
+  }
 </BaseLayout>

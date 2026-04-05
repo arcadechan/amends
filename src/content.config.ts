@@ -103,9 +103,18 @@ const pages = defineCollection({
     })
 });
 
+const media = defineCollection({
+    loader: glob({ base: './src/content/media', pattern: '**/*.{yaml,yml}' }),
+    schema: ({ image }) => z.object({
+        title: z.string(),
+        asset: image()
+    })
+})
+
 export const collections = {
     homepage,
     settings,
     blog,
-    pages
+    pages,
+    media
 }

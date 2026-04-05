@@ -1,0 +1,33 @@
+---
+import { getEntry } from "astro:content";
+import Player from "./Player.svelte";
+
+interface Props {
+  trackId: string;
+  trackArtist: string;
+  trackName: string;
+  trackAlbumArt: string;
+  albumArtData?: {
+    title: string;
+    asset: {
+      src: string;
+      width: string;
+      height: string;
+      format: string;
+    };
+  };
+  platformLinks: {
+    spotify?: string;
+    youtube?: string;
+    appleMusic?: string;
+    deezer?: string;
+    bandcamp?: string;
+    soundcloud?: string;
+  };
+}
+
+const { trackAlbumArt }: Props = Astro.props;
+const albumArt = await getEntry("media", trackAlbumArt);
+---
+
+<Player client:load {...{ ...Astro.props, albumArtData: albumArt.data }} />

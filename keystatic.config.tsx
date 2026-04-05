@@ -1,4 +1,5 @@
 import { config, fields, collection, singleton } from '@keystatic/core';
+import { block } from '@keystatic/core/content-components';
 
 export default config({
   storage: {
@@ -186,7 +187,40 @@ export default config({
         }, {
           label: 'Hero'
         }),
-        content: fields.markdoc({ label: 'Content' }),
+        content: fields.markdoc({
+          label: 'Content',
+          components: {
+            Player: block({
+              label: 'Player',
+              schema: {
+                trackId: fields.text({ label: 'Spotify Track ID' }),
+                trackArtist: fields.text({ label: 'Artist(s) Name' }),
+                trackName: fields.text({ label: 'Track Name' }),
+                trackAlbumArt: fields.relationship({
+                  label: 'Album Art',
+                  collection: 'media'
+                }),
+                platformLinks: fields.object({
+                  spotify: fields.url({ label: 'Spotify' }),
+                  youtube: fields.url({ label: 'YouTube' }),
+                  appleMusic: fields.url({ label: 'Apple Music' }),
+                  deezer: fields.url({ label: 'Deezer' }),
+                  bandcamp: fields.url({ label: 'Bandcamp'}),
+                  soundcloud: fields.url({ label: 'Soundcloud' })
+                }, {
+                  label: 'Platform Links',
+                  layout: [6,6,6,6,6,6]
+                })
+              }
+            }),
+            Iframe: block({
+              label: 'Iframe',
+              schema: {
+                code: fields.text({ label: 'Code', multiline: true })
+              }
+            })
+          }
+        }),
       },
     }),
     pages: collection({
@@ -272,6 +306,19 @@ export default config({
           label: 'Hero'
         }),
         content: fields.markdoc({ label: 'Content' }),
+      }
+    }),
+    media: collection({
+      label: 'Media',
+      slugField: 'title',
+      path: 'src/content/media/*',
+      schema: {
+        title: fields.slug({ name: { label: 'Title' } }),
+        asset: fields.image({
+          label: 'Asset',
+          directory: 'src/content/media',
+          publicPath: '@assets/media'
+        })
       }
     })
   },
