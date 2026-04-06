@@ -42,6 +42,13 @@ const settings = defineCollection({
                 active: z.boolean().default(true)
             })
         ),
+        footer_navigation: z.array(
+            z.object({
+                label: z.string(),
+                path: z.string(),
+                active: z.boolean().default(true)
+            })
+        ),
         socials: z.object({
             soundcloud: z.string().optional(),
             github: z.string().optional(),

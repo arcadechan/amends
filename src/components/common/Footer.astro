@@ -13,17 +13,17 @@ type Socials = Partial<Record<string, string>>;
 
 interface Settings {
   data: {
+    footer_navigation: Array<{
+      label: string;
+      path: string;
+      active: boolean;
+    }>;
     motto?: string;
     socials: Socials;
   };
 }
 
 const settings: Settings = await getEntry("settings", "index");
-let socials: Socials = null;
-
-if (Object.entries(settings.data.socials).length > 0) {
-  socials = settings.data.socials;
-}
 ---
 
 <footer>
@@ -37,10 +37,21 @@ if (Object.entries(settings.data.socials).length > 0) {
       </p>
     )
   }
-  <ul>
-    {
-      socials &&
-        Object.entries(socials).map(([platform, url]) => (
+  {
+    settings.data.footer_navigation.length > 0 && (
+      <ul class="links">
+        {settings.data.footer_navigation.map((link) => (
+          <li>
+            <a href={link.path}>{link.label}</a>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+  {
+    Object.entries(settings.data.socials ?? {}).length > 0 && (
+      <ul class="platforms">
+        {Object.entries(settings.data.socials).map(([platform, url]) => (
           <li>
             <a
               href={url}
@@ -58,9 +69,10 @@ if (Object.entries(settings.data.socials).length > 0) {
               <span class="sr-only">{SOCIAL_LABELS[platform] ?? platform}</span>
             </a>
           </li>
-        ))
-    }
-  </ul>
+        ))}
+      </ul>
+    )
+  }
 </footer>
 
 <style lang="scss">
@@ -81,13 +93,31 @@ if (Object.entries(settings.data.socials).length > 0) {
       font-size: 12px !important;
     }
 
-    ul {
+    ul.links {
+      display: flex;
+      list-style-type: none;
+      gap: 20px;
+      font-size: 14px;
+      padding-left: 0;
+
+      a {
+        color: var(--color-blue);
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    ul.platforms {
       list-style: none;
       display: flex;
       background-color: #ffffff;
       border-radius: 20px;
       padding: 6px;
       gap: 16px;
+      box-shadow: var(--box-shadow);
 
       li {
         a {

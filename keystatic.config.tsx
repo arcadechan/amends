@@ -85,10 +85,23 @@ export default config({
             path: fields.text({ label: 'Path' }),
             active: fields.checkbox({ label: 'Active', defaultValue: true }),
           }, {
-            label: 'Nav Item'
+            label: 'Header Nav Item'
           }),
           {
-            label: 'Nav Items',
+            label: 'Header Nav Items',
+            itemLabel: (props) => props.fields.label.value
+          }
+        ),
+        footer_navigation: fields.array(
+          fields.object({
+            label: fields.text({ label: 'Label' }),
+            path: fields.text({ label: 'Path' }),
+            active: fields.checkbox({ label: 'Active', defaultValue: true }),
+          }, {
+            label: 'Footer Nav Item'
+          }),
+          {
+            label: 'Footer Nav Items',
             itemLabel: (props) => props.fields.label.value
           }
         ),
@@ -255,8 +268,8 @@ export default config({
         hero: fields.object({
           image: fields.image({
             label: 'Image',
-            directory: 'src/content/blog',
-            publicPath: '@assets/blog/'
+            directory: 'src/content/pages',
+            publicPath: '@assets/pages/'
           }),
           alt: fields.text({ label: 'Alt text' }),
           fit: fields.select({

@@ -9,6 +9,19 @@ navigation:
   - label: Contact
     path: /contact
     active: true
+footer_navigation:
+  - label: Blog
+    path: /blog/page/1
+    active: true
+  - label: About
+    path: /about/
+    active: true
+  - label: Contact
+    path: /contact/
+    active: true
+  - label: Credits
+    path: /credits/
+    active: true
 socials:
   soundcloud: https://soundcloud.com/
   github: https://github.com/
