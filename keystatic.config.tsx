@@ -111,7 +111,25 @@ export default config({
           spotify: fields.url({ label: 'Spotify' })
         }, {
           label: 'Socials'
-        })
+        }),
+        badges: fields.array(
+          fields.object({
+            label: fields.text({ label: 'Label' }),
+            path: fields.text({ label: 'Path', validation: { isRequired: false } }),
+            active: fields.checkbox({ label: 'Active', defaultValue: true }),
+            image: fields.image({
+              label: 'Image',
+              directory: 'src/content/settings',
+              publicPath: '@assets/settings/'
+            })
+          }, {
+            label: 'Badge'
+          }),
+          {
+            label: 'Badges',
+            itemLabel: (props) => props.fields.label.value
+          }
+        )
       }
     })
   },

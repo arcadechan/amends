@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import Logo from "./Logo.astro";
 import { getEntry } from "astro:content";
+import type { ImageInputFormat } from "astro";
 
 const SOCIAL_LABELS: Record<string, string> = {
   soundcloud: "SoundCloud",
@@ -20,6 +21,17 @@ interface Settings {
     }>;
     motto?: string;
     socials: Socials;
+    badges: Array<{
+      label: string;
+      path?: string;
+      active: boolean;
+      image: {
+        src: string;
+        width: number;
+        height: number;
+        format: ImageInputFormat;
+      };
+    }>;
   };
 }
 
@@ -68,6 +80,34 @@ const settings: Settings = await getEntry("settings", "index");
               />
               <span class="sr-only">{SOCIAL_LABELS[platform] ?? platform}</span>
             </a>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+  {
+    settings.data.badges.length > 0 && (
+      <ul class="badges">
+        {settings.data.badges.map((badge) => (
+          <li>
+            {badge?.path ? (
+              <a href={badge.path} title={badge.label} target="_blank">
+                <Image
+                  src={badge.image}
+                  alt={badge.label}
+                  width={badge.image.width}
+                  height={badge.image.height}
+                />
+              </a>
+            ) : (
+              <Image
+                src={badge.image}
+                alt={badge.label}
+                width={badge.image.width}
+                height={badge.image.height}
+                title={badge.label}
+              />
+            )}
           </li>
         ))}
       </ul>
@@ -130,6 +170,19 @@ const settings: Settings = await getEntry("settings", "index");
             width: auto;
           }
         }
+      }
+    }
+
+    ul.badges {
+      display: flex;
+      flex-wrap: wrap;
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+
+      a,
+      img {
+        display: block;
       }
     }
   }

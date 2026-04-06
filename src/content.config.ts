@@ -32,8 +32,8 @@ const homepage = defineCollection({
 })
 
 const settings = defineCollection({
-    loader: glob({ base: './src/content/settings', pattern: '**/*.{yaml,md}' }),
-    schema: z.object({
+    loader: glob({ base: './src/content/settings', pattern: '**/*.{yaml,yml,md}' }),
+    schema: ({ image }) => z.object({
         motto: z.string().optional(),
         navigation: z.array(
             z.object({
@@ -53,7 +53,15 @@ const settings = defineCollection({
             soundcloud: z.string().optional(),
             github: z.string().optional(),
             spotify: z.string().optional()
-        })
+        }),
+        badges: z.array(
+            z.object({
+                label: z.string(),
+                path: z.string().optional(),
+                active: z.boolean().default(true),
+                image: image()
+            })
+        ).optional()
     })
 })
 

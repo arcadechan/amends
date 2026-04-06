@@ -26,3 +26,18 @@ socials:
   soundcloud: https://soundcloud.com/
   github: https://github.com/
   spotify: https://spotify.com/
+badges:
+  - label: NeoCities.org
+    path: https://neocities.org/
+    active: true
+    image: '@assets/settings/badges/0/src.gif'
+  - label: Miku Fan
+    active: true
+    image: '@assets/settings/badges/1/src.png'
+  - label: Join Mastodon
+    path: https://joinmastodon.org/
+    active: true
+    image: '@assets/settings/badges/2/src.gif'
+  - label: Death Grips
+    active: true
+    image: '@assets/settings/badges/3/src.jpg'
