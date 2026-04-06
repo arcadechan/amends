@@ -1,0 +1,42 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout pageTitle="Page Not Found">
+  <div class="content-container">
+    <div class="content-heading">
+      <h1>404: Not Found</h1>
+      <p>Sorry, this page doesn't exist.</p>
+      <a href="/" class="homepage-btn">Go to homepage</a>
+    </div>
+  </div>
+</BaseLayout>
+
+<style lang="scss">
+  .content-heading {
+    text-align: center;
+  }
+
+  h1 {
+    font-family: var(--font-candy);
+    font-size: 60px;
+    margin-bottom: 0;
+  }
+
+  .homepage-btn {
+    background-color: var(--color-yellow);
+    color: var(--color-black);
+    padding: 7px 23px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+
+    &:hover {
+      background-color: var(--color-black);
+      color: #ffffff;
+    }
+  }
+</style>
