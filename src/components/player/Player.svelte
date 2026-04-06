@@ -120,7 +120,7 @@
     display: flex;
     background-color: #ffffff;
     border-radius: 20px;
-    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--box-shadow);
     margin: 20px auto;
     width: 100%;
     max-width: 311px;
@@ -249,7 +249,7 @@
       width: auto;
       padding: 6px;
       border-radius: 20px;
-      box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.08);
+      box-shadow: var(--box-shadow);
     }
 
     &--link {
