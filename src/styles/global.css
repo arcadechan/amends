@@ -59,8 +59,14 @@ main {
 a {
   color: var(--color-blue);
   font-weight: bold;
+  border-radius: 5px;
 }
 
 a:visited {
   color: var(--color-purple);
+}
+
+a:focus {
+  outline-offset: 5px;
+  outline: 4px solid var(--color-black);
 }
