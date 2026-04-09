@@ -30,14 +30,34 @@ badges:
   - label: NeoCities.org
     path: https://neocities.org/
     active: true
-    image: '@assets/settings/badges/0/src.gif'
+    image: '@assets/settings/badges/0/image.gif'
   - label: Miku Fan
     active: true
-    image: '@assets/settings/badges/1/src.png'
+    image: '@assets/settings/badges/1/image.png'
   - label: Join Mastodon
     path: https://joinmastodon.org/
     active: true
-    image: '@assets/settings/badges/2/src.gif'
+    image: '@assets/settings/badges/2/image.gif'
   - label: Death Grips
+    path: https://thirdworlds.net/
     active: true
-    image: '@assets/settings/badges/3/src.jpg'
+    image: '@assets/settings/badges/3/image.jpg'
+  - label: Plastic Love
+    path: https://www.youtube.com/watch?v=T_lC2O1oIew
+    active: true
+    image: '@assets/settings/badges/4/image.gif'
+  - label: Internet Archive
+    path: https://archive.org/
+    active: true
+    image: '@assets/settings/badges/5/image.gif'
+  - label: I survived Y2K
+    active: true
+    image: '@assets/settings/badges/6/image.gif'
+  - label: Ena - Dream BBQ
+    path: https://joelgc.com
+    active: true
+    image: '@assets/settings/badges/7/image.png'
+  - label: Krita
+    path: https://krita.org/en/
+    active: true
+    image: '@assets/settings/badges/8/image.png'
