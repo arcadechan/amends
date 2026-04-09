@@ -118,7 +118,7 @@
 <style lang="scss">
   .player {
     display: flex;
-    background-color: #ffffff;
+    background-color: var(--player-background);
     border-radius: 20px;
     box-shadow: var(--box-shadow);
     margin: 20px auto;
@@ -164,7 +164,7 @@
 
     &--seek-bar {
       width: 100%;
-      background-color: #989898;
+      background-color: rgba(0, 0, 0, 0.35);
       height: 7px;
       border-radius: 10px;
       margin-bottom: 10px;
@@ -244,7 +244,7 @@
       display: flex;
       gap: 15px;
       justify-content: center;
-      background-color: #ffffff;
+      background-color: var(--player-color);
       margin: 0 auto;
       width: auto;
       padding: 6px;

@@ -32,7 +32,7 @@ const {
     position: relative;
 
     &--container {
-      background-color: var(--color-yellow);
+      background-color: var(--color-main);
 
       h1 {
         margin: 0 auto;
@@ -43,25 +43,30 @@ const {
         font-weight: 400;
         line-height: 1;
 
+        &.normal,
+        &.large {
+          -webkit-text-stroke-color: var(--color-white);
+        }
+
         &.normal {
           font-size: 36px;
-          -webkit-text-stroke: 2px #ffffff;
+          -webkit-text-stroke-width: 2px;
         }
 
         &.large {
           font-size: 96px;
-          -webkit-text-stroke: 5px #ffffff;
+          -webkit-text-stroke-width: 5px;
         }
 
         @include screen("lg") {
           &.normal {
             font-size: 60px;
-            -webkit-text-stroke: 3px #ffffff;
+            -webkit-text-stroke-width: 3px;
           }
 
           &.large {
             font-size: 128px;
-            -webkit-text-stroke: 8px #ffffff;
+            -webkit-text-stroke-width: 8px;
           }
         }
       }
@@ -74,11 +79,11 @@ const {
       }
 
       &-one {
-        background-color: var(--color-sand);
+        background-color: var(--color-background);
       }
 
       &-two {
-        background-color: var(--color-yellow);
+        background-color: var(--color-main);
       }
     }
 

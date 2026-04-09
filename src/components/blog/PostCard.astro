@@ -66,8 +66,6 @@ const {
     overlayMix: hero?.overlay?.mix || "none",
   }}
 >
-  $black: var(--color-black);
-
   a {
     display: block;
     width: 100%;
@@ -78,11 +76,11 @@ const {
     overflow: hidden;
 
     &:focus {
-      outline: 4px solid var(--color-black);
+      outline: 4px solid var(--outline-color);
     }
 
     &:hover {
-      text-decoration: underline #ffffff 2px;
+      text-decoration: underline var(--color-white) 2px;
       text-underline-offset: 3px;
       transform: scale(101%);
     }
@@ -125,7 +123,7 @@ const {
           color-mix(in srgb, var(--color-black) 75%, transparent) 20%,
           color-mix(in srgb, var(--color-black) 30%, transparent)
         );
-        color: #ffffff;
+        color: var(--color-white);
         transition: all 2000s ease-in-out;
 
         h2,

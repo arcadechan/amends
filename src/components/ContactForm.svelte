@@ -199,7 +199,7 @@
   }
 
   form {
-    background-color: var(--color-yellow);
+    background-color: var(--color-main);
     padding: 20px;
     border-radius: 20px;
     display: flex;
@@ -235,8 +235,8 @@
     }
 
     button {
-      background-color: var(--color-black);
-      color: #ffffff;
+      background-color: var(--btn-alt-background);
+      color: var(--btn-alt-text);
       padding: 7px 23px;
       font-size: 20px;
       font-weight: bold;
@@ -248,8 +248,8 @@
       gap: 10px;
 
       &:hover {
-        background-color: white;
-        color: var(--color-black);
+        background-color: var(--btn-alt-background-hover);
+        color: var(--btn-alt-text-hover);
       }
     }
 
@@ -257,14 +257,14 @@
     textarea,
     button {
       &:focus {
-        outline: 2px solid var(--color-black);
+        outline: 2px solid var(--outline-color);
         outline-offset: 2px;
       }
     }
 
     button[type="submit"]:disabled {
-      background-color: #ffffff;
-      color: var(--color-black);
+      background-color: var(--btn-alt-background-hover);
+      color: var(--btn-alt-text-hover);
       cursor: auto;
     }
   }

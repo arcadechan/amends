@@ -60,7 +60,7 @@
     }
   }
   header {
-    background-color: var(--color-yellow);
+    background-color: var(--color-main);
     height: 75px;
     z-index: 999;
     top: 0;
@@ -112,7 +112,7 @@
       width: 31px;
       height: 4px;
       border-radius: 2px;
-      background: #1a1d27;
+      background: var(--outline-color);
       transition:
         transform 0.3s ease,
         opacity 0.3s ease;
@@ -141,7 +141,7 @@
     display: block;
     opacity: 0;
     visibility: hidden;
-    background-color: var(--color-yellow);
+    background-color: var(--color-main);
     transition: all 100ms ease-in-out;
 
     &.open {
@@ -172,7 +172,7 @@
       li {
         a {
           display: inline-block;
-          color: var(--color-black);
+          color: var(--color-text);
           font-size: 20px;
           font-weight: bold;
           text-decoration: none;
@@ -181,7 +181,7 @@
           border-radius: 10px;
 
           &:hover {
-            background-color: white;
+            background-color: var(--btn-alt-background-hover);
           }
         }
       }

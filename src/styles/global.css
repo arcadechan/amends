@@ -9,16 +9,43 @@
 }
 
 :root {
-  --color-sand: #FAF4EB;
+  /* Theme colors */
   --color-yellow: #FFDC8B;
+
+  /* Misc colors */
+  --color-white: #FFFFFF;
+  --color-sand: #FAF4EB;
   --color-black: #1A1D27;
   --color-red: #D23232;
   --color-green: #2D7B42;
   --color-blue: #1D76AA;
   --color-purple: #8019B3;
+
+  /* Fonts */
   --font-inter: 'Inter', sans-serif;
   --font-candy: 'Candy Beans', sans-serif;
+
+  /* Misc. */
   --box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.08);
+
+  /* Primaries */
+  --color-text: var(--color-black);
+  --color-background: var(--color-sand);
+  --color-main: var(--color-yellow);
+  --player-background: var(--color-white);
+  --outline-color: var(--color-black);
+
+  /* Primary Button */
+  --btn-primary-background: var(--color-yellow);
+  --btn-primary-text: var(--color-black);
+  --btn-primary-background-hover: var(--color-black);
+  --btn-primary-text-hover: var(--color-white);
+
+  /* Secondary Button */
+  --btn-alt-background: var(--color-black);
+  --btn-alt-text: var(--color-white);
+  --btn-alt-background-hover: var(--color-white);
+  --btn-alt-text-hover: var(--color-black);
 }
 
 * {
