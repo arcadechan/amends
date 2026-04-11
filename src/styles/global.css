@@ -35,8 +35,8 @@
   --color-main: var(--color-yellow);
   --player-background: var(--color-white);
   --outline-color: var(--color-black);
-  --color-banner-background: var(--color-black);
-  --color-banner-text: var(--color-neon-green);
+  --color-banner-background: var(--color-main);
+  --color-banner-text: var(--color-text);
 
   /* Primary Button */
   --btn-primary-background: var(--color-yellow);
