@@ -24,7 +24,7 @@ footer_navigation:
     active: true
 socials:
   soundcloud: https://soundcloud.com/
-  github: https://github.com/
+  github: https://github.com/arcadechan
   spotify: https://spotify.com/
 badges:
   - label: NeoCities.org
@@ -61,3 +61,13 @@ badges:
     path: https://krita.org/en/
     active: true
     image: '@assets/settings/badges/8/image.png'
+  - label: Made on GNU/Linux
+    active: true
+    image: '@assets/settings/badges/9/image.gif'
+  - label: Newgrounds
+    path: https://www.newgrounds.com/
+    active: true
+    image: '@assets/settings/badges/10/image.gif'
+  - label: PlayStation
+    active: true
+    image: '@assets/settings/badges/11/image.gif'
