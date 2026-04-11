@@ -20,6 +20,7 @@
   --color-green: #2D7B42;
   --color-blue: #1D76AA;
   --color-purple: #8019B3;
+  --color-neon-green: #33D17A;
 
   /* Fonts */
   --font-inter: 'Inter', sans-serif;
@@ -34,6 +35,8 @@
   --color-main: var(--color-yellow);
   --player-background: var(--color-white);
   --outline-color: var(--color-black);
+  --color-banner-background: var(--color-black);
+  --color-banner-text: var(--color-neon-green);
 
   /* Primary Button */
   --btn-primary-background: var(--color-yellow);
