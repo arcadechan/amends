@@ -128,7 +128,7 @@
 
     &--album-art {
       height: auto;
-      width: 125px;
+      width: 133px;
       min-width: 125px;
       min-height: 125px;
 
@@ -136,6 +136,8 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+        border-radius: 20px;
+        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
       }
     }
 
@@ -244,7 +246,7 @@
       display: flex;
       gap: 15px;
       justify-content: center;
-      background-color: var(--player-color);
+      background-color: var(--player-background);
       margin: 0 auto;
       width: auto;
       padding: 6px;
