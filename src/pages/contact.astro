@@ -13,59 +13,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <ContactForm client:load accessKey={import.meta.env.PUBLIC_WEB3_KEY} />
   </div>
 </BaseLayout>
-<!-- <form
-      id="form"
-      action="https://api.web3forms.com/submit"
-      method="POST"
-      class="needs-validation"
-      data-astro-reload
-      novalidate
-    >
-      <input
-        type="hidden"
-        name="access_key"
-        value={import.meta.env.PUBLIC_WEB3_KEY}
-      />
-
-      <input
-        type="checkbox"
-        class="hidden"
-        style="display:none"
-        name="botcheck"
-      />
-      <div>
-        <label for="email_address" class="sr-only">Email Address</label>
-        <input
-          id="email_address"
-          type="email"
-          placeholder="Email Address"
-          name="email"
-          required
-          class=""
-          aria-describedby="email-error"
-          aria-invalid="false"
-        />
-        <div id="email-error" class="error" role="alert" aria-live="polite">
-        </div>
-      </div>
-      <div>
-        <label for="message" class="sr-only">Your Message</label>
-        <textarea
-          id="message"
-          name="message"
-          required
-          placeholder="Your Message"
-          aria-describedby="message-error"
-          aria-invalid="false"></textarea>
-        <div id="message-error" class="error" role="alert" aria-live="polite">
-        </div>
-      </div>
-
-      <div class="h-captcha" data-captcha="true"></div>
-
-      <button type="submit">Send Message</button>
-      <div id="result"></div>
-    </form> -->
 
 <style lang="scss">
   .contact-heading h1,
