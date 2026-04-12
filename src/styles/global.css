@@ -98,6 +98,8 @@ html.dark {
 }
 
 html.comic {
+  --font-inter: 'Courier New', 'Courier', sans-serif;
+
   /* Misc */
   --button-radius: 0px;
   --element-radius: 0px;
