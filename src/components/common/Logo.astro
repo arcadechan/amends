@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
-import logo from "../../../public/logo/logo-black.png";
+import Blacklogo from "../../../public/logo/logo-black.png";
+import Yellowlogo from "../../../public/logo/logo-yellow.png";
 
 interface Props {
   width?: number | `${number}`;
@@ -12,9 +13,12 @@ const { width, height, loading } = Astro.props;
 ---
 
 <Image
-  src={logo}
+  id="amends-logo"
+  src={Blacklogo}
   alt=""
   width={width || 300}
   height={height || 54}
   loading={loading || "lazy"}
+  data-dark={Yellowlogo.src}
+  data-light={Blacklogo.src}
 />

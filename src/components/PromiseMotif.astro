@@ -1,15 +1,18 @@
 ---
 import { Image } from "astro:assets";
-import promise from "../../public/assets/promise-black.png";
+import BlackPromise from "../../public/assets/promise-black.png";
+import YellowPromise from "../../public/assets/promise-yellow.png";
 ---
 
 <Image
-  src={promise}
+  src={BlackPromise}
   alt=""
   aria-hidden="true"
   width="144"
   height="44"
   loading="lazy"
+  data-dark={YellowPromise.src}
+  data-light={BlackPromise.src}
 />
 
 <style>

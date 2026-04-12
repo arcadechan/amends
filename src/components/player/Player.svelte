@@ -116,10 +116,19 @@
 </div>
 
 <style lang="scss">
+  :global(html.comic) {
+    .player {
+      border: 3px solid black;
+      &--album-art {
+        border-right: 3px solid black;
+      }
+    }
+  }
+
   .player {
     display: flex;
     background-color: var(--player-background);
-    border-radius: 20px;
+    border-radius: var(--element-radius);
     box-shadow: var(--box-shadow);
     margin: 20px auto;
     width: 100%;
@@ -136,7 +145,7 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        border-radius: 20px;
+        border-radius: var(--element-radius);
         box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
       }
     }
@@ -168,7 +177,7 @@
       width: 100%;
       background-color: rgba(0, 0, 0, 0.35);
       height: 7px;
-      border-radius: 10px;
+      border-radius: var(--button-radius);
       margin-bottom: 10px;
       margin-top: auto;
 
@@ -176,7 +185,7 @@
         background-color: black;
         height: 100%;
         width: 0;
-        border-radius: 10px;
+        border-radius: var(--button-radius);
       }
     }
 
@@ -250,7 +259,7 @@
       margin: 0 auto;
       width: auto;
       padding: 6px;
-      border-radius: 20px;
+      border-radius: var(--element-radius);
       box-shadow: var(--box-shadow);
     }
 

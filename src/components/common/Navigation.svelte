@@ -48,15 +48,27 @@
 </header>
 
 <style lang="scss">
+  :global(html.comic) {
+    #main-menu {
+      a {
+        &:hover {
+          background-color: var(--color-black);
+          color: var(--color-white);
+        }
+      }
+    }
+  }
+
   .header-container {
     width: 100%;
     height: 100%;
-    max-width: 1260px;
+    max-width: 954px;
     margin: 0 auto;
 
     @include screen("md") {
       display: flex;
       justify-content: space-between;
+      padding: 22px 48px;
     }
   }
   header {
@@ -69,14 +81,6 @@
 
     &.scrolled {
       box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    @include screen("md") {
-      padding: 22px 60px;
-    }
-
-    @include screen("lg") {
-      padding: 22px 120px;
     }
   }
 
@@ -165,7 +169,6 @@
         flex-direction: row;
         justify-content: flex-end;
         height: 100%;
-        gap: 40px;
         padding: 0px;
       }
 
@@ -178,10 +181,11 @@
           text-decoration: none;
           text-transform: uppercase;
           padding: 7px 23px;
-          border-radius: 10px;
+          border-radius: var(--button-radius);
 
           &:hover {
             background-color: var(--btn-alt-background-hover);
+            color: var(--btn-alt-text-hover);
           }
         }
       }
@@ -191,6 +195,8 @@
       padding: 0;
       opacity: 1;
       visibility: visible;
+      position: relative;
+      right: -24px;
     }
   }
 </style>

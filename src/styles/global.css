@@ -28,11 +28,15 @@
 
   /* Misc. */
   --box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.08);
+  --button-radius: 10px;
+  --element-radius: 20px;
 
   /* Primaries */
+  --color-stroke: var(--color-white);
   --color-text: var(--color-black);
   --color-background: var(--color-sand);
   --color-main: var(--color-yellow);
+  --color-input: var(--color-white);
   --player-background: var(--color-white);
   --outline-color: var(--color-black);
   --color-banner-background: var(--color-main);
@@ -57,9 +61,70 @@
 }
 
 html {
-  background-color: var(--color-sand);
-  color: var(--color-black);
+  background-color: var(--color-background);
+  color: var(--color-text);
 }
+
+html.dark {
+  --color-black: #000000;
+  --color-alt-black: #1A1D27;
+  --color-red: #E06363;
+  --color-green: #63C67E;
+  --color-blue: #77BFE8;
+  --color-purple: #9B86C1;
+
+  /* Primaries */
+  --color-stroke: var(--color-black);
+  --color-text: var(--color-yellow);
+  --color-background: var(--color-alt-black);
+  --color-main: var(--color-black);
+  --color-input: var(--color-white);
+  --player-background: var(--color-white);
+  --outline-color: var(--color-white);
+  --color-banner-background: var(--color-black);
+  --color-banner-text: var(--color-yellow);
+
+  /* Primary Button */
+  --btn-primary-background: var(--color-yellow);
+  --btn-primary-text: var(--color-black);
+  --btn-primary-background-hover: var(--color-black);
+  --btn-primary-text-hover: var(--color-white);
+
+  /* Secondary Button */
+  --btn-alt-background: var(--color-yellow);
+  --btn-alt-text: var(--color-black);
+  --btn-alt-background-hover: var(--color-white);
+  --btn-alt-text-hover: var(--color-black);
+}
+
+html.comic {
+  /* Misc */
+  --button-radius: 0px;
+  --element-radius: 0px;
+  --box-shadow: none;
+
+  /* Primaries */
+  --color-background: var(--color-white);
+  --color-main: var(--color-white);
+
+   /* Primary Button */
+  --btn-primary-background: var(--color-black);
+  --btn-primary-text: var(--color-white);
+  --btn-primary-background-hover: var(--color-white);
+  --btn-primary-text-hover: var(--color-black);
+
+  /* Secondary Button */
+  --btn-alt-background: var(--color-black);
+  --btn-alt-text: var(--color-white);
+  --btn-alt-background-hover: var(--color-white);
+  --btn-alt-text-hover: var(--color-black);
+}
+
+html.comic img {
+  filter: contrast(50) grayscale(1);
+  mix-blend-mode: luminosity;
+}
+
 
 body {
   margin: 0;
@@ -89,7 +154,7 @@ main {
 a {
   color: var(--color-blue);
   font-weight: bold;
-  border-radius: 5px;
+  border-radius: var(--button-radius);
 }
 
 a:visited {

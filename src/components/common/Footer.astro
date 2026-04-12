@@ -4,6 +4,7 @@ import Logo from "./Logo.astro";
 import { getEntry } from "astro:content";
 import type { ImageInputFormat } from "astro";
 import LastFm from "../LastFm.svelte";
+import ThemePicker from "./ThemePicker.svelte";
 
 const SOCIAL_LABELS: Record<string, string> = {
   soundcloud: "SoundCloud",
@@ -62,6 +63,7 @@ const lastFmKey = import.meta.env.PUBLIC_LASTFM_KEY;
       </ul>
     )
   }
+  <ThemePicker client:load />
   {
     Object.entries(settings.data.socials ?? {}).length > 0 && (
       <ul class="platforms">
@@ -125,8 +127,9 @@ const lastFmKey = import.meta.env.PUBLIC_LASTFM_KEY;
     justify-content: center;
     align-items: center;
     border-top: 3px solid black;
-    margin: 32px 32px 0;
+    margin: 32px 48px;
     padding: 47px 0;
+    color: var(--color-text);
 
     .logo-link {
       line-height: 1;
@@ -157,7 +160,7 @@ const lastFmKey = import.meta.env.PUBLIC_LASTFM_KEY;
       list-style: none;
       display: flex;
       background-color: var(--color-white);
-      border-radius: 20px;
+      border-radius: var(--element-radius);
       padding: 6px;
       gap: 16px;
       box-shadow: var(--box-shadow);
@@ -171,6 +174,10 @@ const lastFmKey = import.meta.env.PUBLIC_LASTFM_KEY;
           img {
             height: 100%;
             width: auto;
+          }
+
+          &:hover {
+            transform: scale(1.2);
           }
         }
       }
@@ -191,6 +198,15 @@ const lastFmKey = import.meta.env.PUBLIC_LASTFM_KEY;
       a {
         border-radius: 0px;
       }
+    }
+
+    @include screen("md") {
+      max-width: 954px;
+      padding: 47px 48px;
+    }
+
+    @include screen("lg") {
+      margin: 32px auto;
     }
   }
 </style>

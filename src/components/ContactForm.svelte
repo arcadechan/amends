@@ -201,7 +201,7 @@
   form {
     background-color: var(--color-main);
     padding: 20px;
-    border-radius: 20px;
+    border-radius: var(--element-radius);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -216,9 +216,10 @@
 
     input,
     textarea {
+      background-color: var(--color-input);
       font-size: 14px;
       border: 2px solid #1a1d27;
-      border-radius: 20px;
+      border-radius: var(--element-radius);
       padding: 10px 20px;
       width: 100%;
       min-width: 100%;
@@ -240,12 +241,13 @@
       padding: 7px 23px;
       font-size: 20px;
       font-weight: bold;
-      border-radius: 10px;
+      border-radius: var(--button-radius);
       border: none;
       cursor: pointer;
       display: flex;
       align-items: center;
       gap: 10px;
+      margin-top: 15px;
 
       &:hover {
         background-color: var(--btn-alt-background-hover);
