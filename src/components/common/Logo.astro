@@ -7,15 +7,16 @@ interface Props {
   width?: number | `${number}`;
   height?: number | `${number}`;
   loading?: "lazy" | "eager";
+  alt?: string;
 }
 
-const { width, height, loading } = Astro.props;
+const { width, height, loading, alt } = Astro.props;
 ---
 
 <Image
   id="amends-logo"
   src={Blacklogo}
-  alt=""
+  alt={alt || ""}
   width={width || 300}
   height={height || 54}
   loading={loading || "lazy"}
