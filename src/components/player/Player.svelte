@@ -49,7 +49,13 @@
 <div class="player" role="region" aria-label="Music player">
   {#if albumArtData}
     <div class="player--album-art">
-      <img src={albumArtData.asset.src} alt="" width={125} height={125} />
+      <img
+        src={albumArtData.asset.src}
+        alt=""
+        width={125}
+        height={125}
+        loading="lazy"
+      />
     </div>
   {/if}
   <div class="player--main">
@@ -74,11 +80,29 @@
           aria-label={isPlaying ? "Pause" : "Play"}
         >
           {#if isBuffering}
-            <img src="/icons/loading.svg" alt="" width={30} height={30} />
+            <img
+              src="/icons/loading.svg"
+              alt=""
+              width={30}
+              height={30}
+              loading="lazy"
+            />
           {:else if isPlaying}
-            <img src="/icons/pause.png" alt="" width={30} height={30} />
+            <img
+              src="/icons/pause.png"
+              alt=""
+              width={30}
+              height={30}
+              loading="lazy"
+            />
           {:else}
-            <img src="/icons/play.svg" alt="" width={30} height={30} />
+            <img
+              src="/icons/play.svg"
+              alt=""
+              width={30}
+              height={30}
+              loading="lazy"
+            />
           {/if}
         </button>
 
@@ -95,7 +119,13 @@
           onclick={handlePlay}
           aria-label="Play"
         >
-          <img src="/icons/play.svg" alt="" width={30} height={30} />
+          <img
+            src="/icons/play.svg"
+            alt=""
+            width={30}
+            height={30}
+            loading="lazy"
+          />
         </button>
       {/if}
     </div>
@@ -106,7 +136,13 @@
   <div class="platform-links--container">
     {#each Object.entries(platformLinks ?? {}) as [platform, link]}
       <a href={link} target="_blank" class="platform-links--link">
-        <img src={`/icons/${platform}.png`} alt="" width={40} height={40} />
+        <img
+          src={`/icons/${platform}.png`}
+          alt=""
+          width={40}
+          height={40}
+          loading="lazy"
+        />
         <span class="sr-only">
           {platform}
         </span>

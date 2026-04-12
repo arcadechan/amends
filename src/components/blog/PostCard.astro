@@ -46,7 +46,7 @@ const {
 
 <a href={`/blog/${id}`}>
   <article>
-    <Image src={hero?.image} alt={hero.alt || ""} />
+    <Image src={hero?.image} alt={hero.alt || ""} loading="eager" />
     {hero?.overlay?.color && <div class="post-card--overlay" />}
     <div class="post-card--title">
       <h2>{title}</h2>

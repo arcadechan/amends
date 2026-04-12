@@ -124,6 +124,7 @@
             alt=""
             width={64}
             height={64}
+            loading="lazy"
           />
         </div>
         <div class="last-fm--track-info">
