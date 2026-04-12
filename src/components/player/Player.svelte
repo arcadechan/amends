@@ -5,6 +5,7 @@
     playback,
     userPlayIntent,
   } from "../../stores/player";
+  import "../../styles/comic-halfpoint.scss";
 
   interface Props {
     trackId: string;
@@ -19,7 +20,14 @@
         format: string;
       };
     };
-    platformLinks?: Record<string, string>;
+    platformLinks?: {
+      spotify: string;
+      youtube: string;
+      appleMusic: string;
+      deezer: string;
+      bandcamp: string;
+      soundcloud: string;
+    };
   }
 
   let { trackId, trackName, trackArtist, albumArtData, platformLinks }: Props =
@@ -43,6 +51,25 @@
 
   function handlePause() {
     window.dispatchEvent(new CustomEvent("spotify:pause"));
+  }
+
+  function platformToLabel(platform: string) {
+    switch (platform) {
+      case "spotify":
+        return "Spotify";
+      case "youtube":
+        return "Youtube";
+      case "appleMusic":
+        return "Apple Music";
+      case "deezer":
+        return "Deezer";
+      case "bandcamp":
+        return "Bandcamp";
+      case "soundcloud":
+        return "SoundCloud";
+      default:
+        return platform;
+    }
   }
 </script>
 
@@ -135,7 +162,12 @@
 <div class="platform-links">
   <div class="platform-links--container">
     {#each Object.entries(platformLinks ?? {}) as [platform, link]}
-      <a href={link} target="_blank" class="platform-links--link">
+      <a
+        href={link}
+        target="_blank"
+        class="platform-links--link"
+        title={`Listen on: ${platformToLabel(platform)}`}
+      >
         <img
           src={`/icons/${platform}.png`}
           alt=""
@@ -155,6 +187,9 @@
   :global(html.comic) {
     .player {
       border: 3px solid black;
+      border-radius: 0px;
+      position: relative;
+
       &--album-art {
         border-right: 3px solid black;
       }
@@ -164,18 +199,18 @@
   .player {
     display: flex;
     background-color: var(--player-background);
-    border-radius: var(--element-radius);
+    border-radius: 50px var(--element-radius) var(--element-radius) 50px;
     box-shadow: var(--box-shadow);
     margin: 20px auto;
     width: 100%;
     max-width: 311px;
-    overflow: hidden;
 
     &--album-art {
       height: auto;
       width: 133px;
       min-width: 125px;
       min-height: 125px;
+      display: block;
 
       img {
         width: 100%;
@@ -198,6 +233,7 @@
       line-height: 1;
       margin-top: 0;
       margin-bottom: 5px;
+      color: var(--player-text);
     }
 
     &--track-name {
@@ -231,7 +267,6 @@
       gap: 20px;
       position: relative;
       height: 35px;
-      // margin-top: auto;
     }
 
     &--toggle-btn {
@@ -255,6 +290,7 @@
       right: 0;
       margin-bottom: 0;
       font-size: 12px;
+      color: var(--player-text);
 
       span {
         line-height: 1;

@@ -38,6 +38,7 @@
   --color-main: var(--color-yellow);
   --color-input: var(--color-white);
   --player-background: var(--color-white);
+  --player-text: var(--color-black);
   --outline-color: var(--color-black);
   --color-banner-background: var(--color-main);
   --color-banner-text: var(--color-text);
@@ -80,6 +81,7 @@ html.dark {
   --color-main: var(--color-black);
   --color-input: var(--color-white);
   --player-background: var(--color-white);
+  --player-text: var(--color-black);
   --outline-color: var(--color-white);
   --color-banner-background: var(--color-black);
   --color-banner-text: var(--color-yellow);
@@ -123,7 +125,7 @@ html.comic {
 }
 
 html.comic img {
-  filter: contrast(50) grayscale(1);
+  filter: brightness(1.5) saturate(1);
   mix-blend-mode: luminosity;
 }
 

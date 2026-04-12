@@ -1,6 +1,7 @@
 ---
 import type { ImageInputFormat } from "astro";
 import { Image } from "astro:assets";
+import "../../styles/comic-halfpoint.scss";
 
 interface Props {
   id: string;
@@ -44,7 +45,7 @@ const {
 } = Astro.props;
 ---
 
-<a href={`/blog/${id}`}>
+<a href={`/blog/${id}`} class="post-card">
   <article>
     <Image src={hero?.image} alt={hero.alt || ""} loading="eager" />
     {hero?.overlay?.color && <div class="post-card--overlay" />}
@@ -80,7 +81,7 @@ const {
     }
   }
 
-  a {
+  .post-card {
     display: block;
     width: 100%;
     height: 100%;
