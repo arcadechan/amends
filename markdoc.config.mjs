@@ -1,6 +1,16 @@
 import { defineMarkdocConfig, component } from '@astrojs/markdoc/config';
 
 export default defineMarkdocConfig({
+  nodes: {
+    image: {
+      render: component('./src/components/MarkdocImage.astro'),
+      attributes: {
+        src: { type: String },
+        alt: { type: String },
+        title: { type: String }
+      }
+    },
+  },
   tags: {
     Player: {
         render: component('./src/components/player/PlayerIsland.astro'),

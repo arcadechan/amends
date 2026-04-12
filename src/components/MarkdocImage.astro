@@ -1,0 +1,14 @@
+---
+import { Image } from "astro:assets";
+const { src, alt, title } = Astro.props;
+
+const isRemote = src.startsWith("http");
+---
+
+{
+  isRemote ? (
+    <img src={src} alt={alt} title={title} loading="lazy" />
+  ) : (
+    <Image src={src} alt={alt} title={title} inferSize={true} loading="lazy" />
+  )
+}
