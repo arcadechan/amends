@@ -1,6 +1,7 @@
 ---
 import Header from "../components/common/Header.astro";
 import Footer from "../components/common/Footer.astro";
+import KeystaticButton from "../components/KeystaticButton.astro";
 import "../styles/global.css";
 
 const { pageTitle } = Astro.props;
@@ -45,5 +46,6 @@ const { pageTitle } = Astro.props;
       observer.observe(document.documentElement, { attributes: true });
       swapTheme();
     </script>
+    {import.meta.env.DEV && <KeystaticButton />}
   </body>
 </html>

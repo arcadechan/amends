@@ -1,0 +1,34 @@
+---
+import { Image } from "astro:assets";
+import Logo from "../../public/icons/keystatic-icon.png";
+---
+
+<a href="/keystatic">
+  <Image src={Logo} alt="" width={Logo.width} height={Logo.height} />
+</a>
+
+<style lang="scss">
+  a {
+    display: block;
+    position: fixed;
+    z-index: 0;
+    bottom: 30px;
+    right: 30px;
+    z-index: 999;
+    width: 50px;
+    height: 50px;
+    background-color: #ffffff;
+    border-radius: 100%;
+    padding: 10px;
+    box-shadow: 0 0 10px 5px rgba(107, 147, 255, 0.634);
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+</style>
