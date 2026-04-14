@@ -1,0 +1,36 @@
+---
+import type { ImageInputFormat } from "astro";
+
+interface Props {
+  opengraph: {
+    type?: "article";
+    image?: {
+      src: string;
+      width: number;
+      height: number;
+      format: ImageInputFormat;
+    };
+    published_time?: string;
+    article?: string;
+    tags?: string[];
+  };
+}
+
+const { opengraph } = Astro.props;
+---
+
+{
+  opengraph?.published_time && (
+    <meta property="og:published_time" content={opengraph.published_time} />
+  )
+}
+{
+  opengraph?.article && (
+    <meta property="og:article" content={opengraph.article} />
+  )
+}
+
+{
+  opengraph?.tags &&
+    opengraph.tags.map((tag) => <meta property="og:tag" content={tag} />)
+}

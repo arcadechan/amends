@@ -26,7 +26,13 @@ const { hero, title, titleSettings, publicationDate } = post.data;
 const hasPlayerComponents = /\{%\s*Player\b/.test(post.body);
 ---
 
-<BaseLayout pageTitle={post.data.title}>
+<BaseLayout
+  pageTitle={post.data.title}
+  opengraph={{
+    type: 'article',
+    published_time: publicationDate
+  }}
+>
   <Hero {...hero} />
   <Title {...{ title, titleSettings }} />
   <Body>

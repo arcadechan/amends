@@ -23,7 +23,13 @@ const { Content } = await render(page);
 const { hero, title, titleSettings } = page.data;
 ---
 
-<BaseLayout pageTitle={page.data.title}>
+<BaseLayout
+  pageTitle={page.data.title}
+  opengraph={{
+    type: "website",
+    image: hero,
+  }}
+>
   <Hero {...hero} />
   <Title {...{ title, titleSettings }} />
   <Body>

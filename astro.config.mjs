@@ -6,10 +6,12 @@ import react from '@astrojs/react'
 import markdoc from "@astrojs/markdoc";
 import keystatic from '@keystatic/astro';
 
+const production = process.env.NODE_ENV === "production";
+
 // https://astro.build/config
 export default defineConfig({
-  site: "https://example.com",
-  integrations: [svelte(), react(), markdoc(), keystatic()],
+  site: 'https://localhost:4321',
+  integrations: [svelte(), react(), markdoc(), ...(production ? [] : [keystatic()])],
   markdown: {
     shikiConfig: {
       theme: 'dracula'
