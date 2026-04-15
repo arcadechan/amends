@@ -8,17 +8,85 @@ import PromiseMotif from "../../components/PromiseMotif.astro";
 import Date from "../../components/page/Date.astro";
 import PlayerIsland from "../../components/player/PlayerIsland.astro";
 import SpotifyIframe from "../../components/player/SpotifyIframe.svelte"
+import type { ImageInputFormat } from "astro";
+import PostCategory from "../../components/blog/PostCategory.astro";
+import PostTags from "../../components/blog/PostTags.astro";
 
 export async function getStaticPaths() {
-  const allPosts = await getCollection("blog");
+  const [posts, categories, tags] = await Promise.all([
+    getCollection('blog', ({ data }) => !data.draft),
+    getCollection('categories'),
+    getCollection('tags'),
+  ])
 
-  return allPosts.map((post) => ({
+  const categoryMap = Object.fromEntries(categories.map(c => [c.id, c]))
+  const tagMap = Object.fromEntries(tags.map(t => [t.id, t]))
+
+  return posts.map((post) => ({
     params: { slug: post.id },
-    props: { post },
+    props: {
+      post,
+      category: categoryMap[post.data.category] ?? null,
+      tags: (post.data.tags ?? []).map(slug => tagMap[slug]).filter(Boolean),
+    },
   }));
 }
 
-const { post }: { post: any } = Astro.props;
+interface Props {
+  post: {
+    data: {
+      hero: {
+        image: {
+          src: string;
+          width: number;
+          height: number;
+          format: ImageInputFormat;
+        };
+        alt?: string;
+        fit: "cover" | "contain";
+        overlay?: {
+          color: string;
+          opacity?: number;
+          mix?:
+            | "none"
+            | "color"
+            | "screen"
+            | "lighten"
+            | "color-dodge"
+            | "color-burn"
+            | "soft-light"
+            | "difference"
+            | "exclusion"
+            | "luminosity";
+        };
+        attribution?: {
+          name: string;
+          url: string;
+        };
+      }
+      title: string;
+      titleSettings: {
+        type: "bars-below-text" | "bars-behind-text";
+        size: "normal" | "large";
+      };
+      publicationDate: Date;
+    }
+  }
+  category: {
+    id: string;
+    data: {
+      name: string;
+    }
+  }
+  tags: {
+    id: string;
+    data: {
+      name: string;
+    }
+  }[]
+}
+
+const { post, category, tags }: any = Astro.props;
 const { Content } = await render(post);
 
 const { hero, title, titleSettings, publicationDate } = post.data;
@@ -44,6 +112,8 @@ const hasPlayerComponents = /\{%\s*Player\b/.test(post.body);
     />
   </Body>
   <PromiseMotif />
+  <PostCategory {...category}/>
+  <PostTags {tags}/>
   {
     hasPlayerComponents && (
       <script

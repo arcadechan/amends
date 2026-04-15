@@ -104,9 +104,25 @@ const blog = defineCollection({
         titleSettings,
         subtitle: z.string().optional(),
         publicationDate: z.coerce.date().optional(),
-        hero: hero(image)
+        hero: hero(image),
+        category: z.string(),
+        tags: z.array(z.string()).optional()
     })
 });
+
+const categories = defineCollection({
+    loader: glob({ base: './src/content/categories', pattern: '**/*.{yaml,yml}'}),
+    schema: z.object({
+        name: z.string()
+    })
+})
+
+const tags = defineCollection({
+    loader: glob({ base: './src/content/tags', pattern: '**/*.{yaml,yml}'}),
+    schema: z.object({
+        name: z.string()
+    })
+})
 
 const pages = defineCollection({
     loader: glob({ base: './src/content/pages', pattern: '**/*.{md,mdx,mdoc}' }),
@@ -130,6 +146,8 @@ export const collections = {
     homepage,
     settings,
     blog,
+    categories,
+    tags,
     pages,
     media
 }

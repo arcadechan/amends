@@ -252,6 +252,41 @@ export default config({
             })
           }
         }),
+        category: fields.relationship({
+          label: 'Category',
+          collection: 'categories',
+          validation: { isRequired: true },
+        }),
+        tags: fields.array(
+          fields.relationship({
+            label: 'Tag',
+            collection: 'tags',
+          }),
+          {
+            label: 'Tags',
+            itemLabel: (props) => props.value ?? 'Select tag(s)',
+          }
+        ),
+      },
+    }),
+     categories: collection({
+      label: 'Categories',
+      slugField: 'name',
+      path: 'src/content/categories/*',
+      schema: {
+        name: fields.slug({
+          name: { label: 'Name' },
+        }),
+      },
+    }),
+    tags: collection({
+      label: 'Tags',
+      slugField: 'name',
+      path: 'src/content/tags/*',
+      schema: {
+        name: fields.slug({
+          name: { label: 'Name' },
+        }),
       },
     }),
     pages: collection({

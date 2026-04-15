@@ -1,0 +1,44 @@
+---
+interface Props {
+  tags: {
+    id: string;
+    data: {
+      name: string;
+    };
+  }[];
+}
+
+const { tags } = Astro.props;
+---
+
+{
+  tags.length > 0 && (
+    <div class="content-container">
+      <ul>
+        {tags.map((tag) => {
+          return (
+            <li>
+              <a href={`/tags/${tag.id}`}>&num;{tag.id}</a>
+              {` `}
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  )
+}
+
+<style lang="scss">
+  ul {
+    list-style-type: none;
+    padding-left: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+
+    ul {
+      padding: 5px 7px;
+    }
+  }
+</style>

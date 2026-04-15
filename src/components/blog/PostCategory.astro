@@ -1,0 +1,25 @@
+---
+interface Props {
+  id: string;
+  data: {
+    name: string;
+  };
+}
+
+const {
+  id,
+  data: { name },
+} = Astro.props;
+---
+
+<div class="content-container">
+  <p aria-label="Category">
+    &bull; {name} &bull;
+  </p>
+</div>
+
+<style>
+  p {
+    text-align: center;
+  }
+</style>
