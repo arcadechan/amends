@@ -63,7 +63,7 @@ const lastFmKey = import.meta.env.PUBLIC_LASTFM_KEY;
       </ul>
     )
   }
-  <ThemePicker client:load />
+  <ThemePicker client:visible />
   {
     Object.entries(settings.data.socials ?? {}).length > 0 && (
       <ul class="platforms">

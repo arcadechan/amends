@@ -21,12 +21,12 @@
       };
     };
     platformLinks?: {
-      spotify: string;
-      youtube: string;
-      appleMusic: string;
-      deezer: string;
-      bandcamp: string;
-      soundcloud: string;
+      spotify?: string;
+      youtube?: string;
+      appleMusic?: string;
+      deezer?: string;
+      bandcamp?: string;
+      soundcloud?: string;
     };
   }
 

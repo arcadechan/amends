@@ -30,4 +30,4 @@ const { trackAlbumArt }: Props = Astro.props;
 const albumArt = await getEntry("media", trackAlbumArt);
 ---
 
-<Player client:load {...{ ...Astro.props, albumArtData: albumArt.data }} />
+<Player client:visible {...{ ...Astro.props, albumArtData: albumArt.data }} />
