@@ -20,11 +20,12 @@ export async function getStaticPaths() {
 const { page }: { page: any } = Astro.props;
 const { Content } = await render(page);
 
-const { hero, title, titleSettings } = page.data;
+const { hero, title, titleSettings, excerpt } = page.data;
 ---
 
 <BaseLayout
-  pageTitle={page.data.title}
+  pageTitle={title}
+  pageExcerpt={excerpt}
   opengraph={{
     type: "website",
     image: hero,

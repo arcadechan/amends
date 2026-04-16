@@ -10,12 +10,12 @@ export async function getStaticPaths({ paginate }) {
   const allPosts = await getCollection("blog", ({ data }) => {
     return data.draft !== true;
   });
-  return paginate(allPosts, { pageSize: 2 });
+  return paginate(allPosts, { pageSize: 10 });
 }
 
 const { page }: { page: Page } = Astro.props;
 
-const pageTitle = `Page ${page.currentPage} | Blog`;
+const pageTitle = `Blog - Page ${page.currentPage}`;
 ---
 
 <BaseLayout pageTitle={pageTitle}>

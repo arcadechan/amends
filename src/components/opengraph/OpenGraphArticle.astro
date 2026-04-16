@@ -10,7 +10,7 @@ interface Props {
       height: number;
       format: ImageInputFormat;
     };
-    published_time?: string;
+    publishedTime?: Date;
     article?: string;
     tags?: string[];
   };
@@ -20,8 +20,11 @@ const { opengraph } = Astro.props;
 ---
 
 {
-  opengraph?.published_time && (
-    <meta property="og:published_time" content={opengraph.published_time} />
+  opengraph?.publishedTime && (
+    <meta
+      property="og:published_time"
+      content={opengraph.publishedTime.toISOString()}
+    />
   )
 }
 {

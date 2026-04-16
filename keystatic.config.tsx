@@ -79,6 +79,10 @@ export default config({
         motto: fields.text({
           label: 'Site Motto',
         }),
+        metaDescription: fields.text({
+          label: 'Meta Description',
+          multiline: true
+        }),
         navigation: fields.array(
           fields.object({
             label: fields.text({ label: 'Label' }),
@@ -252,6 +256,10 @@ export default config({
             })
           }
         }),
+        excerpt: fields.text({
+          label: 'Excerpt',
+          multiline: true
+        }),
         category: fields.relationship({
           label: 'Category',
           collection: 'categories',
@@ -269,7 +277,7 @@ export default config({
         ),
       },
     }),
-     categories: collection({
+    categories: collection({
       label: 'Categories',
       slugField: 'name',
       path: 'src/content/categories/*',
@@ -372,6 +380,10 @@ export default config({
           label: 'Hero'
         }),
         content: fields.markdoc({ label: 'Content' }),
+        excerpt: fields.text({
+          label: 'Excerpt',
+          multiline: true
+        }),
       }
     }),
     media: collection({

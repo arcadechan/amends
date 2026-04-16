@@ -35,6 +35,7 @@ const settings = defineCollection({
     loader: glob({ base: './src/content/settings', pattern: '**/*.{yaml,yml,md}' }),
     schema: ({ image }) => z.object({
         motto: z.string().optional(),
+        metaDescription: z.string(),
         navigation: z.array(
             z.object({
                 label: z.string(),
@@ -105,6 +106,7 @@ const blog = defineCollection({
         subtitle: z.string().optional(),
         publicationDate: z.coerce.date().optional(),
         hero: hero(image),
+        excerpt: z.string().optional(),
         category: z.string(),
         tags: z.array(z.string()).optional()
     })
@@ -130,7 +132,8 @@ const pages = defineCollection({
         draft: z.boolean().default(false),
         title: z.string(),
         titleSettings,
-        hero: hero(image)
+        hero: hero(image),
+        excerpt: z.string().optional(),
     })
 });
 

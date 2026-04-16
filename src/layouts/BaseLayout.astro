@@ -4,7 +4,9 @@ import Footer from "../components/common/Footer.astro";
 import KeystaticButton from "../components/KeystaticButton.astro";
 import type { ImageInputFormat } from "astro";
 import "../styles/global.css";
+import DefaultOpengraphImage from "../../public/logo/amends-og.jpeg";
 import Article from "../components/opengraph/OpenGraphArticle.astro";
+import { getEntry } from "astro:content";
 
 type AstroImage = {
   src: string;
@@ -21,24 +23,34 @@ type OpenGraphWebsite = {
 type OpenGraphArticle = {
   type?: "article";
   image?: AstroImage;
-  published_time?: string;
+  publishedTime?: Date;
   article?: string;
   tags?: string[];
 };
 
 interface Props {
   pageTitle: string;
-  pageDescription?: string;
+  pageExcerpt?: string;
   opengraph?: OpenGraphWebsite | OpenGraphArticle;
 }
 
-const { pageTitle, pageDescription, opengraph } = Astro.props;
+const settings = await getEntry("settings", "index");
+const { metaDescription } = settings.data;
+
+const { pageTitle, pageExcerpt, opengraph } = Astro.props;
 
 const domain = import.meta.env.DEV ? Astro.url.origin : Astro.site.origin;
 const path = Astro.url.pathname;
 
-const description =
-  pageDescription || "Amends is a personal blog for the curious.";
+const description = pageExcerpt || metaDescription;
+
+let image = "";
+
+if (opengraph?.image) {
+  image = new URL(opengraph.image.src, Astro.site).toString();
+} else {
+  image = new URL(DefaultOpengraphImage.src, Astro.site).toString();
+}
 ---
 
 <html lang="en">
@@ -58,6 +70,7 @@ const description =
     <meta property="og:description" content={description} />
     <meta property="og:type" content={opengraph?.type || "website"} />
     <meta property="og:url" content={`${domain}${path}`} />
+    <meta property="og:image" content={image} />
     {opengraph?.type === "article" && <Article opengraph={opengraph} />}
     <!-- END: Open Graph -->
     <script is:inline>

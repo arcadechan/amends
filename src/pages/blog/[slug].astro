@@ -70,7 +70,9 @@ interface Props {
         size: "normal" | "large";
       };
       publicationDate: Date;
-    }
+      excerpt: string
+    },
+    body: string
   }
   category: {
     id: string;
@@ -86,7 +88,7 @@ interface Props {
   }[]
 }
 
-const { post, category, tags }: any = Astro.props;
+const { post, category, tags } = Astro.props;
 const { Content } = await render(post);
 
 const { hero, title, titleSettings, publicationDate } = post.data;
@@ -96,9 +98,13 @@ const hasPlayerComponents = /\{%\s*Player\b/.test(post.body);
 
 <BaseLayout
   pageTitle={post.data.title}
+  pageExcerpt={post.data?.excerpt}
   opengraph={{
     type: 'article',
-    published_time: publicationDate
+    image: hero.image,
+    publishedTime: publicationDate,
+    article: category.data.name,
+    tags: tags.map(({ id }) => id ),
   }}
 >
   <Hero {...hero} />
