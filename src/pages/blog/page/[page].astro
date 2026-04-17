@@ -5,6 +5,7 @@ import PostCardGrid from "@components/blog/PostCardGrid.astro";
 import PostCard from "@components/blog/PostCard.astro";
 import Pagination from "@components/blog/Pagination.astro";
 import type { GetStaticPathsOptions } from "astro";
+import ContentContainer from "@components/common/ContentContainer.astro";
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const allPosts = await getCollection("blog", ({ data }) => {
@@ -19,7 +20,7 @@ const pageTitle = `Blog - Page ${page.currentPage}`;
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-  <div class="content-container">
+  <ContentContainer>
     <h1>
       Blog<br />
       <small>Page {page.currentPage}</small>
@@ -28,7 +29,7 @@ const pageTitle = `Blog - Page ${page.currentPage}`;
       {page.data.map((post) => <PostCard post={post} />)}
     </PostCardGrid>
     <Pagination url={page.url} />
-  </div>
+  </ContentContainer>
 </BaseLayout>
 
 <style>

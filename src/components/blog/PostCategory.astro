@@ -1,4 +1,5 @@
 ---
+import ContentContainer from "@components/common/ContentContainer.astro";
 import type { CollectionEntry } from "astro:content";
 
 interface Props extends CollectionEntry<"categories"> {}
@@ -8,11 +9,11 @@ const {
 } = Astro.props;
 ---
 
-<div class="content-container">
+<ContentContainer>
   <p aria-label="Category">
     &bull; {name} &bull;
   </p>
-</div>
+</ContentContainer>
 
 <style>
   p {

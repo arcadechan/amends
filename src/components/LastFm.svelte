@@ -79,7 +79,7 @@
 {#if recentTrack}
   <a href={recentTrack.url} target="_blank">
     <div class="last-fm">
-      <div class="last-fm--inner-container content-container">
+      <div class="last-fm--inner-container">
         <div class="last-fm--album-art">
           <img
             src={recentTrack.image[2]["#text"]}
@@ -143,7 +143,10 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
+      width: 100%;
+      max-width: 954px;
       padding: 8px;
+      margin: 0 auto;
     }
 
     &--album-art {

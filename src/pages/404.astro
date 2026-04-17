@@ -1,15 +1,16 @@
 ---
+import ContentContainer from "@components/common/ContentContainer.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 ---
 
 <BaseLayout pageTitle="Page Not Found">
-  <div class="content-container">
+  <ContentContainer>
     <div class="content-heading">
       <h1>404: Not Found</h1>
       <p>Sorry, this page doesn't exist.</p>
       <a href="/" class="homepage-btn">Go to homepage</a>
     </div>
-  </div>
+  </ContentContainer>
 </BaseLayout>
 
 <style lang="scss">

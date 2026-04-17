@@ -1,4 +1,5 @@
 ---
+import ContentContainer from "@components/common/ContentContainer.astro";
 import type { CollectionEntry } from "astro:content";
 
 interface Props {
@@ -10,7 +11,7 @@ const { tags } = Astro.props;
 
 {
   tags.length > 0 && (
-    <div class="content-container">
+    <ContentContainer>
       <ul>
         {tags.map((tag) => {
           return (
@@ -21,7 +22,7 @@ const { tags } = Astro.props;
           );
         })}
       </ul>
-    </div>
+    </ContentContainer>
   )
 }
 

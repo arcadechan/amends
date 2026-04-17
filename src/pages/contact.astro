@@ -1,17 +1,18 @@
 ---
+import ContentContainer from "@components/common/ContentContainer.astro";
 import ContactForm from "@components/ContactForm.svelte";
 import BaseLayout from "@layouts/BaseLayout.astro";
 ---
 
 <BaseLayout pageTitle="Contact">
-  <div class="content-container">
+  <ContentContainer>
     <div class="contact-heading">
       <h1>Contact</h1>
       <p>Uh, surely something's on your mind if you're here?</p>
     </div>
 
     <ContactForm client:load accessKey={import.meta.env.PUBLIC_WEB3_KEY} />
-  </div>
+  </ContentContainer>
 </BaseLayout>
 
 <style lang="scss">

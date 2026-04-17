@@ -139,13 +139,6 @@ main {
   width: 100%;
 }
 
-.content-container {
-  width: 100%;
-  max-width: 954px;
-  padding: 0 2rem;
-  margin: 0 auto;
-}
-
 .sr-only {
   position:absolute;
   left:-10000px;
