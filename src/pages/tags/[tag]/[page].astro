@@ -31,7 +31,10 @@ const pageTitle = `Tag: ${tag.data.name} - Page ${page.currentPage}`;
 
 <BaseLayout pageTitle={pageTitle}>
   <div class="content-container">
-    <h1>{tag.data.name}</h1>
+    <h1>
+      {tag.data.name}<br />
+      <small>Page {page.currentPage}</small>
+    </h1>
     <PostCardGrid mobileColumns={1}>
       {page.data.map((post) => <PostCard post={post} />)}
     </PostCardGrid>
@@ -41,6 +44,11 @@ const pageTitle = `Tag: ${tag.data.name} - Page ${page.currentPage}`;
 
 <style>
   h1 {
+    font-size: 40px;
     text-align: center;
+  }
+
+  small {
+    font-size: 16px;
   }
 </style>
