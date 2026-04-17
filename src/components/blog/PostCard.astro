@@ -1,48 +1,17 @@
 ---
-import type { ImageInputFormat } from "astro";
 import { Image } from "astro:assets";
-import "../../styles/comic-halfpoint.scss";
+import "@styles/comic-halfpoint.scss";
+import type { CollectionEntry } from "astro:content";
 
 interface Props {
-  id: string;
-  data: {
-    title: string;
-    subtitle?: string;
-    hero: {
-      image: {
-        src: string;
-        width: number;
-        height: number;
-        format: ImageInputFormat;
-      };
-      alt?: string;
-      overlay?: {
-        color: string;
-        opacity?: number;
-        mix?:
-          | "none"
-          | "color"
-          | "screen"
-          | "lighten"
-          | "color-dodge"
-          | "color-burn"
-          | "soft-light"
-          | "difference"
-          | "exclusion"
-          | "luminosity";
-      };
-      attribution?: {
-        name: string;
-        url: string;
-      };
-    };
-  };
+  post: CollectionEntry<"blog">;
 }
 
+const { post } = Astro.props;
 const {
   id,
-  data: { title, subtitle, hero },
-} = Astro.props;
+  data: { hero, title, subtitle },
+} = post;
 ---
 
 <a href={`/blog/${id}`} class="post-card">

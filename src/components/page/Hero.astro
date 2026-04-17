@@ -1,37 +1,11 @@
 ---
-import type { ImageInputFormat } from "astro";
 import { Image } from "astro:assets";
-import "../../styles/comic-halfpoint.scss";
+import "@styles/comic-halfpoint.scss";
+import type { CollectionEntry } from "astro:content";
 
-export interface Props {
-  image: {
-    src: string;
-    width: number;
-    height: number;
-    format: ImageInputFormat;
-  };
-  alt?: string;
-  fit: "cover" | "contain";
-  overlay?: {
-    color: string;
-    opacity?: number;
-    mix?:
-      | "none"
-      | "color"
-      | "screen"
-      | "lighten"
-      | "color-dodge"
-      | "color-burn"
-      | "soft-light"
-      | "difference"
-      | "exclusion"
-      | "luminosity";
-  };
-  attribution?: {
-    name: string;
-    url: string;
-  };
-}
+type Props =
+  | CollectionEntry<"pages">["data"]["hero"]
+  | CollectionEntry<"blog">["data"]["hero"];
 
 const { image, alt, fit = "cover", overlay, attribution } = Astro.props;
 
@@ -55,7 +29,7 @@ const overlayMix = (overlay && overlay?.mix) || "none";
             loading="eager"
           />
         </div>
-        {attribution?.name && attribution.url && (
+        {attribution?.name && attribution?.url && (
           <div class="page-hero--attribution">
             <a href={attribution.url} target="_blank">
               <small>Image credit: {attribution.name}</small>

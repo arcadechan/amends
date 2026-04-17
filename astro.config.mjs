@@ -24,6 +24,18 @@ export default defineConfig({
           additionalData: `@use "${path.resolve('src/styles/index')}" as *;`,
         }
       }
+    },
+    resolve: {
+      alias: {
+        '@public': path.resolve('./public'),
+        "@components": path.resolve('./src/components'),
+        "@layouts": path.resolve('./src/layouts'),
+        "@pages": path.resolve('./src/pages'),
+        "@scripts": path.resolve('./src/scripts'),
+        "@stores": path.resolve('./src/stores'),
+        "@styles": path.resolve('./src/styles'),
+        "@type": path.resolve('./src/types'),
+      }
     }
   }
 });

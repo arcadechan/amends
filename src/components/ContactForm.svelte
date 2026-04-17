@@ -17,7 +17,10 @@
   let resultMessage: string = $state("");
   let resultType: string = $state("");
 
-  let errors: { email: string; message: string } = $state({
+  let errors: {
+    email: string;
+    message: string;
+  } = $state({
     email: "",
     message: "",
   });
@@ -35,16 +38,17 @@
         isMobile ? "compact" : "normal",
       );
 
-      window as WindowWithHCaptcha;
-
-      if (typeof (window as any)?.hcaptcha === "function") {
+      if (typeof (window as WindowWithHCaptcha)?.hcaptcha === "function") {
         (window as any).hcaptcha.reset();
       }
     }
   });
 
   // On blur: clear error if valid, refresh message if still invalid
-  function handleBlur(field, key) {
+  function handleBlur(
+    field: HTMLTextAreaElement | HTMLInputElement,
+    key: "email" | "message",
+  ) {
     if (field.validity.valid) {
       errors[key] = "";
     } else {
@@ -52,7 +56,7 @@
     }
   }
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: Event) {
     isSubmitting = true;
     e.preventDefault();
 

@@ -1,16 +1,15 @@
 ---
 import { getCollection, render } from "astro:content";
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import Hero from "../../components/page/Hero.astro";
-import Title from "../../components/page/Title.astro";
-import Body from "../../components/page/Body.astro";
-import PromiseMotif from "../../components/PromiseMotif.astro";
-import Date from "../../components/page/Date.astro";
-import PlayerIsland from "../../components/player/PlayerIsland.astro";
-import SpotifyIframe from "../../components/player/SpotifyIframe.svelte"
-import type { ImageInputFormat } from "astro";
-import PostCategory from "../../components/blog/PostCategory.astro";
-import PostTags from "../../components/blog/PostTags.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Hero from "@components/page/Hero.astro";
+import Title from "@components/page/Title.astro";
+import Body from "@components/page/Body.astro";
+import PromiseMotif from "@components/PromiseMotif.astro";
+import Date from "@components/page/Date.astro";
+import PlayerIsland from "@components/player/PlayerIsland.astro";
+import SpotifyIframe from "@components/player/SpotifyIframe.svelte"
+import PostCategory from "@components/blog/PostCategory.astro";
+import PostTags from "@components/blog/PostTags.astro";
 
 export async function getStaticPaths() {
   const [posts, categories, tags] = await Promise.all([
@@ -32,68 +31,12 @@ export async function getStaticPaths() {
   }));
 }
 
-interface Props {
-  post: {
-    data: {
-      hero: {
-        image: {
-          src: string;
-          width: number;
-          height: number;
-          format: ImageInputFormat;
-        };
-        alt?: string;
-        fit: "cover" | "contain";
-        overlay?: {
-          color: string;
-          opacity?: number;
-          mix?:
-            | "none"
-            | "color"
-            | "screen"
-            | "lighten"
-            | "color-dodge"
-            | "color-burn"
-            | "soft-light"
-            | "difference"
-            | "exclusion"
-            | "luminosity";
-        };
-        attribution?: {
-          name: string;
-          url: string;
-        };
-      }
-      title: string;
-      titleSettings: {
-        type: "bars-below-text" | "bars-behind-text";
-        size: "normal" | "large";
-      };
-      publicationDate: Date;
-      excerpt: string
-    },
-    body: string
-  }
-  category: {
-    id: string;
-    data: {
-      name: string;
-    }
-  }
-  tags: {
-    id: string;
-    data: {
-      name: string;
-    }
-  }[]
-}
-
 const { post, category, tags } = Astro.props;
 const { Content } = await render(post);
 
 const { hero, title, titleSettings, publicationDate } = post.data;
 
-const hasPlayerComponents = /\{%\s*Player\b/.test(post.body);
+const hasPlayerComponents = /\{%\s*Player\b/.test(post?.body || '');
 ---
 
 <BaseLayout

@@ -1,10 +1,10 @@
 ---
 import { getCollection, render } from "astro:content";
-import BaseLayout from "../layouts/BaseLayout.astro";
-import Hero from "../components/page/Hero.astro";
-import Title from "../components/page/Title.astro";
-import Body from "../components/page/Body.astro";
-import PromiseMotif from "../components/PromiseMotif.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Hero from "@components/page/Hero.astro";
+import Title from "@components/page/Title.astro";
+import Body from "@components/page/Body.astro";
+import PromiseMotif from "@components/PromiseMotif.astro";
 
 export async function getStaticPaths() {
   const allPages = await getCollection("pages", ({ data }) => {
@@ -17,7 +17,7 @@ export async function getStaticPaths() {
   }));
 }
 
-const { page }: { page: any } = Astro.props;
+const { page } = Astro.props;
 const { Content } = await render(page);
 
 const { hero, title, titleSettings, excerpt } = page.data;
@@ -28,7 +28,7 @@ const { hero, title, titleSettings, excerpt } = page.data;
   pageExcerpt={excerpt}
   opengraph={{
     type: "website",
-    image: hero,
+    image: hero.image,
   }}
 >
   <Hero {...hero} />

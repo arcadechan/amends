@@ -5,9 +5,9 @@
     active: boolean;
   };
 
-  import { trapFocus } from "../../scripts/attachments.svelte";
+  import { trapFocus } from "@scripts/attachments.svelte";
 
-  let { children, links }: { children: any; links: Links[] } = $props();
+  let { children, links }: { children: any; links?: Links[] } = $props();
 
   let isOpen = $state(false);
   let scrollY = $state(0);
@@ -32,17 +32,19 @@
       </button>
     </div>
     <nav id="main-menu" class:open={isOpen}>
-      <ul>
-        {#each links as link}
-          {#if link.active}
-            <li>
-              <a href={link.path}>
-                {link.label}
-              </a>
-            </li>
-          {/if}
-        {/each}
-      </ul>
+      {#if links}
+        <ul>
+          {#each links as link}
+            {#if link.active}
+              <li>
+                <a href={link.path}>
+                  {link.label}
+                </a>
+              </li>
+            {/if}
+          {/each}
+        </ul>
+      {/if}
     </nav>
   </div>
 </header>

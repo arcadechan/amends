@@ -1,11 +1,8 @@
 ---
+import type { CollectionEntry } from "astro:content";
+
 interface Props {
-  tags: {
-    id: string;
-    data: {
-      name: string;
-    };
-  }[];
+  tags: CollectionEntry<"tags">[];
 }
 
 const { tags } = Astro.props;

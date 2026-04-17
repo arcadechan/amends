@@ -1,51 +1,13 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  import type { LastFmTrack, LastFmRecentTracksResponse } from "@type/lastfm";
 
   interface Props {
     apiKey: string;
   }
 
-  type LastFmTrack = {
-    "@attr": {
-      nowplaying: string;
-    };
-    album: {
-      "#text": string;
-      mbid: string;
-    };
-    artist: {
-      "#text": string;
-      mbid: string;
-    };
-    date: {
-      "#text": string;
-      uts: string;
-    };
-    image: {
-      "#text": string;
-      size: "small" | "medium" | "large" | "extralarge";
-    }[];
-    mbid: string;
-    name: string;
-    streamable: string;
-    url: string;
-  };
-
-  type LastFmRecentTracksResponse = {
-    recenttracks?: {
-      "@attr": {
-        page: string;
-        perPage: string;
-        total: string;
-        totalPages: string;
-        user: string;
-      };
-      track?: LastFmTrack[];
-    };
-  };
-
   const { apiKey }: Props = $props();
-  let recentTrack: LastFmTrack = $state(null);
+  let recentTrack: LastFmTrack | null = $state(null);
 
   const CACHE_KEY = "lastfm_recent_track";
   const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes

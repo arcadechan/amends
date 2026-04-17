@@ -1,32 +1,13 @@
 ---
-import Header from "../components/common/Header.astro";
-import Footer from "../components/common/Footer.astro";
-import KeystaticButton from "../components/KeystaticButton.astro";
+import Header from "@components/common/Header.astro";
+import Footer from "@components/common/Footer.astro";
+import KeystaticButton from "@components/KeystaticButton.astro";
 import type { ImageInputFormat } from "astro";
-import "../styles/global.css";
-import DefaultOpengraphImage from "../../public/logo/amends-og.jpeg";
-import Article from "../components/opengraph/OpenGraphArticle.astro";
+import "@styles/global.css";
+import DefaultOpengraphImage from "@public/logo/amends-og.jpeg";
+import Article from "@components/opengraph/OpenGraphArticle.astro";
 import { getEntry } from "astro:content";
-
-type AstroImage = {
-  src: string;
-  width: number;
-  height: number;
-  format: ImageInputFormat;
-};
-
-type OpenGraphWebsite = {
-  type?: "website";
-  image?: AstroImage;
-};
-
-type OpenGraphArticle = {
-  type?: "article";
-  image?: AstroImage;
-  publishedTime?: Date;
-  article?: string;
-  tags?: string[];
-};
+import type { OpenGraphArticle, OpenGraphWebsite } from "@type/opengraph";
 
 interface Props {
   pageTitle: string;
@@ -34,12 +15,12 @@ interface Props {
   opengraph?: OpenGraphWebsite | OpenGraphArticle;
 }
 
-const settings = await getEntry("settings", "index");
+const settings = await getEntry("settings", "index")!;
 const { metaDescription } = settings.data;
 
 const { pageTitle, pageExcerpt, opengraph } = Astro.props;
 
-const domain = import.meta.env.DEV ? Astro.url.origin : Astro.site.origin;
+const domain = import.meta.env.DEV ? Astro.url.origin : Astro?.site?.origin;
 const path = Astro.url.pathname;
 
 const description = pageExcerpt || metaDescription;
@@ -90,11 +71,19 @@ if (opengraph?.image) {
         const theme = document.documentElement.getAttribute("class");
         const isDark = theme === "dark";
 
-        document
-          .querySelectorAll("img[data-light][data-dark]")
-          .forEach((img: HTMLImageElement) => {
-            img.src = isDark ? img.dataset.dark : img.dataset.light;
+        const images = document.querySelectorAll(
+          "img[data-light][data-dark]",
+        ) as NodeListOf<HTMLImageElement>;
+
+        if (images.length > 0) {
+          images.forEach((img) => {
+            let imgSrc = isDark ? img.dataset.dark : img.dataset.light;
+
+            if (!imgSrc) imgSrc = img.src;
+
+            img.src = imgSrc;
           });
+        }
       };
 
       const observer = new MutationObserver(() => swapTheme());

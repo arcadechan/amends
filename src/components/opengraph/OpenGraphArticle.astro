@@ -1,19 +1,8 @@
 ---
-import type { ImageInputFormat } from "astro";
+import type { OpenGraphArticle } from "@type/opengraph";
 
 interface Props {
-  opengraph: {
-    type?: "article";
-    image?: {
-      src: string;
-      width: number;
-      height: number;
-      format: ImageInputFormat;
-    };
-    publishedTime?: Date;
-    article?: string;
-    tags?: string[];
-  };
+  opengraph: OpenGraphArticle;
 }
 
 const { opengraph } = Astro.props;

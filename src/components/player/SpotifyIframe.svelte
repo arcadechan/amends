@@ -5,7 +5,7 @@
     isLoadingTrack,
     playback,
     userPlayIntent,
-  } from "../../stores/player.ts";
+  } from "@stores/player.ts";
 
   interface PlaybackUpdate {
     playingURI: string;
@@ -15,7 +15,7 @@
     position: number;
   }
 
-  let containerEl: HTMLDivElement = $state();
+  let containerEl: HTMLDivElement | undefined = $state();
 
   const resetPlaybackState = () => {
     playback.set({

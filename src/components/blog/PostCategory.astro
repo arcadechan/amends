@@ -1,13 +1,9 @@
 ---
-interface Props {
-  id: string;
-  data: {
-    name: string;
-  };
-}
+import type { CollectionEntry } from "astro:content";
+
+interface Props extends CollectionEntry<"categories"> {}
 
 const {
-  id,
   data: { name },
 } = Astro.props;
 ---

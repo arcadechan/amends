@@ -4,34 +4,17 @@
     isLoadingTrack,
     playback,
     userPlayIntent,
-  } from "../../stores/player";
-  import "../../styles/comic-halfpoint.scss";
+  } from "@stores/player";
+  import "@styles/comic-halfpoint.scss";
+  import type { PlayerPropsWithAlbumArt } from "@type/player";
 
-  interface Props {
-    trackId: string;
-    trackName: string;
-    trackArtist: string;
-    albumArtData?: {
-      title: string;
-      asset: {
-        src: string;
-        width: string;
-        height: string;
-        format: string;
-      };
-    };
-    platformLinks?: {
-      spotify?: string;
-      youtube?: string;
-      appleMusic?: string;
-      deezer?: string;
-      bandcamp?: string;
-      soundcloud?: string;
-    };
-  }
-
-  let { trackId, trackName, trackArtist, albumArtData, platformLinks }: Props =
-    $props();
+  let {
+    trackId,
+    trackName,
+    trackArtist,
+    albumArtData,
+    platformLinks,
+  }: PlayerPropsWithAlbumArt = $props();
 
   let isActive = $derived($activeTrackId === trackId);
   let isPlaying = $derived(isActive && $userPlayIntent && !$isLoadingTrack);

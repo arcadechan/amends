@@ -1,58 +1,42 @@
 ---
 import { getEntry } from "astro:content";
-import PostCard from "../components/blog/PostCard.astro";
-import PostCardGrid from "../components/blog/PostCardGrid.astro";
-import BaseLayout from "../layouts/BaseLayout.astro";
+import PostCard from "@components/blog/PostCard.astro";
+import PostCardGrid from "@components/blog/PostCardGrid.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
 const pageTitle = "Homepage";
-
-type Heading = {
-  discriminant: "heading";
-  value: {
-    text?: string;
-    type: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-  };
-};
-
-type PostCardGrid = {
-  discriminant: "postCardGrid";
-  value: {
-    posts: string[];
-    desktopColumns?: number;
-    mobileColumns?: number;
-  };
-};
-
-type Block = Heading | PostCardGrid;
 
 const homepage = await getEntry("homepage", "index");
 
-const { blocks }: { blocks: Block[] } = homepage?.data;
+const blocks = homepage?.data?.blocks;
 ---
 
 <BaseLayout pageTitle={pageTitle}>
   <div class="content-container">
     {
-      blocks.map((block) => {
-        if (block.discriminant === "postCardGrid") {
-          return (
-            <PostCardGrid
-              mobileColumns={block.value.mobileColumns ?? 1}
-              desktopColumns={block.value.desktopColumns ?? 1}
-            >
-              {block.value.posts.map(async (postId) => {
-                const post = await getEntry("blog", postId);
-                return <PostCard {...post} />;
-              })}
-            </PostCardGrid>
-          );
-        }
+      blocks &&
+        blocks.map((block) => {
+          if (block.discriminant === "postCardGrid") {
+            return (
+              <PostCardGrid
+                mobileColumns={block.value.mobileColumns ?? 1}
+                desktopColumns={block.value.desktopColumns ?? 1}
+              >
+                {block.value.posts.map(async (postId) => {
+                  const post = await getEntry("blog", postId);
+                  if (post) {
+                    return <PostCard post={post} />;
+                  }
+                })}
+              </PostCardGrid>
+            );
+          }
 
-        if (block.discriminant === "heading") {
-          const HeadingTag = block.value.type;
+          if (block.discriminant === "heading") {
+            const HeadingTag = block.value.type;
 
-          return <HeadingTag>{block.value.text}</HeadingTag>;
-        }
-      })
+            return <HeadingTag>{block.value.text}</HeadingTag>;
+          }
+        })
     }
   </div>
 </BaseLayout>
