@@ -1,0 +1,46 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import PostCardGrid from "@components/blog/PostCardGrid.astro";
+import PostCard from "@components/blog/PostCard.astro";
+import Pagination from "@components/blog/Pagination.astro";
+import type { GetStaticPathsOptions } from "astro";
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const allTags = await getCollection("tags");
+  const allPosts = await getCollection("blog", ({ data }) => {
+    return data.draft !== true;
+  });
+
+  return allTags.flatMap((tag) => {
+    const taggedPosts = allPosts.filter(
+      (post) => post.data?.tags && post.data.tags?.includes(tag.id),
+    );
+
+    return paginate(taggedPosts, {
+      params: { tag: tag.id },
+      props: { tag },
+      pageSize: 10,
+    });
+  });
+}
+
+const { page, tag } = Astro.props;
+const pageTitle = `Tag: ${tag.data.name} - Page ${page.currentPage}`;
+---
+
+<BaseLayout pageTitle={pageTitle}>
+  <div class="content-container">
+    <h1>{tag.data.name}</h1>
+    <PostCardGrid mobileColumns={1}>
+      {page.data.map((post) => <PostCard post={post} />)}
+    </PostCardGrid>
+    <Pagination url={page.url} />
+  </div>
+</BaseLayout>
+
+<style>
+  h1 {
+    text-align: center;
+  }
+</style>

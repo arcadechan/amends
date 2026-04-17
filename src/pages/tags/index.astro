@@ -1,0 +1,47 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import { getEntries } from "astro:content";
+
+const tags = await getCollection("tags");
+---
+
+<BaseLayout pageTitle="Tags">
+  <div class="content-container">
+    <h1>Tags</h1>
+    {
+      tags && tags.length > 0 && (
+        <ul>
+          {tags.map((tag) => (
+            <li>
+              <a href={`/tags/${tag.id}/1`}>&num;{tag.id}</a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </div>
+</BaseLayout>
+
+<style lang="scss">
+  h1 {
+    text-align: center;
+    font-family: var(--font-candy);
+    font-size: 40px;
+    margin-bottom: 0;
+  }
+
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 10px;
+    row-gap: 5px;
+    justify-content: center;
+
+    li {
+      //   display: inline;
+    }
+  }
+</style>

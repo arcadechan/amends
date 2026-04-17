@@ -23,6 +23,9 @@ footer_navigation:
   - label: Credits
     path: /credits/
     active: true
+  - label: Tags
+    path: /tags
+    active: true
 socials:
   soundcloud: https://soundcloud.com/
   github: https://github.com/arcadechan
