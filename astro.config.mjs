@@ -10,7 +10,7 @@ const production = process.env.NODE_ENV === "production";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://localhost:4321',
+  site: production ? 'https://amends.blog' : 'https://localhost:4321',
   integrations: [svelte(), react(), markdoc(), ...(production ? [] : [keystatic()])],
   markdown: {
     shikiConfig: {
