@@ -5,9 +5,9 @@ import { getEntry } from "astro:content";
 import ThemePicker from "./ThemePicker.svelte";
 
 const SOCIAL_LABELS: Record<string, string> = {
-  soundcloud: "SoundCloud",
   github: "GitHub",
   spotify: "Spotify",
+  soundcloud: "SoundCloud",
 };
 
 const settings = await getEntry("settings", "index")!;

@@ -110,9 +110,9 @@ export default config({
           }
         ),
         socials: fields.object({
-          soundcloud: fields.url({ label: 'Soundcloud' }),
           github: fields.url({ label: 'Github' }),
-          spotify: fields.url({ label: 'Spotify' })
+          spotify: fields.url({ label: 'Spotify' }),
+          soundcloud: fields.url({ label: 'Soundcloud' }),
         }, {
           label: 'Socials'
         }),

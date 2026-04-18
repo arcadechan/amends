@@ -51,9 +51,9 @@ const settings = defineCollection({
             })
         ),
         socials: z.object({
-            soundcloud: z.string().optional(),
             github: z.string().optional(),
-            spotify: z.string().optional()
+            spotify: z.string().optional(),
+            soundcloud: z.string().optional()
         }),
         badges: z.array(
             z.object({
