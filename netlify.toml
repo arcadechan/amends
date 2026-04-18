@@ -1,0 +1,9 @@
+[[redirects]]
+  from = "/*"
+  to = "/:splat"
+    [redirects.rate_limit]
+    action = "rewrite" # optional, will default to "rate_limit"
+    to = "/429" # only needed if action is "rewrite"
+    # 50 requests per minute
+    window_limit = 50
+    window_size = 60

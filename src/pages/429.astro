@@ -1,0 +1,42 @@
+---
+import RateLimitLayout from "@layouts/RateLimitLayout.astro";
+import ContentContainer from "@components/common/ContentContainer.astro";
+---
+
+<RateLimitLayout pageTitle="429 Too Many Requests">
+  <ContentContainer>
+    <div class="content-heading">
+      <h1>429: Too Many Requests</h1>
+      <p>Slow down, please :&apos;(</p>
+      <a href="/" class="homepage-btn">Go to homepage</a>
+    </div>
+  </ContentContainer>
+</RateLimitLayout>
+
+<style lang="scss">
+  .content-heading {
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 60px;
+    text-align: center;
+  }
+
+  .homepage-btn {
+    background-color: var(--btn-primary-background);
+    color: var(--btn-primary-text);
+    padding: 7px 23px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: var(--button-radius);
+    cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
+
+    &:hover {
+      background-color: var(--btn-primary-background-hover);
+      color: var(--btn-primary-text-hover);
+    }
+  }
+</style>

@@ -1,14 +1,9 @@
 ---
 import Header from "@components/common/Header.astro";
 import Footer from "@components/common/Footer.astro";
-import KeystaticButton from "@components/KeystaticButton.astro";
-import type { ImageInputFormat } from "astro";
 import "@styles/global.css";
-import DefaultOpengraphImage from "@public/logo/amends-og.jpeg";
-import Article from "@components/opengraph/OpenGraphArticle.astro";
 import { getEntry } from "astro:content";
 import type { OpenGraphArticle, OpenGraphWebsite } from "@type/opengraph";
-import LastFm from "@components/LastFm.svelte";
 
 interface Props {
   pageTitle: string;
@@ -25,16 +20,6 @@ const domain = import.meta.env.DEV ? Astro.url.origin : Astro?.site?.origin;
 const path = Astro.url.pathname;
 
 const description = pageExcerpt || metaDescription;
-
-let image = "";
-
-if (opengraph?.image) {
-  image = new URL(opengraph.image.src, Astro.site).toString();
-} else {
-  image = new URL(DefaultOpengraphImage.src, Astro.site).toString();
-}
-
-const lastFmKey = import.meta.env.PUBLIC_LASTFM_KEY;
 ---
 
 <html lang="en">
@@ -54,14 +39,7 @@ const lastFmKey = import.meta.env.PUBLIC_LASTFM_KEY;
     <meta property="og:description" content={description} />
     <meta property="og:type" content={opengraph?.type || "website"} />
     <meta property="og:url" content={`${domain}${path}`} />
-    <meta property="og:image" content={image} />
-    {opengraph?.type === "article" && <Article opengraph={opengraph} />}
     <!-- END: Open Graph -->
-    <script is:inline>
-      const theme = localStorage.getItem("theme");
-      if (theme !== "light")
-        document.documentElement.setAttribute("class", theme);
-    </script>
   </head>
   <body>
     <Header />
@@ -69,31 +47,5 @@ const lastFmKey = import.meta.env.PUBLIC_LASTFM_KEY;
       <slot />
     </main>
     <Footer />
-    <LastFm client:load apiKey={lastFmKey} />
-    <script>
-      const swapTheme = () => {
-        const theme = document.documentElement.getAttribute("class");
-        const isDark = theme === "dark";
-
-        const images = document.querySelectorAll(
-          "img[data-light][data-dark]",
-        ) as NodeListOf<HTMLImageElement>;
-
-        if (images.length > 0) {
-          images.forEach((img) => {
-            let imgSrc = isDark ? img.dataset.dark : img.dataset.light;
-
-            if (!imgSrc) imgSrc = img.src;
-
-            img.src = imgSrc;
-          });
-        }
-      };
-
-      const observer = new MutationObserver(() => swapTheme());
-      observer.observe(document.documentElement, { attributes: true });
-      swapTheme();
-    </script>
-    {import.meta.env.DEV && <KeystaticButton />}
   </body>
 </html>
