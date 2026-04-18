@@ -1,0 +1,52 @@
+---
+draft: false
+title: Hello!
+titleSettings:
+  type: bars-below-text
+  size: normal
+publicationDate: 2026-04-14
+hero:
+  image: '@assets/blog/hello/hero/image.jpg'
+  fit: cover
+  overlay:
+    mix: none
+  attribution:
+    name: Richard Tao
+    url: https://unsplash.com/@richardtao28
+excerpt: >-
+  Welcome to Amends! The name's Arcade, and I'm a web developer! Learn about the
+  site's purpose.
+category: uncategorized
+tags:
+  - astro
+  - keystatic
+  - rant
+  - svelte
+---
+Welcome to Amends! The name's Arcade, and I'm a web developer! This site was originally built with [Next JS 13 (App Router beta)](https://nextjs.org/), [Tina CMS](https://tina.io), & [Tailwind CSS](https://tailwindcss.com/), and many other tools. It has now been rewritten in [Astro](https://astro.build/), [Svelte](https://svelte.dev/), and [Keystatic (CMS)](https://keystatic.com/) You should check them out! You can also check out this project on Github: [https://github.com/arcadechan/amends](https://github.com/arcadechan/amends)
+
+I've often used Next JS, but felt it was far too heavy for most projects I was tackling. It basically became my hammer and every project looked like a nail. I decided to shift to lighter weight tools that felt more blog-centric, and that's how I landed on Astro.
+
+As for the blog itself the contents won't just be web development. My other interests include music, art, film, gaming, and writing.
+
+But, being a web developer, all things return to development, surely. So stay on the lookout for any cool one-off pages or projects on the site, like this audio player I built to talk about music!
+
+{% Player
+   trackId="6fY7HhTNXty7kQYGmvzfEy"
+   trackArtist="Say Sue Me"
+   trackName="Elevate Me Later"
+   trackAlbumArt="say-sue-me-10-album"
+   platformLinks={spotify: "https://open.spotify.com/track/6fY7HhTNXty7kQYGmvzfEy", youtube: "https://www.youtube.com/watch?v=d9tNuhRFZDk", appleMusic: "https://music.apple.com/us/song/elevate-me-later/1648300180", deezer: "https://link.deezer.com/s/32Ytn2LtMtP12rSNXOfoN", bandcamp: "https://saysueme.bandcamp.com/track/elevate-me-later", soundcloud: "https://soundcloud.com/damnably/elevate-me-later"} /%}
+
+The Player is written in Svelte and leverages the Spotify IFrame API to load a hidden Spotify IFrame, load a track ID, and synchronize playback between the IFrame and the custom player.
+
+The Player originally fetched MP3 Preview links with Spotify's REST API, but due to recent TOS changes, this was the only path forward.
+
+The site has a theme switcher in the footer providing the primary "Light" theme, an alternative "Dark" theme, and a "Comic" theme for a B&W experience.
+
+The site also uses Last.FM's scrobbling and API to fetch the last track I was listening to or am listening to. It refresh every 5 minutes or so.
+
+Happy Travels!
+
+Yours,\
+Arcade

@@ -1,0 +1,11 @@
+blocks:
+  - discriminant: heading
+    value:
+      text: Welcome to Amends! Check out the first post 👇
+      type: h1
+  - discriminant: postCardGrid
+    value:
+      mobileColumns: 1
+      desktopColumns: 1
+      posts:
+        - hello
