@@ -52,7 +52,7 @@
     } else {
       const user = "Arcade-Chan";
 
-      const url = new URL("http://ws.audioscrobbler.com/2.0");
+      const url = new URL("https://ws.audioscrobbler.com/2.0");
       url.searchParams.append("method", "user.getrecenttracks");
       url.searchParams.append("user", user);
       url.searchParams.append("limit", "1");
