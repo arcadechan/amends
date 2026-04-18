@@ -1,0 +1,191 @@
+---
+import StandaloneLayout from "@layouts/StandaloneLayout.astro";
+---
+
+<StandaloneLayout pageTitle="CRT Splash">
+  <div class="crt"></div>
+  <div class="pixelgrid"></div>
+  <div id="typedarea"></div>
+  <div id="homepage-btn">
+    <a href="/">Go to homepage</a>
+  </div>
+</StandaloneLayout>
+
+<style>
+  * {
+    font-family: "Courier New", "Courier", "monaco", sans-serif;
+  }
+
+  html {
+    background: #000000;
+  }
+
+  body {
+    width: 100%;
+    height: 100%;
+  }
+
+  :global(p) {
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .crt {
+    background: url(/standalone/crt-splash/crt.gif);
+    position: fixed;
+    z-index: -1;
+    opacity: 1;
+    width: 100vw;
+    height: 100vh;
+    animation: flicker 0.1s infinite;
+    background-size: contain;
+    pointer-events: none;
+  }
+
+  .pixelgrid {
+    background: url(/standalone/crt-splash/smallgridfinalpng.png);
+    position: fixed;
+    z-index: 100;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0.15;
+    pointer-events: none;
+  }
+
+  :global(.indent) {
+    margin-left: 2rem;
+  }
+
+  #typedarea {
+    color: white;
+    font-family: monaco;
+    padding: 10px 0 0 10px;
+    margin-bottom: 40px;
+  }
+
+  #typedarea :global(p:last-child:after) {
+    content: "_";
+    animation: blink 1s step-end infinite;
+  }
+
+  #typedarea :global(.aqua) {
+    color: aqua;
+  }
+
+  #typedarea :global(.white) {
+    color: white;
+  }
+
+  #homepage-btn {
+    display: block;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  #homepage-btn a {
+    background: var(--color-yellow);
+    color: var(--color-black);
+    padding: 12px 20px;
+    cursor: pointer;
+    border-radius: 0;
+  }
+
+  @keyframes flicker {
+    0% {
+      opacity: 0.06;
+    }
+    100% {
+      opacity: 0.08;
+    }
+  }
+
+  @keyframes blink {
+    from,
+    to {
+      color: transparent;
+    }
+    50% {
+      color: white;
+    }
+  }
+</style>
+
+<script is:inline>
+  const charTypeSpeed = 8; // ms per character
+  const rowPauseSpeed = 300; // ms pause between rows
+  const typedArea = document.querySelector("#typedarea");
+
+  // set up text to print, each item in array is new line
+  const textRows = [
+    {
+      text: "********** ARCADE-OS(R) V.1.0.0.0 **********",
+      lineBreak: true,
+      className: "aqua",
+    },
+    { text: "COPYRIGHT (C) 2017, AMENDS", lineBreak: true },
+    { text: "STARTING...", lineBreak: true },
+    { text: "REGION UNKNOWN", lineBreak: false },
+    { text: "SERIAL NO. AAER-01A05774566", lineBreak: false },
+    { text: "LOADER V3.2.222", lineBreak: false },
+    { text: "DE VERSION 41.10", lineBreak: false },
+    { text: "64G RAM", lineBreak: false },
+    { text: "49.5 TERABYTES FREE", lineBreak: false },
+    { text: "NO PREVIOUS INSTANCES FOUND", lineBreak: false },
+    { text: "LOADING GUEST-ACCT:", lineBreak: false },
+    { text: "ASSIGNED TO GUEST(001)", lineBreak: true, className: "indent" },
+    { text: "READING SECTORS...", lineBreak: true },
+    { text: "SEC.9422021639xY", lineBreak: false, className: "aqua" },
+    { text: "SEC.4505197655xH", lineBreak: false, className: "aqua" },
+    { text: "SEC.2775251219xL", lineBreak: false, className: "aqua" },
+    { text: "SEC.5962640312xK", lineBreak: false, className: "aqua" },
+    { text: "SEC.6341168323xE", lineBreak: false, className: "aqua" },
+    { text: "SEC.4631090763xR", lineBreak: false, className: "aqua" },
+    { text: "SEC.8428769612xR", lineBreak: false, className: "aqua" },
+    { text: "SEC.5076260567xW", lineBreak: false, className: "aqua" },
+    { text: "SEC.8292544350xU", lineBreak: false, className: "aqua" },
+    { text: "SEC.1766956574xN", lineBreak: true, className: "aqua" },
+    { text: "SECTORS RETURNED NO ERRORS", lineBreak: true },
+    { text: "ACCESS GRANTED TO SITE", lineBreak: false },
+    { text: " " },
+  ];
+
+  function typeRow(row) {
+    return new Promise((resolve) => {
+      const newLine = document.createElement("p");
+
+      if (row.className) {
+        newLine.setAttribute("class", row.className);
+      }
+
+      typedArea.appendChild(newLine);
+
+      let i = 0;
+
+      const interval = setInterval(() => {
+        newLine.textContent += row.text[i];
+        i++;
+
+        window.scrollBy(0, 24);
+
+        if (i === row.text.length) {
+          clearInterval(interval);
+
+          if (row.lineBreak) {
+            typedArea.appendChild(document.createElement("br"));
+          }
+
+          resolve();
+        }
+      }, charTypeSpeed);
+    });
+  }
+
+  async function run() {
+    for (const row of textRows) {
+      await typeRow(row);
+      await new Promise((resolve) => setTimeout(resolve, rowPauseSpeed));
+    }
+  }
+
+  run();
+</script>
