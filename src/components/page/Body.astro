@@ -3,6 +3,12 @@
 </section>
 
 <style lang="scss">
+  html.dark {
+    section :global(blockquote) {
+      border-left-color: var(--color-yellow) !important;
+    }
+  }
+
   html.comic {
     section :global(article > p > img) {
       border: 3px solid black;
