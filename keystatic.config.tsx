@@ -238,6 +238,21 @@ export default config({
                 caption: fields.text({ label: 'Caption' })
               }
             }),
+            Accordion: block({
+              label: 'Accordion',
+              schema: {
+                items: fields.array(
+                  fields.object({
+                    title: fields.text({ label: 'Title', validation: { isRequired: true } }),
+                    content: fields.text({ label: 'Content', multiline: true })
+                  }),
+                  {
+                    label: 'Items',
+                    itemLabel: props => props.fields.title.value ?? 'Item'
+                  }
+                )
+              }
+            }),
             Player: block({
               label: 'Player',
               schema: {

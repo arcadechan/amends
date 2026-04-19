@@ -20,6 +20,12 @@ export default defineMarkdocConfig({
         caption: { type: String }
       }
     },
+    Accordion: {
+      render: component('./src/components/AccordionIsland.astro'),
+      attributes: {
+        items: { type: Array }
+      }
+    },
     Player: {
         render: component('./src/components/player/PlayerIsland.astro'),
         attributes: {

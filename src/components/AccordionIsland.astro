@@ -1,0 +1,66 @@
+---
+interface Props {
+  items: Array<{
+    title: string;
+    content: string;
+  }>;
+}
+
+const { items } = Astro.props;
+---
+
+{
+  items.length > 0 && (
+    <div>
+      {items.map((item) => (
+        <details>
+          <summary>{item.title}</summary>
+          <p>{item.content}</p>
+        </details>
+      ))}
+    </div>
+  )
+}
+
+<style lang="scss">
+  :global(html.comic) {
+    div {
+      border: 1px solid var(--color-black);
+      border-radius: 0px;
+
+      details:not(details:last-child) {
+        border-bottom: 1px solid var(--color-black);
+      }
+
+      details {
+        &[open] {
+          summary {
+            border-bottom: 1px solid var(--color-black);
+          }
+        }
+      }
+    }
+  }
+
+  div {
+    background-color: var(--accordion-background);
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+    margin: 20px 0;
+  }
+
+  details {
+    summary {
+      padding: 10px 20px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    p {
+      display: block;
+      white-space: pre;
+      padding: 10px 40px;
+      margin: 0;
+    }
+  }
+</style>

@@ -11,6 +11,7 @@ import SpotifyIframe from "@components/player/SpotifyIframe.svelte"
 import PostCategory from "@components/blog/PostCategory.astro";
 import PostTags from "@components/blog/PostTags.astro";
 import ImageIsland from "@components/ImageIsland.astro";
+import AccordionIsland from "@components/AccordionIsland.astro";
 
 export async function getStaticPaths() {
   const [posts, categories, tags] = await Promise.all([
@@ -58,7 +59,8 @@ const hasPlayerComponents = /\{%\s*Player\b/.test(post?.body || '');
     <Content
       component={{
         PlayerIsland,
-        ImageIsland
+        ImageIsland,
+        AccordionIsland
       }}
     />
   </Body>
