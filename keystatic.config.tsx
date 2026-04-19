@@ -225,6 +225,19 @@ export default config({
         content: fields.markdoc({
           label: 'Content',
           components: {
+            Image: block({
+              label: 'Image',
+              schema: {
+                image: fields.image({
+                  label: 'Image',
+                  directory:'src/content/blog',
+                  publicPath: '/src/content/blog',
+                  validation: { isRequired: true }
+                }),
+                alt: fields.text({ label: 'Alt Text' }),
+                caption: fields.text({ label: 'Caption' })
+              }
+            }),
             Player: block({
               label: 'Player',
               schema: {

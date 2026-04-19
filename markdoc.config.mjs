@@ -12,6 +12,14 @@ export default defineMarkdocConfig({
     },
   },
   tags: {
+    Image: {
+      render: component('./src/components/ImageIsland.astro'),
+      attributes: {
+        image: { type: String },
+        alt: { type: String },
+        caption: { type: String }
+      }
+    },
     Player: {
         render: component('./src/components/player/PlayerIsland.astro'),
         attributes: {

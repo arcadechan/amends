@@ -5,11 +5,13 @@ export interface Props {
     type: "bars-below-text" | "bars-behind-text";
     size: "normal" | "large";
   };
+  subtitle?: string;
 }
 
 const {
   title,
   titleSettings: { type, size },
+  subtitle,
 } = Astro.props;
 ---
 
@@ -18,6 +20,7 @@ const {
     <div class={`title ${type}`}>
       <div class="title--container">
         <h1 class={size}>{title}</h1>
+        {subtitle && <h2>{subtitle}</h2>}
       </div>
       <div class="title--bar">
         <div class="title--bar-one" />
@@ -33,38 +36,61 @@ const {
 
     &--container {
       background-color: var(--color-main);
+      padding: 45px 48px;
+
+      h1,
+      h2 {
+        text-align: center;
+        max-width: 1024px;
+        margin: 0 auto;
+        line-height: 1;
+        -webkit-text-stroke-color: var(--color-stroke);
+      }
+
+      h2 {
+        margin-top: 20px;
+      }
 
       h1 {
-        margin: 0 auto;
-        padding: 45px 48px;
-        max-width: 1024px;
-        text-align: center;
-        line-height: 1;
-
-        &.normal,
-        &.large {
-          -webkit-text-stroke-color: var(--color-stroke);
-        }
-
         &.normal {
           font-size: 36px;
           -webkit-text-stroke-width: 2px;
+
+          & ~ h2 {
+            font-size: 20px;
+            -webkit-text-stroke-width: 2px;
+          }
         }
 
         &.large {
           font-size: 96px;
           -webkit-text-stroke-width: 5px;
+
+          & ~ h2 {
+            font-size: 80px;
+            -webkit-text-stroke-width: 5px;
+          }
         }
 
         @include screen("lg") {
           &.normal {
             font-size: 60px;
             -webkit-text-stroke-width: 3px;
+
+            & ~ h2 {
+              font-size: 44px;
+              -webkit-text-stroke-width: 3px;
+            }
           }
 
           &.large {
             font-size: 128px;
             -webkit-text-stroke-width: 8px;
+
+            & ~ h2 {
+              font-size: 112px;
+              -webkit-text-stroke-width: 8px;
+            }
           }
         }
       }

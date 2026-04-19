@@ -11,7 +11,22 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const allPosts = await getCollection("blog", ({ data }) => {
     return data.draft !== true;
   });
-  return paginate(allPosts, { pageSize: 10 });
+
+  if (!allPosts.length) {
+    return paginate(allPosts, { pageSize: 10 });
+  }
+
+  const sorted = allPosts.sort((a, b) => {
+    if (b?.data?.publicationDate && a?.data?.publicationDate) {
+      return (
+        b.data?.publicationDate.valueOf() - a.data?.publicationDate.valueOf()
+      );
+    }
+
+    return -1;
+  });
+
+  return paginate(sorted, { pageSize: 10 });
 }
 
 const { page } = Astro.props;

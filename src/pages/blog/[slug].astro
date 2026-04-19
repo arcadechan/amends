@@ -10,6 +10,7 @@ import PlayerIsland from "@components/player/PlayerIsland.astro";
 import SpotifyIframe from "@components/player/SpotifyIframe.svelte"
 import PostCategory from "@components/blog/PostCategory.astro";
 import PostTags from "@components/blog/PostTags.astro";
+import ImageIsland from "@components/ImageIsland.astro";
 
 export async function getStaticPaths() {
   const [posts, categories, tags] = await Promise.all([
@@ -34,7 +35,7 @@ export async function getStaticPaths() {
 const { post, category, tags } = Astro.props;
 const { Content } = await render(post);
 
-const { hero, title, titleSettings, publicationDate } = post.data;
+const { hero, title, titleSettings, subtitle, publicationDate } = post.data;
 
 const hasPlayerComponents = /\{%\s*Player\b/.test(post?.body || '');
 ---
@@ -51,12 +52,13 @@ const hasPlayerComponents = /\{%\s*Player\b/.test(post?.body || '');
   }}
 >
   <Hero {...hero} />
-  <Title {...{ title, titleSettings }} />
+  <Title {...{ title, titleSettings, subtitle }} />
   <Body>
     <Date date={publicationDate} />
     <Content
       component={{
         PlayerIsland,
+        ImageIsland
       }}
     />
   </Body>

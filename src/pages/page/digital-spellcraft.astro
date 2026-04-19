@@ -1,0 +1,180 @@
+---
+import StandaloneLayout from "@layouts/StandaloneLayout.astro";
+import { Image } from "astro:assets";
+
+import CyberWitch from "@public/standalone/digital-spellcraft/cyberwitch.jpg";
+import WorldBackground from "@public/standalone/digital-spellcraft/worldBackground.mp4";
+---
+
+<StandaloneLayout pageTitle="Digital Spellcraft">
+  <section class="page">
+    <video data-video="0" muted autoplay playsinline loop>
+      <source src={WorldBackground} type="video/mp4" />
+    </video>
+    <section class="banner">
+      <div class="banner--necromancer">
+        <Image src={CyberWitch} alt="" width={320} height={320} />
+      </div>
+      <div class="banner--content">
+        <h1>Digital Spellcraft</h1>
+        <p>
+          Programming is modern-day sigil magick. Through the skillful use of
+          various languages and their runes we can cast complex hexes and spells
+          (scripts and functions), and ultimately conjure something out of
+          nothing. Programming can even be seen as a form of modern-day
+          necromancy, because that which is void of life, the 1s and 0s, when
+          given structure or restructured by the hands of wizards and witches
+          (programmers), allows the digital realm to come to life.
+        </p>
+        <a href="/post/digital-spellcraft">
+          Read more about digital spellcraft.
+        </a>
+      </div>
+    </section>
+    <section class="attribution">
+      <small>
+        <a href="https://www.pexels.com/@pressmaster/" target="_blank">
+          Original world video by Pressmaster
+        </a>
+      </small>
+    </section>
+  </section>
+</StandaloneLayout>
+<style lang="scss">
+  .page {
+    background-color: #000000;
+    z-index: -20;
+    font-family: Arial, Helvetica, sans-serif;
+
+    video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+      object-fit: cover;
+      filter: hue-rotate(90deg) brightness(10) contrast(1.5);
+      animation: videoHueRotate 20s linear infinite;
+    }
+  }
+
+  .banner {
+    position: relative;
+    margin: 2rem auto;
+    background-color: #090a0e;
+    border: 1px solid black;
+    width: 20rem;
+    z-index: 20;
+
+    &--necromancer {
+      position: relative;
+      width: 100%;
+      height: 20rem;
+
+      img {
+        object-fit: cover;
+        filter: hue-rotate(0deg) brightness(1.5) contrast(1.25) saturate(1.5);
+        animation: necromancerHueRotate 20s linear infinite;
+      }
+    }
+
+    &--content {
+      padding: 0.5rem;
+      text-align: center;
+
+      h1 {
+        color: var(--color-yellow);
+        font-size: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      p {
+        color: var(--color-sand);
+        font-weight: 200;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+      }
+
+      a {
+        color: var(--color-yellow);
+        text-decoration: underline;
+      }
+    }
+
+    @include screen("lg") {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  .attribution {
+    display: inline-block;
+    position: relative;
+    background-color: #090a0e;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--color-sand);
+    padding: 0 0.5rem;
+    text-align: center;
+    margin-bottom: 0.75rem;
+    border: 1px solid black;
+    z-index: 20;
+
+    small {
+      display: block;
+      padding: 0.5rem 0;
+
+      a {
+        text-decoration: underline;
+      }
+    }
+
+    @include screen("lg") {
+      background-color: transparent;
+      display: inline;
+      left: initial;
+      transform: translateX(0);
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      margin-bottom: 0;
+      border: none;
+    }
+  }
+
+  a:visited {
+    color: var(--color-yellow);
+  }
+
+  @keyframes videoHueRotate {
+    0% {
+      filter: hue-rotate(90deg) brightness(10) contrast(1.5);
+    }
+
+    50% {
+      filter: hue-rotate(450deg) brightness(10) contrast(1.5);
+    }
+
+    100% {
+      filter: hue-rotate(90deg) brightness(10) contrast(1.5);
+    }
+  }
+
+  @keyframes necromancerHueRotate {
+    0% {
+      filter: hue-rotate(0deg) brightness(1.5) contrast(1.25) saturate(1.5);
+    }
+
+    50% {
+      filter: hue-rotate(360deg) brightness(1.5) contrast(1.25) saturate(1.5);
+    }
+
+    100% {
+      filter: hue-rotate(0deg) brightness(1.5) contrast(1.25) saturate(1.5);
+    }
+  }
+</style>

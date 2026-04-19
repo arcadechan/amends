@@ -1,0 +1,55 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  image: string;
+  alt: string;
+  caption: string;
+}
+
+const { image, alt, caption } = Astro.props;
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/content/**/*.{png,jpg,jpeg,gif,webp,avif}",
+);
+
+const importedImage = (await images[image]?.())?.default ?? null;
+---
+
+{
+  importedImage && (
+    <div>
+      <figure>
+        <Image
+          src={importedImage}
+          alt={alt}
+          width={importedImage.width}
+          height={importedImage.height}
+        />
+        {caption && <figcaption>{caption}</figcaption>}
+      </figure>
+    </div>
+  )
+}
+
+<style lang="scss">
+  div {
+    display: block;
+    position: relative;
+    text-align: center;
+  }
+
+  figure {
+    display: inline-block;
+    background-color: var(--color-white);
+    box-shadow: var(--box-shadow);
+
+    img {
+      display: block;
+    }
+
+    figcaption {
+      padding: 10px;
+    }
+  }
+</style>
