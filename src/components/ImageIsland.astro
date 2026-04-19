@@ -33,6 +33,18 @@ const importedImage = (await images[image]?.())?.default ?? null;
 }
 
 <style lang="scss">
+  :global(html.comic) {
+    div {
+      figure {
+        border: 1px solid var(--color-black);
+
+        figcaption {
+          border-top: 1px solid var(--color-black);
+        }
+      }
+    }
+  }
+
   div {
     display: block;
     position: relative;
