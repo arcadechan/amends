@@ -55,9 +55,12 @@ const importedImage = (await images[image]?.())?.default ?? null;
     display: inline-block;
     background-color: var(--color-white);
     box-shadow: var(--box-shadow);
+    max-width: 600px;
 
     img {
       display: block;
+      width: 100%;
+      height: auto;
     }
 
     figcaption {
