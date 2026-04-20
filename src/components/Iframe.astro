@@ -8,8 +8,14 @@ const { code } = Astro.props;
 
 <div set:html={code} />
 
-<style>
+<style lang="scss">
   div {
     text-align: center;
+    width: 100%;
+
+    :global(iframe) {
+      width: 100%;
+      height: 483px;
+    }
   }
 </style>
