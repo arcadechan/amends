@@ -1,5 +1,16 @@
-import { config, fields, collection, singleton } from '@keystatic/core';
+import { config, fields, collection, singleton, component } from '@keystatic/core';
 import { block } from '@keystatic/core/content-components';
+import { useEffect, useRef } from 'react';
+
+const MIME_TYPES: Record<string, string> = {
+  jpg: 'image/jpeg',
+  jpeg: 'image/jpeg',
+  png: 'image/png',
+  webp: 'image/webp',
+  gif: 'image/gif',
+  avif: 'image/avif',
+  svg: 'image/svg+xml',
+};
 
 export default config({
   storage: {
@@ -235,7 +246,29 @@ export default config({
                   validation: { isRequired: true }
                 }),
                 alt: fields.text({ label: 'Alt Text' }),
-                caption: fields.text({ label: 'Caption' })
+                caption: fields.text({ label: 'Caption' }),
+              },
+              ContentView: ({ value }) => {
+                let imgRef = useRef<HTMLImageElement>(null);
+
+                useEffect(() => {
+                  if (!value?.image?.data || !imgRef.current) return;
+
+                  const mimeType = MIME_TYPES[value.image.extension?.toLowerCase()] ?? 'image/jpeg';
+                  const blob = new Blob([value.image.data.buffer as ArrayBuffer], { type: mimeType });
+                  const url = URL.createObjectURL(blob);
+
+                  imgRef.current.src = url;
+
+                  return () => URL.revokeObjectURL(url); // cleanup on unmount or data change
+                }, [value.image]);
+
+                return (
+                  <figure style={{textAlign: 'center'}}>
+                    <img ref={imgRef} alt={value.alt} />
+                    {value.caption && <figcaption>{value.caption}</figcaption>}
+                  </figure>
+                );
               }
             }),
             Accordion: block({
@@ -251,6 +284,22 @@ export default config({
                     itemLabel: props => props.fields.title.value ?? 'Item'
                   }
                 )
+              },
+              ContentView: ({ value }) => {
+                if(value?.items.length > 0) {
+                  return (
+                    <div>
+                      {value.items.map(item => (
+                        <details>
+                          <summary>{item.title}</summary>
+                          <p>{item.content}</p>
+                        </details>
+                      ))}
+                    </div>
+                  )
+                }
+
+                return;
               }
             }),
             Player: block({
@@ -274,12 +323,50 @@ export default config({
                   label: 'Platform Links',
                   layout: [6,6,6,6,6,6]
                 })
+              },
+              ContentView: ({ value }) => {
+                return (
+                  <div>
+                    {value.trackId && (
+                      <>
+                        <p>
+                          Artist: {value.trackArtist}<br/>
+                          Title: {value.trackName}<br/>
+                          Track: {value.trackName}
+                        </p>
+                        <p>Platform Links</p>
+                        <ul>
+                          <li>Spotify: {value.platformLinks.spotify}</li>
+                          <li>YouTube: {value.platformLinks.youtube}</li>
+                          <li>Apple Music: {value.platformLinks.appleMusic}</li>
+                          <li>Deezer: {value.platformLinks.deezer}</li>
+                          <li>Bandcamp: {value.platformLinks.bandcamp}</li>
+                          <li>Soundcloud: {value.platformLinks.soundcloud}</li>
+                        </ul>
+                      </>
+                    )}
+                  </div>
+                )
               }
             }),
             Iframe: block({
               label: 'Iframe',
               schema: {
                 code: fields.text({ label: 'Code', multiline: true })
+              },
+              ContentView: ({ value }) => {
+                if(value.code) {
+                  return (
+                    <div
+                      style={{ textAlign: 'center' }}
+                      dangerouslySetInnerHTML={{
+                        __html: value.code
+                      }}
+                    />
+                  )
+                }
+
+                return;
               }
             })
           }

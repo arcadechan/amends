@@ -16,5 +16,5 @@ export interface PlayerProps {
 }
 
 export interface PlayerPropsWithAlbumArt extends PlayerProps {
-    albumArtData?: CollectionEntry<"media">["data"];
+    albumArtData?: CollectionEntry<"media">["data"] | null;
 }
