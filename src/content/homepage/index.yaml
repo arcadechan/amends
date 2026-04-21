@@ -9,3 +9,22 @@ blocks:
       desktopColumns: 1
       posts:
         - hello
+  - discriminant: heading
+    value:
+      text: Recent Posts
+      type: h2
+  - discriminant: postCardGrid
+    value:
+      mobileColumns: 2
+      desktopColumns: 2
+      posts:
+        - aku-no-hana-the-flowers-of-evil-soundtrack
+        - sort-sol-under-en-sort-sol-album
+        - have-heart-songs-to-scream-at-the-sun-album
+        - delta-spirit
+  - discriminant: postCardGrid
+    value:
+      mobileColumns: 1
+      desktopColumns: 1
+      posts:
+        - i-kill-giants-2017
