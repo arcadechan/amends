@@ -305,6 +305,7 @@
   .platform-links {
     display: flex;
     justify-content: center;
+    margin-bottom: 20px;
 
     &--container {
       display: flex;

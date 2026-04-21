@@ -70,4 +70,17 @@
   });
 </script>
 
-<div bind:this={containerEl} aria-hidden="true"></div>
+<div id="iframe-container">
+  <div bind:this={containerEl} aria-hidden="true"></div>
+</div>
+
+<style>
+  #iframe-container {
+    background-color: transparent;
+    position: fixed;
+    top: 75px; /* navbar height */
+    right: 0;
+    pointer-events: none;
+    height: 1px;
+  }
+</style>

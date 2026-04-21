@@ -1,6 +1,6 @@
 import { config, fields, collection, singleton, component } from '@keystatic/core';
 import { block } from '@keystatic/core/content-components';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const MIME_TYPES: Record<string, string> = {
   jpg: 'image/jpeg',
@@ -325,15 +325,46 @@ export default config({
                 })
               },
               ContentView: ({ value }) => {
+                const [albumArt, setAlbumArt] = useState<string|null>(null)
+
+                useEffect(() => {
+                  if(!value.trackAlbumArt) return
+
+                  let cancelled = false;
+
+                  async function findAlbumArt() {
+                    for (const ext of Object.keys(MIME_TYPES)) {
+                      const path = `/src/content/media/${value.trackAlbumArt}/asset.${ext}`;
+                      try {
+                        const res = await fetch(path, { method: 'HEAD' });
+                        if (res.ok && !cancelled) {
+                          setAlbumArt(path);
+                          break;
+                        }
+                      } catch {
+                        // try next extension
+                      }
+                    }
+                  }
+
+                  findAlbumArt();
+                  return () => { cancelled = true; };
+                }, [value.trackAlbumArt])
+
                 return (
                   <div>
                     {value.trackId && (
                       <>
-                        <p>
-                          Artist: {value.trackArtist}<br/>
-                          Title: {value.trackName}<br/>
-                          Track: {value.trackName}
-                        </p>
+                        <div style={{ display: 'flex', gap: 20 }}>
+                          {albumArt && (
+                            <img style={{ width: 200, height: 200 }} src={albumArt} alt=''/>
+                          )}
+                          <p>
+                            Artist: {value.trackArtist}<br/>
+                            Title: {value.trackName}<br/>
+                            Track: {value.trackName}
+                          </p>
+                        </div>
                         <p>Platform Links</p>
                         <ul>
                           <li>Spotify: {value.platformLinks.spotify}</li>
@@ -510,7 +541,8 @@ export default config({
         asset: fields.image({
           label: 'Asset',
           directory: 'src/content/media',
-          publicPath: '@assets/media'
+          publicPath: '@assets/media',
+          validation: { isRequired: true }
         })
       }
     })
