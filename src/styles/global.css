@@ -43,6 +43,7 @@
   --color-banner-background: var(--color-main);
   --color-banner-text: var(--color-text);
   --accordion-background: var(--color-white);
+  --table-background: var(--color-white);
 
   /* Primary Button */
   --btn-primary-background: var(--color-yellow);
@@ -87,6 +88,7 @@ html.dark {
   --color-banner-background: var(--color-black);
   --color-banner-text: var(--color-yellow);
   --accordion-background: var(--color-black);
+  --table-background: var(--color-black);
 
   /* Primary Button */
   --btn-primary-background: var(--color-yellow);
