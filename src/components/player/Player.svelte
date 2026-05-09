@@ -2,7 +2,7 @@
   import {
     activeTrackId,
     isLoadingTrack,
-    playback,
+    playbackState,
     userPlayIntent,
   } from "@stores/player";
   import "@styles/comic-halfpoint.scss";
@@ -70,8 +70,8 @@
     <div class="player--seek-bar">
       <div
         class="player--seek-bar-progress"
-        style="width: {isActive && $playback.duration > 0
-          ? ($playback.position / $playback.duration) * 100
+        style="width: {isActive && $playbackState.duration > 0
+          ? ($playbackState.position / $playbackState.duration) * 100
           : 0}%"
       ></div>
     </div>
@@ -116,8 +116,8 @@
 
         <div class="player--time">
           <span
-            >{formatTime($playback.position)} &sol; {formatTime(
-              $playback.duration,
+            >{formatTime($playbackState.position)} &sol; {formatTime(
+              $playbackState.duration,
             )}</span
           >
         </div>

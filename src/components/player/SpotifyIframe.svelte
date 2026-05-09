@@ -3,7 +3,7 @@
   import {
     activeTrackId,
     isLoadingTrack,
-    playback,
+    playbackState,
     userPlayIntent,
   } from "@stores/player";
 
@@ -19,7 +19,7 @@
   let containerEl: HTMLDivElement | undefined = $state();
 
   const resetPlaybackState = () => {
-    playback.set({
+    playbackState.set({
       position: 0,
       duration: 0,
     });
@@ -42,7 +42,7 @@
           EmbedController.addListener(
             "playback_update",
             (e: { data: PlaybackUpdate }) => {
-              playback.set({
+              playbackState.set({
                 position: e.data.position,
                 duration: e.data.duration,
               });
