@@ -14,6 +14,10 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 );
 
 const importedImage = (await images[image]?.())?.default ?? null;
+
+if (!importedImage && image) {
+  throw new Error(`[ImageIsland] Image not found: "${image}"`);
+}
 ---
 
 {
