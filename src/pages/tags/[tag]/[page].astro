@@ -5,7 +5,6 @@ import PostCardGrid from "@components/blog/PostCardGrid.astro";
 import PostCard from "@components/blog/PostCard.astro";
 import Pagination from "@components/blog/Pagination.astro";
 import type { GetStaticPathsOptions } from "astro";
-import { ContentSchemaContainsSlugError } from "node_modules/astro/dist/core/errors/errors-data";
 import ContentContainer from "@components/common/ContentContainer.astro";
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
