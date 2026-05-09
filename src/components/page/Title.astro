@@ -20,7 +20,7 @@ const {
     <div class={`title ${type}`}>
       <div class="title--container">
         <h1 class={size}>{title}</h1>
-        {subtitle && <h2>{subtitle}</h2>}
+        {subtitle && <h2 class={`title--subtitle ${size}`}>{subtitle}</h2>}
       </div>
       <div class="title--bar">
         <div class="title--bar-one" />
@@ -55,42 +55,46 @@ const {
         &.normal {
           font-size: 36px;
           -webkit-text-stroke-width: 2px;
-
-          & ~ h2 {
-            font-size: 20px;
-            -webkit-text-stroke-width: 2px;
-          }
         }
 
         &.large {
           font-size: 96px;
           -webkit-text-stroke-width: 5px;
-
-          & ~ h2 {
-            font-size: 80px;
-            -webkit-text-stroke-width: 5px;
-          }
         }
 
         @include screen("lg") {
           &.normal {
             font-size: 60px;
             -webkit-text-stroke-width: 3px;
-
-            & ~ h2 {
-              font-size: 44px;
-              -webkit-text-stroke-width: 3px;
-            }
           }
 
           &.large {
             font-size: 128px;
             -webkit-text-stroke-width: 8px;
+          }
+        }
+      }
 
-            & ~ h2 {
-              font-size: 112px;
-              -webkit-text-stroke-width: 8px;
-            }
+      .title--subtitle {
+        &.normal {
+          font-size: 20px;
+          -webkit-text-stroke-width: 2px;
+        }
+
+        &.large {
+          font-size: 80px;
+          -webkit-text-stroke-width: 5px;
+        }
+
+        @include screen("lg") {
+          &.normal {
+            font-size: 44px;
+            -webkit-text-stroke-width: 3px;
+          }
+
+          &.large {
+            font-size: 112px;
+            -webkit-text-stroke-width: 8px;
           }
         }
       }
