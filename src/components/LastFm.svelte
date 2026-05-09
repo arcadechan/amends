@@ -12,17 +12,16 @@
   const CACHE_KEY = "lastfm_recent_track";
   const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
 
-  function getCached() {
+  function getCached(): LastFmTrack | null {
     const cached = localStorage.getItem(CACHE_KEY);
     if (!cached) return null;
 
-    const { timestamp, data } = JSON.parse(cached);
-    if (Date.now() - timestamp > CACHE_DURATION) {
-      localStorage.removeItem(CACHE_KEY);
+    try {
+      const { data } = JSON.parse(cached);
+      return data as LastFmTrack;
+    } catch {
       return null;
     }
-
-    return data as LastFmTrack;
   }
 
   function setCache(data: LastFmTrack) {
@@ -44,34 +43,42 @@
     return `${Math.floor(seconds / 86400)} days ago`;
   }
 
-  onMount(() => {
+  onMount(async () => {
     const cached = getCached();
+    const cachedTimestamp = cached
+      ? JSON.parse(localStorage.getItem(CACHE_KEY) ?? "{}").timestamp
+      : null;
 
-    if (cached) {
+    if (cached && cachedTimestamp && Date.now() - cachedTimestamp < CACHE_DURATION) {
       recentTrack = cached;
-    } else {
-      const user = "Arcade-Chan";
+      return;
+    }
 
-      const url = new URL("https://ws.audioscrobbler.com/2.0");
-      url.searchParams.append("method", "user.getrecenttracks");
-      url.searchParams.append("user", user);
-      url.searchParams.append("limit", "1");
-      url.searchParams.append("api_key", apiKey);
-      url.searchParams.append("format", "json");
+    const user = "Arcade-Chan";
 
-      fetch(url.toString(), {
+    const url = new URL("https://ws.audioscrobbler.com/2.0");
+    url.searchParams.append("method", "user.getrecenttracks");
+    url.searchParams.append("user", user);
+    url.searchParams.append("limit", "1");
+    url.searchParams.append("api_key", apiKey);
+    url.searchParams.append("format", "json");
+
+    try {
+      const res = await fetch(url.toString(), {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
-      })
-        .then((res) => res.json())
-        .then((data: LastFmRecentTracksResponse) => {
-          if (data?.recenttracks?.track && data.recenttracks.track.length > 0) {
-            recentTrack = data.recenttracks.track[0];
-            setCache(recentTrack);
-          }
-        });
+      });
+      const data: LastFmRecentTracksResponse = await res.json();
+
+      if (data?.recenttracks?.track && data.recenttracks.track.length > 0) {
+        recentTrack = data.recenttracks.track[0];
+        setCache(recentTrack);
+      }
+    } catch {
+      const stale = getCached();
+      if (stale) recentTrack = stale;
     }
   });
 </script>
