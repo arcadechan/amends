@@ -91,6 +91,7 @@
           <img
             src={recentTrack.image[2]["#text"]}
             alt=""
+            aria-hidden="true"
             width={64}
             height={64}
             loading="lazy"

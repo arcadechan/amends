@@ -12,14 +12,14 @@ const { url } = Astro.props;
   {
     url?.first && (
       <li>
-        <a href={url.first}>First</a>
+        <a href={url.first} aria-label="Go to first page">First</a>
       </li>
     )
   }
   {
     url?.prev && (
       <li>
-        <a href={url.prev}>
+        <a href={url.prev} aria-label="Go to previous page">
           &larr;
           <span>Previous</span>
         </a>
@@ -29,7 +29,7 @@ const { url } = Astro.props;
   {
     url?.next && (
       <li>
-        <a href={url.next}>
+        <a href={url.next} aria-label="Go to next page">
           <span>Next</span>
           &rarr;
         </a>
@@ -39,7 +39,7 @@ const { url } = Astro.props;
   {
     url?.last && (
       <li>
-        <a href={url.last}>Last</a>
+        <a href={url.last} aria-label="Go to last page">Last</a>
       </li>
     )
   }

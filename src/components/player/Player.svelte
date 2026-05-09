@@ -62,6 +62,7 @@
       <img
         src={albumArtData.asset.src}
         alt=""
+        aria-hidden="true"
         width={125}
         height={125}
         loading="lazy"
@@ -75,7 +76,7 @@
     <div class="player--seek-bar">
       <div
         class="player--seek-bar-progress"
-        style="width: {isActive
+        style="width: {isActive && $playback.duration > 0
           ? ($playback.position / $playback.duration) * 100
           : 0}%"
       ></div>
@@ -93,6 +94,7 @@
             <img
               src="/icons/loading.svg"
               alt=""
+              aria-hidden="true"
               width={30}
               height={30}
               loading="lazy"
@@ -101,6 +103,7 @@
             <img
               src="/icons/pause.png"
               alt=""
+              aria-hidden="true"
               width={30}
               height={30}
               loading="lazy"
@@ -109,6 +112,7 @@
             <img
               src="/icons/play.svg"
               alt=""
+              aria-hidden="true"
               width={30}
               height={30}
               loading="lazy"
@@ -132,6 +136,7 @@
           <img
             src="/icons/play.svg"
             alt=""
+            aria-hidden="true"
             width={30}
             height={30}
             loading="lazy"
@@ -154,6 +159,7 @@
         <img
           src={`/icons/${platform}.png`}
           alt=""
+          aria-hidden="true"
           width={40}
           height={40}
           loading="lazy"

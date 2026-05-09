@@ -54,6 +54,11 @@ const { items } = Astro.props;
       padding: 10px 20px;
       cursor: pointer;
       font-weight: bold;
+
+      &:focus-visible {
+        outline: 2px solid var(--outline-color);
+        outline-offset: 2px;
+      }
     }
 
     p {

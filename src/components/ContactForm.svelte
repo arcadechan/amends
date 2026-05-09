@@ -175,7 +175,7 @@
 
     <button type="submit" disabled={isSubmitting}>
       {#if isSubmitting}
-        <img src="/icons/loading.svg" alt="" height={20} width={20} />
+        <img src="/icons/loading.svg" alt="" aria-hidden="true" height={20} width={20} />
         Submitting...
       {:else}
         Send Message
