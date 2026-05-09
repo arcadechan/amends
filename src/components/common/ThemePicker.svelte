@@ -1,17 +1,16 @@
 <script lang="ts">
-  import { onMount } from "svelte";
-
   let activeTheme: string = $state("light");
 
-  onMount(() => {
-    const storedTheme = localStorage.getItem("theme");
-
-    if (storedTheme === null) {
-      localStorage.setItem("theme", "light");
-    } else {
-      activeTheme = storedTheme;
+  const getThemeFromDOM = (): string => {
+    if (typeof document !== "undefined") {
+      return document.documentElement.getAttribute("data-theme") || "light";
     }
-  });
+    return "light";
+  };
+
+  if (typeof window !== "undefined") {
+    activeTheme = getThemeFromDOM();
+  }
 
   const handleThemeChange = (e: Event) => {
     const newTheme = (e.target as HTMLSelectElement)?.value;

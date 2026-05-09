@@ -59,8 +59,10 @@ const lastFmKey = import.meta.env.PUBLIC_LASTFM_KEY;
     <!-- END: Open Graph -->
     <script is:inline>
       const theme = localStorage.getItem("theme");
-      if (theme !== "light")
+      if (theme && theme !== "light") {
+        document.documentElement.setAttribute("data-theme", theme);
         document.documentElement.setAttribute("class", theme);
+      }
     </script>
   </head>
   <body>
