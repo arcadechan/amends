@@ -36,23 +36,17 @@
     window.dispatchEvent(new CustomEvent("spotify:pause"));
   }
 
+  const platformLabels: Record<string, string> = {
+    spotify: "Spotify",
+    youtube: "Youtube",
+    appleMusic: "Apple Music",
+    deezer: "Deezer",
+    bandcamp: "Bandcamp",
+    soundcloud: "SoundCloud",
+  };
+
   function platformToLabel(platform: string) {
-    switch (platform) {
-      case "spotify":
-        return "Spotify";
-      case "youtube":
-        return "Youtube";
-      case "appleMusic":
-        return "Apple Music";
-      case "deezer":
-        return "Deezer";
-      case "bandcamp":
-        return "Bandcamp";
-      case "soundcloud":
-        return "SoundCloud";
-      default:
-        return platform;
-    }
+    return platformLabels[platform] ?? platform;
   }
 </script>
 
