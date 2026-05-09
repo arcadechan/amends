@@ -14,7 +14,7 @@ export function trapFocus(node) {
 
 		const elements = focusable();
 		const first = elements.at(0);
-		const last = elements.at(-1)
+		const last = elements.at(-1);
 
 		if (event.shiftKey && current === first) {
 			last.focus();

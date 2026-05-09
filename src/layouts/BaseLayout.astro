@@ -2,7 +2,6 @@
 import Header from "@components/common/Header.astro";
 import Footer from "@components/common/Footer.astro";
 import KeystaticButton from "@components/KeystaticButton.astro";
-import type { ImageInputFormat } from "astro";
 import "@styles/global.css";
 import DefaultOpengraphImage from "@public/logo/amends-og.jpeg";
 import Article from "@components/opengraph/OpenGraphArticle.astro";
@@ -21,7 +20,7 @@ const { metaDescription } = settings.data;
 
 const { pageTitle, pageExcerpt, opengraph } = Astro.props;
 
-const domain = import.meta.env.DEV ? Astro.url.origin : Astro?.site?.origin;
+const domain = import.meta.env.DEV ? Astro.url.origin : Astro.site?.origin;
 const path = Astro.url.pathname;
 
 const description = pageExcerpt || metaDescription;

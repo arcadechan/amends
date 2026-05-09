@@ -5,7 +5,7 @@
     isLoadingTrack,
     playback,
     userPlayIntent,
-  } from "@stores/player.ts";
+  } from "@stores/player";
 
   interface PlaybackUpdate {
     playingURI: string;
