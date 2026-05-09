@@ -25,7 +25,7 @@
   };
 
   onMount(() => {
-    (window as any).onSpotifyIframeApiReady = (IFrameAPI: any) => {
+    const initPlayer = (IFrameAPI: any) => {
       IFrameAPI.createController(
         containerEl,
         { width: "100%", height: 0 },
@@ -67,6 +67,12 @@
         },
       );
     };
+
+    if ((window as any).SpotifyIframeAPI) {
+      initPlayer((window as any).SpotifyIframeAPI);
+    } else {
+      (window as any).onSpotifyIframeApiReady = initPlayer;
+    }
   });
 </script>
 
