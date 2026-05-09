@@ -67,16 +67,7 @@ const hasPlayerComponents = /\{%\s*Player\b/.test(post?.body || '');
   <PromiseMotif />
   <PostCategory {...category}/>
   <PostTags {tags}/>
-  {
-    hasPlayerComponents && (
-      <script
-        src="https://open.spotify.com/embed/iframe-api/v1"
-        async
-        is:inline
-      />
-      <SpotifyIframe client:load/>
-    )
-  }
+  {hasPlayerComponents && <SpotifyIframe client:load />}
 </BaseLayout>
 
 <style>

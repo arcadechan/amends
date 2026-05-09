@@ -15,6 +15,7 @@
     position: number;
   }
 
+  let scriptLoaded = $state(false);
   let containerEl: HTMLDivElement | undefined = $state();
 
   const resetPlaybackState = () => {
@@ -25,6 +26,14 @@
   };
 
   onMount(() => {
+    if (!scriptLoaded) {
+      const script = document.createElement("script");
+      script.src = "https://open.spotify.com/embed/iframe-api/v1";
+      script.async = true;
+      script.onload = () => { scriptLoaded = true; };
+      document.head.appendChild(script);
+    }
+
     const initPlayer = (IFrameAPI: any) => {
       IFrameAPI.createController(
         containerEl,
