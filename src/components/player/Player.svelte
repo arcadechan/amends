@@ -2,7 +2,7 @@
   import {
     activeTrackId,
     isLoadingTrack,
-    playback,
+    playbackState,
     userPlayIntent,
   } from "@stores/player";
   import "@styles/comic-halfpoint.scss";
@@ -36,23 +36,17 @@
     window.dispatchEvent(new CustomEvent("spotify:pause"));
   }
 
+  const platformLabels: Record<string, string> = {
+    spotify: "Spotify",
+    youtube: "Youtube",
+    appleMusic: "Apple Music",
+    deezer: "Deezer",
+    bandcamp: "Bandcamp",
+    soundcloud: "SoundCloud",
+  };
+
   function platformToLabel(platform: string) {
-    switch (platform) {
-      case "spotify":
-        return "Spotify";
-      case "youtube":
-        return "Youtube";
-      case "appleMusic":
-        return "Apple Music";
-      case "deezer":
-        return "Deezer";
-      case "bandcamp":
-        return "Bandcamp";
-      case "soundcloud":
-        return "SoundCloud";
-      default:
-        return platform;
-    }
+    return platformLabels[platform] ?? platform;
   }
 </script>
 
@@ -62,6 +56,7 @@
       <img
         src={albumArtData.asset.src}
         alt=""
+        aria-hidden="true"
         width={125}
         height={125}
         loading="lazy"
@@ -75,8 +70,8 @@
     <div class="player--seek-bar">
       <div
         class="player--seek-bar-progress"
-        style="width: {isActive
-          ? ($playback.position / $playback.duration) * 100
+        style="width: {isActive && $playbackState.duration > 0
+          ? ($playbackState.position / $playbackState.duration) * 100
           : 0}%"
       ></div>
     </div>
@@ -93,6 +88,7 @@
             <img
               src="/icons/loading.svg"
               alt=""
+              aria-hidden="true"
               width={30}
               height={30}
               loading="lazy"
@@ -101,6 +97,7 @@
             <img
               src="/icons/pause.png"
               alt=""
+              aria-hidden="true"
               width={30}
               height={30}
               loading="lazy"
@@ -109,6 +106,7 @@
             <img
               src="/icons/play.svg"
               alt=""
+              aria-hidden="true"
               width={30}
               height={30}
               loading="lazy"
@@ -118,8 +116,8 @@
 
         <div class="player--time">
           <span
-            >{formatTime($playback.position)} &sol; {formatTime(
-              $playback.duration,
+            >{formatTime($playbackState.position)} &sol; {formatTime(
+              $playbackState.duration,
             )}</span
           >
         </div>
@@ -132,6 +130,7 @@
           <img
             src="/icons/play.svg"
             alt=""
+            aria-hidden="true"
             width={30}
             height={30}
             loading="lazy"
@@ -154,6 +153,7 @@
         <img
           src={`/icons/${platform}.png`}
           alt=""
+          aria-hidden="true"
           width={40}
           height={40}
           loading="lazy"

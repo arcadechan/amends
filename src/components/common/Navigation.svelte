@@ -31,7 +31,7 @@
         <span class="bar bottom"></span>
       </button>
     </div>
-    <nav id="main-menu" class:open={isOpen}>
+    <nav id="main-menu" class:open={isOpen} aria-label="Main navigation">
       {#if links}
         <ul>
           {#each links as link}

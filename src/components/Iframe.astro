@@ -3,6 +3,8 @@ interface Props {
   code: string;
 }
 
+// Code should always be a trusted static iframe embed string since it originates from the CMS
+// (e.g., YouTube/Spotify oEmbed). Do not pass unsanitized user input.
 const { code } = Astro.props;
 ---
 

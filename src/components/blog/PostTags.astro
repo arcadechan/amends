@@ -16,7 +16,7 @@ const { tags } = Astro.props;
         {tags.map((tag) => {
           return (
             <li>
-              <a href={`/tags/${tag.id}`}>&num;{tag.id}</a>
+              <a href={`/tags/${tag.id}`} aria-label={`Tag: ${tag.id}`}>&num;{tag.id}</a>
               {` `}
             </li>
           );
@@ -35,7 +35,7 @@ const { tags } = Astro.props;
     justify-content: center;
     gap: 10px;
 
-    ul {
+    li {
       padding: 5px 7px;
     }
   }

@@ -3,9 +3,9 @@
   import {
     activeTrackId,
     isLoadingTrack,
-    playback,
+    playbackState,
     userPlayIntent,
-  } from "@stores/player.ts";
+  } from "@stores/player";
 
   interface PlaybackUpdate {
     playingURI: string;
@@ -15,17 +15,26 @@
     position: number;
   }
 
+  let scriptLoaded = $state(false);
   let containerEl: HTMLDivElement | undefined = $state();
 
   const resetPlaybackState = () => {
-    playback.set({
+    playbackState.set({
       position: 0,
       duration: 0,
     });
   };
 
   onMount(() => {
-    (window as any).onSpotifyIframeApiReady = (IFrameAPI: any) => {
+    if (!scriptLoaded) {
+      const script = document.createElement("script");
+      script.src = "https://open.spotify.com/embed/iframe-api/v1";
+      script.async = true;
+      script.onload = () => { scriptLoaded = true; };
+      document.head.appendChild(script);
+    }
+
+    const initPlayer = (IFrameAPI: any) => {
       IFrameAPI.createController(
         containerEl,
         { width: "100%", height: 0 },
@@ -33,7 +42,7 @@
           EmbedController.addListener(
             "playback_update",
             (e: { data: PlaybackUpdate }) => {
-              playback.set({
+              playbackState.set({
                 position: e.data.position,
                 duration: e.data.duration,
               });
@@ -67,6 +76,12 @@
         },
       );
     };
+
+    if ((window as any).SpotifyIframeAPI) {
+      initPlayer((window as any).SpotifyIframeAPI);
+    } else {
+      (window as any).onSpotifyIframeApiReady = initPlayer;
+    }
   });
 </script>
 

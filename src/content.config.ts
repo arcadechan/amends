@@ -23,7 +23,7 @@ const homepage = defineCollection({
                     discriminant: z.literal('heading'),
                     value: z.object({
                         text: z.string(),
-                        type: z.enum(['h1', 'h2', 'h2', 'h3', 'h4', 'h5', 'h6'])
+                        type: z.enum(['h1', 'h2', 'h3', 'h4', 'h5', 'h6'])
                     })
                 })
             ])

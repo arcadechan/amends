@@ -16,7 +16,7 @@ const { metaDescription } = settings.data;
 
 const { pageTitle, pageExcerpt, opengraph } = Astro.props;
 
-const domain = import.meta.env.DEV ? Astro.url.origin : Astro?.site?.origin;
+const domain = import.meta.env.DEV ? Astro.url.origin : Astro.site?.origin;
 const path = Astro.url.pathname;
 
 const description = pageExcerpt || metaDescription;

@@ -9,6 +9,18 @@ const pageTitle = "Homepage";
 const homepage = await getEntry("homepage", "index");
 
 const blocks = homepage?.data?.blocks;
+
+const allPosts = blocks
+  ? await Promise.all(
+      blocks.flatMap((block) =>
+        block.discriminant === "postCardGrid" ? block.value.posts : []
+      ).map((postId) => getEntry("blog", postId))
+    )
+  : [];
+
+const postMap = new Map(
+  allPosts.filter(Boolean).map((post) => [post.id, post])
+);
 ---
 
 <BaseLayout pageTitle={pageTitle}>
@@ -22,8 +34,8 @@ const blocks = homepage?.data?.blocks;
                 mobileColumns={block.value.mobileColumns ?? 1}
                 desktopColumns={block.value.desktopColumns ?? 1}
               >
-                {block.value.posts.map(async (postId) => {
-                  const post = await getEntry("blog", postId);
+                {block.value.posts.map((postId) => {
+                  const post = postMap.get(postId);
                   if (post) {
                     return <PostCard post={post} />;
                   }

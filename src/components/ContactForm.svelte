@@ -9,6 +9,8 @@
     hcaptcha?: any;
   } & Window;
 
+  let scriptInjected = $state(false);
+
   const { accessKey }: Props = $props();
 
   let form: HTMLFormElement;
@@ -119,7 +121,10 @@
 </script>
 
 <svelte:head>
-  <script src="https://web3forms.com/client/script.js" async defer></script>
+  {#if !scriptInjected}
+    <script src="https://web3forms.com/client/script.js" async defer></script>
+    {scriptInjected = true}
+  {/if}
 </svelte:head>
 
 <div>
@@ -170,7 +175,7 @@
 
     <button type="submit" disabled={isSubmitting}>
       {#if isSubmitting}
-        <img src="/icons/loading.svg" alt="" height={20} width={20} />
+        <img src="/icons/loading.svg" alt="" aria-hidden="true" height={20} width={20} />
         Submitting...
       {:else}
         Send Message

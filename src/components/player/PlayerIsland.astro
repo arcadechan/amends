@@ -2,13 +2,12 @@
 import { getEntry } from "astro:content";
 import Player from "./Player.svelte";
 import type { PlayerProps } from "@type/player";
-import type { CollectionEntry } from "astro:content";
 
 interface Props extends PlayerProps {}
 
 const { trackAlbumArt } = Astro.props;
 
-let albumArt: CollectionEntry<"media"> | undefined = undefined;
+let albumArt;
 
 if (trackAlbumArt) {
   albumArt = await getEntry("media", trackAlbumArt);
